@@ -47,6 +47,7 @@
 		0AD7A8901DC4B539001CDDC5 /* newsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD7A88F1DC4B539001CDDC5 /* newsVC.swift */; };
 		0AD7A8921DC4B577001CDDC5 /* newsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD7A8911DC4B577001CDDC5 /* newsCell.swift */; };
 		0AD7A8941DC4E23B001CDDC5 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD7A8931DC4E23B001CDDC5 /* Helper.swift */; };
+		0AD7A8961DCA06BB001CDDC5 /* CosmosDistrib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD7A8951DCA06BB001CDDC5 /* CosmosDistrib.swift */; };
 		0ADD41E31DBF767E0026B118 /* hashtagsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADD41E21DBF767E0026B118 /* hashtagsVC.swift */; };
 /* End PBXBuildFile section */
 
@@ -95,6 +96,7 @@
 		0AD7A88F1DC4B539001CDDC5 /* newsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = newsVC.swift; sourceTree = "<group>"; };
 		0AD7A8911DC4B577001CDDC5 /* newsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = newsCell.swift; sourceTree = "<group>"; };
 		0AD7A8931DC4E23B001CDDC5 /* Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
+		0AD7A8951DCA06BB001CDDC5 /* CosmosDistrib.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CosmosDistrib.swift; sourceTree = "<group>"; };
 		0ADD41E21DBF767E0026B118 /* hashtagsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = hashtagsVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -141,6 +143,7 @@
 		0A8626321DB0BDE30001C1EE /* tripinstagram */ = {
 			isa = PBXGroup;
 			children = (
+				0AD7A8951DCA06BB001CDDC5 /* CosmosDistrib.swift */,
 				0A1D9F391DB2ABBC0002BAD1 /* pictureCell.swift */,
 				0A86266E1DB2A5DC0001C1EE /* homeVC.swift */,
 				0A8626701DB2A62D0001C1EE /* headerView.swift */,
@@ -280,6 +283,7 @@
 				0AD7A8921DC4B577001CDDC5 /* newsCell.swift in Sources */,
 				0A1D9F3A1DB2ABBC0002BAD1 /* pictureCell.swift in Sources */,
 				0A1D9F421DB78BA30002BAD1 /* guestVC.swift in Sources */,
+				0AD7A8961DCA06BB001CDDC5 /* CosmosDistrib.swift in Sources */,
 				0A8626651DB147B40001C1EE /* signUPVC.swift in Sources */,
 				0A1D9F481DB9F2D10002BAD1 /* uploadVC.swift in Sources */,
 				0A1E9D5F1DBC8B9F00080209 /* commentVC.swift in Sources */,
@@ -343,6 +347,7 @@
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
@@ -394,6 +399,7 @@
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";

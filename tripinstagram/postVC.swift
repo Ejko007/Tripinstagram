@@ -51,6 +51,7 @@ class postVC: UITableViewController {
         let postQuery = PFQuery(className: "posts")
         postQuery.whereKey("uuid", equalTo: postuuid.last!)
         postQuery.findObjectsInBackground (block: { (objects: [PFObject]?, error: Error?) in
+            
             if error == nil {
                 
                 // clean up
@@ -69,6 +70,7 @@ class postVC: UITableViewController {
                     self.picArray.append(object.value(forKey: "pic") as! PFFile)
                     self.uuidArray.append(object.value(forKey: "uuid") as! String)
                     self.titleArray.append(object.value(forKey: "title") as! String)
+                    
                  }
                 
                 self.tableView.reloadData()
@@ -103,7 +105,7 @@ class postVC: UITableViewController {
             if error == nil {
                 cell.avaImg.image = UIImage(data: data!)
             } else {
-              print(error?.localizedDescription as Any)
+              print(error!.localizedDescription)
             }
         })
         
@@ -112,7 +114,7 @@ class postVC: UITableViewController {
             if error == nil {
                 cell.picImg.image = UIImage(data: data!)
             } else {
-                print (error?.localizedDescription as Any)
+                print (error!.localizedDescription)
             }
         })
         
@@ -168,6 +170,9 @@ class postVC: UITableViewController {
         countLikes.countObjectsInBackground(block:  { (count: Int32, error: Error?) in
             cell.likeLbl.text = "\(count)"
         })
+        
+        // assign rates value
+        cell.rateView.rating = calculateRates(uuid: cell.uuidLbl.text!)
         
         // assign index
         cell.usernameBtn.layer.setValue(indexPath, forKey: "index")

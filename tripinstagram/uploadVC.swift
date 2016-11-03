@@ -11,7 +11,7 @@ import Parse
 
 class uploadVC: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
-    
+    @IBOutlet weak var tripNameTxt: UITextField!
     @IBOutlet weak var pcImg: UIImageView!
     @IBOutlet weak var titleTxt: UITextView!
     @IBOutlet weak var publishBtn: UIButton!
@@ -28,8 +28,8 @@ class uploadVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
         removeBtn.isHidden = true
         
         // standard UI containt
-        pcImg.image = UIImage(named: "gray_bg.jpg")
-        //titleTxt.text = ""
+        pcImg.image = UIImage(named: "pbg.png")
+        titleTxt.text = ""
         
         // hide keyboard tap
         let hideTap = UITapGestureRecognizer(target: self, action: #selector(hideKeyboardTap))
@@ -87,6 +87,7 @@ class uploadVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
                 self.view.backgroundColor = .black
                 self.titleTxt.alpha = 0
                 self.publishBtn.alpha = 0
+                self.tripNameTxt.alpha = 0
                 
                 // hide remove button
                 self.removeBtn.isHidden = true
@@ -102,6 +103,7 @@ class uploadVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
                 self.view.backgroundColor = .white
                 self.titleTxt.alpha = 1
                 self.publishBtn.alpha = 1
+                self.tripNameTxt.alpha = 1
                 
                 self.removeBtn.isHidden = false
             })
@@ -115,19 +117,18 @@ class uploadVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
         let height = self.view.frame.size.height
 
         
+        tripNameTxt.frame = CGRect(x: 15, y: 15, width: width - 30, height: 20)
+        
         //pcImg.frame = CGRect(x: 15, y: (self.navigationController?.navigationBar.frame.size.height)! + 35, width: self.view.frame.size.width / 4.5, height: self.view.frame.size.width / 4.5)
         
-        pcImg.frame = CGRect(x: 15, y: 15, width: width / 4.5, height: width / 4.5)
-        // titleTxt.frame = CGRect(x: pcImg.frame.size.width + 25, y: pcImg.frame.origin.y, width: width - titleTxt.frame.origin.x - 10, height: pcImg.frame.size.height)
+        pcImg.frame = CGRect(x: 15, y: 15 + tripNameTxt.frame.size.height + 15, width: width / 4.5, height: width / 4.5)
         
         titleTxt.frame = CGRect(x: pcImg.frame.size.width + 25, y: pcImg.frame.origin.y, width:
             width / 1.488, height: pcImg.frame.size.height)
         
-        // publishBtn.frame = CGRect(x: 0, y: (self.tabBarController?.tabBar.frame.origin.y)! - width / 8, width: width, height: width / 8)
-        
         publishBtn.frame = CGRect(x: 0, y: height / 1.09, width: width, height: width / 8)
         
-        removeBtn.frame = CGRect(x: pcImg.frame.origin.x, y: pcImg.frame.origin.y + pcImg.frame.size.height, width: pcImg.frame.size.width, height: 20)
+        removeBtn.frame = CGRect(x: pcImg.frame.origin.x, y: 15 + tripNameTxt.frame.origin.y + 15 + pcImg.frame.size.height + 15, width: pcImg.frame.size.width, height: 20)
     }
     
     // hold selected object and dismiss PickerController
@@ -159,6 +160,7 @@ class uploadVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
         let object = PFObject(className: "posts")
         object["username"] = PFUser.current()?.username
         object["ava"] = PFUser.current()?.value(forKey: "ava") as! PFFile
+        object["tripName"] = tripNameTxt.text
         
         let uuid = NSUUID().uuidString
         object["uuid"] = "\(PFUser.current()?.username) \(uuid)"
@@ -199,7 +201,7 @@ class uploadVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
                         }
                         
                     } else {
-                        print(error?.localizedDescription as Any)
+                        print(error!.localizedDescription)
                     }
                 })
             }
@@ -210,18 +212,41 @@ class uploadVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
         object.saveInBackground (block: { (success:Bool, error: Error?) in
             if error == nil {
                 
-                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "uploaded"), object: nil)
+                // manage rates - set initial ration to 0.0 with no rating text
+                // send data to server
+                let ratesObject = PFObject(className: "rates")
+                ratesObject["username"] = PFUser.current()?.username
+                ratesObject["rating"] = 0.0
+                ratesObject["ratingtxt"] = ""
+                let ratesuuid = NSUUID().uuidString
+                ratesObject["uuid"] = "\(PFUser.current()?.username) \(ratesuuid)"
                 
-                // switch to another view controller at 0 index of tabbar
-                self.tabBarController?.selectedIndex = 0
-                
-                // reset everything
-                self.viewDidLoad()
-                
-                self.titleTxt.text = ""
+                ratesObject.saveInBackground(block: { (success: Bool, error: Error?) in
+                    if error == nil {
+                        
+                        if success {
+                            
+                            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "uploaded"), object: nil)
+                            
+                            // switch to another view controller at 0 index of tabbar
+                            self.tabBarController?.selectedIndex = 0
+                            
+                            // reset everything
+                            self.viewDidLoad()
+                            
+                            self.titleTxt.text = ""
+                            self.tripNameTxt.text = ""
+
+                        }
+                    } else {
+                        print(error!.localizedDescription)
+                    }
+                })
+            } else {
+                print(error!.localizedDescription)
             }
         })
-    }
+   }
     
     // clicked remove button
     @IBAction func removeBtn_clicked(_ sender: AnyObject) {

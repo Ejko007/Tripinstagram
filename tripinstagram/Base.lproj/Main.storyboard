@@ -434,12 +434,21 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Název výletu" textAlignment="natural" minimumFontSize="14" clearButtonMode="always" id="n8t-Pt-ADH">
+                                <rect key="frame" x="16" y="75" width="343" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="pbg" id="AVX-z1-lQq">
-                                <rect key="frame" x="15" y="79" width="70" height="70"/>
+                                <rect key="frame" x="16" y="113" width="70" height="70"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" id="20u-Fc-N35">
-                                <rect key="frame" x="100" y="79" width="259" height="70"/>
+                                <rect key="frame" x="100" y="113" width="259" height="70"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -458,7 +467,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="M48-IG-0sd">
-                                <rect key="frame" x="15" y="150" width="69" height="30"/>
+                                <rect key="frame" x="16" y="191" width="69" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <state key="normal" title="Odstranit"/>
@@ -475,6 +484,7 @@
                         <outlet property="publishBtn" destination="K80-u9-ZwD" id="iN7-HK-HDu"/>
                         <outlet property="removeBtn" destination="M48-IG-0sd" id="MtH-9P-Qiz"/>
                         <outlet property="titleTxt" destination="20u-Fc-N35" id="RlQ-Fc-TXS"/>
+                        <outlet property="tripNameTxt" destination="n8t-Pt-ADH" id="oAx-bh-nui"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6GG-F2-lcU" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -536,14 +546,6 @@
                                                 <action selector="likeBtn_click:" destination="TxF-72-i53" eventType="touchUpInside" id="WMR-hb-hPe"/>
                                             </connections>
                                         </button>
-                                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" id="Z0y-4L-oK1">
-                                            <rect key="frame" x="120" y="360" width="30" height="30"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <state key="normal" backgroundImage="comment"/>
-                                            <connections>
-                                                <action selector="commentBtn_click:" destination="Dk3-yy-4GC" eventType="touchUpInside" id="znH-BZ-sDj"/>
-                                            </connections>
-                                        </button>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="4KL-bz-ADk">
                                             <rect key="frame" x="48" y="363" width="42" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -566,6 +568,19 @@
                                                 <action selector="moreBtn_click:" destination="Dk3-yy-4GC" eventType="touchUpInside" id="ZFl-SF-8x3"/>
                                             </connections>
                                         </button>
+                                        <view contentMode="scaleToFill" misplaced="YES" id="dZS-za-lZo" customClass="CosmosView" customModule="tripinstagram" customModuleProvider="target">
+                                            <rect key="frame" x="133" y="363" width="118" height="27"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" id="Z0y-4L-oK1">
+                                            <rect key="frame" x="84" y="361" width="30" height="30"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <state key="normal" backgroundImage="comment"/>
+                                            <connections>
+                                                <action selector="commentBtn_click:" destination="Dk3-yy-4GC" eventType="touchUpInside" id="znH-BZ-sDj"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
@@ -576,6 +591,7 @@
                                     <outlet property="likeLbl" destination="4KL-bz-ADk" id="NaW-5U-eFV"/>
                                     <outlet property="moreBtn" destination="gfe-bJ-gat" id="5D6-mk-jEo"/>
                                     <outlet property="picImg" destination="lxX-hO-ewB" id="zne-mn-Z1I"/>
+                                    <outlet property="rateView" destination="dZS-za-lZo" id="Voa-ug-5Xf"/>
                                     <outlet property="titleLbl" destination="2Le-23-ynH" id="RWF-00-A7t"/>
                                     <outlet property="usernameBtn" destination="ifg-cF-WZC" id="1ij-AI-4B4"/>
                                     <outlet property="uuidLbl" destination="ZBH-eG-hgh" id="Xoj-nc-8Cm"/>
@@ -658,8 +674,8 @@
                                                 <action selector="likeBtn_click:" destination="vFx-5Q-mdY" eventType="touchUpInside" id="hCh-f2-wFq"/>
                                             </connections>
                                         </button>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" id="S0M-BR-O93">
-                                            <rect key="frame" x="120" y="360" width="30" height="30"/>
+                                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" id="S0M-BR-O93">
+                                            <rect key="frame" x="98" y="360" width="30" height="30"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <state key="normal" backgroundImage="comment"/>
                                             <connections>
@@ -688,6 +704,19 @@
                                                 <action selector="moreBtn_click:" destination="SlD-Vc-yro" eventType="touchUpInside" id="AGD-RO-0Z6"/>
                                             </connections>
                                         </button>
+                                        <view contentMode="scaleToFill" misplaced="YES" id="oP0-NW-5Yt" customClass="CosmosView" customModule="tripinstagram" customModuleProvider="target">
+                                            <rect key="frame" x="136" y="365" width="125" height="25"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="totalStars">
+                                                    <integer key="value" value="5"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="rating">
+                                                    <real key="value" value="1"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                        </view>
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
@@ -698,6 +727,7 @@
                                     <outlet property="likeLbl" destination="nF2-MX-NGF" id="Gbd-mw-QZj"/>
                                     <outlet property="moreBtn" destination="HIz-Zy-miC" id="iIX-7O-wjZ"/>
                                     <outlet property="picImg" destination="MXD-w6-69j" id="tbs-Va-jZ0"/>
+                                    <outlet property="rateView" destination="oP0-NW-5Yt" id="U4n-dX-M71"/>
                                     <outlet property="titleLbl" destination="Yur-hV-2AP" id="zzz-eo-WyT"/>
                                     <outlet property="usernameBtn" destination="JLm-YP-hks" id="BiZ-5b-TQJ"/>
                                     <outlet property="uuidLbl" destination="n8g-LE-kHF" id="PEz-6b-bev"/>
@@ -716,7 +746,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2pX-Ul-GeV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3128" y="1791"/>
+            <point key="canvasLocation" x="3127.5" y="1790.5"/>
         </scene>
         <!--CommentVC-->
         <scene sceneID="GWk-gK-27N">
@@ -1313,14 +1343,6 @@
                                                 <action selector="likeBtn_click:" destination="cBx-AH-FoN" eventType="touchUpInside" id="ytB-uA-2Wn"/>
                                             </connections>
                                         </button>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" id="PAK-s2-0gs">
-                                            <rect key="frame" x="120" y="360" width="30" height="30"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <state key="normal" backgroundImage="comment"/>
-                                            <connections>
-                                                <action selector="commentBtn_click:" destination="tkJ-Ee-eNI" eventType="touchUpInside" id="o8d-oT-3XX"/>
-                                            </connections>
-                                        </button>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="VU1-A6-POp">
                                             <rect key="frame" x="48" y="363" width="42" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -1341,6 +1363,14 @@
                                             <state key="normal" backgroundImage="more"/>
                                             <connections>
                                                 <action selector="moreBtn_click:" destination="tkJ-Ee-eNI" eventType="touchUpInside" id="cEk-07-8G8"/>
+                                            </connections>
+                                        </button>
+                                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" id="PAK-s2-0gs">
+                                            <rect key="frame" x="98" y="360" width="30" height="30"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <state key="normal" backgroundImage="comment"/>
+                                            <connections>
+                                                <action selector="commentBtn_click:" destination="tkJ-Ee-eNI" eventType="touchUpInside" id="o8d-oT-3XX"/>
                                             </connections>
                                         </button>
                                     </subviews>
@@ -1367,7 +1397,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="G3R-eT-ZOf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3574" y="1791"/>
+            <point key="canvasLocation" x="3573.5" y="1790.5"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="f94-MJ-NXg">
@@ -1644,7 +1674,7 @@
         <image name="logout" width="25" height="25"/>
         <image name="more" width="270" height="270"/>
         <image name="news" width="25" height="25"/>
-        <image name="pbg" width="70" height="40"/>
+        <image name="pbg" width="200" height="200"/>
         <image name="unlike" width="270" height="270"/>
         <image name="users" width="25" height="25"/>
     </resources>

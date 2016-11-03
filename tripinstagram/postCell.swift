@@ -25,10 +25,16 @@ class postCell: UITableViewCell {
     @IBOutlet weak var likeLbl: UILabel!
     @IBOutlet weak var titleLbl: KILabel!
     @IBOutlet weak var uuidLbl: UILabel!
+    @IBOutlet weak var rateView: CosmosView!
+    
 
     // default function
     override func awakeFromNib() {
         super.awakeFromNib()
+        
+        // set rate controller to precise
+        rateView!.settings.fillMode = .precise
+        rateView.didFinishTouchingCosmos = saveRating
         
         // clear like title button color
         likeBtn.setTitleColor(UIColor.clear, for: .normal)
@@ -54,6 +60,7 @@ class postCell: UITableViewCell {
         likeLbl.translatesAutoresizingMaskIntoConstraints = false
         titleLbl.translatesAutoresizingMaskIntoConstraints = false
         uuidLbl.translatesAutoresizingMaskIntoConstraints = false
+        rateView.translatesAutoresizingMaskIntoConstraints = false
         
         let pictureWidth = width - 20
         
@@ -95,6 +102,11 @@ class postCell: UITableViewCell {
             metrics: nil, views: ["pic":picImg, "likes": likeLbl]))
         
         self.contentView.addConstraints(NSLayoutConstraint.constraints(
+            withVisualFormat: "V:[pic]-10-[rates]",
+            options: [],
+            metrics: nil, views: ["pic":picImg, "rates": rateView]))
+        
+        self.contentView.addConstraints(NSLayoutConstraint.constraints(
             withVisualFormat: "H:|-10-[ava(30)]-10-[username]",
             options: [],
             metrics: nil, views: ["ava":avaImg, "username":usernameBtn]))
@@ -105,9 +117,9 @@ class postCell: UITableViewCell {
             metrics: nil, views: ["pic":picImg]))
         
         self.contentView.addConstraints(NSLayoutConstraint.constraints(
-            withVisualFormat: "H:|-15-[like(30)]-10-[likes]-20-[comment(30)]",
+            withVisualFormat: "H:|-15-[like(30)]-10-[likes]-25-[comment(30)]-15-[rates]",
             options: [],
-            metrics: nil, views: ["like": likeBtn, "likes": likeLbl, "comment":commentBtn]))
+            metrics: nil, views: ["like": likeBtn, "likes": likeLbl, "comment":commentBtn, "rates":rateView]))
         
         self.contentView.addConstraints(NSLayoutConstraint.constraints(
             withVisualFormat: "H:[more(30)]-15-|",
@@ -220,6 +232,38 @@ class postCell: UITableViewCell {
             })
         }
     }
+    
+    // saving rating to server
+    func saveRating(rating: Double) {
+        
+        // only users except current user can set rating
+        if usernameBtn.titleLabel?.text != PFUser.current()?.username {
+            let query = PFQuery(className: "rates")
+            query.whereKey("username", equalTo: PFUser.current()!.username!)
+            query.whereKey("uuid", equalTo: uuidLbl.text!)
+            query.findObjectsInBackground(block: { (objects: [PFObject]?, error: Error?) in
+                
+                if error == nil {
+ 
+                    let object = PFObject(className: "rates")
+                    object["username"] = PFUser.current()?.username!
+                    object["uuid"] = self.uuidLbl.text
+                    object["rating"] = rating
+                    object.saveInBackground(block: { (success: Bool, error: Error?) in
+                        if success {
+                            self.rateView.rating = rating
+                        } else {
+                            print(error!.localizedDescription)
+                        }
+                    })
+                } else {
+                    print(error!.localizedDescription)
+                }
+            })
+        }
+    }
+    
+    
     
     // double tap to like
     func likeTapped() {

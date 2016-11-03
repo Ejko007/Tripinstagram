@@ -13,6 +13,7 @@ class feedVC: UITableViewController {
     
     // UI objects
     @IBOutlet weak var indicator: UIActivityIndicatorView!
+
     
     var refresher = UIRefreshControl()
     
@@ -23,6 +24,7 @@ class feedVC: UITableViewController {
     var picArray = [PFFile]()
     var titleArray = [String]()
     var uuidArray = [String]()
+    var ratesArray = [Double]()
     
     var followArray = [String]()
     
@@ -103,6 +105,7 @@ class feedVC: UITableViewController {
                         self.picArray.removeAll(keepingCapacity: false)
                         self.titleArray.removeAll(keepingCapacity: false)
                         self.uuidArray.removeAll(keepingCapacity: false)
+                        self.ratesArray.removeAll(keepingCapacity: false)
  
                         // find related objects
                         for object in objects! {
@@ -112,6 +115,7 @@ class feedVC: UITableViewController {
                             self.picArray.append(object.object(forKey: "pic") as! PFFile)
                             self.titleArray.append(object.object(forKey: "title") as! String)
                             self.uuidArray.append(object.object(forKey: "uuid") as! String)
+                            self.ratesArray.append(calculateRates(uuid: self.uuidArray.last!))
                         }
                         
                         // reload tableView and stop spinning of refresher
@@ -297,6 +301,9 @@ class feedVC: UITableViewController {
             cell.likeLbl.text = "\(count)"
         })
         
+        // calculate total rates of showing post
+        cell.rateView.rating = calculateRates(uuid: cell.uuidLbl.text!)
+                
         // assign index
         cell.usernameBtn.layer.setValue(indexPath, forKey: "index")
         cell.commentBtn.layer.setValue(indexPath, forKey: "index")

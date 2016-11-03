@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Parse
 
 let has_mentioned_you_str = "se zmínil o vás"  // "has mentioned you"
 let has_commented_your_post_str = "vás komentoval"  // "has mentioned you"
@@ -30,4 +31,35 @@ let minutes_abbrav_str = "m"    // "m"
 let hours_abbrav_str = "h"      // "h"
 let days_abbrav_str = "d"       // "d"
 let weeks_abbrav_str = "t"      // "w"
+
+// calculate rates value for post or feed
+func calculateRates(uuid: String) -> Double {
+    
+    var sumaRates : Double = 0.0
+    var i = 1
+
+    let countRates = PFQuery(className: "rates")
+    countRates.whereKey("uuid", equalTo: uuid)
+    countRates.findObjectsInBackground(block: { (ratesObjects: [PFObject]?, ratesError: Error?) in
+        
+        if ratesError == nil {
+            
+            // calculate summary rates
+            for ratesObject in ratesObjects! {
+                sumaRates = sumaRates + (ratesObject.value(forKey: "rating") as! Double)
+                i += 1
+            }
+            
+            // add rates value to array
+            if i > 1 {
+                sumaRates = sumaRates / Double((i - 1))
+            }
+            
+        } else {
+            print(ratesError!.localizedDescription)
+        }
+    })
+    
+    return sumaRates
+}
 
