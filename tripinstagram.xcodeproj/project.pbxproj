@@ -22,6 +22,9 @@
 		0A1E9D651DBD32A500080209 /* KILabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A1E9D641DBD32A500080209 /* KILabel.m */; };
 		0A5314601DC1F52E00604F69 /* feedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A53145F1DC1F52D00604F69 /* feedVC.swift */; };
 		0A5314621DC2339800604F69 /* usersVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A5314611DC2339800604F69 /* usersVC.swift */; };
+		0A81F2A41DCD28900073063D /* PopupDialog.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A81F2A31DCD28900073063D /* PopupDialog.framework */; };
+		0A81F2A61DCE17630073063D /* rateVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A81F2A51DCE17630073063D /* rateVC.swift */; };
+		0A81F2A81DCE18380073063D /* rateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A81F2A71DCE18380073063D /* rateCell.swift */; };
 		0A8626341DB0BDE30001C1EE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8626331DB0BDE30001C1EE /* AppDelegate.swift */; };
 		0A8626391DB0BDE30001C1EE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A8626371DB0BDE30001C1EE /* Main.storyboard */; };
 		0A86263B1DB0BDE30001C1EE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A86263A1DB0BDE30001C1EE /* Assets.xcassets */; };
@@ -49,6 +52,7 @@
 		0AD7A8941DC4E23B001CDDC5 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD7A8931DC4E23B001CDDC5 /* Helper.swift */; };
 		0AD7A8961DCA06BB001CDDC5 /* CosmosDistrib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD7A8951DCA06BB001CDDC5 /* CosmosDistrib.swift */; };
 		0ADD41E31DBF767E0026B118 /* hashtagsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADD41E21DBF767E0026B118 /* hashtagsVC.swift */; };
+		256CF4F329E424012BAFD3D1 /* Pods_tripinstagram.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 503628F8173689C10C0623D9 /* Pods_tripinstagram.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -69,6 +73,9 @@
 		0A1E9D641DBD32A500080209 /* KILabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KILabel.m; path = tripinstagram/KILabel.m; sourceTree = "<group>"; };
 		0A53145F1DC1F52D00604F69 /* feedVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = feedVC.swift; sourceTree = "<group>"; };
 		0A5314611DC2339800604F69 /* usersVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = usersVC.swift; sourceTree = "<group>"; };
+		0A81F2A31DCD28900073063D /* PopupDialog.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PopupDialog.framework; path = "../../../Library/Developer/Xcode/DerivedData/tripinstagram-esugouffqwowrsefrbfyxxyheuxs/Build/Products/Debug-iphonesimulator/PopupDialog/PopupDialog.framework"; sourceTree = "<group>"; };
+		0A81F2A51DCE17630073063D /* rateVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = rateVC.swift; sourceTree = "<group>"; };
+		0A81F2A71DCE18380073063D /* rateCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = rateCell.swift; sourceTree = "<group>"; };
 		0A8626301DB0BDE30001C1EE /* tripinstagram.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = tripinstagram.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A8626331DB0BDE30001C1EE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0A8626381DB0BDE30001C1EE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -98,6 +105,9 @@
 		0AD7A8931DC4E23B001CDDC5 /* Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		0AD7A8951DCA06BB001CDDC5 /* CosmosDistrib.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CosmosDistrib.swift; sourceTree = "<group>"; };
 		0ADD41E21DBF767E0026B118 /* hashtagsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = hashtagsVC.swift; sourceTree = "<group>"; };
+		503628F8173689C10C0623D9 /* Pods_tripinstagram.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_tripinstagram.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C89B57B659938BAFDAFB6F16 /* Pods-tripinstagram.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-tripinstagram.release.xcconfig"; path = "Pods/Target Support Files/Pods-tripinstagram/Pods-tripinstagram.release.xcconfig"; sourceTree = "<group>"; };
+		F52FB82B397DEB27872B81CE /* Pods-tripinstagram.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-tripinstagram.debug.xcconfig"; path = "Pods/Target Support Files/Pods-tripinstagram/Pods-tripinstagram.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +115,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0A81F2A41DCD28900073063D /* PopupDialog.framework in Frameworks */,
 				0A8626591DB0BEEF0001C1EE /* SystemConfiguration.framework in Frameworks */,
 				0A86264D1DB0BE850001C1EE /* CFNetwork.framework in Frameworks */,
 				0A86264B1DB0BE730001C1EE /* AudioToolbox.framework in Frameworks */,
@@ -117,18 +128,29 @@
 				0A8626491DB0BE530001C1EE /* libz.tbd in Frameworks */,
 				0A86265D1DB0C3B50001C1EE /* Parse.framework in Frameworks */,
 				0A8626471DB0BE430001C1EE /* libsqlite3.tbd in Frameworks */,
+				256CF4F329E424012BAFD3D1 /* Pods_tripinstagram.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		098CD04C9E6216DC59249D53 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				F52FB82B397DEB27872B81CE /* Pods-tripinstagram.debug.xcconfig */,
+				C89B57B659938BAFDAFB6F16 /* Pods-tripinstagram.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		0A8626271DB0BDE30001C1EE = {
 			isa = PBXGroup;
 			children = (
 				0A8626321DB0BDE30001C1EE /* tripinstagram */,
 				0A8626311DB0BDE30001C1EE /* Products */,
 				0A8626451DB0BE430001C1EE /* Frameworks */,
+				098CD04C9E6216DC59249D53 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -154,12 +176,14 @@
 				0A8626621DB0DA350001C1EE /* resetPasswordVC.swift */,
 				0A1D9F411DB78BA30002BAD1 /* guestVC.swift */,
 				0A1D9F471DB9F2D10002BAD1 /* uploadVC.swift */,
-				0A1D9F491DBA4BA50002BAD1 /* postVC.swift */,
 				0A1D9F4B1DBA4BD90002BAD1 /* postCell.swift */,
+				0A1D9F491DBA4BA50002BAD1 /* postVC.swift */,
 				0A1E9D5A1DBBE2FC00080209 /* navVC.swift */,
 				0A1E9D5C1DBBE33B00080209 /* tabbarVC.swift */,
 				0A1E9D5E1DBC8B9F00080209 /* commentVC.swift */,
 				0A1E9D601DBC8BDC00080209 /* commentCell.swift */,
+				0A81F2A51DCE17630073063D /* rateVC.swift */,
+				0A81F2A71DCE18380073063D /* rateCell.swift */,
 				0ADD41E21DBF767E0026B118 /* hashtagsVC.swift */,
 				0A53145F1DC1F52D00604F69 /* feedVC.swift */,
 				0A5314611DC2339800604F69 /* usersVC.swift */,
@@ -180,6 +204,7 @@
 		0A8626451DB0BE430001C1EE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0A81F2A31DCD28900073063D /* PopupDialog.framework */,
 				0A1E9D621DBD32A400080209 /* tripinstagram-Bridging-Header.h */,
 				0A1E9D631DBD32A500080209 /* KILabel.h */,
 				0A1E9D641DBD32A500080209 /* KILabel.m */,
@@ -195,6 +220,7 @@
 				0A86264A1DB0BE730001C1EE /* AudioToolbox.framework */,
 				0A8626481DB0BE530001C1EE /* libz.tbd */,
 				0A8626461DB0BE430001C1EE /* libsqlite3.tbd */,
+				503628F8173689C10C0623D9 /* Pods_tripinstagram.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -206,9 +232,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0A8626421DB0BDE30001C1EE /* Build configuration list for PBXNativeTarget "tripinstagram" */;
 			buildPhases = (
+				51A6322D4E37136863D87BD1 /* [CP] Check Pods Manifest.lock */,
 				0A86262C1DB0BDE30001C1EE /* Sources */,
 				0A86262D1DB0BDE30001C1EE /* Frameworks */,
 				0A86262E1DB0BDE30001C1EE /* Resources */,
+				6A10817B77F03A1D69A985CC /* [CP] Embed Pods Frameworks */,
+				8ED8478127EF172951287E63 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -232,7 +261,7 @@
 					0A86262F1DB0BDE30001C1EE = {
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = RXJ28CS78E;
-						LastSwiftMigration = 0800;
+						LastSwiftMigration = 0810;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -269,6 +298,54 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		51A6322D4E37136863D87BD1 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		6A10817B77F03A1D69A985CC /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-tripinstagram/Pods-tripinstagram-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8ED8478127EF172951287E63 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-tripinstagram/Pods-tripinstagram-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		0A86262C1DB0BDE30001C1EE /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -291,9 +368,11 @@
 				0A1D9F3E1DB6AFA10002BAD1 /* followersVC.swift in Sources */,
 				0A86265F1DB0D9DC0001C1EE /* singInVC.swift in Sources */,
 				0A86266F1DB2A5DC0001C1EE /* homeVC.swift in Sources */,
+				0A81F2A61DCE17630073063D /* rateVC.swift in Sources */,
 				0A1E9D651DBD32A500080209 /* KILabel.m in Sources */,
 				0AD7A8901DC4B539001CDDC5 /* newsVC.swift in Sources */,
 				0A8626341DB0BDE30001C1EE /* AppDelegate.swift in Sources */,
+				0A81F2A81DCE18380073063D /* rateCell.swift in Sources */,
 				0A8626631DB0DA350001C1EE /* resetPasswordVC.swift in Sources */,
 				0A8626711DB2A62D0001C1EE /* headerView.swift in Sources */,
 				0A1E9D5D1DBBE33B00080209 /* tabbarVC.swift in Sources */,
@@ -424,7 +503,9 @@
 		};
 		0A8626431DB0BDE30001C1EE /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F52FB82B397DEB27872B81CE /* Pods-tripinstagram.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Pavol Polacek (6H59NJHCM4)";
@@ -436,7 +517,7 @@
 					"$(PROJECT_DIR)/tripinstagram",
 				);
 				INFOPLIST_FILE = tripinstagram/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = tatinek.tripinstagram;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -448,7 +529,9 @@
 		};
 		0A8626441DB0BDE30001C1EE /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C89B57B659938BAFDAFB6F16 /* Pods-tripinstagram.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Pavol Polacek (6H59NJHCM4)";
@@ -460,7 +543,7 @@
 					"$(PROJECT_DIR)/tripinstagram",
 				);
 				INFOPLIST_FILE = tripinstagram/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = tatinek.tripinstagram;
 				PRODUCT_NAME = "$(TARGET_NAME)";

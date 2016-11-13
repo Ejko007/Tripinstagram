@@ -62,18 +62,5 @@ class commentCell: UITableViewCell {
         avaImg.layer.cornerRadius = avaImg.frame.size.width / 2
         avaImg.clipsToBounds = true
         
-
-        
-
-        
-        
     }
-
-
-    
-    
-    
-    
-    
-    
 }

@@ -8,6 +8,7 @@
 
 import UIKit
 import Parse
+import PopupDialog
 
 class feedVC: UITableViewController {
     
@@ -19,6 +20,7 @@ class feedVC: UITableViewController {
     
     // Arrays to hold server data
     var usernameArray = [String]()
+    var genderArray = [String]()
     var avaArray = [PFFile]()
     var dateArray = [NSDate?]()
     var picArray = [PFFile]()
@@ -43,17 +45,17 @@ class feedVC: UITableViewController {
         tableView.estimatedRowHeight = 450
         
         // pull to refresh
-        refresher.addTarget(self, action: #selector(loadPosts), for: UIControlEvents.valueChanged)
+        refresher.addTarget(self, action: #selector(feedVC.loadPosts), for: UIControlEvents.valueChanged)
         tableView.addSubview(refresher)
         
-        // receive notification from postCell if picture is liked to update tableView
-        NotificationCenter.default.addObserver(self, selector: #selector(refresh), name: NSNotification.Name(rawValue: "liked"), object: nil)
-        
+        // receive notification from postsCell if picture is liked, to update tableView
+        NotificationCenter.default.addObserver(self, selector: #selector(feedVC.refresh), name: NSNotification.Name(rawValue: "liked"), object: nil)
+       
         // indicator's X center (horizontally)
         indicator.center.x = tableView.center.x
-        
+
         // receive notification from uploadVC
-        NotificationCenter.default.addObserver(self, selector: #selector(uploaded(notification:)), name: NSNotification.Name(rawValue: "uploaded"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(feedVC.uploaded), name: NSNotification.Name(rawValue: "uploaded"), object: nil)
         
         // calling function to load posts
         loadPosts()
@@ -61,7 +63,7 @@ class feedVC: UITableViewController {
     }
     
     // uploading function with posts after receive notification
-    func uploaded (notification: NSNotification) {
+    func uploaded () {    // (notification: NSNotification)
         loadPosts()
     }
     
@@ -90,7 +92,7 @@ class feedVC: UITableViewController {
                 // append current user to see own posts in feed
                 self.followArray.append(PFUser.current()!.username!)
                 
-                // STEP 2. Find posts made by by people appended to followArray
+                // STEP 2. Find posts made by people appended to followArray
                 let query = PFQuery(className: "posts")
                 query.whereKey("username", containedIn: self.followArray)
                 query.limit = self.page
@@ -100,6 +102,7 @@ class feedVC: UITableViewController {
                         
                         // clean up
                         self.usernameArray.removeAll(keepingCapacity: false)
+                        self.genderArray.removeAll(keepingCapacity: false)
                         self.avaArray.removeAll(keepingCapacity: false)
                         self.dateArray.removeAll(keepingCapacity: false)
                         self.picArray.removeAll(keepingCapacity: false)
@@ -110,12 +113,40 @@ class feedVC: UITableViewController {
                         // find related objects
                         for object in objects! {
                             self.usernameArray.append(object.object(forKey: "username") as! String)
+                            self.genderArray.append(object.object(forKey: "gender") as! String)
                             self.avaArray.append(object.object(forKey: "ava") as! PFFile)
                             self.dateArray.append(object.createdAt as NSDate?)
                             self.picArray.append(object.object(forKey: "pic") as! PFFile)
                             self.titleArray.append(object.object(forKey: "title") as! String)
                             self.uuidArray.append(object.object(forKey: "uuid") as! String)
-                            self.ratesArray.append(calculateRates(uuid: self.uuidArray.last!))
+                            
+                            // calculate related rates values
+                            var sumaRates: Double = 0.0
+                            self.ratesArray.append(sumaRates)
+                            let countRates = PFQuery(className: "rates")
+                            countRates.whereKey("uuid", equalTo: object.value(forKey: "uuid") as! String)
+                            countRates.findObjectsInBackground(block: { (ratesObjects: [PFObject]?, ratesError: Error?) in
+                                
+                                var i: Int = 1
+                                if ratesError == nil {
+                                    
+                                    // calculate summary rates
+                                    for ratesObject in ratesObjects! {
+                                        sumaRates = sumaRates + (ratesObject.value(forKey: "rating") as! Double)
+                                        i += 1
+                                    }
+                                    
+                                    // add rates value to array
+                                    if i > 1 {
+                                        sumaRates = sumaRates / Double((i - 1))
+                                    }
+                                    
+                                } else {
+                                    print(ratesError!.localizedDescription)
+                                }
+                                self.ratesArray.removeLast()
+                                self.ratesArray.append(sumaRates)
+                            })
                         }
                         
                         // reload tableView and stop spinning of refresher
@@ -179,6 +210,7 @@ class feedVC: UITableViewController {
                             
                             // clean up
                             self.usernameArray.removeAll(keepingCapacity: false)
+                            self.genderArray.removeAll(keepingCapacity: false)
                             self.avaArray.removeAll(keepingCapacity: false)
                             self.dateArray.removeAll(keepingCapacity: false)
                             self.picArray.removeAll(keepingCapacity: false)
@@ -188,11 +220,40 @@ class feedVC: UITableViewController {
                             // find related objects
                             for object in objects! {
                                 self.usernameArray.append(object.object(forKey: "username") as! String)
+                                self.genderArray.append(object.object(forKey: "gender") as! String)
                                 self.avaArray.append(object.object(forKey: "ava") as! PFFile)
                                 self.dateArray.append(object.createdAt as NSDate?)
                                 self.picArray.append(object.object(forKey: "pic") as! PFFile)
                                 self.titleArray.append(object.object(forKey: "title") as! String)
                                 self.uuidArray.append(object.object(forKey: "uuid") as! String)
+                                
+                                // calculate total rates of showing post
+                                var sumaRates: Double = 0.0
+                                self.ratesArray.append(sumaRates)
+                                let countRates = PFQuery(className: "rates")
+                                countRates.whereKey("uuid", equalTo: object.object(forKey: "uuid") as! String)
+                                countRates.findObjectsInBackground(block: { (ratesObjects: [PFObject]?, ratesError: Error?) in
+                                    
+                                    var i: Int = 1
+                                    if ratesError == nil {
+                                        
+                                        // calculate summary rates
+                                        for ratesObject in ratesObjects! {
+                                            sumaRates = sumaRates + (ratesObject.value(forKey: "rating") as! Double)
+                                            i += 1
+                                        }
+                                        
+                                        // add rates value to array
+                                        if i > 1 {
+                                            sumaRates = sumaRates / Double((i - 1))
+                                        }
+                                        
+                                    } else {
+                                        print(ratesError!.localizedDescription)
+                                    }
+                                    self.ratesArray.removeLast()
+                                    self.ratesArray.append(sumaRates)
+                                })
                             }
                             
                             // reload tableView and stop animation
@@ -210,7 +271,7 @@ class feedVC: UITableViewController {
         }
         
     }
-
+    
     // cell numb
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
@@ -226,6 +287,13 @@ class feedVC: UITableViewController {
         // connect objects with our information from array
         cell.usernameBtn.setTitle(usernameArray[indexPath.row], for: UIControlState.normal)
         cell.usernameBtn.sizeToFit()
+        cell.genderBtn.setTitle(genderArray[indexPath.row], for: UIControlState.normal)
+        cell.genderBtn.sizeToFit()
+        if cell.genderBtn.titleLabel?.text == "male" {
+            cell.usernameBtn.tintColor = .blue
+        } else {
+            cell.usernameBtn.tintColor = .red
+        }
         cell.uuidLbl.text = uuidArray[indexPath.row]
         cell.titleLbl.text = titleArray[indexPath.row]
         cell.titleLbl.sizeToFit()
@@ -298,16 +366,48 @@ class feedVC: UITableViewController {
         let countLikes = PFQuery(className: "likes")
         countLikes.whereKey("to", equalTo: cell.uuidLbl.text!)
         countLikes.countObjectsInBackground(block:  { (count: Int32, error: Error?) in
-            cell.likeLbl.text = "\(count)"
+            
+            if error == nil {
+                cell.likeLbl.text = "\(count)"
+            } else {
+                print(error!.localizedDescription)
+            }
         })
         
         // calculate total rates of showing post
-        cell.rateView.rating = calculateRates(uuid: cell.uuidLbl.text!)
+        cell.rateView.updateOnTouch = false
+        var sumaRates: Double = 0.0
+        cell.rateView.rating = sumaRates
+        let countRates = PFQuery(className: "rates")
+        countRates.whereKey("uuid", equalTo: cell.uuidLbl.text!)
+        countRates.findObjectsInBackground(block: { (ratesObjects: [PFObject]?, ratesError: Error?) in
+            
+            var i: Int = 1
+            if ratesError == nil {
                 
+                // calculate summary rates
+                for ratesObject in ratesObjects! {
+                    sumaRates = sumaRates + (ratesObject.value(forKey: "rating") as! Double)
+                    i += 1
+                }
+                
+                // add rates value to array
+                if i > 1 {
+                    sumaRates = sumaRates / Double((i - 1))
+                }
+                
+            } else {
+                print(ratesError!.localizedDescription)
+            }
+            cell.rateView.rating = sumaRates
+        })
+        
         // assign index
         cell.usernameBtn.layer.setValue(indexPath, forKey: "index")
+        cell.genderBtn.layer.setValue(indexPath, forKey: "index")
         cell.commentBtn.layer.setValue(indexPath, forKey: "index")
         cell.moreBtn.layer.setValue(indexPath, forKey: "index")
+        cell.rateBtn.layer.setValue(indexPath, forKey: "index")
         
         // @mension is tapped
         cell.titleLbl.userHandleLinkTapHandler = { label, handle, rang in
@@ -357,6 +457,26 @@ class feedVC: UITableViewController {
         
     }
     
+    // clicked rate button
+    @IBAction func rateBtn_click(_ sender: AnyObject) {
+        
+        // call index of button
+        let i = sender.layer.value(forKey: "index") as! NSIndexPath
+        
+        // call cell to call further cell data
+        let cell = tableView.cellForRow(at: i as IndexPath) as! postCell
+        
+        // send related data to global variables
+        rateuuid.append(cell.uuidLbl.text!)
+        rateowner.append(cell.usernameBtn.titleLabel!.text!)
+        
+        // go to comments. present its VC
+        let rate = self.storyboard?.instantiateViewController(withIdentifier: "rateVC") as! rateVC
+        self.navigationController?.pushViewController(rate, animated: true)
+        
+        
+    }
+    
     // clicked comment button
     @IBAction func commentBtn_click(_ sender: AnyObject) {
         
@@ -378,6 +498,8 @@ class feedVC: UITableViewController {
     // clicked more button
     @IBAction func moreBtn_click(_ sender: AnyObject) {
         
+        var alertMsg : String
+        
         // call index of button
         let i = sender.layer.value(forKey: "index") as! NSIndexPath
         
@@ -385,14 +507,16 @@ class feedVC: UITableViewController {
         let cell = tableView.cellForRow(at: i as IndexPath) as! postCell
         
         // DELETE ACTION
-        let del = UIAlertAction(title: "Smazat", style: .default, handler: { (UIAlertAction) in
+        let del = DefaultButton(title: delete_str) {
             
             // STEP 1. Delete row from tableView
             self.usernameArray.remove(at: i.row)
+            self.genderArray.remove(at: i.row)
             self.avaArray.remove(at: i.row)
             self.dateArray.remove(at: i.row)
             self.picArray.remove(at: i.row)
             self.titleArray.remove(at: i.row)
+            self.ratesArray.remove(at: i.row)
             self.uuidArray.remove(at: i.row)
             
             // STEP 2. Delete post from the server
@@ -411,12 +535,12 @@ class feedVC: UITableViewController {
                                 // push back
                                 _ = self.navigationController?.popViewController(animated: true)
                             } else {
-                                print(error?.localizedDescription as Any)
+                                print(error!.localizedDescription)
                             }
                         })
                     }
                 } else {
-                    print(error?.localizedDescription as Any)
+                    print(error!.localizedDescription)
                 }
             })
             
@@ -430,7 +554,7 @@ class feedVC: UITableViewController {
                         object.deleteEventually()
                     }
                 } else {
-                    print(error?.localizedDescription as Any)
+                    print(error!.localizedDescription)
                 }
             })
             
@@ -444,7 +568,7 @@ class feedVC: UITableViewController {
                         object.deleteEventually()
                     }
                 } else {
-                    print(error?.localizedDescription as Any)
+                    print(error!.localizedDescription)
                 }
             })
             
@@ -458,14 +582,13 @@ class feedVC: UITableViewController {
                         object.deleteEventually()
                     }
                 } else {
-                    print(error?.localizedDescription as Any)
+                    print(error!.localizedDescription)
                 }
             })
-        })
+        }
         
         // COMPLAIN ACTION
-        let compl = UIAlertAction(title: "Nahlásit", style: .default, handler: { (UIAlertAction) in
-            
+         let compl = DefaultButton(title: complain_str) {
             // send complain to server
             let complainObj = PFObject(className: "complain")
             complainObj["by"] = PFUser.current()?.username
@@ -474,30 +597,43 @@ class feedVC: UITableViewController {
             complainObj.saveInBackground(block: { (success:Bool, error:Error?) in
                 if error == nil {
                     if success {
-                        self.alert(title: "Complain has been made successfully.", message: "Thank you! We will consider your complain.")
+                        let okbtn = DefaultButton(title: ok_str, action: nil)
+                        let complMenu = PopupDialog(title: complain_str, message: complain_confirmation_str)
+                        complMenu.addButtons([okbtn])
+                        //self.alert(title: "Complain has been made successfully.", message: "Thank you! We will consider your complain.")
+                        self.present(complMenu, animated: true, completion: nil)
                     } else {
-                        print(error?.localizedDescription as Any)
+                        print(error!.localizedDescription)
                     }
                 } else {
-                    print(error?.localizedDescription as Any)
+                    print(error!.localizedDescription)
                 }
             })
-            
-        })
+        }
         
         // CANCEL ACTION
-        let cancel = UIAlertAction (title: "Zrušit", style: .cancel, handler: nil)
+        let cancel = CancelButton(title: cancel_button_str, action: nil)
+        
+        // finding affected post and to display its picture in dialog box
+        let dlgImg = resizeImage(image: cell.picImg.image!, targetSize: CGSize(width: 300.0, height: 300.0))
         
         // create menu controller
-        let menu = UIAlertController(title: "Menu", message: nil, preferredStyle: .actionSheet)
-        
-        // if post belongs to user, he can delete post, else he can't
-        if cell .usernameBtn.titleLabel?.text == PFUser.current()?.username {
-            menu.addAction(del)
-            menu.addAction(cancel)
+        if cell.usernameBtn.titleLabel?.text == PFUser.current()?.username {
+            alertMsg = deletion_article_description
         } else {
-            menu.addAction(compl)
-            menu.addAction(cancel)
+            alertMsg = complain_article_description
+        }
+        let menu = PopupDialog(title: question_what_to_do_with_article, message: alertMsg, image: dlgImg)
+
+        // if post belongs to user, he can delete post, else he can't
+        if cell.usernameBtn.titleLabel?.text == PFUser.current()?.username {
+            menu.addButtons([del, cancel])
+            //menu.addAction(del)
+            //menu.addAction(cancel)
+        } else {
+            menu.addButtons([compl, cancel])
+            //menu.addAction(compl)
+            //menu.addAction(cancel)
         }
         
         // show menu

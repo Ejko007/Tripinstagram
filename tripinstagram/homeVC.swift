@@ -19,6 +19,8 @@ class homeVC: UICollectionViewController {
     
     var uuidArray = [String]()
     var picArray = [PFFile]()
+    
+    var genderColor = UIColor()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,6 +47,7 @@ class homeVC: UICollectionViewController {
         loadposts()
     }
     
+    
     // reloading function after receive notification
     func reload (notification: NSNotification) {
         collectionView?.reloadData()
@@ -52,7 +55,7 @@ class homeVC: UICollectionViewController {
     
     // refreshing function
     func refresh() {
-        // collectionView?.reloadData()
+        //collectionView?.reloadData()
         // refresher.endRefreshing()
         
         // reload posts
@@ -96,7 +99,7 @@ class homeVC: UICollectionViewController {
     // load more while scrolling down
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if (scrollView.contentOffset.y >= scrollView.contentSize.height - self.view.frame.size.height) {
-            self.loadMore()
+            loadMore()
         }
     }
     
@@ -126,6 +129,7 @@ class homeVC: UICollectionViewController {
                     }
                     
                     self.collectionView?.reloadData()
+                    
                 } else {
                     print(error!.localizedDescription)
                 }
@@ -177,11 +181,22 @@ class homeVC: UICollectionViewController {
         header.bioLbl.text = PFUser.current()?.object(forKey: "bio") as? String
         header.bioLbl.sizeToFit()
         
-        let avaQuery = PFUser.current()?.object(forKey: "ava") as! PFFile
-        avaQuery.getDataInBackground { (data: Data?, error: Error?) -> Void in
-            header.avaImg.image = UIImage(data: data!)
+        let gender = PFUser.current()?.object(forKey: "gender") as! String
+        if gender == "male" {
+            genderColor = .blue
+        } else {
+            genderColor = .red
         }
-        header.button.setTitle("Upravit pofil", for: UIControlState.normal)
+        
+        let avaQuery = PFUser.current()?.object(forKey: "ava") as! PFFile
+        avaQuery.getDataInBackground(block: { (data: Data?, error: Error?) in
+            if error == nil {
+                header.avaImg.image = UIImage(data: data!)
+            } else {
+                print(error!.localizedDescription)
+            }
+        })
+        header.button.setTitle(update_profile_str, for: UIControlState.normal)
         
         // STEP 2. Count Statistics
         // count total posts
@@ -238,8 +253,6 @@ class homeVC: UICollectionViewController {
         header.followings.isUserInteractionEnabled = true
         header.followings.addGestureRecognizer(followingsTap)
         
-        
-       
         return header
     }
     

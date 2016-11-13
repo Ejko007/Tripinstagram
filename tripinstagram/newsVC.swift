@@ -55,7 +55,6 @@ class newsVC: UITableViewController {
                     self.uuidAray.append(object.object(forKey: "uuid") as! String)
                     self.ownerArray.append(object.object(forKey: "owner") as! String)
                     
-                    
                     // save notifications as checked
                     object["checked"] = "yes"
                     object.saveEventually()
@@ -91,7 +90,7 @@ class newsVC: UITableViewController {
             }
         })
         
-        // calcula post date
+        // calculate post date
         let from = dateArray[indexPath.row]
         let now = NSDate()
         // let components : NSCalendar.Unit = [.second, .minute, .hour, .day, .weekOfMonth]
@@ -139,6 +138,11 @@ class newsVC: UITableViewController {
         if typeArray[indexPath.row] == "like" {
             cell.infoLbl.text = likes_your_post_str
         }
+        
+        if typeArray[indexPath.row] == "rate" {
+            cell.infoLbl.text = rated_your_post_str
+        }
+
         
         // assign index of button
         cell.usernameBtn.layer.setValue(indexPath, forKey: "index")
@@ -210,6 +214,18 @@ class newsVC: UITableViewController {
         
         // going to liked post
         if cell.infoLbl.text == likes_your_post_str {
+            
+            // take post uuid
+            postuuid.append(uuidAray[indexPath.row])
+            
+            // go post
+            let post = self.storyboard?.instantiateViewController(withIdentifier: "postVC") as! postVC
+            self.navigationController?.pushViewController(post, animated: true)
+            
+        }
+ 
+        // going to rated post
+        if cell.infoLbl.text == rated_your_post_str {
             
             // take post uuid
             postuuid.append(uuidAray[indexPath.row])

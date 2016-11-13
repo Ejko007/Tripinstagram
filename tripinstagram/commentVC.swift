@@ -8,9 +8,11 @@
 
 import UIKit
 import Parse
+import PopupDialog
 
 var commentuuid = [String]()
 var commentowner = [String]()
+
 
 class commentVC: UIViewController, UITextViewDelegate, UITableViewDelegate, UITableViewDataSource {
 
@@ -129,12 +131,13 @@ class commentVC: UIViewController, UITextViewDelegate, UITableViewDelegate, UITa
                 }
                 
             } else {
-                print(error?.localizedDescription as Any)
+                print(error!.localizedDescription)
             }
             
             // STEP 2. Request last (page size = 15) comments
             let query = PFQuery(className: "comments")
             query.whereKey("to", equalTo: commentuuid.last!)
+            print(commentuuid.last!)
             query.skip = count - self.page
             query.addAscendingOrder("createdAt")
             
@@ -159,7 +162,7 @@ class commentVC: UIViewController, UITextViewDelegate, UITableViewDelegate, UITa
                         self.tableView.scrollToRow(at: NSIndexPath(row: self.commentArray.count - 1, section: 0) as IndexPath, at: UITableViewScrollPosition.bottom, animated: false)
                     }
                 } else {
-                    print(error?.localizedDescription as Any)
+                    print(error!.localizedDescription)
                 }
             })
         })
@@ -212,13 +215,13 @@ class commentVC: UIViewController, UITextViewDelegate, UITableViewDelegate, UITa
                                 self.tableView.reloadData()
                             }
                         } else {
-                            print(error?.localizedDescription as Any)
+                            print(error!.localizedDescription)
                         }
                     })
                 }
                 
             } else {
-                print(error?.localizedDescription as Any)
+                print(error!.localizedDescription)
             }
         })
     }
@@ -248,7 +251,7 @@ class commentVC: UIViewController, UITextViewDelegate, UITableViewDelegate, UITa
             if error == nil {
                 cell.avaImg.image = UIImage(data: data!)
             } else {
-                print(error?.localizedDescription as Any)
+                print(error!.localizedDescription)
             }
         })
         
@@ -260,27 +263,27 @@ class commentVC: UIViewController, UITextViewDelegate, UITableViewDelegate, UITa
         
         // logic what  to show
         if difference.second! <= 0 {
-            cell.dateLbl.text = "nyní"
+            cell.dateLbl.text = now_str
         }
         
         if difference.second! > 0 && difference.minute! == 0 {
-            cell.dateLbl.text = "\(difference.second!)s."
+            cell.dateLbl.text = "\(difference.second!)" + seconds_abbrav_str + "."
         }
         
         if difference.minute! > 0 && difference.hour! == 0 {
-            cell.dateLbl.text = "\(difference.minute!)m."
+            cell.dateLbl.text = "\(difference.minute!)" + minutes_abbrav_str + "."
         }
         
         if difference.hour! > 0 && difference.day! == 0 {
-            cell.dateLbl.text = "\(difference.hour!)h."
+            cell.dateLbl.text = "\(difference.hour!)" + hours_abbrav_str + "."
         }
         
         if difference.day! > 0 && difference.weekOfMonth! == 0 {
-            cell.dateLbl.text = "\(difference.day!)d."
+            cell.dateLbl.text = "\(difference.day!)" + days_abbrav_str + "."
         }
         
         if difference.weekOfMonth! > 0 {
-            cell.dateLbl.text = "\(difference.weekOfMonth!)t."
+            cell.dateLbl.text = "\(difference.weekOfMonth!)" + weeks_abbrav_str + "."
         }
         
         // @mension is tapped
@@ -314,6 +317,25 @@ class commentVC: UIViewController, UITextViewDelegate, UITableViewDelegate, UITa
         return cell
     }
     
+    // display info when view is empty
+    func numberOfSections(in tableView: UITableView) -> Int {
+        
+        var numOfSections: Int = 0
+        if commentArray.count != 0 {
+            tableView.backgroundView = nil
+            tableView.separatorStyle = .none
+            numOfSections = 1
+        } else {
+            let noDataLabel: UILabel = UILabel(frame: CGRect(x: 0, y: 0, width: tableView.bounds.size.width, height: tableView.bounds.size.height))
+            noDataLabel.text = no_data_available
+            noDataLabel.textColor = UIColor.black
+            noDataLabel.textAlignment = .center
+            tableView.backgroundView = noDataLabel
+            tableView.separatorStyle = .none
+        }
+        return numOfSections
+    }
+
     
     // cell editability
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -343,7 +365,7 @@ class commentVC: UIViewController, UITextViewDelegate, UITableViewDelegate, UITa
                         object.deleteEventually()
                     }
                 } else {
-                   print(error?.localizedDescription as Any)
+                   print(error!.localizedDescription)
                 }
             })
             
@@ -359,7 +381,7 @@ class commentVC: UIViewController, UITextViewDelegate, UITableViewDelegate, UITa
                         object.deleteEventually()
                     }
                 } else {
-                    print(error?.localizedDescription as Any)
+                    print(error!.localizedDescription)
                 }
             })
             
@@ -415,13 +437,13 @@ class commentVC: UIViewController, UITextViewDelegate, UITableViewDelegate, UITa
             complainObj.saveInBackground(block: { (success: Bool, error: Error?) in
                 if error == nil {
                     if success {
-                        self.alert(title: "Námitka byla úspěšně vytvořena.", message: "Děkujem! Zvážime vaši připomínku.")
+                        self.alert(title: complain_str, message: complain_confirmation_str)
+                        //self.alert(title: "Námitka byla úspěšně vytvořena.", message: "Děkujem! Zvážime vaši připomínku.")
                     } else {
-                        self.alert(title: "Chyba", message: (error?.localizedDescription)!)
+                        self.alert(title: error_str, message: (error!.localizedDescription))
                     }
-            
                 } else {
-                    print(error?.localizedDescription as Any)
+                    print(error!.localizedDescription)
                 }
             })
             // close cell
@@ -453,11 +475,16 @@ class commentVC: UIViewController, UITextViewDelegate, UITableViewDelegate, UITa
     
     // alert action
     func alert (title: String, message: String) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let ok = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-        alert.addAction(ok)
-        present(alert, animated: true, completion: nil)
         
+        let okbtn = DefaultButton(title: ok_str, action: nil)
+        let complMenu = PopupDialog(title: title, message: message)
+        complMenu.addButtons([okbtn])
+        present(complMenu, animated: true, completion: nil)
+        
+        //let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        //let ok = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+        //alert.addAction(ok)
+        //present(alert, animated: true, completion: nil)
     }
     
     // go back - back function
@@ -611,11 +638,14 @@ class commentVC: UIViewController, UITextViewDelegate, UITableViewDelegate, UITa
                 hashtagObj.saveInBackground(block: { (success: Bool, error: Error?) in
                     if error == nil {
                         if success {
-                            print("hashtag \(word) is created")
+                            let okbtn = DefaultButton(title: ok_str, action: nil)
+                            let complMenu = PopupDialog(title: hashtag_str, message: hashtag_str + " " + "\(word)" + " " + is_created + ".")
+                            complMenu.addButtons([okbtn])
+                            // print("hashtag \(word) is created")
                         }
                         
                     } else {
-                        print(error?.localizedDescription as Any)
+                        print(error!.localizedDescription)
                     }
                 })
             }

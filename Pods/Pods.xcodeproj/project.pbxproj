@@ -1,0 +1,595 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		02DD25F012048BED983615700DBFC748 /* PopupDialogButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF37C25F7479DEE203139F44FA7DC55 /* PopupDialogButton.swift */; };
+		1877976A38430D3D909B57457D581560 /* PopupDialogContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9880755D5E432221D89DAA566FAEA768 /* PopupDialogContainerView.swift */; };
+		4722236F6F94B9797B39FC1CB4BBCD50 /* PopupDialogDefaultButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD0A8F709FFBA11B488BC0C9E5BBBB3 /* PopupDialogDefaultButtons.swift */; };
+		506689EDFC4BE5FCDB30F2562FCEF9EB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEC22C73C1608DFA5D5D78BDCB218219 /* Foundation.framework */; };
+		52604D96D98A5A3F880900B50607BEB2 /* Pods-tripinstagram-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 2A697F318257F2379CB1F11797B1F849 /* Pods-tripinstagram-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		544F326A2187072F77E4F2C449F539D0 /* UIView+Animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6E611D7DACFB863F66332A9B03C848 /* UIView+Animations.swift */; };
+		5455BC4856F792C8D68A51576B19B966 /* PopupDialogOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42F79CD00E4003A64D7113CC6EB42281 /* PopupDialogOverlayView.swift */; };
+		57E359630E40E705429C9E3BDF4FE434 /* PopupDialog-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = E07291AEEC8E0024EBA4FD29AF114077 /* PopupDialog-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		5E584A4B30B6D3767BAECD2835C03050 /* PopupDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9FDDBDB929D9138BC1B09640D7F89FB /* PopupDialog.swift */; };
+		5E8A993B2684EE71473E8DFFEFCD0295 /* PopupDialog-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = EF5106F36959AA600CADBDA2CC8DDFF7 /* PopupDialog-dummy.m */; };
+		70964B5EACCE3AD0A65CF148EF1667AF /* PresentationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB50251D5D793D5475F300ABC57E78F /* PresentationManager.swift */; };
+		70A5F27AF50C0FBE7D615FA6DADABA1E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEC22C73C1608DFA5D5D78BDCB218219 /* Foundation.framework */; };
+		76A06928ADD9BAE6808BD5BF17F24CB0 /* FXBlurView.m in Sources */ = {isa = PBXBuildFile; fileRef = E902E2B88CF006ACF9F980A6B21AC0BB /* FXBlurView.m */; };
+		88F6D942FE4E65B0EE68FE04C452527B /* PopupDialogDefaultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E118531B92B40A7DC5128EA980D24650 /* PopupDialogDefaultViewController.swift */; };
+		8AF981770AFB6276CAA50665752C5B03 /* TransitionAnimations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BE8C9C4FA8744A1B7D55BCD7004F201 /* TransitionAnimations.swift */; };
+		918C78E73E166F140533EB1344CD125F /* TransitionAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810F27E13101A95FB59706105312C9A9 /* TransitionAnimator.swift */; };
+		977DD23962EF62DE4814BC7E13C45659 /* PresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2AA3D57A61BA0FBC28633CF9C61A5B0 /* PresentationController.swift */; };
+		A49CCA2FF22F8AAE75254AE9CBA5D6D5 /* UIViewController+Visibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02EF18454EC7C9D0541FBA8FB9A0BB86 /* UIViewController+Visibility.swift */; };
+		AAF949A370B5F88CEE831DD72DB7FED8 /* Pods-tripinstagram-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = C95A14E2205A98FDE1CC6A166A7F0DEC /* Pods-tripinstagram-dummy.m */; };
+		B7DC0964B09B419EE5DCB5AB07FD2035 /* InteractiveTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61FDC43D8F2590DD35851EA8C914043D /* InteractiveTransition.swift */; };
+		C0EE16EFCA9C1E58AB3C2C027E13F09A /* PopupDialogDefaultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C2C5EF9953D1627D6DFF781BAB2F70 /* PopupDialogDefaultView.swift */; };
+		CDF350B56E4FC8994176DE59939A4CAE /* PopupDialog+Keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E24D4412B2D1B863B6819767B63C468 /* PopupDialog+Keyboard.swift */; };
+		DDB7DC161ACB6BBD53BF9B9B751DB64D /* FXBlurView.h in Headers */ = {isa = PBXBuildFile; fileRef = 6D7D313F2437C5DF4AB5F4178D8B4921 /* FXBlurView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		EBFA943664976087A304B3431BB931A9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B6E1BE69771CF4A5B48866EC026B88BC;
+			remoteInfo = PopupDialog;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		02EF18454EC7C9D0541FBA8FB9A0BB86 /* UIViewController+Visibility.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIViewController+Visibility.swift"; path = "PopupDialog/Classes/UIViewController+Visibility.swift"; sourceTree = "<group>"; };
+		03B32011FDC0DCC0CF1AD657C2ADCB8D /* Pods-tripinstagram-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-tripinstagram-frameworks.sh"; sourceTree = "<group>"; };
+		0AF37C25F7479DEE203139F44FA7DC55 /* PopupDialogButton.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PopupDialogButton.swift; path = PopupDialog/Classes/PopupDialogButton.swift; sourceTree = "<group>"; };
+		2A697F318257F2379CB1F11797B1F849 /* Pods-tripinstagram-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-tripinstagram-umbrella.h"; sourceTree = "<group>"; };
+		36C2C5EF9953D1627D6DFF781BAB2F70 /* PopupDialogDefaultView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PopupDialogDefaultView.swift; path = PopupDialog/Classes/PopupDialogDefaultView.swift; sourceTree = "<group>"; };
+		3B6E611D7DACFB863F66332A9B03C848 /* UIView+Animations.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIView+Animations.swift"; path = "PopupDialog/Classes/UIView+Animations.swift"; sourceTree = "<group>"; };
+		3BE8C9C4FA8744A1B7D55BCD7004F201 /* TransitionAnimations.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TransitionAnimations.swift; path = PopupDialog/Classes/TransitionAnimations.swift; sourceTree = "<group>"; };
+		42F79CD00E4003A64D7113CC6EB42281 /* PopupDialogOverlayView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PopupDialogOverlayView.swift; path = PopupDialog/Classes/PopupDialogOverlayView.swift; sourceTree = "<group>"; };
+		442824CDA252E3BECC04D73E3541CF55 /* Pods-tripinstagram.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-tripinstagram.modulemap"; sourceTree = "<group>"; };
+		4AD0A8F709FFBA11B488BC0C9E5BBBB3 /* PopupDialogDefaultButtons.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PopupDialogDefaultButtons.swift; path = PopupDialog/Classes/PopupDialogDefaultButtons.swift; sourceTree = "<group>"; };
+		4C5BAC365CAECB5471DB41DB0863B338 /* Pods-tripinstagram.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-tripinstagram.release.xcconfig"; sourceTree = "<group>"; };
+		56992E66D6BA3A05924E9B2F84DEFE43 /* Pods_tripinstagram.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_tripinstagram.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5E24D4412B2D1B863B6819767B63C468 /* PopupDialog+Keyboard.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "PopupDialog+Keyboard.swift"; path = "PopupDialog/Classes/PopupDialog+Keyboard.swift"; sourceTree = "<group>"; };
+		61FDC43D8F2590DD35851EA8C914043D /* InteractiveTransition.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = InteractiveTransition.swift; path = PopupDialog/Classes/InteractiveTransition.swift; sourceTree = "<group>"; };
+		6D7D313F2437C5DF4AB5F4178D8B4921 /* FXBlurView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FXBlurView.h; path = PopupDialog/Classes/FXBlurView.h; sourceTree = "<group>"; };
+		72EF3082C18A3A04D94D5A1CE1B11C84 /* PopupDialog.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = PopupDialog.xcconfig; sourceTree = "<group>"; };
+		77B03C8CBC09EE6424ABC889FFC35DA1 /* Pods-tripinstagram-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-tripinstagram-acknowledgements.markdown"; sourceTree = "<group>"; };
+		810F27E13101A95FB59706105312C9A9 /* TransitionAnimator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TransitionAnimator.swift; path = PopupDialog/Classes/TransitionAnimator.swift; sourceTree = "<group>"; };
+		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9880755D5E432221D89DAA566FAEA768 /* PopupDialogContainerView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PopupDialogContainerView.swift; path = PopupDialog/Classes/PopupDialogContainerView.swift; sourceTree = "<group>"; };
+		AA96D2000689751AA36776F270579AD1 /* PopupDialog.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PopupDialog.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B04BEF7DCE65D7931C8A2B5D2B3A1DC8 /* Pods-tripinstagram-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-tripinstagram-acknowledgements.plist"; sourceTree = "<group>"; };
+		B901504E1FF8F286C95BBF4325C5435B /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C95A14E2205A98FDE1CC6A166A7F0DEC /* Pods-tripinstagram-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-tripinstagram-dummy.m"; sourceTree = "<group>"; };
+		C9FDDBDB929D9138BC1B09640D7F89FB /* PopupDialog.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PopupDialog.swift; path = PopupDialog/Classes/PopupDialog.swift; sourceTree = "<group>"; };
+		CA335CD0EA839B389A867F1D931DD955 /* PopupDialog.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = PopupDialog.modulemap; sourceTree = "<group>"; };
+		CEC22C73C1608DFA5D5D78BDCB218219 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		CFB50251D5D793D5475F300ABC57E78F /* PresentationManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PresentationManager.swift; path = PopupDialog/Classes/PresentationManager.swift; sourceTree = "<group>"; };
+		DD4BCE13703BACB724D143DAD41C49A1 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E07291AEEC8E0024EBA4FD29AF114077 /* PopupDialog-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "PopupDialog-umbrella.h"; sourceTree = "<group>"; };
+		E118531B92B40A7DC5128EA980D24650 /* PopupDialogDefaultViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PopupDialogDefaultViewController.swift; path = PopupDialog/Classes/PopupDialogDefaultViewController.swift; sourceTree = "<group>"; };
+		E2AA3D57A61BA0FBC28633CF9C61A5B0 /* PresentationController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PresentationController.swift; path = PopupDialog/Classes/PresentationController.swift; sourceTree = "<group>"; };
+		E775B100AAB142621E329B6BEBF4F7E9 /* Pods-tripinstagram-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-tripinstagram-resources.sh"; sourceTree = "<group>"; };
+		E902E2B88CF006ACF9F980A6B21AC0BB /* FXBlurView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FXBlurView.m; path = PopupDialog/Classes/FXBlurView.m; sourceTree = "<group>"; };
+		EACDAE7E8AC4577A4DEF356124B86D81 /* PopupDialog-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "PopupDialog-prefix.pch"; sourceTree = "<group>"; };
+		ECF710F3B843E69A8293C373BB329DFA /* Pods-tripinstagram.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-tripinstagram.debug.xcconfig"; sourceTree = "<group>"; };
+		EF5106F36959AA600CADBDA2CC8DDFF7 /* PopupDialog-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "PopupDialog-dummy.m"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		2D800625206587F393E3AE2CCE3DFEA4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				70A5F27AF50C0FBE7D615FA6DADABA1E /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B47C08A432C5FA26E72A5696322269E6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				506689EDFC4BE5FCDB30F2562FCEF9EB /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		3DCAB2B7CDE207B3958B6CB957FCC758 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				CEC22C73C1608DFA5D5D78BDCB218219 /* Foundation.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
+		5AA2E958ED186C4569E4E0FC1F1CA3A2 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				B901504E1FF8F286C95BBF4325C5435B /* Info.plist */,
+				CA335CD0EA839B389A867F1D931DD955 /* PopupDialog.modulemap */,
+				72EF3082C18A3A04D94D5A1CE1B11C84 /* PopupDialog.xcconfig */,
+				EF5106F36959AA600CADBDA2CC8DDFF7 /* PopupDialog-dummy.m */,
+				EACDAE7E8AC4577A4DEF356124B86D81 /* PopupDialog-prefix.pch */,
+				E07291AEEC8E0024EBA4FD29AF114077 /* PopupDialog-umbrella.h */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/PopupDialog";
+			sourceTree = "<group>";
+		};
+		619D52CAF61ABC79B01ECCB1006EE2E2 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				78689E921970BD3194CD9B678DEDCE49 /* PopupDialog */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		78689E921970BD3194CD9B678DEDCE49 /* PopupDialog */ = {
+			isa = PBXGroup;
+			children = (
+				6D7D313F2437C5DF4AB5F4178D8B4921 /* FXBlurView.h */,
+				E902E2B88CF006ACF9F980A6B21AC0BB /* FXBlurView.m */,
+				61FDC43D8F2590DD35851EA8C914043D /* InteractiveTransition.swift */,
+				C9FDDBDB929D9138BC1B09640D7F89FB /* PopupDialog.swift */,
+				5E24D4412B2D1B863B6819767B63C468 /* PopupDialog+Keyboard.swift */,
+				0AF37C25F7479DEE203139F44FA7DC55 /* PopupDialogButton.swift */,
+				9880755D5E432221D89DAA566FAEA768 /* PopupDialogContainerView.swift */,
+				4AD0A8F709FFBA11B488BC0C9E5BBBB3 /* PopupDialogDefaultButtons.swift */,
+				36C2C5EF9953D1627D6DFF781BAB2F70 /* PopupDialogDefaultView.swift */,
+				E118531B92B40A7DC5128EA980D24650 /* PopupDialogDefaultViewController.swift */,
+				42F79CD00E4003A64D7113CC6EB42281 /* PopupDialogOverlayView.swift */,
+				E2AA3D57A61BA0FBC28633CF9C61A5B0 /* PresentationController.swift */,
+				CFB50251D5D793D5475F300ABC57E78F /* PresentationManager.swift */,
+				3BE8C9C4FA8744A1B7D55BCD7004F201 /* TransitionAnimations.swift */,
+				810F27E13101A95FB59706105312C9A9 /* TransitionAnimator.swift */,
+				3B6E611D7DACFB863F66332A9B03C848 /* UIView+Animations.swift */,
+				02EF18454EC7C9D0541FBA8FB9A0BB86 /* UIViewController+Visibility.swift */,
+				5AA2E958ED186C4569E4E0FC1F1CA3A2 /* Support Files */,
+			);
+			path = PopupDialog;
+			sourceTree = "<group>";
+		};
+		7DB346D0F39D3F0E887471402A8071AB = {
+			isa = PBXGroup;
+			children = (
+				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
+				BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */,
+				619D52CAF61ABC79B01ECCB1006EE2E2 /* Pods */,
+				8ECD04F941490D8FA23CCB3B819B8633 /* Products */,
+				C6B41A32D407C4F39B6EECA053CA9B7B /* Targets Support Files */,
+			);
+			sourceTree = "<group>";
+		};
+		8ECD04F941490D8FA23CCB3B819B8633 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				56992E66D6BA3A05924E9B2F84DEFE43 /* Pods_tripinstagram.framework */,
+				AA96D2000689751AA36776F270579AD1 /* PopupDialog.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		B867E0BC2FFE9DA6EA2DD87887314576 /* Pods-tripinstagram */ = {
+			isa = PBXGroup;
+			children = (
+				DD4BCE13703BACB724D143DAD41C49A1 /* Info.plist */,
+				442824CDA252E3BECC04D73E3541CF55 /* Pods-tripinstagram.modulemap */,
+				77B03C8CBC09EE6424ABC889FFC35DA1 /* Pods-tripinstagram-acknowledgements.markdown */,
+				B04BEF7DCE65D7931C8A2B5D2B3A1DC8 /* Pods-tripinstagram-acknowledgements.plist */,
+				C95A14E2205A98FDE1CC6A166A7F0DEC /* Pods-tripinstagram-dummy.m */,
+				03B32011FDC0DCC0CF1AD657C2ADCB8D /* Pods-tripinstagram-frameworks.sh */,
+				E775B100AAB142621E329B6BEBF4F7E9 /* Pods-tripinstagram-resources.sh */,
+				2A697F318257F2379CB1F11797B1F849 /* Pods-tripinstagram-umbrella.h */,
+				ECF710F3B843E69A8293C373BB329DFA /* Pods-tripinstagram.debug.xcconfig */,
+				4C5BAC365CAECB5471DB41DB0863B338 /* Pods-tripinstagram.release.xcconfig */,
+			);
+			name = "Pods-tripinstagram";
+			path = "Target Support Files/Pods-tripinstagram";
+			sourceTree = "<group>";
+		};
+		BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3DCAB2B7CDE207B3958B6CB957FCC758 /* iOS */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C6B41A32D407C4F39B6EECA053CA9B7B /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				B867E0BC2FFE9DA6EA2DD87887314576 /* Pods-tripinstagram */,
+			);
+			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		4A7322EB206180FBB39750D4A63A1BB6 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DDB7DC161ACB6BBD53BF9B9B751DB64D /* FXBlurView.h in Headers */,
+				57E359630E40E705429C9E3BDF4FE434 /* PopupDialog-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F23432C2F5E3F1BBECD54BCE7D86F0AB /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				52604D96D98A5A3F880900B50607BEB2 /* Pods-tripinstagram-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		B6E1BE69771CF4A5B48866EC026B88BC /* PopupDialog */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E6FDA3F82CCE7F7C1D135C011F806C6D /* Build configuration list for PBXNativeTarget "PopupDialog" */;
+			buildPhases = (
+				EDBD17EB1C3722A166F243356A06D9BA /* Sources */,
+				B47C08A432C5FA26E72A5696322269E6 /* Frameworks */,
+				4A7322EB206180FBB39750D4A63A1BB6 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PopupDialog;
+			productName = PopupDialog;
+			productReference = AA96D2000689751AA36776F270579AD1 /* PopupDialog.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		D415FF9BFF87E47C8C299E7F82534E10 /* Pods-tripinstagram */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 222D2BB946357F4FF34D62F8767E10A5 /* Build configuration list for PBXNativeTarget "Pods-tripinstagram" */;
+			buildPhases = (
+				09937F6FC5A533508C0693BE73375D8D /* Sources */,
+				2D800625206587F393E3AE2CCE3DFEA4 /* Frameworks */,
+				F23432C2F5E3F1BBECD54BCE7D86F0AB /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E4DD2AC26353E6A7D19B98F12426F856 /* PBXTargetDependency */,
+			);
+			name = "Pods-tripinstagram";
+			productName = "Pods-tripinstagram";
+			productReference = 56992E66D6BA3A05924E9B2F84DEFE43 /* Pods_tripinstagram.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D41D8CD98F00B204E9800998ECF8427E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0730;
+				LastUpgradeCheck = 0700;
+				TargetAttributes = {
+					B6E1BE69771CF4A5B48866EC026B88BC = {
+						LastSwiftMigration = 0810;
+					};
+					D415FF9BFF87E47C8C299E7F82534E10 = {
+						LastSwiftMigration = 0810;
+					};
+				};
+			};
+			buildConfigurationList = 2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 7DB346D0F39D3F0E887471402A8071AB;
+			productRefGroup = 8ECD04F941490D8FA23CCB3B819B8633 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D415FF9BFF87E47C8C299E7F82534E10 /* Pods-tripinstagram */,
+				B6E1BE69771CF4A5B48866EC026B88BC /* PopupDialog */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		09937F6FC5A533508C0693BE73375D8D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AAF949A370B5F88CEE831DD72DB7FED8 /* Pods-tripinstagram-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EDBD17EB1C3722A166F243356A06D9BA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				76A06928ADD9BAE6808BD5BF17F24CB0 /* FXBlurView.m in Sources */,
+				B7DC0964B09B419EE5DCB5AB07FD2035 /* InteractiveTransition.swift in Sources */,
+				CDF350B56E4FC8994176DE59939A4CAE /* PopupDialog+Keyboard.swift in Sources */,
+				5E8A993B2684EE71473E8DFFEFCD0295 /* PopupDialog-dummy.m in Sources */,
+				5E584A4B30B6D3767BAECD2835C03050 /* PopupDialog.swift in Sources */,
+				02DD25F012048BED983615700DBFC748 /* PopupDialogButton.swift in Sources */,
+				1877976A38430D3D909B57457D581560 /* PopupDialogContainerView.swift in Sources */,
+				4722236F6F94B9797B39FC1CB4BBCD50 /* PopupDialogDefaultButtons.swift in Sources */,
+				C0EE16EFCA9C1E58AB3C2C027E13F09A /* PopupDialogDefaultView.swift in Sources */,
+				88F6D942FE4E65B0EE68FE04C452527B /* PopupDialogDefaultViewController.swift in Sources */,
+				5455BC4856F792C8D68A51576B19B966 /* PopupDialogOverlayView.swift in Sources */,
+				977DD23962EF62DE4814BC7E13C45659 /* PresentationController.swift in Sources */,
+				70964B5EACCE3AD0A65CF148EF1667AF /* PresentationManager.swift in Sources */,
+				8AF981770AFB6276CAA50665752C5B03 /* TransitionAnimations.swift in Sources */,
+				918C78E73E166F140533EB1344CD125F /* TransitionAnimator.swift in Sources */,
+				544F326A2187072F77E4F2C449F539D0 /* UIView+Animations.swift in Sources */,
+				A49CCA2FF22F8AAE75254AE9CBA5D6D5 /* UIViewController+Visibility.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		E4DD2AC26353E6A7D19B98F12426F856 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = PopupDialog;
+			target = B6E1BE69771CF4A5B48866EC026B88BC /* PopupDialog */;
+			targetProxy = EBFA943664976087A304B3431BB931A9 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		42287DDF97330524BA3EF220F0276DA6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_RELEASE=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				STRIP_INSTALLED_PRODUCT = NO;
+				SYMROOT = "${SRCROOT}/../build";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		5B7494B0BC0219EEBF9A3B5543CA27E4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4C5BAC365CAECB5471DB41DB0863B338 /* Pods-tripinstagram.release.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-tripinstagram/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-tripinstagram/Pods-tripinstagram.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_tripinstagram;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		83E76C6B42A83182BB7C094624608A02 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 72EF3082C18A3A04D94D5A1CE1B11C84 /* PopupDialog.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/PopupDialog/PopupDialog-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/PopupDialog/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/PopupDialog/PopupDialog.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = PopupDialog;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		A25AD84976094AEA31A6F9055990A69C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = ECF710F3B843E69A8293C373BB329DFA /* Pods-tripinstagram.debug.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-tripinstagram/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-tripinstagram/Pods-tripinstagram.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_tripinstagram;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		AE9439C22469D35336242DD983DB5C5F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_DEBUG=1",
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				ONLY_ACTIVE_ARCH = YES;
+				STRIP_INSTALLED_PRODUCT = NO;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Debug;
+		};
+		BBB5A0771510B636A1A908E244CB6333 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 72EF3082C18A3A04D94D5A1CE1B11C84 /* PopupDialog.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/PopupDialog/PopupDialog-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/PopupDialog/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/PopupDialog/PopupDialog.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = PopupDialog;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		222D2BB946357F4FF34D62F8767E10A5 /* Build configuration list for PBXNativeTarget "Pods-tripinstagram" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A25AD84976094AEA31A6F9055990A69C /* Debug */,
+				5B7494B0BC0219EEBF9A3B5543CA27E4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AE9439C22469D35336242DD983DB5C5F /* Debug */,
+				42287DDF97330524BA3EF220F0276DA6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E6FDA3F82CCE7F7C1D135C011F806C6D /* Build configuration list for PBXNativeTarget "PopupDialog" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BBB5A0771510B636A1A908E244CB6333 /* Debug */,
+				83E76C6B42A83182BB7C094624608A02 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+}

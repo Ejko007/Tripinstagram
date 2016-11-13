@@ -25,7 +25,7 @@ class editVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UI
     
     // pickerView & pickerData
     var genderPicker = UIPickerView()
-    let genders = ["muž","žena"]
+    let genders = [male_str, female_str]
     
     // keyboard to hold frame size
     var keyboard = CGRect()
@@ -179,9 +179,15 @@ class editVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UI
             self.webTxt.text = PFUser.current()?.object(forKey: "web") as? String
             self.emailTxt.text = PFUser.current()?.email
             self.telTxt.text = PFUser.current()?.object(forKey: "tel") as? String
-            self.genderTxt.text = PFUser.current()?.object(forKey: "gender") as? String
+                
+            let genderStr = PFUser.current()?.object(forKey: "gender") as? String
+                if genderStr == "male" {
+                    self.genderTxt.text = male_str
+                } else {
+                    self.genderTxt.text = female_str
+                }
             } else {
-                print(error?.localizedDescription as Any)
+                print(error!.localizedDescription)
             }
         })
     }
@@ -242,16 +248,20 @@ class editVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UI
         user["web"] = webTxt.text?.lowercased()
         user["bio"] = bioTxt.text
         
-        if (telTxt.text?.isEmpty)! {
+        if (telTxt.text!.isEmpty) {
             user["tel"] = ""
         } else {
             user["tel"] = telTxt.text
         }
         
-        if (genderTxt.text?.isEmpty)! {
+        if (genderTxt.text!.isEmpty) {
             user["gender"] = ""
         } else {
-            user["gender"] = genderTxt.text
+            if genderTxt.text == male_str {
+                user["gender"] = "male"
+            } else {
+                user["gender"] = "female"
+            }
         }
         
         let avaData = UIImageJPEGRepresentation(avaImg.image!, 0.5)
@@ -260,6 +270,7 @@ class editVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UI
         
         // send filled info to server
         user.saveInBackground (block: { (success: Bool, error: Error?) in
+            
             if success {
                 
                 // hide keyboard
@@ -271,7 +282,7 @@ class editVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UI
                 // reload homeVC view controller
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reload"), object: nil)
             } else {
-                print(error?.localizedDescription as Any)
+                print(error!.localizedDescription)
             }
         })
     }

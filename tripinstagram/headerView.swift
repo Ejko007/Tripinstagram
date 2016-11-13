@@ -9,8 +9,10 @@
 import UIKit
 import Parse
 
-
 class headerView: UICollectionReusableView {
+    
+    let width = UIScreen.main.bounds.width
+    var genderColor = UIColor()
     
     @IBOutlet weak var avaImg: UIImageView!
     @IBOutlet weak var fullnameLbl: UILabel!
@@ -27,15 +29,11 @@ class headerView: UICollectionReusableView {
     
     @IBOutlet weak var button: UIButton!
     
-    
     // Default action
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         
         // alignment
-        let width = UIScreen.main.bounds.width
-        
         avaImg.frame = CGRect(x: width / 16, y: width / 16, width: width / 4, height: width / 4)
         
         posts.frame = CGRect(x: width / 2.5, y: avaImg.frame.origin.y, width: 50, height: 30)
@@ -55,13 +53,48 @@ class headerView: UICollectionReusableView {
         
         bioLbl.frame = CGRect(x: avaImg.frame.origin.x, y: webTxt.frame.origin.y + 30, width: width - 30, height: 30)
         
-        // round ava
+        // set ava image shadow color according to gender
+        let gender = PFUser.current()?.object(forKey: "gender") as! String
+        if gender == "male" {
+            genderColor = .blue
+        } else {
+            genderColor = .red
+        }
+        
+        // round ava with shadow
         avaImg.layer.cornerRadius = avaImg.frame.size.width / 2
         avaImg.clipsToBounds = true
 
+        putShadowOnView(viewToWorkUpon: avaImg, shadowColor: genderColor, radius: avaImg.layer.cornerRadius, offset: CGSize(width: 0.0, height: 0.0), opacity: 1.0)
+
     }
     
-    
+    // coloured shadow around avatar image
+    func putShadowOnView(viewToWorkUpon: UIImageView, shadowColor: UIColor, radius: CGFloat, offset: CGSize, opacity: Float) {
+        
+        var shadowFrame = CGRect.zero
+        
+        shadowFrame.size.width = 0.0
+        shadowFrame.size.height = 0.0
+        shadowFrame.origin.x = 0.0
+        shadowFrame.origin.y = 0.0
+        
+        let shadow = UIImageView(frame: shadowFrame)
+        
+        shadow.isUserInteractionEnabled = false
+        shadow.layer.shadowColor = shadowColor.cgColor
+        shadow.layer.shadowOffset = offset
+        shadow.layer.shadowRadius = radius
+        shadow.layer.masksToBounds = false
+        shadow.clipsToBounds = false
+        shadow.layer.shadowOpacity = opacity
+        
+        viewToWorkUpon.superview?.insertSubview(shadow, belowSubview: viewToWorkUpon)
+        shadow.addSubview(viewToWorkUpon)
+
+    }
+
+
     // Clicked follow button from GuestVC
     @IBAction func followBtn_clicked(_ sender: AnyObject) {
         let title = button.title(for: .normal)

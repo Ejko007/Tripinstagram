@@ -1,0 +1,21 @@
+PODS:
+  - PopupDialog (0.5.0)
+
+DEPENDENCIES:
+  - PopupDialog (from `https://github.com/Orderella/PopupDialog.git`)
+
+EXTERNAL SOURCES:
+  PopupDialog:
+    :git: https://github.com/Orderella/PopupDialog.git
+
+CHECKOUT OPTIONS:
+  PopupDialog:
+    :commit: ed82c2f9338192a03c99d8a7b88cc3e99c6041c8
+    :git: https://github.com/Orderella/PopupDialog.git
+
+SPEC CHECKSUMS:
+  PopupDialog: 9890441b81105b9076757af2afe2b037be682f3e
+
+PODFILE CHECKSUM: dda6a09ce2c142368af27eed3373f1ebf88f72bf
+
+COCOAPODS: 1.0.1

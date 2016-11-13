@@ -26,6 +26,8 @@ class postCell: UITableViewCell {
     @IBOutlet weak var titleLbl: KILabel!
     @IBOutlet weak var uuidLbl: UILabel!
     @IBOutlet weak var rateView: CosmosView!
+    @IBOutlet weak var rateBtn: UIButton!
+    @IBOutlet weak var genderBtn: UIButton!
     
 
     // default function
@@ -34,7 +36,7 @@ class postCell: UITableViewCell {
         
         // set rate controller to precise
         rateView!.settings.fillMode = .precise
-        rateView.didFinishTouchingCosmos = saveRating
+        rateView!.updateOnTouch = false
         
         // clear like title button color
         likeBtn.setTitleColor(UIColor.clear, for: .normal)
@@ -44,14 +46,13 @@ class postCell: UITableViewCell {
         likeTap.numberOfTapsRequired = 2
         picImg.isUserInteractionEnabled = true
         picImg.addGestureRecognizer(likeTap)
-        
-        
 
         let width = UIScreen.main.bounds.width
         
         // allow constraints
         avaImg.translatesAutoresizingMaskIntoConstraints = false
         usernameBtn.translatesAutoresizingMaskIntoConstraints = false
+        genderBtn.translatesAutoresizingMaskIntoConstraints = false
         dateLbl.translatesAutoresizingMaskIntoConstraints = false
         picImg.translatesAutoresizingMaskIntoConstraints = false
         likeBtn.translatesAutoresizingMaskIntoConstraints = false
@@ -61,6 +62,8 @@ class postCell: UITableViewCell {
         titleLbl.translatesAutoresizingMaskIntoConstraints = false
         uuidLbl.translatesAutoresizingMaskIntoConstraints = false
         rateView.translatesAutoresizingMaskIntoConstraints = false
+
+        genderBtn.isHidden = true
         
         let pictureWidth = width - 20
         
@@ -105,7 +108,7 @@ class postCell: UITableViewCell {
             withVisualFormat: "V:[pic]-10-[rates]",
             options: [],
             metrics: nil, views: ["pic":picImg, "rates": rateView]))
-        
+                
         self.contentView.addConstraints(NSLayoutConstraint.constraints(
             withVisualFormat: "H:|-10-[ava(30)]-10-[username]",
             options: [],
@@ -139,6 +142,13 @@ class postCell: UITableViewCell {
         // round ava
         avaImg.layer.cornerRadius = avaImg.frame.size.width / 2
         avaImg.clipsToBounds = true
+        
+        // create hiden button over rateView
+        rateBtn.frame = CGRect(x: rateView!.frame.origin.x, y: rateView!.frame.origin.y, width: rateView!.frame.width, height: rateView!.frame.height)
+        rateBtn.setTitle("", for: .normal)
+        rateBtn.setTitleColor(.clear, for: .normal)
+        rateBtn.backgroundColor = .clear
+        rateBtn.tintColor = .clear
         
     }
     
@@ -232,37 +242,6 @@ class postCell: UITableViewCell {
             })
         }
     }
-    
-    // saving rating to server
-    func saveRating(rating: Double) {
-        
-        // only users except current user can set rating
-        if usernameBtn.titleLabel?.text != PFUser.current()?.username {
-            let query = PFQuery(className: "rates")
-            query.whereKey("username", equalTo: PFUser.current()!.username!)
-            query.whereKey("uuid", equalTo: uuidLbl.text!)
-            query.findObjectsInBackground(block: { (objects: [PFObject]?, error: Error?) in
-                
-                if error == nil {
- 
-                    let object = PFObject(className: "rates")
-                    object["username"] = PFUser.current()?.username!
-                    object["uuid"] = self.uuidLbl.text
-                    object["rating"] = rating
-                    object.saveInBackground(block: { (success: Bool, error: Error?) in
-                        if success {
-                            self.rateView.rating = rating
-                        } else {
-                            print(error!.localizedDescription)
-                        }
-                    })
-                } else {
-                    print(error!.localizedDescription)
-                }
-            })
-        }
-    }
-    
     
     
     // double tap to like

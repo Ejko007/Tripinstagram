@@ -151,6 +151,23 @@ class uploadVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
         pcImg.addGestureRecognizer(zoomTap)
     }
     
+    // find user gender
+    func getUserGender(user: String) -> String {
+        
+        var genderStr : String = ""
+        
+        let query = PFUser.query()!
+        query.whereKey("username", equalTo: user)
+        query.getFirstObjectInBackground { newUser, error in
+            if error == nil {
+                print(newUser as Any)
+                genderStr = newUser?.value(forKey: "gender") as! String
+            }
+        }
+        return genderStr
+    }
+
+    
     @IBAction func publishBtn_clicked(_ sender: AnyObject) {
         
         // dismiss keyboard
@@ -161,6 +178,7 @@ class uploadVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
         object["username"] = PFUser.current()?.username
         object["ava"] = PFUser.current()?.value(forKey: "ava") as! PFFile
         object["tripName"] = tripNameTxt.text
+        object["gender"] = PFUser.current()?.value(forKey: "gender") as! String
         
         let uuid = NSUUID().uuidString
         object["uuid"] = "\(PFUser.current()?.username) \(uuid)"
@@ -212,41 +230,21 @@ class uploadVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
         object.saveInBackground (block: { (success:Bool, error: Error?) in
             if error == nil {
                 
-                // manage rates - set initial ration to 0.0 with no rating text
-                // send data to server
-                let ratesObject = PFObject(className: "rates")
-                ratesObject["username"] = PFUser.current()?.username
-                ratesObject["rating"] = 0.0
-                ratesObject["ratingtxt"] = ""
-                let ratesuuid = NSUUID().uuidString
-                ratesObject["uuid"] = "\(PFUser.current()?.username) \(ratesuuid)"
+                // send notification wiht name "uploaded"
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "uploaded"), object: nil)
                 
-                ratesObject.saveInBackground(block: { (success: Bool, error: Error?) in
-                    if error == nil {
+                // switch to another ViewController at 0 index of tabbar
+                self.tabBarController!.selectedIndex = 0
                         
-                        if success {
-                            
-                            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "uploaded"), object: nil)
-                            
-                            // switch to another view controller at 0 index of tabbar
-                            self.tabBarController?.selectedIndex = 0
-                            
-                            // reset everything
-                            self.viewDidLoad()
-                            
-                            self.titleTxt.text = ""
-                            self.tripNameTxt.text = ""
-
-                        }
-                    } else {
-                        print(error!.localizedDescription)
-                    }
-                })
-            } else {
-                print(error!.localizedDescription)
+                // reset everything
+                self.viewDidLoad()
+                
+                self.titleTxt.text = ""
+                self.tripNameTxt.text = ""
+                
             }
         })
-   }
+    }
     
     // clicked remove button
     @IBAction func removeBtn_clicked(_ sender: AnyObject) {
