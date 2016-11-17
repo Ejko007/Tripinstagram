@@ -13,9 +13,10 @@ class newsVC: UITableViewController {
     
     // arrays to hold data from the server
     var usernameArray = [String]()
+    var genderArray = [String]()
     var avaArray = [PFFile]()
     var typeArray = [String]()
-    var dateArray = [NSDate?]()
+    var dateArray = [Date?]()
     var uuidAray = [String]()
     var ownerArray = [String]()
 
@@ -39,6 +40,7 @@ class newsVC: UITableViewController {
                 
                 // clean up
                 self.usernameArray.removeAll(keepingCapacity: false)
+                self.genderArray.removeAll(keepingCapacity: false)
                 self.avaArray.removeAll(keepingCapacity: false)
                 self.typeArray.removeAll(keepingCapacity: false)
                 self.dateArray.removeAll(keepingCapacity: false)
@@ -49,9 +51,10 @@ class newsVC: UITableViewController {
                 for object in objects! {
                     
                     self.usernameArray.append(object.object(forKey: "by") as! String)
+                    self.genderArray.append(object.object(forKey: "gender") as! String)
                     self.avaArray.append(object.object(forKey: "ava") as! PFFile)
                     self.typeArray.append(object.object(forKey: "type") as! String)
-                    self.dateArray.append(object.createdAt as NSDate?)
+                    self.dateArray.append(object.createdAt as Date?)
                     self.uuidAray.append(object.object(forKey: "uuid") as! String)
                     self.ownerArray.append(object.object(forKey: "owner") as! String)
                     
@@ -82,6 +85,15 @@ class newsVC: UITableViewController {
         
         // connect cell objects with received data from server
         cell.usernameBtn.setTitle(usernameArray[indexPath.row], for: .normal)
+        cell.usernameBtn.sizeToFit()
+        
+        // add color according to gender
+        if genderArray[indexPath.row] == "male" {
+            cell.usernameBtn.tintColor = .blue
+        } else {
+            cell.usernameBtn.tintColor = .red
+        }
+
         avaArray[indexPath.row].getDataInBackground(block: { (data: Data?, error: Error?) in
             if error == nil {
                 cell.avaImg.image = UIImage(data: data!)
@@ -92,7 +104,7 @@ class newsVC: UITableViewController {
         
         // calculate post date
         let from = dateArray[indexPath.row]
-        let now = NSDate()
+        let now = Date()
         // let components : NSCalendar.Unit = [.second, .minute, .hour, .day, .weekOfMonth]
         let difference = Calendar.current.dateComponents([.second, .minute, .hour, .day, .weekOfMonth], from: from! as Date, to: now as Date)
         
@@ -154,7 +166,7 @@ class newsVC: UITableViewController {
     @IBAction func usernameBtn_click(_ sender: AnyObject) {
         
         // call index of button
-        let i = sender.layer.value(forKey: "index") as! NSIndexPath
+        let i = sender.layer.value(forKey: "index") as! IndexPath
         
         // call cell to call further data
         let cell = tableView.cellForRow(at: i as IndexPath) as! newsCell

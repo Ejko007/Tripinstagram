@@ -19,9 +19,7 @@ class homeVC: UICollectionViewController {
     
     var uuidArray = [String]()
     var picArray = [PFFile]()
-    
-    var genderColor = UIColor()
-
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -34,7 +32,7 @@ class homeVC: UICollectionViewController {
         
         // title at the top
         self.navigationItem.title = PFUser.current()?.username?.uppercased()
-        
+                
         // pull to refresh
         refresher = UIRefreshControl()
         refresher.addTarget(self, action: #selector(homeVC.refresh), for: UIControlEvents.valueChanged)
@@ -46,7 +44,6 @@ class homeVC: UICollectionViewController {
         // load posts func
         loadposts()
     }
-    
     
     // reloading function after receive notification
     func reload (notification: NSNotification) {
@@ -180,14 +177,7 @@ class homeVC: UICollectionViewController {
         header.webTxt.sizeToFit()
         header.bioLbl.text = PFUser.current()?.object(forKey: "bio") as? String
         header.bioLbl.sizeToFit()
-        
-        let gender = PFUser.current()?.object(forKey: "gender") as! String
-        if gender == "male" {
-            genderColor = .blue
-        } else {
-            genderColor = .red
-        }
-        
+                
         let avaQuery = PFUser.current()?.object(forKey: "ava") as! PFFile
         avaQuery.getDataInBackground(block: { (data: Data?, error: Error?) in
             if error == nil {

@@ -49,9 +49,14 @@ let error_str = "Chyba"      // Error
 let male_str = "muž"
 let female_str = "žena"
 let update_profile_str = "Upravit pofil"  // Update profile
+let no_login_and_password_error_str = "Přihlaste se k účtu vyplněním jména a hesla."
+let all_fields_no_empty_str = "Je nutné vyplnit všechny políčka formuláře."
+let password_fields_no_match = "Použité hesla nejsou stejná."
+let registration_str = "Registrace"
+let registration_successful_str = "Registrace nového uživatele na serveru proběhla úspěšně."
 
 // croping picture and center it
-func cropToBounds(image: UIImage, width: Double, height: Double) -> UIImage {
+func cropToBounds(_ image: UIImage, width: Double, height: Double) -> UIImage {
     
     let contextImage: UIImage = UIImage(cgImage: image.cgImage!)
     
@@ -87,7 +92,7 @@ func cropToBounds(image: UIImage, width: Double, height: Double) -> UIImage {
 }
 
 // cut an image into the circle
-func maskRoundedImage(image: UIImage, radius: Float) -> UIImage {
+func maskRoundedImage(_ image: UIImage, radius: Float) -> UIImage {
     let imageView: UIImageView = UIImageView(image: image)
     var layer: CALayer = CALayer()
     layer = imageView.layer
@@ -104,7 +109,7 @@ func maskRoundedImage(image: UIImage, radius: Float) -> UIImage {
 }
 
 // resize image function
-func resizeImage(image: UIImage, targetSize: CGSize) -> UIImage {
+func resizeImage(_ image: UIImage, targetSize: CGSize) -> UIImage {
     let size = image.size
     
     let widthRatio  = targetSize.width  / image.size.width

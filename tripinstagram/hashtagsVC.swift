@@ -193,7 +193,7 @@ class hashtagsVC: UICollectionViewController {
     }
     
     // cell size
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: IndexPath) -> CGSize {
         
         let size = CGSize(width: self.view.frame.size.width / 3, height: self.view.frame.size.width / 3)
         

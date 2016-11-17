@@ -22,7 +22,7 @@ class feedVC: UITableViewController {
     var usernameArray = [String]()
     var genderArray = [String]()
     var avaArray = [PFFile]()
-    var dateArray = [NSDate?]()
+    var dateArray = [Date?]()
     var picArray = [PFFile]()
     var titleArray = [String]()
     var uuidArray = [String]()
@@ -115,7 +115,7 @@ class feedVC: UITableViewController {
                             self.usernameArray.append(object.object(forKey: "username") as! String)
                             self.genderArray.append(object.object(forKey: "gender") as! String)
                             self.avaArray.append(object.object(forKey: "ava") as! PFFile)
-                            self.dateArray.append(object.createdAt as NSDate?)
+                            self.dateArray.append(object.createdAt as Date?)
                             self.picArray.append(object.object(forKey: "pic") as! PFFile)
                             self.titleArray.append(object.object(forKey: "title") as! String)
                             self.uuidArray.append(object.object(forKey: "uuid") as! String)
@@ -216,13 +216,14 @@ class feedVC: UITableViewController {
                             self.picArray.removeAll(keepingCapacity: false)
                             self.titleArray.removeAll(keepingCapacity: false)
                             self.uuidArray.removeAll(keepingCapacity: false)
+                            self.ratesArray.removeAll(keepingCapacity: false)
                             
                             // find related objects
                             for object in objects! {
                                 self.usernameArray.append(object.object(forKey: "username") as! String)
                                 self.genderArray.append(object.object(forKey: "gender") as! String)
                                 self.avaArray.append(object.object(forKey: "ava") as! PFFile)
-                                self.dateArray.append(object.createdAt as NSDate?)
+                                self.dateArray.append(object.createdAt as Date?)
                                 self.picArray.append(object.object(forKey: "pic") as! PFFile)
                                 self.titleArray.append(object.object(forKey: "title") as! String)
                                 self.uuidArray.append(object.object(forKey: "uuid") as! String)
@@ -287,9 +288,7 @@ class feedVC: UITableViewController {
         // connect objects with our information from array
         cell.usernameBtn.setTitle(usernameArray[indexPath.row], for: UIControlState.normal)
         cell.usernameBtn.sizeToFit()
-        cell.genderBtn.setTitle(genderArray[indexPath.row], for: UIControlState.normal)
-        cell.genderBtn.sizeToFit()
-        if cell.genderBtn.titleLabel?.text == "male" {
+        if genderArray[indexPath.row] == "male" {
             cell.usernameBtn.tintColor = .blue
         } else {
             cell.usernameBtn.tintColor = .red
@@ -404,7 +403,6 @@ class feedVC: UITableViewController {
         
         // assign index
         cell.usernameBtn.layer.setValue(indexPath, forKey: "index")
-        cell.genderBtn.layer.setValue(indexPath, forKey: "index")
         cell.commentBtn.layer.setValue(indexPath, forKey: "index")
         cell.moreBtn.layer.setValue(indexPath, forKey: "index")
         cell.rateBtn.layer.setValue(indexPath, forKey: "index")
@@ -470,7 +468,7 @@ class feedVC: UITableViewController {
         rateuuid.append(cell.uuidLbl.text!)
         rateowner.append(cell.usernameBtn.titleLabel!.text!)
         
-        // go to comments. present its VC
+        // go to rates. present its VC
         let rate = self.storyboard?.instantiateViewController(withIdentifier: "rateVC") as! rateVC
         self.navigationController?.pushViewController(rate, animated: true)
         
@@ -615,7 +613,7 @@ class feedVC: UITableViewController {
         let cancel = CancelButton(title: cancel_button_str, action: nil)
         
         // finding affected post and to display its picture in dialog box
-        let dlgImg = resizeImage(image: cell.picImg.image!, targetSize: CGSize(width: 300.0, height: 300.0))
+        let dlgImg = resizeImage(cell.picImg.image!, targetSize: CGSize(width: 300.0, height: 300.0))
         
         // create menu controller
         if cell.usernameBtn.titleLabel?.text == PFUser.current()?.username {

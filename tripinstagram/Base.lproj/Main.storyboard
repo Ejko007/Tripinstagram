@@ -734,18 +734,12 @@
                                                 <action selector="rateBtn_click:" destination="SlD-Vc-yro" eventType="touchUpInside" id="sjj-yL-0tx"/>
                                             </connections>
                                         </button>
-                                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="lhD-DC-N6u">
-                                            <rect key="frame" x="164" y="0.0" width="112" height="30"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <state key="normal" title="Gender"/>
-                                        </button>
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="avaImg" destination="7Lz-AR-3u2" id="WyU-hD-onH"/>
                                     <outlet property="commentBtn" destination="S0M-BR-O93" id="Dni-nS-iJM"/>
                                     <outlet property="dateLbl" destination="JvO-ZE-dvU" id="TCP-Mn-9FK"/>
-                                    <outlet property="genderBtn" destination="lhD-DC-N6u" id="1FY-xX-PJf"/>
                                     <outlet property="likeBtn" destination="kK6-MU-IE7" id="UTo-kD-gNM"/>
                                     <outlet property="likeLbl" destination="nF2-MX-NGF" id="Gbd-mw-QZj"/>
                                     <outlet property="moreBtn" destination="HIz-Zy-miC" id="iIX-7O-wjZ"/>

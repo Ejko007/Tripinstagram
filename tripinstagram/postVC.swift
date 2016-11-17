@@ -18,7 +18,8 @@ class postVC: UITableViewController {
     // arrays to hold information from server
     var avaArray = [PFFile]()
     var usernameArray = [String]()
-    var dateArray = [NSDate?]()
+    var genderArray = [String]()
+    var dateArray = [Date?]()
     
     var picArray = [PFFile]()
     var uuidArray = [String]()
@@ -65,6 +66,7 @@ class postVC: UITableViewController {
                 // clean up
                 self.avaArray.removeAll(keepingCapacity: false)
                 self.usernameArray.removeAll(keepingCapacity: false)
+                self.genderArray.removeAll(keepingCapacity: false)
                 self.dateArray.removeAll(keepingCapacity: false)
                 self.picArray.removeAll(keepingCapacity: false)
                 self.uuidArray.removeAll(keepingCapacity: false)
@@ -76,7 +78,8 @@ class postVC: UITableViewController {
                 for object in objects! {
                     self.avaArray.append(object.value(forKey: "ava") as! PFFile)
                     self.usernameArray.append(object.value(forKey: "username") as! String)
-                    self.dateArray.append(object.createdAt as NSDate?)
+                    self.genderArray.append(object.value(forKey: "gender") as! String)
+                    self.dateArray.append(object.createdAt as Date?)
                     self.picArray.append(object.value(forKey: "pic") as! PFFile)
                     self.uuidArray.append(object.value(forKey: "uuid") as! String)
                     self.titleArray.append(object.value(forKey: "title") as! String)
@@ -133,6 +136,11 @@ class postVC: UITableViewController {
         // connect objects with our information from array
         cell.usernameBtn.setTitle(usernameArray[indexPath.row], for: UIControlState.normal)
         cell.usernameBtn.sizeToFit()
+        if genderArray[indexPath.row] == "male" {
+            cell.usernameBtn.tintColor = .blue
+        } else {
+            cell.usernameBtn.tintColor = .red
+        }
         cell.uuidLbl.text = uuidArray[indexPath.row]
         cell.titleLbl.text = titleArray[indexPath.row]
         cell.titleLbl.sizeToFit()
@@ -314,7 +322,7 @@ class postVC: UITableViewController {
         rateuuid.append(cell.uuidLbl.text!)
         rateowner.append(cell.usernameBtn.titleLabel!.text!)
         
-        // go to comments. present its VC
+        // go to rates. present its VC
         
         let rate = self.storyboard?.instantiateViewController(withIdentifier: "rateVC") as! rateVC
         self.navigationController?.pushViewController(rate, animated: true)
@@ -356,11 +364,13 @@ class postVC: UITableViewController {
         let del = DefaultButton(title: delete_str) {
             // STEP 1. Delete row from tableView
             self.usernameArray.remove(at: i.row)
+            self.genderArray.remove(at: i.row)
             self.avaArray.remove(at: i.row)
             self.dateArray.remove(at: i.row)
             self.picArray.remove(at: i.row)
             self.titleArray.remove(at: i.row)
             self.uuidArray.remove(at: i.row)
+            self.ratingArray.remove(at: i.row)
             
             // STEP 2. Delete post from the server
             let postQuery = PFQuery(className: "posts")
@@ -481,7 +491,7 @@ class postVC: UITableViewController {
         }
         
         // finding affected post and to display its picture in dialog box        
-        let dlgImg = resizeImage(image: cell.picImg.image!, targetSize: CGSize(width: 300.0, height: 300.0))
+        let dlgImg = resizeImage(cell.picImg.image!, targetSize: CGSize(width: 300.0, height: 300.0))
         
         let menu = PopupDialog(title: question_what_to_do_with_article, message: alertMsg, image: dlgImg)
         

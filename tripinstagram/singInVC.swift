@@ -8,6 +8,7 @@
 
 import UIKit
 import Parse
+import PopupDialog
 
 class singInVC: UIViewController {
     
@@ -61,7 +62,6 @@ class singInVC: UIViewController {
 
     
     @IBAction func signInBtn_click(_ sender: AnyObject) {
-        print("sign in pressed")
         
         // hide keyboard
         self.view.endEditing(true)
@@ -70,10 +70,12 @@ class singInVC: UIViewController {
         if (usernameTxt.text!.isEmpty || passwordTxt.text!.isEmpty) {
             
             // Show alert mesage
-            let alert = UIAlertController(title: "Chyba", message: "Přihlaste se k účtu vyplněním jména a hesla.", preferredStyle: UIAlertControllerStyle.alert)
-            let ok = UIAlertAction(title: "OK", style: UIAlertActionStyle.cancel, handler: nil)
-            alert.addAction(ok)
+            
+            let alert = PopupDialog(title: error_str, message: no_login_and_password_error_str)
+            let ok = DefaultButton(title: ok_str, action: nil)
+            alert.addButtons([ok])
             self.present(alert, animated: true, completion: nil)
+            
         }
         
         // login function
@@ -91,10 +93,11 @@ class singInVC: UIViewController {
             } else {
                 
                 // Show alert mesage
-                let alert = UIAlertController(title: "Chyba", message: error!.localizedDescription, preferredStyle: UIAlertControllerStyle.alert)
-                let ok = UIAlertAction(title: "OK", style: UIAlertActionStyle.cancel, handler: nil)
-                alert.addAction(ok)
+                let alert = PopupDialog(title: error_str, message: error!.localizedDescription)
+                let ok = DefaultButton(title: ok_str, action: nil)
+                alert.addButtons([ok])
                 self.present(alert, animated: true, completion: nil)
+                
             }
         }
     }

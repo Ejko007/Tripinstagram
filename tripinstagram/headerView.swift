@@ -12,7 +12,7 @@ import Parse
 class headerView: UICollectionReusableView {
     
     let width = UIScreen.main.bounds.width
-    var genderColor = UIColor()
+    
     
     @IBOutlet weak var avaImg: UIImageView!
     @IBOutlet weak var fullnameLbl: UILabel!
@@ -53,24 +53,15 @@ class headerView: UICollectionReusableView {
         
         bioLbl.frame = CGRect(x: avaImg.frame.origin.x, y: webTxt.frame.origin.y + 30, width: width - 30, height: 30)
         
-        // set ava image shadow color according to gender
-        let gender = PFUser.current()?.object(forKey: "gender") as! String
-        if gender == "male" {
-            genderColor = .blue
-        } else {
-            genderColor = .red
-        }
-        
         // round ava with shadow
         avaImg.layer.cornerRadius = avaImg.frame.size.width / 2
         avaImg.clipsToBounds = true
-
-        putShadowOnView(viewToWorkUpon: avaImg, shadowColor: genderColor, radius: avaImg.layer.cornerRadius, offset: CGSize(width: 0.0, height: 0.0), opacity: 1.0)
-
+        
+        putShadowOnView(avaImg, shadowColor: .black, radius: avaImg.layer.cornerRadius, offset: CGSize(width: 10.0, height: 10.0), opacity: 0.9)
     }
     
     // coloured shadow around avatar image
-    func putShadowOnView(viewToWorkUpon: UIImageView, shadowColor: UIColor, radius: CGFloat, offset: CGSize, opacity: Float) {
+    func putShadowOnView(_ viewToWorkUpon: UIImageView, shadowColor: UIColor, radius: CGFloat, offset: CGSize, opacity: Float) {
         
         var shadowFrame = CGRect.zero
         
@@ -91,9 +82,9 @@ class headerView: UICollectionReusableView {
         
         viewToWorkUpon.superview?.insertSubview(shadow, belowSubview: viewToWorkUpon)
         shadow.addSubview(viewToWorkUpon)
-
+        
     }
-
+    
 
     // Clicked follow button from GuestVC
     @IBAction func followBtn_clicked(_ sender: AnyObject) {
@@ -112,6 +103,7 @@ class headerView: UICollectionReusableView {
                     // send follow notification
                     let newsObj = PFObject(className: "news")
                     newsObj["by"] = PFUser.current()?.username
+                    newsObj["gender"] = PFUser.current()?.object(forKey: "gender") as! String
                     newsObj["ava"] = PFUser.current()?.object(forKey: "ava") as! PFFile
                     newsObj["to"] = guestname.last!
                     newsObj["owner"] = ""

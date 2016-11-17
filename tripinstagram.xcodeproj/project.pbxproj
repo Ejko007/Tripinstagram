@@ -168,13 +168,13 @@
 				0AD7A8951DCA06BB001CDDC5 /* CosmosDistrib.swift */,
 				0A1D9F391DB2ABBC0002BAD1 /* pictureCell.swift */,
 				0A86266E1DB2A5DC0001C1EE /* homeVC.swift */,
+				0A1D9F411DB78BA30002BAD1 /* guestVC.swift */,
 				0A8626701DB2A62D0001C1EE /* headerView.swift */,
 				0A86265E1DB0D9DC0001C1EE /* singInVC.swift */,
 				0A8626641DB147B40001C1EE /* signUPVC.swift */,
 				0A1D9F3D1DB6AFA10002BAD1 /* followersVC.swift */,
 				0A1D9F3F1DB6AFE30002BAD1 /* followersCell.swift */,
 				0A8626621DB0DA350001C1EE /* resetPasswordVC.swift */,
-				0A1D9F411DB78BA30002BAD1 /* guestVC.swift */,
 				0A1D9F471DB9F2D10002BAD1 /* uploadVC.swift */,
 				0A1D9F4B1DBA4BD90002BAD1 /* postCell.swift */,
 				0A1D9F491DBA4BA50002BAD1 /* postVC.swift */,
@@ -508,8 +508,8 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Pavol Polacek (6H59NJHCM4)";
-				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer: Pavol Polacek (6H59NJHCM4)";
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = RXJ28CS78E;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -519,11 +519,15 @@
 				INFOPLIST_FILE = tripinstagram/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = tatinek.tripinstagram;
+				PRODUCT_BUNDLE_IDENTIFIER = ejko.tripinstagram;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "tripinstagram/tripinstagram-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = NO;
 			};
 			name = Debug;
 		};
@@ -534,8 +538,8 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Pavol Polacek (6H59NJHCM4)";
-				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer: Pavol Polacek (6H59NJHCM4)";
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = RXJ28CS78E;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -545,10 +549,14 @@
 				INFOPLIST_FILE = tripinstagram/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = tatinek.tripinstagram;
+				PRODUCT_BUNDLE_IDENTIFIER = ejko.tripinstagram;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "tripinstagram/tripinstagram-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = NO;
 			};
 			name = Release;
 		};

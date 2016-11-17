@@ -32,9 +32,10 @@ class commentVC: UIViewController, UITextViewDelegate, UITableViewDelegate, UITa
     
     // arrays to hold server data
     var usernameArray = [String]()
+    var genderArray = [String]()
     var avaArray = [PFFile]()
     var commentArray = [String]()
-    var dateArray = [NSDate?]()
+    var dateArray = [Date?]()
     
     // variable to hold keyboard frame
     var keyboard = CGRect()
@@ -90,7 +91,7 @@ class commentVC: UIViewController, UITextViewDelegate, UITableViewDelegate, UITa
     }
 
     // func loading when keyboard is hidden
-    func keyboardWillHide (notification: NSNotification) {
+    func keyboardWillHide (notification: Notification) {
         
         // move UI down
         // move UI up
@@ -102,7 +103,7 @@ class commentVC: UIViewController, UITextViewDelegate, UITableViewDelegate, UITa
     }
    
     // func loading when keyboard is shown
-    func keyboardWillShow (notification: NSNotification) {
+    func keyboardWillShow (notification: Notification) {
         
         // define keyboard frame size
         keyboard = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
@@ -146,6 +147,7 @@ class commentVC: UIViewController, UITextViewDelegate, UITableViewDelegate, UITa
                     
                     // clean up
                     self.usernameArray.removeAll(keepingCapacity: false)
+                    self.genderArray.removeAll(keepingCapacity: false)
                     self.avaArray.removeAll(keepingCapacity: false)
                     self.commentArray.removeAll(keepingCapacity: false)
                     self.dateArray.removeAll(keepingCapacity: false)
@@ -153,9 +155,10 @@ class commentVC: UIViewController, UITextViewDelegate, UITableViewDelegate, UITa
                     // find related objects
                     for object in objects! {
                         self.usernameArray.append(object.object(forKey: "username") as! String)
+                        self.genderArray.append(object.object(forKey: "gender") as! String)
                         self.avaArray.append(object.object(forKey: "ava") as! PFFile)
                         self.commentArray.append(object.object(forKey: "comment") as! String)
-                        self.dateArray.append(object.createdAt as NSDate?)
+                        self.dateArray.append(object.createdAt as Date?)
                         self.tableView.reloadData()
                         
                         // scroll to bottom
@@ -201,6 +204,7 @@ class commentVC: UIViewController, UITextViewDelegate, UITableViewDelegate, UITa
                             
                             // clean up
                             self.usernameArray.removeAll(keepingCapacity: false)
+                            self.genderArray.removeAll(keepingCapacity: false)
                             self.avaArray.removeAll(keepingCapacity: false)
                             self.commentArray.removeAll(keepingCapacity: false)
                             self.dateArray.removeAll(keepingCapacity: false)
@@ -209,9 +213,10 @@ class commentVC: UIViewController, UITextViewDelegate, UITableViewDelegate, UITa
                             for object in objects! {
                                 
                                 self.usernameArray.append(object.object(forKey: "username") as! String)
+                                self.genderArray.append(object.object(forKey: "gender") as! String)
                                 self.avaArray.append(object.object(forKey: "ava") as! PFFile)
                                 self.commentArray.append(object.object(forKey: "comment") as! String)
-                                self.dateArray.append(object.createdAt as NSDate?)
+                                self.dateArray.append(object.createdAt as Date?)
                                 self.tableView.reloadData()
                             }
                         } else {
@@ -246,6 +251,12 @@ class commentVC: UIViewController, UITextViewDelegate, UITableViewDelegate, UITa
         
         cell.usernameBtn.setTitle(usernameArray[indexPath.row], for: .normal)
         cell.usernameBtn.sizeToFit()
+        if genderArray[indexPath.row] == "male" {
+            cell.usernameBtn.tintColor = .blue
+        } else {
+            cell.usernameBtn.tintColor = .red
+        }
+
         cell.commentLbl.text = commentArray[indexPath.row]
         avaArray[indexPath.row].getDataInBackground (block: { (data: Data?, error: Error?) in
             if error == nil {
@@ -257,7 +268,7 @@ class commentVC: UIViewController, UITextViewDelegate, UITableViewDelegate, UITa
         
         // calculate date
         let from = dateArray[indexPath.row]
-        let now = NSDate()
+        let now = Date()
         // let components : NSCalendar.Unit = [.second, .minute, .hour, .day, .weekOfMonth]
         let difference = Calendar.current.dateComponents([.second, .minute, .hour, .day, .weekOfMonth], from: from! as Date, to: now as Date)
         
@@ -317,25 +328,6 @@ class commentVC: UIViewController, UITextViewDelegate, UITableViewDelegate, UITa
         return cell
     }
     
-    // display info when view is empty
-    func numberOfSections(in tableView: UITableView) -> Int {
-        
-        var numOfSections: Int = 0
-        if commentArray.count != 0 {
-            tableView.backgroundView = nil
-            tableView.separatorStyle = .none
-            numOfSections = 1
-        } else {
-            let noDataLabel: UILabel = UILabel(frame: CGRect(x: 0, y: 0, width: tableView.bounds.size.width, height: tableView.bounds.size.height))
-            noDataLabel.text = no_data_available
-            noDataLabel.textColor = UIColor.black
-            noDataLabel.textAlignment = .center
-            tableView.backgroundView = noDataLabel
-            tableView.separatorStyle = .none
-        }
-        return numOfSections
-    }
-
     
     // cell editability
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -392,6 +384,7 @@ class commentVC: UIViewController, UITextViewDelegate, UITableViewDelegate, UITa
             self.commentArray.remove(at: indexPath.row)
             self.dateArray.remove(at: indexPath.row)
             self.usernameArray.remove(at: indexPath.row)
+            self.genderArray.remove(at: indexPath.row)
             self.avaArray.remove(at: indexPath.row)
             
             tableView.deleteRows(at: [indexPath], with: UITableViewRowAnimation.fade)
@@ -437,10 +430,10 @@ class commentVC: UIViewController, UITextViewDelegate, UITableViewDelegate, UITa
             complainObj.saveInBackground(block: { (success: Bool, error: Error?) in
                 if error == nil {
                     if success {
-                        self.alert(title: complain_str, message: complain_confirmation_str)
+                        self.alert(complain_str, message: complain_confirmation_str)
                         //self.alert(title: "Námitka byla úspěšně vytvořena.", message: "Děkujem! Zvážime vaši připomínku.")
                     } else {
-                        self.alert(title: error_str, message: (error!.localizedDescription))
+                        self.alert(error_str, message: (error!.localizedDescription))
                     }
                 } else {
                     print(error!.localizedDescription)
@@ -474,7 +467,7 @@ class commentVC: UIViewController, UITextViewDelegate, UITableViewDelegate, UITa
     }
     
     // alert action
-    func alert (title: String, message: String) {
+    func alert (_ title: String, message: String) {
         
         let okbtn = DefaultButton(title: ok_str, action: nil)
         let complMenu = PopupDialog(title: title, message: message)
@@ -554,7 +547,7 @@ class commentVC: UIViewController, UITextViewDelegate, UITableViewDelegate, UITa
     func textViewDidChange(_ textView: UITextView) {
         
         // disable button if entered no text
-        let spacing = NSCharacterSet.whitespacesAndNewlines
+        let spacing = CharacterSet.whitespacesAndNewlines
         
         // entered text
         if !commentTxt.text.trimmingCharacters(in: spacing).isEmpty {
@@ -604,21 +597,23 @@ class commentVC: UIViewController, UITextViewDelegate, UITableViewDelegate, UITa
         
         // STEP 1. Add row in tableView
         usernameArray.append(PFUser.current()!.username!)
+        genderArray.append(PFUser.current()?.object(forKey: "gender") as! String)
         avaArray.append(PFUser.current()?.object(forKey: "ava") as! PFFile)
-        dateArray.append(NSDate())
-        commentArray.append(commentTxt.text.trimmingCharacters(in: NSCharacterSet.whitespacesAndNewlines))
+        dateArray.append(Date())
+        commentArray.append(commentTxt.text.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines))
         tableView.reloadData()
         
         // STEP 2. Send comment to server
         let commentObj = PFObject(className: "comments")
         commentObj["to"] = commentuuid.last
         commentObj["username"] = PFUser.current()?.username
+        commentObj["gender"] = PFUser.current()?.value(forKey: "gender")
         commentObj["ava"] = PFUser.current()?.value(forKey: "ava")
-        commentObj["comment"] = commentTxt.text.trimmingCharacters(in: NSCharacterSet.whitespacesAndNewlines)
+        commentObj["comment"] = commentTxt.text.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
         commentObj.saveEventually()
         
         // STEP 3. Send #hashtag to server
-        let words: [String] = commentTxt.text!.components(separatedBy: NSCharacterSet.whitespacesAndNewlines)
+        let words: [String] = commentTxt.text!.components(separatedBy: CharacterSet.whitespacesAndNewlines)
         
         // define tagged word
         for var word in words {
@@ -627,12 +622,13 @@ class commentVC: UIViewController, UITextViewDelegate, UITableViewDelegate, UITa
             if word.hasPrefix("#") {
                 
                 // cut symbol
-                word = word.trimmingCharacters(in: NSCharacterSet.punctuationCharacters)
-                word = word.trimmingCharacters(in: NSCharacterSet.symbols)
+                word = word.trimmingCharacters(in: CharacterSet.punctuationCharacters)
+                word = word.trimmingCharacters(in: CharacterSet.symbols)
                 
                 let hashtagObj = PFObject(className: "hashtags")
                 hashtagObj["to"] = commentuuid.last
                 hashtagObj["by"] = PFUser.current()?.username
+                hashtagObj["gender"] = PFUser.current()?.value(forKey: "gender")
                 hashtagObj["hashtag"] = word.lowercased()
                 hashtagObj["comment"] = commentTxt.text
                 hashtagObj.saveInBackground(block: { (success: Bool, error: Error?) in
@@ -660,11 +656,12 @@ class commentVC: UIViewController, UITextViewDelegate, UITableViewDelegate, UITa
             if word.hasPrefix("@") {
                 
                 // cup symbols
-                word = word.trimmingCharacters(in: NSCharacterSet.punctuationCharacters)
-                word = word.trimmingCharacters(in: NSCharacterSet.symbols)
+                word = word.trimmingCharacters(in: CharacterSet.punctuationCharacters)
+                word = word.trimmingCharacters(in: CharacterSet.symbols)
                 
                 let newsObj = PFObject(className: "news")
                 newsObj["by"] = PFUser.current()?.username
+                newsObj["gender"] = PFUser.current()?.object(forKey: "gender") as! String
                 newsObj["ava"] = PFUser.current()?.object(forKey: "ava") as! PFFile
                 newsObj["to"] = word
                 newsObj["owner"] = commentowner.last
@@ -682,6 +679,7 @@ class commentVC: UIViewController, UITextViewDelegate, UITableViewDelegate, UITa
             
             let newsObj = PFObject(className: "news")
             newsObj["by"] = PFUser.current()?.username
+            newsObj["gender"] = PFUser.current()?.object(forKey: "gender") as! String
             newsObj["ava"] = PFUser.current()?.object(forKey: "ava") as! PFFile
             newsObj["to"] = commentowner.last
             newsObj["owner"] = commentowner.last
@@ -692,7 +690,7 @@ class commentVC: UIViewController, UITextViewDelegate, UITableViewDelegate, UITa
         }
         
         // scroll to bottom
-        self.tableView.scrollToRow(at: NSIndexPath(row: self.commentArray.count - 1, section: 0) as IndexPath, at: UITableViewScrollPosition.bottom, animated: false)
+        self.tableView.scrollToRow(at: IndexPath(row: self.commentArray.count - 1, section: 0) as IndexPath, at: UITableViewScrollPosition.bottom, animated: false)
 
         // STEP 6. Reset UI
         sendBtn.isEnabled = false

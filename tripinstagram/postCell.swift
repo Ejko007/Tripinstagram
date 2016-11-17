@@ -27,7 +27,6 @@ class postCell: UITableViewCell {
     @IBOutlet weak var uuidLbl: UILabel!
     @IBOutlet weak var rateView: CosmosView!
     @IBOutlet weak var rateBtn: UIButton!
-    @IBOutlet weak var genderBtn: UIButton!
     
 
     // default function
@@ -52,7 +51,6 @@ class postCell: UITableViewCell {
         // allow constraints
         avaImg.translatesAutoresizingMaskIntoConstraints = false
         usernameBtn.translatesAutoresizingMaskIntoConstraints = false
-        genderBtn.translatesAutoresizingMaskIntoConstraints = false
         dateLbl.translatesAutoresizingMaskIntoConstraints = false
         picImg.translatesAutoresizingMaskIntoConstraints = false
         likeBtn.translatesAutoresizingMaskIntoConstraints = false
@@ -62,8 +60,6 @@ class postCell: UITableViewCell {
         titleLbl.translatesAutoresizingMaskIntoConstraints = false
         uuidLbl.translatesAutoresizingMaskIntoConstraints = false
         rateView.translatesAutoresizingMaskIntoConstraints = false
-
-        genderBtn.isHidden = true
         
         let pictureWidth = width - 20
         
@@ -78,7 +74,7 @@ class postCell: UITableViewCell {
             withVisualFormat: "V:|-10-[username]",
             options: [],
             metrics: nil, views: ["username":usernameBtn]))
-        
+         
         self.contentView.addConstraints(NSLayoutConstraint.constraints(
             withVisualFormat: "V:[pic]-5-[comment(30)]",
             options: [],
@@ -177,6 +173,7 @@ class postCell: UITableViewCell {
                     if self.usernameBtn.titleLabel?.text != PFUser.current()?.username {
                         let newsObj = PFObject(className: "news")
                         newsObj["by"] = PFUser.current()?.username
+                        newsObj["gender"] = PFUser.current()?.object(forKey: "gender") as! String
                         newsObj["ava"] = PFUser.current()?.object(forKey: "ava") as! PFFile
                         newsObj["to"] = self.usernameBtn.titleLabel!.text
                         newsObj["owner"] = self.usernameBtn.titleLabel!.text
@@ -281,6 +278,7 @@ class postCell: UITableViewCell {
                     if self.usernameBtn.titleLabel?.text != PFUser.current()?.username {
                         let newsObj = PFObject(className: "news")
                         newsObj["by"] = PFUser.current()?.username
+                        newsObj["gender"] = PFUser.current()?.object(forKey: "gender") as! String
                         newsObj["ava"] = PFUser.current()?.object(forKey: "ava") as! PFFile
                         newsObj["to"] = self.usernameBtn.titleLabel!.text
                         newsObj["owner"] = self.usernameBtn.titleLabel!.text

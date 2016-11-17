@@ -151,23 +151,6 @@ class uploadVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
         pcImg.addGestureRecognizer(zoomTap)
     }
     
-    // find user gender
-    func getUserGender(user: String) -> String {
-        
-        var genderStr : String = ""
-        
-        let query = PFUser.query()!
-        query.whereKey("username", equalTo: user)
-        query.getFirstObjectInBackground { newUser, error in
-            if error == nil {
-                print(newUser as Any)
-                genderStr = newUser?.value(forKey: "gender") as! String
-            }
-        }
-        return genderStr
-    }
-
-    
     @IBAction func publishBtn_clicked(_ sender: AnyObject) {
         
         // dismiss keyboard
@@ -180,7 +163,7 @@ class uploadVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
         object["tripName"] = tripNameTxt.text
         object["gender"] = PFUser.current()?.value(forKey: "gender") as! String
         
-        let uuid = NSUUID().uuidString
+        let uuid = UUID().uuidString
         object["uuid"] = "\(PFUser.current()?.username) \(uuid)"
         
         if titleTxt.text.isEmpty {
@@ -195,7 +178,7 @@ class uploadVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
         object["pic"] = imageFile
         
         // STEP 3. Send #hashtag to server
-        let words: [String] = titleTxt.text!.components(separatedBy: NSCharacterSet.whitespacesAndNewlines)
+        let words: [String] = titleTxt.text!.components(separatedBy: CharacterSet.whitespacesAndNewlines)
         
         // define tagged word
         for var word in words {

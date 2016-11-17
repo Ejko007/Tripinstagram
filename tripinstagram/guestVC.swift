@@ -15,6 +15,9 @@ class guestVC: UICollectionViewController {
 
     // UI objects
     var refresher = UIRefreshControl()
+    
+    var shadowColor = UIColor()
+        
     var page : Int = 12
     
     // to hold data from server
@@ -149,7 +152,7 @@ class guestVC: UICollectionViewController {
     }
     
     // cell size
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: IndexPath) -> CGSize {
         
         let size = CGSize(width: self.view.frame.size.width / 3, height: self.view.frame.size.width / 3)
         
@@ -289,7 +292,7 @@ class guestVC: UICollectionViewController {
     // tapped posts label
     func postTap() {
         if !picArray.isEmpty {
-            let index = NSIndexPath(item: 0, section: 0)
+            let index = IndexPath(item: 0, section: 0)
             self.collectionView?.scrollToItem(at: index as IndexPath, at: UICollectionViewScrollPosition.top, animated: true)
         }
     }

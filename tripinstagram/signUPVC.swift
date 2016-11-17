@@ -8,6 +8,7 @@
 
 import UIKit
 import Parse
+import PopupDialog
 
 class signUPVC: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
@@ -145,20 +146,21 @@ class signUPVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
         if (usernameTxt.text!.isEmpty || passwordTxt.text!.isEmpty || repeatPasswordTxt.text!.isEmpty || emailTxt.text!.isEmpty || bioTxt.text!.isEmpty || fullnameTxt.text!.isEmpty || webTxt.text!.isEmpty) {
             
             // error mesage
-            let alert = UIAlertController(title: "Chyba", message: "Je nutné vyplnit všechny políčka formuláře.", preferredStyle: UIAlertControllerStyle.alert)
-            let ok = UIAlertAction(title: "OK", style: UIAlertActionStyle.cancel, handler: nil)
-            alert.addAction(ok)
+            let alert = PopupDialog(title: error_str, message: all_fields_no_empty_str)
+            let ok = DefaultButton(title: ok_str, action: nil)
+            alert.addButtons([ok])
             self.present(alert, animated: true, completion: nil)
-            
+           
             return
         }
         
         // if password fileds do not match
         if passwordTxt.text != repeatPasswordTxt.text {
         // error mesage
-            let alert = UIAlertController(title: "Chyba", message: "Použité hesla nejsou stejná.", preferredStyle: UIAlertControllerStyle.alert)
-            let ok = UIAlertAction(title: "OK", style: UIAlertActionStyle.cancel, handler: nil)
-            alert.addAction(ok)
+            
+            let alert = PopupDialog(title: error_str, message: password_fields_no_match)
+            let ok = DefaultButton(title: ok_str, action: nil)
+            alert.addButtons([ok])
             self.present(alert, animated: true, completion: nil)
             
             return
@@ -185,8 +187,12 @@ class signUPVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
         user.signUpInBackground { (success, error) -> Void in
             
             if success {
-                print("registered")
                 
+                let alert = PopupDialog(title: registration_str, message: registration_successful_str)
+                let ok = DefaultButton(title: ok_str, action: nil)
+                alert.addButtons([ok])
+                self.present(alert, animated: true, completion: nil)
+                                
                 // remember logged in user
                 UserDefaults.standard.set(user.username, forKey: "username")
                 UserDefaults.standard.synchronize()
@@ -199,10 +205,11 @@ class signUPVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
             } else {
                 
                 // Show alert mesage
-                let alert = UIAlertController(title: "Chyba", message: error!.localizedDescription, preferredStyle: UIAlertControllerStyle.alert)
-                let ok = UIAlertAction(title: "OK", style: UIAlertActionStyle.cancel, handler: nil)
-                alert.addAction(ok)
+                let alert = PopupDialog(title: error_str, message: error!.localizedDescription)
+                let ok = DefaultButton(title: ok_str, action: nil)
+                alert.addButtons([ok])
                 self.present(alert, animated: true, completion: nil)
+                
             }
         }
     }

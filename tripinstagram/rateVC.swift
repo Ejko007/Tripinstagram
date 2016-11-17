@@ -35,10 +35,11 @@ class rateVC: UIViewController, UITextViewDelegate, UITableViewDelegate, UITable
     
     // arrays to hold server data
     var usernameArray = [String]()
+    var genderArray = [String]()
     var avaArray = [PFFile]()
     var rateTxtArray = [String]()
     var ratingArray = [Double]()
-    var dateArray = [NSDate?]()
+    var dateArray = [Date?]()
     
     // variable to hold keyboard frame
     var keyboard = CGRect()
@@ -98,7 +99,7 @@ class rateVC: UIViewController, UITextViewDelegate, UITableViewDelegate, UITable
     }
 
     // func loading when keyboard is hidden
-    func keyboardWillHide (notification: NSNotification) {
+    func keyboardWillHide (notification: Notification) {
         
         // move UI down
         // move UI up
@@ -111,7 +112,7 @@ class rateVC: UIViewController, UITextViewDelegate, UITableViewDelegate, UITable
     }
    
     // func loading when keyboard is shown
-    func keyboardWillShow (notification: NSNotification) {
+    func keyboardWillShow (notification: Notification) {
         
         // define keyboard frame size
         keyboard = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
@@ -125,16 +126,16 @@ class rateVC: UIViewController, UITextViewDelegate, UITableViewDelegate, UITable
         }
     }
     
-    // load comments function
+    // load rates function
     func loadRates () {
         
-        // STEP 1. Count total comments in order to skip all except (page size = 15)
+        // STEP 1. Count total rates in order to skip all except (page size = 15)
         let countQuery = PFQuery(className: "rates")
         countQuery.whereKey("uuid", equalTo: rateuuid.last!)
         countQuery.countObjectsInBackground (block: { (count: Int32, error: Error?) in
             if error == nil {
                 
-                // if comments on the server for current post are more than (page size - 15), impleent pull to refresh func
+                // if rates on the server for current post are more than (page size - 15), impleent pull to refresh func
                 if self.page < count {
                     self.refresher.addTarget(self, action: #selector(self.loadMore), for: UIControlEvents.valueChanged)
                     self.tableView.addSubview(self.refresher)
@@ -144,7 +145,7 @@ class rateVC: UIViewController, UITextViewDelegate, UITableViewDelegate, UITable
                 print(error!.localizedDescription)
             }
             
-            // STEP 2. Request last (page size = 15) comments
+            // STEP 2. Request last (page size = 15) rates
             let query = PFQuery(className: "rates")
             query.whereKey("uuid", equalTo: rateuuid.last!)
             query.skip = count - self.page
@@ -155,6 +156,7 @@ class rateVC: UIViewController, UITextViewDelegate, UITableViewDelegate, UITable
                     
                     // clean up
                     self.usernameArray.removeAll(keepingCapacity: false)
+                    self.genderArray.removeAll(keepingCapacity: false)
                     self.avaArray.removeAll(keepingCapacity: false)
                     self.rateTxtArray.removeAll(keepingCapacity: false)
                     self.ratingArray.removeAll(keepingCapacity: false)
@@ -163,10 +165,11 @@ class rateVC: UIViewController, UITextViewDelegate, UITableViewDelegate, UITable
                     // find related objects
                     for object in objects! {
                         self.usernameArray.append(object.object(forKey: "username") as! String)
+                        self.genderArray.append(object.object(forKey: "gender") as! String)
                         self.avaArray.append(object.object(forKey: "ava") as! PFFile)
                         self.rateTxtArray.append(object.object(forKey: "ratingtxt") as! String)
                         self.ratingArray.append(object.object(forKey: "rating") as! Double)
-                        self.dateArray.append(object.createdAt as NSDate?)
+                        self.dateArray.append(object.createdAt as Date?)
                         self.tableView.reloadData()
                         
                         // scroll to bottom
@@ -182,7 +185,7 @@ class rateVC: UIViewController, UITextViewDelegate, UITableViewDelegate, UITable
     // pagination
     func loadMore() {
         
-        // STEP 1. Count total comments in order to skip all except (page size = 15)
+        // STEP 1. Count total rates in order to skip all except (page size = 15)
         let countQuery = PFQuery(className: "rates")
         countQuery.whereKey("uuid", equalTo: rateuuid.last!)
         countQuery.countObjectsInBackground(block:{ (count: Int32, error: Error?) in
@@ -191,7 +194,7 @@ class rateVC: UIViewController, UITextViewDelegate, UITableViewDelegate, UITable
                 // self refresher
                 self.refresher.endRefreshing()
                 
-                // remove refresher if loaded all comments
+                // remove refresher if loaded all rates
                 if self.page >= count {
                     self.refresher.removeFromSuperview()
                 }
@@ -212,6 +215,7 @@ class rateVC: UIViewController, UITextViewDelegate, UITableViewDelegate, UITable
                             
                             // clean up
                             self.usernameArray.removeAll(keepingCapacity: false)
+                            self.genderArray.removeAll(keepingCapacity: false)
                             self.avaArray.removeAll(keepingCapacity: false)
                             self.rateTxtArray.removeAll(keepingCapacity: false)
                             self.ratingArray.removeAll(keepingCapacity: false)
@@ -221,10 +225,11 @@ class rateVC: UIViewController, UITextViewDelegate, UITableViewDelegate, UITable
                             for object in objects! {
                                 
                                 self.usernameArray.append(object.object(forKey: "username") as! String)
+                                self.genderArray.append(object.object(forKey: "gender") as! String)
                                 self.avaArray.append(object.object(forKey: "ava") as! PFFile)
                                 self.rateTxtArray.append(object.object(forKey: "ratingtxt") as! String)
                                 self.ratingArray.append(object.object(forKey: "rating") as! Double)
-                                self.dateArray.append(object.createdAt as NSDate?)
+                                self.dateArray.append(object.createdAt as Date?)
                                 self.tableView.reloadData()
                             }
                         } else {
@@ -241,26 +246,7 @@ class rateVC: UIViewController, UITextViewDelegate, UITableViewDelegate, UITable
     
     
     // TABLEVIEW
-    // cell numb
-    // display info when view is empty
-    func numberOfSections(in tableView: UITableView) -> Int {
-        
-        var numOfSections: Int = 0
-        if rateTxtArray.count != 0 {
-            tableView.backgroundView = nil
-            tableView.separatorStyle = .none
-            numOfSections = 1
-        } else {
-            let noDataLabel: UILabel = UILabel(frame: CGRect(x: 0, y: 0, width: tableView.bounds.size.width, height: tableView.bounds.size.height))
-            noDataLabel.text = no_data_available
-            noDataLabel.textColor = UIColor.black
-            noDataLabel.textAlignment = .center
-            tableView.backgroundView = noDataLabel
-            tableView.separatorStyle = .none
-        }
-        return numOfSections
-    }
-    
+    // cell numb    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return rateTxtArray.count
     }
@@ -278,6 +264,12 @@ class rateVC: UIViewController, UITextViewDelegate, UITableViewDelegate, UITable
         
         cell.usernameBtn.setTitle(usernameArray[indexPath.row], for: .normal)
         cell.usernameBtn.sizeToFit()
+        if genderArray[indexPath.row] == "male" {
+            cell.usernameBtn.tintColor = .blue
+        } else {
+            cell.usernameBtn.tintColor = .red
+        }
+        
         cell.commentLbl.text = rateTxtArray[indexPath.row]
         cell.rateView.rating = ratingArray[indexPath.row]
         avaArray[indexPath.row].getDataInBackground (block: { (data: Data?, error: Error?) in
@@ -290,7 +282,7 @@ class rateVC: UIViewController, UITextViewDelegate, UITableViewDelegate, UITable
         
         // calculate date
         let from = dateArray[indexPath.row]
-        let now = NSDate()
+        let now = Date()
         // let components : NSCalendar.Unit = [.second, .minute, .hour, .day, .weekOfMonth]
         let difference = Calendar.current.dateComponents([.second, .minute, .hour, .day, .weekOfMonth], from: from! as Date, to: now as Date)
         
@@ -318,34 +310,10 @@ class rateVC: UIViewController, UITextViewDelegate, UITableViewDelegate, UITable
         if difference.weekOfMonth! > 0 {
             cell.dateLbl.text = "\(difference.weekOfMonth!)" + weeks_abbrav_str .lowercased() + "."
         }
-        
-        // @mension is tapped
-        cell.commentLbl.userHandleLinkTapHandler = { label, handle, rang in
-            var mention = handle
-            mention = String(mention.characters.dropFirst())
-            
-            // if tapped on @current user go home, else go guest
-            if mention.lowercased() == PFUser.current()?.username {
-                let home = self.storyboard?.instantiateViewController(withIdentifier: "homeVC") as! homeVC
-                self.navigationController?.pushViewController(home, animated: true)
-            } else {
-                guestname.append(mention.lowercased())
-                let guest = self.storyboard?.instantiateViewController(withIdentifier: "guestVC") as! guestVC
-                self.navigationController?.pushViewController(guest, animated: true)
-            }
-        }
-        
-        // hashtag is tapped
-        cell.commentLbl.hashtagLinkTapHandler = { label, handle, range in
-            var mention = handle
-            mention = String(mention.characters.dropFirst())
-            hashtag.append(mention.lowercased())
-            let hashvc = self.storyboard?.instantiateViewController(withIdentifier: "hashtagsVC") as! hashtagsVC
-            self.navigationController?.pushViewController(hashvc, animated: true)
-        }
-        
+                
         // assign indexes of buttons
         cell.usernameBtn.layer.setValue(indexPath, forKey: "index")
+        cell.rateView.layer.setValue(indexPath, forKey: "index")
         
         return cell
     }
@@ -369,10 +337,10 @@ class rateVC: UIViewController, UITextViewDelegate, UITableViewDelegate, UITable
             cell.textLabel?.font = UIFont(name:"Helvetica", size:12)
 
             // STEP 1. Delete rate from server
-            let commentQuery = PFQuery(className: "rates")
-            commentQuery.whereKey("uuid", equalTo: rateuuid.last!)
-            commentQuery.whereKey("ratingtxt", equalTo: cell.commentLbl.text!)
-            commentQuery.findObjectsInBackground(block: { (objects: [PFObject]?, error: Error?) in
+            let rateQuery = PFQuery(className: "rates")
+            rateQuery.whereKey("uuid", equalTo: rateuuid.last!)
+            //rateQuery.whereKey("ratingtxt", equalTo: cell.commentLbl.text!)
+            rateQuery.findObjectsInBackground(block: { (objects: [PFObject]?, error: Error?) in
                 if error == nil {
                     for object in objects! {
                         object.deleteEventually()
@@ -390,85 +358,23 @@ class rateVC: UIViewController, UITextViewDelegate, UITableViewDelegate, UITable
             self.ratingArray.remove(at: indexPath.row)
             self.dateArray.remove(at: indexPath.row)
             self.usernameArray.remove(at: indexPath.row)
+            self.genderArray.remove(at: indexPath.row)
             self.avaArray.remove(at: indexPath.row)
             
+            print(indexPath)
+            print(indexPath.row)
             tableView.deleteRows(at: [indexPath], with: UITableViewRowAnimation.fade)
         }
         
-        // ACTION 2. Delete notification: rate
-        let newsQuery = PFQuery(className: "news")
-        newsQuery.whereKey("by", equalTo: cell.usernameBtn.titleLabel!.text!)
-        newsQuery.whereKey("to", equalTo: rateowner.last!)
-        newsQuery.whereKey("uuid", equalTo: rateuuid.last!)
-        newsQuery.whereKey("type", containedIn: ["rate"])
-        newsQuery.findObjectsInBackground(block: { (objects: [PFObject]?, error: Error?) in
-            if error == nil {
-                for object in objects! {
-                    object.deleteEventually()
-                }
-            } else {
-                print(error!.localizedDescription)
-            }
-        })
-        
-        // ACTION 3. Mention or address message to someone
-        let address = UITableViewRowAction(style: .normal, title: "    ") { (ation: UITableViewRowAction, indexPath: IndexPath) -> Void in
-                
-            // include username in textView
-            self.commentTxt.text = "\(self.commentTxt.text + "@" + self.usernameArray[indexPath.row] + " ")"
-            
-            // enable button
-            self.sendBtn.isEnabled = true
-            
-            // close cell - swipe it back
-            tableView.setEditing(false, animated: true)
-        }
-            
-        // ACTION 4. Complain
-        let complain = UITableViewRowAction(style: .normal, title: "    ") { (action: UITableViewRowAction, indexPath: IndexPath) -> Void in
-            
-            // send complain to server regarding selected comment
-            let complainObj = PFObject(className: "complain")
-            complainObj["by"] = PFUser.current()?.username
-            complainObj["to"] = cell.commentLbl.text
-            complainObj["owner"] = cell.usernameBtn.titleLabel?.text
-            complainObj.saveInBackground(block: { (success: Bool, error: Error?) in
-                if error == nil {
-                    if success {
-                        self.alert(title: "Námitka byla úspěšně vytvořena.", message: "Děkujem! Zvážime vaši připomínku.")
-                    } else {
-                        self.alert(title: "Chyba", message: (error?.localizedDescription)!)
-                    }
-            
-                } else {
-                    print(error!.localizedDescription)
-                }
-            })
-            // close cell
-            tableView.setEditing(false, animated: true)
-        }
-        
         // button background
-        //delete.backgroundColor = UIColor.red
         delete.backgroundColor = UIColor(patternImage: UIImage(named: "delete.png")!)
-        address.backgroundColor = UIColor(patternImage: UIImage(named: "address.png")!)
-        complain.backgroundColor = UIColor(patternImage: UIImage(named: "complain.png")!)
         
         // comment belongs to user
         if cell.usernameBtn.titleLabel?.text == PFUser.current()?.username {
-            return [delete, address]
+            return [delete]
+        } else {
+            return [delete]
         }
-        
-        // post belongs to user
-        else if rateowner.last == PFUser.current()?.username {
-            return [delete, address, complain]
-        }
-        
-        // post belongs to other user
-        else {
-            return [address, complain]
-        }
-        
     }
     
     // alert action
@@ -562,7 +468,7 @@ class rateVC: UIViewController, UITextViewDelegate, UITableViewDelegate, UITable
     func textViewDidChange(_ textView: UITextView) {
         
         // disable button if entered no text
-        let spacing = NSCharacterSet.whitespacesAndNewlines
+        let spacing = CharacterSet.whitespacesAndNewlines
         
         // entered text
         if !commentTxt.text.trimmingCharacters(in: spacing).isEmpty {
@@ -612,23 +518,25 @@ class rateVC: UIViewController, UITextViewDelegate, UITableViewDelegate, UITable
         
         // STEP 1. Add row in tableView
         usernameArray.append(PFUser.current()!.username!)
+        genderArray.append(PFUser.current()?.object(forKey: "gender") as! String)
         avaArray.append(PFUser.current()?.object(forKey: "ava") as! PFFile)
-        dateArray.append(NSDate())
-        rateTxtArray.append(commentTxt.text.trimmingCharacters(in: NSCharacterSet.whitespacesAndNewlines))
+        dateArray.append(Date())
+        rateTxtArray.append(commentTxt.text.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines))
         ratingArray.append(rateInputView.rating)
         tableView.reloadData()
         
         // STEP 2. Send rate to server
         let rateObj = PFObject(className: "rates")
         rateObj["uuid"] = rateuuid.last
+        rateObj["gender"] = PFUser.current()?.value(forKey: "gender")
         rateObj["username"] = PFUser.current()?.username
         rateObj["ava"] = PFUser.current()?.value(forKey: "ava")
-        rateObj["ratingtxt"] = commentTxt.text.trimmingCharacters(in: NSCharacterSet.whitespacesAndNewlines)
+        rateObj["ratingtxt"] = commentTxt.text.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
         rateObj["rating"] = rateInputView.rating
         rateObj.saveEventually()
         
         // STEP 3. Send #hashtag to server
-        let words: [String] = commentTxt.text!.components(separatedBy: NSCharacterSet.whitespacesAndNewlines)
+        let words: [String] = commentTxt.text!.components(separatedBy: CharacterSet.whitespacesAndNewlines)
         
         // define tagged word
         for var word in words {
@@ -637,8 +545,8 @@ class rateVC: UIViewController, UITextViewDelegate, UITableViewDelegate, UITable
             if word.hasPrefix("#") {
                 
                 // cut symbol
-                word = word.trimmingCharacters(in: NSCharacterSet.punctuationCharacters)
-                word = word.trimmingCharacters(in: NSCharacterSet.symbols)
+                word = word.trimmingCharacters(in: CharacterSet.punctuationCharacters)
+                word = word.trimmingCharacters(in: CharacterSet.symbols)
                 
                 let hashtagObj = PFObject(className: "hashtags")
                 hashtagObj["to"] = rateuuid.last
@@ -667,11 +575,12 @@ class rateVC: UIViewController, UITextViewDelegate, UITableViewDelegate, UITable
             if word.hasPrefix("@") {
                 
                 // cup symbols
-                word = word.trimmingCharacters(in: NSCharacterSet.punctuationCharacters)
-                word = word.trimmingCharacters(in: NSCharacterSet.symbols)
+                word = word.trimmingCharacters(in: CharacterSet.punctuationCharacters)
+                word = word.trimmingCharacters(in: CharacterSet.symbols)
                 
                 let newsObj = PFObject(className: "news")
                 newsObj["by"] = PFUser.current()?.username
+                newsObj["gender"] = PFUser.current()?.object(forKey: "gender") as! String
                 newsObj["ava"] = PFUser.current()?.object(forKey: "ava") as! PFFile
                 newsObj["to"] = word
                 newsObj["owner"] = rateowner.last
@@ -689,6 +598,7 @@ class rateVC: UIViewController, UITextViewDelegate, UITableViewDelegate, UITable
             
             let newsObj = PFObject(className: "news")
             newsObj["by"] = PFUser.current()?.username
+            newsObj["gender"] = PFUser.current()?.object(forKey: "gender") as! String
             newsObj["ava"] = PFUser.current()?.object(forKey: "ava") as! PFFile
             newsObj["to"] = rateowner.last
             newsObj["owner"] = rateowner.last
@@ -699,7 +609,7 @@ class rateVC: UIViewController, UITextViewDelegate, UITableViewDelegate, UITable
         }
         
         // scroll to bottom
-        self.tableView.scrollToRow(at: NSIndexPath(row: self.rateTxtArray.count - 1, section: 0) as IndexPath, at: UITableViewScrollPosition.bottom, animated: false)
+        self.tableView.scrollToRow(at: IndexPath(row: self.rateTxtArray.count - 1, section: 0) as IndexPath, at: UITableViewScrollPosition.bottom, animated: false)
 
         // STEP 6. Reset UI
         sendBtn.isEnabled = false
