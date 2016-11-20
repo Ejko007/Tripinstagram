@@ -20,6 +20,7 @@ class postCell: UITableViewCell {
     
     @IBOutlet weak var likeBtn: UIButton!
     @IBOutlet weak var commentBtn: UIButton!
+    @IBOutlet weak var commentNrLbl: UILabel!
     @IBOutlet weak var moreBtn: UIButton!
     
     @IBOutlet weak var likeLbl: UILabel!
@@ -27,6 +28,7 @@ class postCell: UITableViewCell {
     @IBOutlet weak var uuidLbl: UILabel!
     @IBOutlet weak var rateView: CosmosView!
     @IBOutlet weak var rateBtn: UIButton!
+    @IBOutlet weak var isPublished: UISwitch!
     
 
     // default function
@@ -55,6 +57,7 @@ class postCell: UITableViewCell {
         picImg.translatesAutoresizingMaskIntoConstraints = false
         likeBtn.translatesAutoresizingMaskIntoConstraints = false
         commentBtn.translatesAutoresizingMaskIntoConstraints = false
+        commentNrLbl.translatesAutoresizingMaskIntoConstraints = false
         moreBtn.translatesAutoresizingMaskIntoConstraints = false
         likeLbl.translatesAutoresizingMaskIntoConstraints = false
         titleLbl.translatesAutoresizingMaskIntoConstraints = false
@@ -79,7 +82,12 @@ class postCell: UITableViewCell {
             withVisualFormat: "V:[pic]-5-[comment(30)]",
             options: [],
             metrics: nil, views: ["pic":picImg, "comment":commentBtn]))
-        
+ 
+        self.contentView.addConstraints(NSLayoutConstraint.constraints(
+            withVisualFormat: "V:[pic]-10-[comments(15)]",
+            options: [],
+            metrics: nil, views: ["pic":picImg, "comments":commentNrLbl]))
+
         self.contentView.addConstraints(NSLayoutConstraint.constraints(
             withVisualFormat: "V:|-15-[date]",
             options: [],
@@ -104,7 +112,7 @@ class postCell: UITableViewCell {
             withVisualFormat: "V:[pic]-10-[rates]",
             options: [],
             metrics: nil, views: ["pic":picImg, "rates": rateView]))
-                
+    
         self.contentView.addConstraints(NSLayoutConstraint.constraints(
             withVisualFormat: "H:|-10-[ava(30)]-10-[username]",
             options: [],
@@ -116,17 +124,17 @@ class postCell: UITableViewCell {
             metrics: nil, views: ["pic":picImg]))
         
         self.contentView.addConstraints(NSLayoutConstraint.constraints(
-            withVisualFormat: "H:|-15-[like(30)]-10-[likes]-25-[comment(30)]-15-[rates]",
+            withVisualFormat: "H:|-10-[like(30)]-5-[likes]-25-[comment(30)]-5-[comments]-25-[rates]",
             options: [],
-            metrics: nil, views: ["like": likeBtn, "likes": likeLbl, "comment":commentBtn, "rates":rateView]))
+            metrics: nil, views: ["like": likeBtn, "likes": likeLbl, "comment":commentBtn, "comments":commentNrLbl, "rates":rateView]))
         
         self.contentView.addConstraints(NSLayoutConstraint.constraints(
-            withVisualFormat: "H:[more(30)]-15-|",
+            withVisualFormat: "H:[more(30)]-10-|",
             options: [],
             metrics: nil, views: ["more":moreBtn]))
         
         self.contentView.addConstraints(NSLayoutConstraint.constraints(
-            withVisualFormat: "H:|-15-[title]-15-|",
+            withVisualFormat: "H:|-15-[title]-10-|",
             options: [],
             metrics: nil, views: ["title": titleLbl]))
         
@@ -139,14 +147,14 @@ class postCell: UITableViewCell {
         avaImg.layer.cornerRadius = avaImg.frame.size.width / 2
         avaImg.clipsToBounds = true
         
-        // create hiden button over rateView
+        // create hidden button over rateView
         rateBtn.frame = CGRect(x: rateView!.frame.origin.x, y: rateView!.frame.origin.y, width: rateView!.frame.width, height: rateView!.frame.height)
         rateBtn.setTitle("", for: .normal)
         rateBtn.setTitleColor(.clear, for: .normal)
         rateBtn.backgroundColor = .clear
         rateBtn.tintColor = .clear
         
-    }
+     }
     
     // clicked like button
     @IBAction func likeBtn_click(_ sender: AnyObject) {

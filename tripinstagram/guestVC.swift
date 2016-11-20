@@ -8,6 +8,7 @@
 
 import UIKit
 import Parse
+import PopupDialog
 
 var guestname = [String]()
 
@@ -82,6 +83,7 @@ class guestVC: UICollectionViewController {
         
         //load posts
         let query = PFQuery(className: "posts")
+        query.whereKey("isPublished", equalTo: true)
         query.whereKey("username", equalTo: guestname.last!)
         query.limit = page               //  ??????????????????????????????????????????
         query.findObjectsInBackground (block: { (objects: [PFObject]?, error: Error?) in
@@ -122,6 +124,7 @@ class guestVC: UICollectionViewController {
             
             // load more posts
             let query = PFQuery(className: "posts")
+            query.whereKey("isPublished", equalTo: true)
             query.whereKey("username", equalTo: guestname.last!)
             query.limit = page
             query.findObjectsInBackground(block: { (objects: [PFObject]?, error: Error?) in
@@ -191,12 +194,12 @@ class guestVC: UICollectionViewController {
                 // show wrong user name
                 if objects!.isEmpty {
                     // call alert
-                    let alert = UIAlertController(title: "\(guestname.last!.uppercased())", message: "nemá v aplikaci vytvořen účet.", preferredStyle: UIAlertControllerStyle.alert)
-                    let ok = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: { (UIAlertAction) in
-                        _ = self.navigationController?.popViewController(animated: true)
-                    })
-                    alert.addAction(ok)
-                    self.present(alert, animated: true, completion: nil)
+                    let okbtn = DefaultButton(title: ok_str, action: { (UIAlertAction) in
+                        _ = self.navigationController?.popViewController(animated: true)})
+                    let complMenu = PopupDialog(title: "\(guestname.last!.uppercased())", message: user_has_no_account)
+                    complMenu.addButtons([okbtn])
+                    self.present(complMenu, animated: true, completion: nil)
+                    
                 }
                 
                 // find related to user information

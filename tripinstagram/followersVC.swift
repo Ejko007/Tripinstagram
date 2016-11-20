@@ -87,12 +87,12 @@ class followersVC: UITableViewController {
                             self.tableView.reloadData()
                         }
                     } else {
-                        print (error?.localizedDescription as Any)
+                        print (error!.localizedDescription)
                     }
                 })
                
             } else {
-                print (error?.localizedDescription as Any)
+                print (error!.localizedDescription)
             }
         })
     }
@@ -131,12 +131,12 @@ class followersVC: UITableViewController {
                             self.tableView.reloadData()
                         }
                     } else {
-                        print(error?.localizedDescription as Any)
+                        print(error!.localizedDescription)
                     }
                     
                 })
             } else {
-                print(error?.localizedDescription as Any)
+                print(error!.localizedDescription)
             }
         })
     }
@@ -165,7 +165,7 @@ class followersVC: UITableViewController {
             if error == nil {
                 cell.avaImg.image = UIImage(data:data!)
             } else {
-                print(error?.localizedDescription as Any)
+                print(error!.localizedDescription)
             }
         })
   

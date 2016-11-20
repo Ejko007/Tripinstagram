@@ -14,19 +14,23 @@ class uploadVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
     @IBOutlet weak var tripNameTxt: UITextField!
     @IBOutlet weak var pcImg: UIImageView!
     @IBOutlet weak var titleTxt: UITextView!
-    @IBOutlet weak var publishBtn: UIButton!
     @IBOutlet weak var removeBtn: UIButton!
+    @IBOutlet weak var saveBtn: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // disable publish btn by default
-        publishBtn.isEnabled = false
-        publishBtn.backgroundColor = .lightGray
+        // title label at the top
+        self.navigationItem.title = new_feed_str.uppercased()
+        
+        // disable save btn by default
+        saveBtn.isEnabled = false
+        saveBtn.backgroundColor = .lightGray
+        saveBtn.titleLabel!.text = save_str
         
         // hide remove button
         removeBtn.isHidden = true
-        
+                
         // standard UI containt
         pcImg.image = UIImage(named: "pbg.png")
         titleTxt.text = ""
@@ -86,7 +90,7 @@ class uploadVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
                 // hide objects from background
                 self.view.backgroundColor = .black
                 self.titleTxt.alpha = 0
-                self.publishBtn.alpha = 0
+                self.saveBtn.alpha = 0
                 self.tripNameTxt.alpha = 0
                 
                 // hide remove button
@@ -102,7 +106,7 @@ class uploadVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
                 // unhide objects from background
                 self.view.backgroundColor = .white
                 self.titleTxt.alpha = 1
-                self.publishBtn.alpha = 1
+                self.saveBtn.alpha = 1
                 self.tripNameTxt.alpha = 1
                 
                 self.removeBtn.isHidden = false
@@ -126,7 +130,8 @@ class uploadVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
         titleTxt.frame = CGRect(x: pcImg.frame.size.width + 25, y: pcImg.frame.origin.y, width:
             width / 1.488, height: pcImg.frame.size.height)
         
-        publishBtn.frame = CGRect(x: 0, y: height / 1.09, width: width, height: width / 8)
+        saveBtn.frame = CGRect(x: 0, y: height / 1.09, width: width, height: width / 8)
+        
         
         removeBtn.frame = CGRect(x: pcImg.frame.origin.x, y: 15 + tripNameTxt.frame.origin.y + 15 + pcImg.frame.size.height + 15, width: pcImg.frame.size.width, height: 20)
     }
@@ -137,9 +142,10 @@ class uploadVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
         pcImg.image = info[UIImagePickerControllerEditedImage] as? UIImage
         self.dismiss(animated: true, completion: nil)
         
-        // enable publish button
-        publishBtn.isEnabled = true
-        publishBtn.backgroundColor = UIColor(red: 52.0 / 255.0, green: 169.0 / 255.0, blue: 255.0 / 255.0, alpha: 1)
+        // enable save button
+        saveBtn.isEnabled = true
+        saveBtn.backgroundColor = UIColor(red: 52.0 / 255.0, green: 169.0 / 255.0, blue: 255.0 / 255.0, alpha: 1)
+
         
         // unhide remove button
         removeBtn.isHidden = false
@@ -150,8 +156,29 @@ class uploadVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
         pcImg.isUserInteractionEnabled = true
         pcImg.addGestureRecognizer(zoomTap)
     }
+        
+    // clicked remove button
+    @IBAction func removeBtn_clicked(_ sender: AnyObject) {
+        self.viewDidLoad()
+    }
     
-    @IBAction func publishBtn_clicked(_ sender: AnyObject) {
+    @IBAction func saveBtn_sclicked(_ sender: AnyObject) {
+        // Get currect date and time
+        let date = Date()
+        let calendar = NSCalendar.current
+        let year = calendar.component(.year, from: date as Date)
+        let month = calendar.component(.year, from: date as Date)
+        let day = calendar.component(.year, from: date as Date)
+        let hours = calendar.component(.hour, from: date as Date)
+        let minutes = calendar.component(.minute, from: date as Date)
+        let seconds = calendar.component(.second, from: date as Date)
+        let dateComponents = NSDateComponents()
+        dateComponents.year = year
+        dateComponents.month = month
+        dateComponents.day = day
+        dateComponents.hour = hours
+        dateComponents.minute = minutes
+        dateComponents.second = seconds
         
         // dismiss keyboard
         self.view.endEditing(true)
@@ -162,6 +189,8 @@ class uploadVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
         object["ava"] = PFUser.current()?.value(forKey: "ava") as! PFFile
         object["tripName"] = tripNameTxt.text
         object["gender"] = PFUser.current()?.value(forKey: "gender") as! String
+        object["isPublished"] = false
+        object["publishedAt"] = date
         
         let uuid = UUID().uuidString
         object["uuid"] = "\(PFUser.current()?.username) \(uuid)"
@@ -207,7 +236,6 @@ class uploadVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
                 })
             }
         }
-
         
         // finally save information
         object.saveInBackground (block: { (success:Bool, error: Error?) in
@@ -218,7 +246,7 @@ class uploadVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
                 
                 // switch to another ViewController at 0 index of tabbar
                 self.tabBarController!.selectedIndex = 0
-                        
+                
                 // reset everything
                 self.viewDidLoad()
                 
@@ -228,11 +256,4 @@ class uploadVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
             }
         })
     }
-    
-    // clicked remove button
-    @IBAction func removeBtn_clicked(_ sender: AnyObject) {
-        self.viewDidLoad()
-    }
-    
-    
 }

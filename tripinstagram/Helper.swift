@@ -18,13 +18,14 @@ let rated_your_post_str = "ohodnotil(a) váš příspěvek"  // "rated your post
 let enter_text_str = "Vložte zde text..."     // "Enter text..."
 let followers_str = "sledující"   // "followers"
 let followings_str = "sledování"  // "followings"
-let feed_str = "Příspěvky" // Feed
+let feeds_str = "Příspěvky" // Feed
+let feed_str = "Příspěvek" // Feed
 let notifications_str = "Upozornění" // "NOTIFICATIONS"
 let follow_str = "Sledovat"           // "Follow"
 let following_str = "Sleduji"     // "Following"
 let comments_str = "Komentáře"   // "Comments"
 let rates_str = "Hodnocení"   // "Rates"
-let photo_str = "Výlet"         // "Photo"
+let photo_str = "Příspěvek"         // "Photo"
 let mention_str = "uvést"       // "mention"
 let comment_str = "komentovat"  // "comment"
 let like_str = "líbí"           // "like"
@@ -54,6 +55,13 @@ let all_fields_no_empty_str = "Je nutné vyplnit všechny políčka formuláře.
 let password_fields_no_match = "Použité hesla nejsou stejná."
 let registration_str = "Registrace"
 let registration_successful_str = "Registrace nového uživatele na serveru proběhla úspěšně."
+let user_has_no_account = "Tento uživatel nemá v aplikaci vytvořen účet."
+let save_str = "Uložit"
+let new_feed_str = "Nový příspěvek"
+let publish_str = "Publikovat"
+let name_of_feed = "Název příspěvlu"
+let hide_str = "Skrýt"
+let no_rates_str = "Tento příspěvek nebyl zatím nikým hodnocen."
 
 // croping picture and center it
 func cropToBounds(_ image: UIImage, width: Double, height: Double) -> UIImage {

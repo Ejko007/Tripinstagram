@@ -8,6 +8,7 @@
 
 import UIKit
 import Parse
+import PopupDialog
 
 var rateuuid = [String]()
 var rateowner = [String]()
@@ -134,13 +135,11 @@ class rateVC: UIViewController, UITextViewDelegate, UITableViewDelegate, UITable
         countQuery.whereKey("uuid", equalTo: rateuuid.last!)
         countQuery.countObjectsInBackground (block: { (count: Int32, error: Error?) in
             if error == nil {
-                
                 // if rates on the server for current post are more than (page size - 15), impleent pull to refresh func
                 if self.page < count {
                     self.refresher.addTarget(self, action: #selector(self.loadMore), for: UIControlEvents.valueChanged)
                     self.tableView.addSubview(self.refresher)
                 }
-                
             } else {
                 print(error!.localizedDescription)
             }
@@ -376,16 +375,7 @@ class rateVC: UIViewController, UITextViewDelegate, UITableViewDelegate, UITable
             return [delete]
         }
     }
-    
-    // alert action
-    func alert (title: String, message: String) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let ok = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-        alert.addAction(ok)
-        present(alert, animated: true, completion: nil)
         
-    }
-    
     // go back - back function
     func back(sender: UIBarButtonItem) {
         

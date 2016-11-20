@@ -124,13 +124,11 @@ class commentVC: UIViewController, UITextViewDelegate, UITableViewDelegate, UITa
         countQuery.whereKey("to", equalTo: commentuuid.last!)
         countQuery.countObjectsInBackground (block: { (count: Int32, error: Error?) in
             if error == nil {
-                
                 // if comments on the server for current post are more than (page size - 15), impleent pull to refresh func
                 if self.page < count {
                     self.refresher.addTarget(self, action: #selector(self.loadMore), for: UIControlEvents.valueChanged)
                     self.tableView.addSubview(self.refresher)
                 }
-                
             } else {
                 print(error!.localizedDescription)
             }

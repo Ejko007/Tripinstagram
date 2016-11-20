@@ -27,6 +27,7 @@ class feedVC: UITableViewController {
     var titleArray = [String]()
     var uuidArray = [String]()
     var ratesArray = [Double]()
+    var publishedArray = [Bool]()
     
     var followArray = [String]()
     
@@ -38,7 +39,7 @@ class feedVC: UITableViewController {
         super.viewDidLoad()
 
         // title at top
-        self.navigationItem.title = feed_str.uppercased()
+        self.navigationItem.title = feeds_str.uppercased()
         
         // automatic row height - dynamic cell
         tableView.rowHeight = UITableViewAutomaticDimension
@@ -95,6 +96,7 @@ class feedVC: UITableViewController {
                 // STEP 2. Find posts made by people appended to followArray
                 let query = PFQuery(className: "posts")
                 query.whereKey("username", containedIn: self.followArray)
+                query.whereKey("isPublished", equalTo: true)
                 query.limit = self.page
                 query.addDescendingOrder("createdAt")
                 query.findObjectsInBackground(block: { (objects: [PFObject]?, error: Error?) in
@@ -109,6 +111,8 @@ class feedVC: UITableViewController {
                         self.titleArray.removeAll(keepingCapacity: false)
                         self.uuidArray.removeAll(keepingCapacity: false)
                         self.ratesArray.removeAll(keepingCapacity: false)
+                        self.publishedArray.removeAll(keepingCapacity: false)
+                        
  
                         // find related objects
                         for object in objects! {
@@ -119,6 +123,8 @@ class feedVC: UITableViewController {
                             self.picArray.append(object.object(forKey: "pic") as! PFFile)
                             self.titleArray.append(object.object(forKey: "title") as! String)
                             self.uuidArray.append(object.object(forKey: "uuid") as! String)
+                            self.publishedArray.append(object.value(forKey: "isPublished") as! Bool)
+
                             
                             // calculate related rates values
                             var sumaRates: Double = 0.0
@@ -202,7 +208,9 @@ class feedVC: UITableViewController {
                     
                     // STEP 2. Find posts made by by people appended to followArray
                     let query = PFQuery(className: "posts")
+                    
                     query.whereKey("username", containedIn: self.followArray)
+                    query.whereKey("isPublished", equalTo: true)
                     query.limit = self.page
                     query.addDescendingOrder("createdAt")
                     query.findObjectsInBackground(block: { (objects: [PFObject]?, error: Error?) in
@@ -373,6 +381,18 @@ class feedVC: UITableViewController {
             }
         })
         
+        // count total comments of showing post
+        let countComments = PFQuery(className: "comments")
+        countComments.whereKey("to", equalTo: cell.uuidLbl.text!)
+        countComments.countObjectsInBackground(block:  { (count: Int32, error: Error?) in
+            
+            if error == nil {
+                cell.commentNrLbl.text = "\(count)"
+            } else {
+                print(error!.localizedDescription)
+            }
+        })
+        
         // calculate total rates of showing post
         cell.rateView.updateOnTouch = false
         var sumaRates: Double = 0.0
@@ -516,6 +536,7 @@ class feedVC: UITableViewController {
             self.titleArray.remove(at: i.row)
             self.ratesArray.remove(at: i.row)
             self.uuidArray.remove(at: i.row)
+            self.publishedArray.remove(at: i.row)
             
             // STEP 2. Delete post from the server
             let postQuery = PFQuery(className: "posts")
@@ -598,7 +619,6 @@ class feedVC: UITableViewController {
                         let okbtn = DefaultButton(title: ok_str, action: nil)
                         let complMenu = PopupDialog(title: complain_str, message: complain_confirmation_str)
                         complMenu.addButtons([okbtn])
-                        //self.alert(title: "Complain has been made successfully.", message: "Thank you! We will consider your complain.")
                         self.present(complMenu, animated: true, completion: nil)
                     } else {
                         print(error!.localizedDescription)
@@ -607,6 +627,45 @@ class feedVC: UITableViewController {
                     print(error!.localizedDescription)
                 }
             })
+        }
+        
+        // PUBLISH ACTION
+        if publishedArray[i.row] {
+            alertMsg = hide_str
+        } else {
+            alertMsg = publish_str
+        }
+        let publish = DefaultButton(title: alertMsg) {
+            
+        // STEP 1. Find post on the server
+        let postQuery = PFQuery(className: "posts")
+        postQuery.whereKey("uuid", equalTo: cell.uuidLbl.text!)
+        postQuery.findObjectsInBackground(block: { (objects: [PFObject]?, error: Error?) in
+            if error == nil {
+                
+                for object in objects! {
+                    if self.publishedArray[i.row] {
+                        object["isPublished"] = false
+                    } else {
+                        object["isPublished"] = true
+                    }
+                    object.saveInBackground(block: { (success: Bool, error: Error?) in
+                        if success {
+                            
+                            // send notification to rootViewController to update shown posts
+                            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "uploaded"), object: nil)
+                            
+                            // push back
+                            _ = self.navigationController?.popViewController(animated: true)
+                        } else {
+                            print(error!.localizedDescription)
+                        }
+                    })
+                }
+            } else {
+                print(error!.localizedDescription)
+            }
+        })
         }
         
         // CANCEL ACTION
@@ -625,27 +684,14 @@ class feedVC: UITableViewController {
 
         // if post belongs to user, he can delete post, else he can't
         if cell.usernameBtn.titleLabel?.text == PFUser.current()?.username {
-            menu.addButtons([del, cancel])
-            //menu.addAction(del)
-            //menu.addAction(cancel)
+            menu.addButtons([del, publish, cancel])
         } else {
             menu.addButtons([compl, cancel])
-            //menu.addAction(compl)
-            //menu.addAction(cancel)
         }
         
         // show menu
         self.present(menu, animated: true, completion: nil)
         
     }
-    
-    // alert action
-    func alert (title: String, message: String) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let ok = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-        alert.addAction(ok)
-        present(alert, animated: true, completion: nil)
-        
-    }
- 
+     
 }

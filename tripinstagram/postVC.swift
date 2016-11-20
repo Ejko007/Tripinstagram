@@ -14,6 +14,7 @@ var postuuid = [String]()
 
 
 class postVC: UITableViewController {
+    
 
     // arrays to hold information from server
     var avaArray = [PFFile]()
@@ -26,6 +27,8 @@ class postVC: UITableViewController {
     var titleArray = [String]()
     
     var ratingArray = [Double]()
+    
+    var publishedArray = [Bool]()
     
     // default finction
     override func viewDidLoad() {
@@ -72,6 +75,7 @@ class postVC: UITableViewController {
                 self.uuidArray.removeAll(keepingCapacity: false)
                 self.titleArray.removeAll(keepingCapacity: false)
                 self.ratingArray.removeAll(keepingCapacity: false)
+                self.publishedArray.removeAll(keepingCapacity: false)
 
                 
                 //find related objects
@@ -83,6 +87,7 @@ class postVC: UITableViewController {
                     self.picArray.append(object.value(forKey: "pic") as! PFFile)
                     self.uuidArray.append(object.value(forKey: "uuid") as! String)
                     self.titleArray.append(object.value(forKey: "title") as! String)
+                    self.publishedArray.append(object.value(forKey: "isPublished") as! Bool)
                     
                     // counting rates
                     var sumaRates: Double = 0.0
@@ -171,28 +176,28 @@ class postVC: UITableViewController {
         
         // logic what  to show
         if difference.second! <= 0 {
-            cell.dateLbl.text = "nyní"
+            cell.dateLbl.text = now_str
         }
         
         if difference.second! > 0 && difference.minute! == 0 {
-            cell.dateLbl.text = "\(difference.second!)s."
+            cell.dateLbl.text = "\(difference.second!)"+seconds_abbrav_str+"."
         }
         
         if difference.minute! > 0 && difference.hour! == 0 {
-            cell.dateLbl.text = "\(difference.minute!)m."
+            cell.dateLbl.text = "\(difference.minute!)"+minutes_abbrav_str+"."
             
         }
         
         if difference.hour! > 0 && difference.day! == 0 {
-            cell.dateLbl.text = "\(difference.hour!)h."
+            cell.dateLbl.text = "\(difference.hour!)"+hours_abbrav_str+"."
         }
         
         if difference.day! > 0 && difference.weekOfMonth! == 0 {
-            cell.dateLbl.text = "\(difference.day!)d."
+            cell.dateLbl.text = "\(difference.day!)"+days_abbrav_str+"."
         }
         
         if difference.weekOfMonth! > 0 {
-            cell.dateLbl.text = "\(difference.weekOfMonth!)t."
+            cell.dateLbl.text = "\(difference.weekOfMonth!)"+weeks_abbrav_str+"."
         }
         
         // manipulating like button on did user like or not
@@ -220,7 +225,19 @@ class postVC: UITableViewController {
                 print(error!.localizedDescription)
             }
         })
-        
+
+        // count total comments of showing post
+        let countComments = PFQuery(className: "comments")
+        countComments.whereKey("to", equalTo: cell.uuidLbl.text!)
+        countComments.countObjectsInBackground(block:  { (count: Int32, error: Error?) in
+            
+            if error == nil {
+                cell.commentNrLbl.text = "\(count)"
+            } else {
+                print(error!.localizedDescription)
+            }
+        })
+
         // assign rates value
         cell.rateView.updateOnTouch = false
         cell.rateView.rating = 0.0
@@ -258,6 +275,7 @@ class postVC: UITableViewController {
         cell.commentBtn.layer.setValue(indexPath, forKey: "index")
         cell.moreBtn.layer.setValue(indexPath, forKey: "index")
         cell.rateBtn.layer.setValue(indexPath, forKey: "index")
+        cell.isPublished.layer.setValue(indexPath, forKey: "index")
         
         // @mension is tapped
         cell.titleLbl.userHandleLinkTapHandler = { label, handle, rang in
@@ -305,7 +323,6 @@ class postVC: UITableViewController {
             let guest = self.storyboard?.instantiateViewController(withIdentifier: "guestVC") as! guestVC
             self.navigationController?.pushViewController(guest, animated: true)
         }
-        
     }
     
     
@@ -322,11 +339,26 @@ class postVC: UITableViewController {
         rateuuid.append(cell.uuidLbl.text!)
         rateowner.append(cell.usernameBtn.titleLabel!.text!)
         
-        // go to rates. present its VC
-        
-        let rate = self.storyboard?.instantiateViewController(withIdentifier: "rateVC") as! rateVC
-        self.navigationController?.pushViewController(rate, animated: true)
-    
+        // count rates first
+        let countQuery = PFQuery(className: "rates")
+        countQuery.whereKey("uuid", equalTo: rateuuid.last!)
+        countQuery.countObjectsInBackground (block: { (count: Int32, error: Error?) in
+            if error == nil {
+                if count == 0 {
+                    let okbtn = DefaultButton(title: ok_str, action: nil)
+                    let complMenu = PopupDialog(title: rates_str, message: no_rates_str)
+                    complMenu.addButtons([okbtn])
+                    self.present(complMenu, animated: true, completion: nil)
+                } else {
+                    // go to rates. present its VC
+                    
+                    let rate = self.storyboard?.instantiateViewController(withIdentifier: "rateVC") as! rateVC
+                    self.navigationController?.pushViewController(rate, animated: true)
+                }
+            } else {
+                print(error!.localizedDescription)
+            }
+        })
     }
     
     // clicked comment button
@@ -371,6 +403,8 @@ class postVC: UITableViewController {
             self.titleArray.remove(at: i.row)
             self.uuidArray.remove(at: i.row)
             self.ratingArray.remove(at: i.row)
+            self.publishedArray.remove(at: i.row)
+            
             
             // STEP 2. Delete post from the server
             let postQuery = PFQuery(className: "posts")
@@ -468,10 +502,48 @@ class postVC: UITableViewController {
                         let okbtn = DefaultButton(title: ok_str, action: nil)
                         let complMenu = PopupDialog(title: complain_str, message: complain_confirmation_str)
                         complMenu.addButtons([okbtn])
-                        //self.alert(title: "Complain has been made successfully.", message: "Thank you! We will consider your complain.")
                         self.present(complMenu, animated: true, completion: nil)
                     } else {
                         print(error!.localizedDescription)
+                    }
+                } else {
+                    print(error!.localizedDescription)
+                }
+            })
+        }
+        
+        // PUBLISH ACTION
+        if publishedArray[i.row] {
+            alertMsg = hide_str
+        } else {
+            alertMsg = publish_str
+        }
+        let publish = DefaultButton(title: alertMsg) {
+            
+            // STEP 1. Find post on the server
+            let postQuery = PFQuery(className: "posts")
+            postQuery.whereKey("uuid", equalTo: cell.uuidLbl.text!)
+            postQuery.findObjectsInBackground(block: { (objects: [PFObject]?, error: Error?) in
+                if error == nil {
+                    
+                    for object in objects! {
+                        if self.publishedArray[i.row] {
+                            object["isPublished"] = false
+                        } else {
+                            object["isPublished"] = true
+                        }
+                        object.saveInBackground(block: { (success: Bool, error: Error?) in
+                            if success {
+                                
+                                // send notification to rootViewController to update shown posts
+                                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "uploaded"), object: nil)
+                                
+                                // push back
+                                _ = self.navigationController?.popViewController(animated: true)
+                            } else {
+                                print(error!.localizedDescription)
+                            }
+                        })
                     }
                 } else {
                     print(error!.localizedDescription)
@@ -497,13 +569,9 @@ class postVC: UITableViewController {
         
         // if post belongs to user, he can delete post, else he can't
         if cell.usernameBtn.titleLabel?.text == PFUser.current()?.username {
-            menu.addButtons([del, cancel])
-            //menu.addAction(del)
-            //menu.addAction(cancel)
+            menu.addButtons([del, publish, cancel])
         } else {
             menu.addButtons([compl, cancel])
-            //menu.addAction(compl)
-            //menu.addAction(cancel)
         }
             
         // show menu
@@ -511,14 +579,6 @@ class postVC: UITableViewController {
         
     }
     
-    // alert action
-    func alert (title: String, message: String) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let ok = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-        alert.addAction(ok)
-        present(alert, animated: true, completion: nil)
-        
-    }
     
     // edit button function
     func edit() {
