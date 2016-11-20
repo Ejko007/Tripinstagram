@@ -472,11 +472,7 @@ class commentVC: UIViewController, UITextViewDelegate, UITableViewDelegate, UITa
         complMenu.addButtons([okbtn])
         present(complMenu, animated: true, completion: nil)
         
-        //let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        //let ok = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-        //alert.addAction(ok)
-        //present(alert, animated: true, completion: nil)
-    }
+     }
     
     // go back - back function
     func back(sender: UIBarButtonItem) {

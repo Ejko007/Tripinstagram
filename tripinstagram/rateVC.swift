@@ -50,9 +50,6 @@ class rateVC: UIViewController, UITextViewDelegate, UITableViewDelegate, UITable
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // tableView.backgroundColor = .red
-
         // title at the top
         self.navigationItem.title = rates_str.uppercased()
         

@@ -787,6 +787,38 @@
             </objects>
             <point key="canvasLocation" x="3127.5" y="1790.5"/>
         </scene>
+        <!--Rating DialogVC-->
+        <scene sceneID="GbU-8N-2tb">
+            <objects>
+                <viewController storyboardIdentifier="ratingDialogVC" id="p4x-CZ-4rX" customClass="ratingDialogVC" customModule="tripinstagram" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="fI7-nL-cTQ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" misplaced="YES" id="Ixy-jP-dqe" customClass="CosmosView" customModule="tripinstagram" customModuleProvider="target">
+                                <rect key="frame" x="30" y="97" width="308" height="27"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" id="K3a-91-Fgf">
+                                <rect key="frame" x="16" y="151" width="343" height="119"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="commentTxt" destination="K3a-91-Fgf" id="xpn-7z-2O6"/>
+                        <outlet property="starRating" destination="Ixy-jP-dqe" id="BNc-od-zuu"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3BV-g6-2gu" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3573.5" y="1790.5"/>
+        </scene>
         <!--CommentVC-->
         <scene sceneID="GWk-gK-27N">
             <objects>
@@ -1560,7 +1592,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WCx-i6-Id2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4047.5" y="1746.5"/>
+            <point key="canvasLocation" x="4048" y="1791"/>
         </scene>
     </scenes>
     <resources>

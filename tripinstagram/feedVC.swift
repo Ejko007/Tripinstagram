@@ -488,11 +488,65 @@ class feedVC: UITableViewController {
         rateuuid.append(cell.uuidLbl.text!)
         rateowner.append(cell.usernameBtn.titleLabel!.text!)
         
-        // go to rates. present its VC
-        let rate = self.storyboard?.instantiateViewController(withIdentifier: "rateVC") as! rateVC
-        self.navigationController?.pushViewController(rate, animated: true)
-        
-        
+        // count rates first
+        let countQuery = PFQuery(className: "rates")
+        countQuery.whereKey("uuid", equalTo: rateuuid.last!)
+        countQuery.countObjectsInBackground (block: { (count: Int32, error: Error?) in
+            if error == nil {
+                if count == 0 {
+                    let okbtn = DefaultButton(title: ok_str, action: nil)
+                    let complMenu = PopupDialog(title: rates_str, message: no_rates_str)
+                    complMenu.addButtons([okbtn])
+                    self.present(complMenu, animated: true, completion: nil)
+                } else {
+                    // find rate of current user
+                    let query = PFQuery(className: "rates")
+                    query.whereKey("username", equalTo: PFUser.current()!.username!)
+                    query.whereKey("uuid", equalTo: rateuuid[i.row])
+                    query.findObjectsInBackground(block: { (objects: [PFObject]?, error: Error?) in
+                        if error == nil {
+                            
+                            // not found
+                            if objects!.isEmpty {
+                                // go to rates. present its VC
+                                let rate = self.storyboard?.instantiateViewController(withIdentifier: "rateVC") as! rateVC
+                                self.navigationController?.pushViewController(rate, animated: true)
+                                
+                            } else {
+                                // Create a custom view controller
+                                let ratingVC = RatingViewController(nibName: "RatingViewController", bundle: nil)
+                                // Create the dialog
+                                let menuDialog = PopupDialog(viewController: ratingVC, buttonAlignment: .horizontal, transitionStyle: .bounceDown, gestureDismissal: true)
+                                // Create first button
+                                let buttonOne = CancelButton(title: cancel_button_str) {
+                                    print("You canceled the rating dialog")
+                                }
+                                // Create second button
+                                let buttonTwo = DefaultButton(title: rate_it_str) {
+                                    print("You rated \(ratingVC.cosmosStarRating.rating) stars")
+                                }
+                                
+                                for object in objects! {
+                                    ratingVC.commentTextField?.text = (object.object(forKey: "ratingtxt") as! String)
+                                    ratingVC.cosmosStarRating?.rating = (object.object(forKey: "rating") as! Double)
+                                }
+                                
+                                // Add buttons to dialog
+                                menuDialog.addButtons([buttonOne, buttonTwo])
+                                
+                                // Present dialog
+                                self.present(menuDialog, animated: true, completion: nil)
+                           }
+                        } else {
+                            print(error!.localizedDescription)
+                        }
+                    })
+                    
+                }
+            } else {
+                print(error!.localizedDescription)
+            }
+        })
     }
     
     // clicked comment button

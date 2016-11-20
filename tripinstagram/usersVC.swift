@@ -295,6 +295,8 @@ class usersVC: UITableViewController, UISearchBarDelegate, UICollectionViewDeleg
     // load posts
     func loadPosts() {
         let query = PFQuery(className: "posts")
+        // show only published posts
+        query.whereKey("isPublished", equalTo: true)
         query.limit = page
         query.findObjectsInBackground(block: { (objects: [PFObject]?, error: Error?) in
             if error == nil {
@@ -339,6 +341,8 @@ class usersVC: UITableViewController, UISearchBarDelegate, UICollectionViewDeleg
             
             // load additional posts
             let query = PFQuery(className: "posts")
+            // show only published posts
+            query.whereKey("isPublished", equalTo: true)
             query.limit = page
             query.findObjectsInBackground(block: { (objects:[PFObject]?, error:Error?) in
                 if error == nil {

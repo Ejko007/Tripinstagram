@@ -9,6 +9,7 @@
 import UIKit
 import Parse
 import Bolts
+import PopupDialog
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

@@ -62,6 +62,7 @@ let publish_str = "Publikovat"
 let name_of_feed = "Název příspěvlu"
 let hide_str = "Skrýt"
 let no_rates_str = "Tento příspěvek nebyl zatím nikým hodnocen."
+let rate_it_str = "Ohodnotit"
 
 // croping picture and center it
 func cropToBounds(_ image: UIImage, width: Double, height: Double) -> UIImage {

@@ -20,6 +20,8 @@
 		0A1E9D5F1DBC8B9F00080209 /* commentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1E9D5E1DBC8B9F00080209 /* commentVC.swift */; };
 		0A1E9D611DBC8BDC00080209 /* commentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1E9D601DBC8BDC00080209 /* commentCell.swift */; };
 		0A1E9D651DBD32A500080209 /* KILabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A1E9D641DBD32A500080209 /* KILabel.m */; };
+		0A3B76F81DE1C96900A60659 /* RatingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3B76F61DE1C96900A60659 /* RatingViewController.swift */; };
+		0A3B76F91DE1C96900A60659 /* RatingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A3B76F71DE1C96900A60659 /* RatingViewController.xib */; };
 		0A5314601DC1F52E00604F69 /* feedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A53145F1DC1F52D00604F69 /* feedVC.swift */; };
 		0A5314621DC2339800604F69 /* usersVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A5314611DC2339800604F69 /* usersVC.swift */; };
 		0A81F2A41DCD28900073063D /* PopupDialog.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A81F2A31DCD28900073063D /* PopupDialog.framework */; };
@@ -71,6 +73,8 @@
 		0A1E9D621DBD32A400080209 /* tripinstagram-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "tripinstagram-Bridging-Header.h"; path = "tripinstagram/tripinstagram-Bridging-Header.h"; sourceTree = "<group>"; };
 		0A1E9D631DBD32A500080209 /* KILabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KILabel.h; path = tripinstagram/KILabel.h; sourceTree = "<group>"; };
 		0A1E9D641DBD32A500080209 /* KILabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KILabel.m; path = tripinstagram/KILabel.m; sourceTree = "<group>"; };
+		0A3B76F61DE1C96900A60659 /* RatingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RatingViewController.swift; sourceTree = "<group>"; };
+		0A3B76F71DE1C96900A60659 /* RatingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RatingViewController.xib; sourceTree = "<group>"; };
 		0A53145F1DC1F52D00604F69 /* feedVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = feedVC.swift; sourceTree = "<group>"; };
 		0A5314611DC2339800604F69 /* usersVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = usersVC.swift; sourceTree = "<group>"; };
 		0A81F2A31DCD28900073063D /* PopupDialog.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PopupDialog.framework; path = "../../../Library/Developer/Xcode/DerivedData/tripinstagram-esugouffqwowrsefrbfyxxyheuxs/Build/Products/Debug-iphonesimulator/PopupDialog/PopupDialog.framework"; sourceTree = "<group>"; };
@@ -165,6 +169,8 @@
 		0A8626321DB0BDE30001C1EE /* tripinstagram */ = {
 			isa = PBXGroup;
 			children = (
+				0A3B76F61DE1C96900A60659 /* RatingViewController.swift */,
+				0A3B76F71DE1C96900A60659 /* RatingViewController.xib */,
 				0AD7A8951DCA06BB001CDDC5 /* CosmosDistrib.swift */,
 				0A1D9F391DB2ABBC0002BAD1 /* pictureCell.swift */,
 				0A86266E1DB2A5DC0001C1EE /* homeVC.swift */,
@@ -293,6 +299,7 @@
 				0A86263B1DB0BDE30001C1EE /* Assets.xcassets in Resources */,
 				0A8626691DB285430001C1EE /* Pacifico.ttf in Resources */,
 				0A8626391DB0BDE30001C1EE /* Main.storyboard in Resources */,
+				0A3B76F91DE1C96900A60659 /* RatingViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -371,6 +378,7 @@
 				0A81F2A61DCE17630073063D /* rateVC.swift in Sources */,
 				0A1E9D651DBD32A500080209 /* KILabel.m in Sources */,
 				0AD7A8901DC4B539001CDDC5 /* newsVC.swift in Sources */,
+				0A3B76F81DE1C96900A60659 /* RatingViewController.swift in Sources */,
 				0A8626341DB0BDE30001C1EE /* AppDelegate.swift in Sources */,
 				0A81F2A81DCE18380073063D /* rateCell.swift in Sources */,
 				0A8626631DB0DA350001C1EE /* resetPasswordVC.swift in Sources */,
