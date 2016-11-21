@@ -58,7 +58,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" verticalCompressionResistancePriority="749" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Comment" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5b1-lD-vmU">
-                            <rect key="frame" x="17.5" y="38" width="255" height="189"/>
+                            <rect key="frame" x="17" y="38" width="255" height="189"/>
                             <nil key="textColor"/>
                             <fontDescription key="fontDescription" type="system" pointSize="10"/>
                             <textInputTraits key="textInputTraits"/>

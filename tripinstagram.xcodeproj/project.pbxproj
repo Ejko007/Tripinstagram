@@ -49,6 +49,19 @@
 		0A8626691DB285430001C1EE /* Pacifico.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0A8626681DB285430001C1EE /* Pacifico.ttf */; };
 		0A86266F1DB2A5DC0001C1EE /* homeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A86266E1DB2A5DC0001C1EE /* homeVC.swift */; };
 		0A8626711DB2A62D0001C1EE /* headerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8626701DB2A62D0001C1EE /* headerView.swift */; };
+		0A98279E1DE318C9008C6C0C /* GLCalendarDateRange.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A98278A1DE318C9008C6C0C /* GLCalendarDateRange.m */; };
+		0A98279F1DE318C9008C6C0C /* GLCalendarDayCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A98278D1DE318C9008C6C0C /* GLCalendarDayCell.m */; };
+		0A9827A01DE318C9008C6C0C /* GLCalendarDayCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A98278E1DE318C9008C6C0C /* GLCalendarDayCell.xib */; };
+		0A9827A11DE318C9008C6C0C /* GLCalendarDayCellBackgroundCover.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A9827901DE318C9008C6C0C /* GLCalendarDayCellBackgroundCover.m */; };
+		0A9827A21DE318C9008C6C0C /* GLCalendarMonthCoverView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A9827921DE318C9008C6C0C /* GLCalendarMonthCoverView.m */; };
+		0A9827A31DE318C9008C6C0C /* GLCalendarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A9827941DE318C9008C6C0C /* GLCalendarView.m */; };
+		0A9827A41DE318C9008C6C0C /* GLCalendarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A9827951DE318C9008C6C0C /* GLCalendarView.xib */; };
+		0A9827A51DE318C9008C6C0C /* GLDateUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A9827971DE318C9008C6C0C /* GLDateUtils.m */; };
+		0A9827A61DE318C9008C6C0C /* gl-calendar-magnify-glass.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A9827991DE318C9008C6C0C /* gl-calendar-magnify-glass.png */; };
+		0A9827A71DE318C9008C6C0C /* gl-calendar-magnify-glass@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A98279A1DE318C9008C6C0C /* gl-calendar-magnify-glass@2x.png */; };
+		0A9827A81DE318C9008C6C0C /* gl-calendar-shadow.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A98279B1DE318C9008C6C0C /* gl-calendar-shadow.png */; };
+		0A9827A91DE318C9008C6C0C /* gl-calendar-shadow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A98279C1DE318C9008C6C0C /* gl-calendar-shadow@2x.png */; };
+		0A9827AA1DE318C9008C6C0C /* gl-calendar-shadow@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A98279D1DE318C9008C6C0C /* gl-calendar-shadow@3x.png */; };
 		0AD7A8901DC4B539001CDDC5 /* newsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD7A88F1DC4B539001CDDC5 /* newsVC.swift */; };
 		0AD7A8921DC4B577001CDDC5 /* newsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD7A8911DC4B577001CDDC5 /* newsCell.swift */; };
 		0AD7A8941DC4E23B001CDDC5 /* helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD7A8931DC4E23B001CDDC5 /* helper.swift */; };
@@ -104,6 +117,25 @@
 		0A8626681DB285430001C1EE /* Pacifico.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Pacifico.ttf; sourceTree = "<group>"; };
 		0A86266E1DB2A5DC0001C1EE /* homeVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = homeVC.swift; sourceTree = "<group>"; };
 		0A8626701DB2A62D0001C1EE /* headerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = headerView.swift; sourceTree = "<group>"; };
+		0A9827891DE318C9008C6C0C /* GLCalendarDateRange.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLCalendarDateRange.h; sourceTree = "<group>"; };
+		0A98278A1DE318C9008C6C0C /* GLCalendarDateRange.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLCalendarDateRange.m; sourceTree = "<group>"; };
+		0A98278C1DE318C9008C6C0C /* GLCalendarDayCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLCalendarDayCell.h; sourceTree = "<group>"; };
+		0A98278D1DE318C9008C6C0C /* GLCalendarDayCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLCalendarDayCell.m; sourceTree = "<group>"; };
+		0A98278E1DE318C9008C6C0C /* GLCalendarDayCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GLCalendarDayCell.xib; sourceTree = "<group>"; };
+		0A98278F1DE318C9008C6C0C /* GLCalendarDayCellBackgroundCover.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLCalendarDayCellBackgroundCover.h; sourceTree = "<group>"; };
+		0A9827901DE318C9008C6C0C /* GLCalendarDayCellBackgroundCover.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLCalendarDayCellBackgroundCover.m; sourceTree = "<group>"; };
+		0A9827911DE318C9008C6C0C /* GLCalendarMonthCoverView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLCalendarMonthCoverView.h; sourceTree = "<group>"; };
+		0A9827921DE318C9008C6C0C /* GLCalendarMonthCoverView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLCalendarMonthCoverView.m; sourceTree = "<group>"; };
+		0A9827931DE318C9008C6C0C /* GLCalendarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLCalendarView.h; sourceTree = "<group>"; };
+		0A9827941DE318C9008C6C0C /* GLCalendarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLCalendarView.m; sourceTree = "<group>"; };
+		0A9827951DE318C9008C6C0C /* GLCalendarView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GLCalendarView.xib; sourceTree = "<group>"; };
+		0A9827961DE318C9008C6C0C /* GLDateUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLDateUtils.h; sourceTree = "<group>"; };
+		0A9827971DE318C9008C6C0C /* GLDateUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLDateUtils.m; sourceTree = "<group>"; };
+		0A9827991DE318C9008C6C0C /* gl-calendar-magnify-glass.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gl-calendar-magnify-glass.png"; sourceTree = "<group>"; };
+		0A98279A1DE318C9008C6C0C /* gl-calendar-magnify-glass@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gl-calendar-magnify-glass@2x.png"; sourceTree = "<group>"; };
+		0A98279B1DE318C9008C6C0C /* gl-calendar-shadow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gl-calendar-shadow.png"; sourceTree = "<group>"; };
+		0A98279C1DE318C9008C6C0C /* gl-calendar-shadow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gl-calendar-shadow@2x.png"; sourceTree = "<group>"; };
+		0A98279D1DE318C9008C6C0C /* gl-calendar-shadow@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gl-calendar-shadow@3x.png"; sourceTree = "<group>"; };
 		0AD7A88F1DC4B539001CDDC5 /* newsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = newsVC.swift; sourceTree = "<group>"; };
 		0AD7A8911DC4B577001CDDC5 /* newsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = newsCell.swift; sourceTree = "<group>"; };
 		0AD7A8931DC4E23B001CDDC5 /* helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = helper.swift; sourceTree = "<group>"; };
@@ -148,6 +180,22 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		0A39D25F1DE31B0E00FC525F /* 3rd Party */ = {
+			isa = PBXGroup;
+			children = (
+				0A39D2601DE31B4000FC525F /* CalendarView */,
+			);
+			name = "3rd Party";
+			sourceTree = "<group>";
+		};
+		0A39D2601DE31B4000FC525F /* CalendarView */ = {
+			isa = PBXGroup;
+			children = (
+				0A9827881DE318C9008C6C0C /* Sources */,
+			);
+			name = CalendarView;
+			sourceTree = "<group>";
+		};
 		0A8626271DB0BDE30001C1EE = {
 			isa = PBXGroup;
 			children = (
@@ -169,6 +217,7 @@
 		0A8626321DB0BDE30001C1EE /* tripinstagram */ = {
 			isa = PBXGroup;
 			children = (
+				0A39D25F1DE31B0E00FC525F /* 3rd Party */,
 				0A3B76F61DE1C96900A60659 /* RatingViewController.swift */,
 				0A3B76F71DE1C96900A60659 /* RatingViewController.xib */,
 				0AD7A8951DCA06BB001CDDC5 /* CosmosDistrib.swift */,
@@ -229,6 +278,48 @@
 				503628F8173689C10C0623D9 /* Pods_tripinstagram.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		0A9827881DE318C9008C6C0C /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				0A9827891DE318C9008C6C0C /* GLCalendarDateRange.h */,
+				0A98278A1DE318C9008C6C0C /* GLCalendarDateRange.m */,
+				0A98278B1DE318C9008C6C0C /* GLCalendarDayCell */,
+				0A9827911DE318C9008C6C0C /* GLCalendarMonthCoverView.h */,
+				0A9827921DE318C9008C6C0C /* GLCalendarMonthCoverView.m */,
+				0A9827931DE318C9008C6C0C /* GLCalendarView.h */,
+				0A9827941DE318C9008C6C0C /* GLCalendarView.m */,
+				0A9827951DE318C9008C6C0C /* GLCalendarView.xib */,
+				0A9827961DE318C9008C6C0C /* GLDateUtils.h */,
+				0A9827971DE318C9008C6C0C /* GLDateUtils.m */,
+				0A9827981DE318C9008C6C0C /* Images */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		0A98278B1DE318C9008C6C0C /* GLCalendarDayCell */ = {
+			isa = PBXGroup;
+			children = (
+				0A98278C1DE318C9008C6C0C /* GLCalendarDayCell.h */,
+				0A98278D1DE318C9008C6C0C /* GLCalendarDayCell.m */,
+				0A98278E1DE318C9008C6C0C /* GLCalendarDayCell.xib */,
+				0A98278F1DE318C9008C6C0C /* GLCalendarDayCellBackgroundCover.h */,
+				0A9827901DE318C9008C6C0C /* GLCalendarDayCellBackgroundCover.m */,
+			);
+			path = GLCalendarDayCell;
+			sourceTree = "<group>";
+		};
+		0A9827981DE318C9008C6C0C /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				0A9827991DE318C9008C6C0C /* gl-calendar-magnify-glass.png */,
+				0A98279A1DE318C9008C6C0C /* gl-calendar-magnify-glass@2x.png */,
+				0A98279B1DE318C9008C6C0C /* gl-calendar-shadow.png */,
+				0A98279C1DE318C9008C6C0C /* gl-calendar-shadow@2x.png */,
+				0A98279D1DE318C9008C6C0C /* gl-calendar-shadow@3x.png */,
+			);
+			path = Images;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -296,8 +387,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				0A86263E1DB0BDE30001C1EE /* LaunchScreen.storyboard in Resources */,
+				0A9827A61DE318C9008C6C0C /* gl-calendar-magnify-glass.png in Resources */,
+				0A9827A01DE318C9008C6C0C /* GLCalendarDayCell.xib in Resources */,
+				0A9827A71DE318C9008C6C0C /* gl-calendar-magnify-glass@2x.png in Resources */,
+				0A9827A91DE318C9008C6C0C /* gl-calendar-shadow@2x.png in Resources */,
 				0A86263B1DB0BDE30001C1EE /* Assets.xcassets in Resources */,
 				0A8626691DB285430001C1EE /* Pacifico.ttf in Resources */,
+				0A9827A81DE318C9008C6C0C /* gl-calendar-shadow.png in Resources */,
+				0A9827AA1DE318C9008C6C0C /* gl-calendar-shadow@3x.png in Resources */,
+				0A9827A41DE318C9008C6C0C /* GLCalendarView.xib in Resources */,
 				0A8626391DB0BDE30001C1EE /* Main.storyboard in Resources */,
 				0A3B76F91DE1C96900A60659 /* RatingViewController.xib in Resources */,
 			);
@@ -358,18 +456,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0A9827A21DE318C9008C6C0C /* GLCalendarMonthCoverView.m in Sources */,
 				0A5314601DC1F52E00604F69 /* feedVC.swift in Sources */,
 				0A1D9F4A1DBA4BA50002BAD1 /* postVC.swift in Sources */,
 				0A1E9D5B1DBBE2FC00080209 /* navVC.swift in Sources */,
+				0A9827A11DE318C9008C6C0C /* GLCalendarDayCellBackgroundCover.m in Sources */,
 				0A1D9F4C1DBA4BD90002BAD1 /* postCell.swift in Sources */,
 				0A1E9D611DBC8BDC00080209 /* commentCell.swift in Sources */,
 				0A5314621DC2339800604F69 /* usersVC.swift in Sources */,
+				0A98279F1DE318C9008C6C0C /* GLCalendarDayCell.m in Sources */,
 				0AD7A8921DC4B577001CDDC5 /* newsCell.swift in Sources */,
 				0A1D9F3A1DB2ABBC0002BAD1 /* pictureCell.swift in Sources */,
 				0A1D9F421DB78BA30002BAD1 /* guestVC.swift in Sources */,
 				0AD7A8961DCA06BB001CDDC5 /* CosmosDistrib.swift in Sources */,
+				0A9827A51DE318C9008C6C0C /* GLDateUtils.m in Sources */,
 				0A8626651DB147B40001C1EE /* signUPVC.swift in Sources */,
 				0A1D9F481DB9F2D10002BAD1 /* uploadVC.swift in Sources */,
+				0A98279E1DE318C9008C6C0C /* GLCalendarDateRange.m in Sources */,
 				0A1E9D5F1DBC8B9F00080209 /* commentVC.swift in Sources */,
 				0A1D9F401DB6AFE30002BAD1 /* followersCell.swift in Sources */,
 				0A1D9F3E1DB6AFA10002BAD1 /* followersVC.swift in Sources */,
@@ -377,6 +480,7 @@
 				0A86266F1DB2A5DC0001C1EE /* homeVC.swift in Sources */,
 				0A81F2A61DCE17630073063D /* rateVC.swift in Sources */,
 				0A1E9D651DBD32A500080209 /* KILabel.m in Sources */,
+				0A9827A31DE318C9008C6C0C /* GLCalendarView.m in Sources */,
 				0AD7A8901DC4B539001CDDC5 /* newsVC.swift in Sources */,
 				0A3B76F81DE1C96900A60659 /* RatingViewController.swift in Sources */,
 				0A8626341DB0BDE30001C1EE /* AppDelegate.swift in Sources */,

@@ -24,7 +24,6 @@ class RatingViewController: UIViewController {
         cosmosStarRating.filledBorderColor = .orange
         cosmosStarRating.emptyBorderColor = .orange
 
-
         commentTextField.delegate = self
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(endEditing)))
     }

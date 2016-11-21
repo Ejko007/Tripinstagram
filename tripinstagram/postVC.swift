@@ -557,7 +557,11 @@ class postVC: UITableViewController {
         
         // create menu controller
         if cell.usernameBtn.titleLabel?.text == PFUser.current()?.username {
-            alertMsg = deletion_article_description
+            if alertMsg == hide_str {
+                alertMsg = deletion_article_description + " " + hide_article_description
+            } else {
+                alertMsg = deletion_article_description + " " + show_article_description
+            }
         } else {
             alertMsg = complain_article_description
         }

@@ -493,56 +493,88 @@ class feedVC: UITableViewController {
         countQuery.whereKey("uuid", equalTo: rateuuid.last!)
         countQuery.countObjectsInBackground (block: { (count: Int32, error: Error?) in
             if error == nil {
-                if count == 0 {
-                    let okbtn = DefaultButton(title: ok_str, action: nil)
-                    let complMenu = PopupDialog(title: rates_str, message: no_rates_str)
-                    complMenu.addButtons([okbtn])
-                    self.present(complMenu, animated: true, completion: nil)
+                
+               if (count == 0) {
+                    // no rates and curent user - show dialogbox
+                    if PFUser.current()!.username! == cell.usernameBtn.titleLabel!.text! {
+                        let okbtn = DefaultButton(title: ok_str, action: nil)
+                        let complMenu = PopupDialog(title: rates_str, message: no_rates_str)
+                        complMenu.addButtons([okbtn])
+                        self.present(complMenu, animated: true, completion: nil)
+                    } else {
+                    // no rates but not curent user - create new rate option
+                        let rate = self.storyboard?.instantiateViewController(withIdentifier: "rateVC") as! rateVC
+                        self.navigationController?.pushViewController(rate, animated: true)
+                    }
                 } else {
-                    // find rate of current user
-                    let query = PFQuery(className: "rates")
-                    query.whereKey("username", equalTo: PFUser.current()!.username!)
-                    query.whereKey("uuid", equalTo: rateuuid[i.row])
-                    query.findObjectsInBackground(block: { (objects: [PFObject]?, error: Error?) in
-                        if error == nil {
-                            
-                            // not found
-                            if objects!.isEmpty {
-                                // go to rates. present its VC
-                                let rate = self.storyboard?.instantiateViewController(withIdentifier: "rateVC") as! rateVC
-                                self.navigationController?.pushViewController(rate, animated: true)
-                                
-                            } else {
-                                // Create a custom view controller
-                                let ratingVC = RatingViewController(nibName: "RatingViewController", bundle: nil)
-                                // Create the dialog
-                                let menuDialog = PopupDialog(viewController: ratingVC, buttonAlignment: .horizontal, transitionStyle: .bounceDown, gestureDismissal: true)
-                                // Create first button
-                                let buttonOne = CancelButton(title: cancel_button_str) {
-                                    print("You canceled the rating dialog")
-                                }
-                                // Create second button
-                                let buttonTwo = DefaultButton(title: rate_it_str) {
-                                    print("You rated \(ratingVC.cosmosStarRating.rating) stars")
-                                }
-                                
-                                for object in objects! {
-                                    ratingVC.commentTextField?.text = (object.object(forKey: "ratingtxt") as! String)
-                                    ratingVC.cosmosStarRating?.rating = (object.object(forKey: "rating") as! Double)
-                                }
-                                
-                                // Add buttons to dialog
-                                menuDialog.addButtons([buttonOne, buttonTwo])
-                                
-                                // Present dialog
-                                self.present(menuDialog, animated: true, completion: nil)
-                           }
-                        } else {
-                            print(error!.localizedDescription)
-                        }
-                    })
+                // find rate of current user
+                let query = PFQuery(className: "rates")
+                query.whereKey("username", equalTo: PFUser.current()!.username!)
+                query.whereKey("uuid", equalTo: rateuuid[i.row])
+                query.findObjectsInBackground(block: { (objects: [PFObject]?, error: Error?) in
+                if error == nil {
                     
+                    // not found
+                    if objects!.isEmpty {
+                        // go to rates. present its VC
+                        let rate = self.storyboard?.instantiateViewController(withIdentifier: "rateVC") as! rateVC
+                        self.navigationController?.pushViewController(rate, animated: true)
+                        
+                    } else {
+                        
+                        var objectID = String()
+                        for objectIDs in objects! {
+                            objectID = objectIDs.objectId!
+                        }
+                        
+                        // Create a custom view controller
+                        let ratingVC = RatingViewController(nibName: "RatingViewController", bundle: nil)
+                        // Create the dialog
+                        let menuDialog = PopupDialog(viewController: ratingVC, buttonAlignment: .horizontal, transitionStyle: .bounceDown, gestureDismissal: true)
+                        // Create first button
+                        let buttonOne = CancelButton(title: cancel_button_str) {
+                        }
+                        // Create second button
+                        let buttonTwo = DefaultButton(title: rate_it_str) {
+                        
+                            // save updated rating
+                            // find rate of current user
+                            let idquery = PFQuery(className: "rates")
+                            idquery.whereKey("username", equalTo: PFUser.current()!.username!)
+                            idquery.whereKey("uuid", equalTo: rateuuid[i.row])
+                            idquery.getObjectInBackground(withId: objectID, block: { (object:PFObject?, error:Error?) in
+                                if error == nil {
+                                    if let updatedObject = object {
+                                        updatedObject["rating"] = ratingVC.cosmosStarRating.rating
+                                        updatedObject["ratingtxt"] = ratingVC.commentTextField.text
+                                        updatedObject.saveInBackground()
+                                    }
+                                } else {
+                                    print(error!.localizedDescription)
+                                }
+                            })
+                            print("You rated \(ratingVC.cosmosStarRating.rating) stars")
+                            
+                            // send notification to rootViewController to update shown posts
+                            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "uploaded"), object: nil)
+                        }
+                    
+                        for object in objects! {
+                            ratingVC.commentTextField?.text = (object.object(forKey: "ratingtxt") as! String)
+                            ratingVC.cosmosStarRating?.rating = (object.object(forKey: "rating") as! Double)
+                        }
+                        
+                        // Add buttons to dialog
+                        menuDialog.addButtons([buttonOne, buttonTwo])
+                        
+                        // Present dialog
+                        self.present(menuDialog, animated: true, completion: nil)
+                   }
+                } else {
+                    print(error!.localizedDescription)
                 }
+            })
+        }
             } else {
                 print(error!.localizedDescription)
             }
@@ -729,8 +761,12 @@ class feedVC: UITableViewController {
         let dlgImg = resizeImage(cell.picImg.image!, targetSize: CGSize(width: 300.0, height: 300.0))
         
         // create menu controller
-        if cell.usernameBtn.titleLabel?.text == PFUser.current()?.username {
-            alertMsg = deletion_article_description
+        if cell.usernameBtn.titleLabel?.text == PFUser.current()?.username {            
+            if alertMsg == hide_str {
+                alertMsg = deletion_article_description + " " + hide_article_description
+            } else {
+                alertMsg = deletion_article_description + " " + show_article_description
+            }
         } else {
             alertMsg = complain_article_description
         }
