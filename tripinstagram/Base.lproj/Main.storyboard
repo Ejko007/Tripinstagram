@@ -444,11 +444,11 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="pbg" id="AVX-z1-lQq">
-                                <rect key="frame" x="16" y="113" width="70" height="70"/>
+                                <rect key="frame" x="16" y="113" width="183" height="154"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" id="20u-Fc-N35">
-                                <rect key="frame" x="100" y="113" width="259" height="70"/>
+                                <rect key="frame" x="16" y="306" width="343" height="70"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -467,7 +467,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="M48-IG-0sd">
-                                <rect key="frame" x="16" y="191" width="69" height="30"/>
+                                <rect key="frame" x="16" y="275" width="69" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <state key="normal" title="Odstranit"/>
@@ -475,15 +475,75 @@
                                     <action selector="removeBtn_clicked:" destination="aEY-tR-69P" eventType="touchUpInside" id="zUw-7l-Dz8"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="12.12.2016" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="wWz-Xa-he4">
+                                <rect key="frame" x="217" y="113" width="66" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="28.12.2016" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ieY-V7-gL7">
+                                <rect key="frame" x="217" y="180" width="66" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Jlo-wc-Cfi">
+                                <rect key="frame" x="217" y="142" width="24" height="28"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="calendar"/>
+                                <connections>
+                                    <action selector="selectDateBtn_clicked:" destination="aEY-tR-69P" eventType="touchUpInside" id="UtS-ZY-veV"/>
+                                    <segue destination="McT-S0-cd3" kind="modal" identifier="showTimeframeVC" id="zY1-Ac-hVJ"/>
+                                </connections>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="Coins" id="Kbk-y0-oyz">
+                                <rect key="frame" x="311" y="209" width="30" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="add-user" id="NDO-TY-Ui0">
+                                <rect key="frame" x="311" y="120" width="30" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="2" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="GDC-xA-sQq">
+                                <rect key="frame" x="311" y="163" width="30" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="56789,00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Dnl-bZ-94d">
+                                <rect key="frame" x="217" y="246" width="99" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="CZK" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="SOc-Gh-GBq">
+                                <rect key="frame" x="324" y="247" width="35" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="E25-7E-F6S"/>
                     <connections>
+                        <outlet property="currencyLbl" destination="SOc-Gh-GBq" id="8Sd-YD-OY3"/>
+                        <outlet property="dateFromLbl" destination="wWz-Xa-he4" id="lWh-IV-RCB"/>
+                        <outlet property="dateToLbl" destination="ieY-V7-gL7" id="bLx-dD-ARQ"/>
                         <outlet property="pcImg" destination="AVX-z1-lQq" id="JXT-e4-4rn"/>
+                        <outlet property="personsNr" destination="GDC-xA-sQq" id="LBE-nR-dVP"/>
+                        <outlet property="personsNrImg" destination="NDO-TY-Ui0" id="Jbi-Bg-3Ef"/>
                         <outlet property="removeBtn" destination="M48-IG-0sd" id="MtH-9P-Qiz"/>
                         <outlet property="saveBtn" destination="K80-u9-ZwD" id="bpn-kr-LhL"/>
+                        <outlet property="selectDateBtn" destination="Jlo-wc-Cfi" id="a03-DO-f4f"/>
+                        <outlet property="spentsImg" destination="Kbk-y0-oyz" id="pua-MC-E6P"/>
                         <outlet property="titleTxt" destination="20u-Fc-N35" id="RlQ-Fc-TXS"/>
+                        <outlet property="totalSpentsLbl" destination="Dnl-bZ-94d" id="dj4-Ur-das"/>
                         <outlet property="tripNameTxt" destination="n8t-Pt-ADH" id="oAx-bh-nui"/>
                     </connections>
                 </viewController>
@@ -596,10 +656,6 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="Gi7-vv-kOn">
-                                            <rect key="frame" x="195" y="427" width="51" height="31"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        </switch>
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
@@ -607,7 +663,6 @@
                                     <outlet property="commentBtn" destination="Z0y-4L-oK1" id="For-oO-kZR"/>
                                     <outlet property="commentNrLbl" destination="RxQ-Ud-JtX" id="UGB-SE-TlE"/>
                                     <outlet property="dateLbl" destination="cOY-R2-kzW" id="Fgp-pS-nar"/>
-                                    <outlet property="isPublished" destination="Gi7-vv-kOn" id="jvK-jm-TQz"/>
                                     <outlet property="likeBtn" destination="v6A-XS-JdI" id="qOS-8y-QDr"/>
                                     <outlet property="likeLbl" destination="4KL-bz-ADk" id="NaW-5U-eFV"/>
                                     <outlet property="moreBtn" destination="gfe-bJ-gat" id="5D6-mk-jEo"/>
@@ -628,7 +683,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Pxf-jr-HDx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3573.5" y="962.5"/>
+            <point key="canvasLocation" x="4634.5" y="962.5"/>
         </scene>
         <!--FeedVC-->
         <scene sceneID="Pka-Ie-8f0">
@@ -904,7 +959,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lZB-KD-MTW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4048" y="963"/>
+            <point key="canvasLocation" x="5100.5" y="962.5"/>
         </scene>
         <!--GuestVC-->
         <scene sceneID="I62-K8-nwP">
@@ -1198,7 +1253,7 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UDq-tY-Eva" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4530" y="963"/>
+            <point key="canvasLocation" x="5547.5" y="962.5"/>
         </scene>
         <!--FollowersVC-->
         <scene sceneID="BZk-ey-EeX">
@@ -1594,8 +1649,35 @@
             </objects>
             <point key="canvasLocation" x="4048" y="1791"/>
         </scene>
+        <!--Time FrameVC-->
+        <scene sceneID="bsc-dG-emA">
+            <objects>
+                <viewController id="McT-S0-cd3" customClass="TimeFrameVC" customModule="tripinstagram" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="6hI-qJ-aIb">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" misplaced="YES" id="JCi-Kd-o7S" customClass="GLCalendarView">
+                                <rect key="frame" x="0.0" y="75" width="383" height="606"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.66666666669999997" green="0.66666666669999997" blue="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </view>
+                    <connections>
+                        <outlet property="calendarView" destination="JCi-Kd-o7S" id="SR1-yv-GfR"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dbQ-V1-kBa" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3592.5" y="962.5"/>
+        </scene>
     </scenes>
     <resources>
+        <image name="Coins" width="48" height="48"/>
+        <image name="add-user" width="512" height="512"/>
+        <image name="calendar" width="512" height="512"/>
         <image name="comment" width="270" height="270"/>
         <image name="default-avatar" width="128" height="128"/>
         <image name="feed" width="25" height="25"/>

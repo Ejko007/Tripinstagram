@@ -140,11 +140,13 @@ class homeVC: UICollectionViewController {
         return picArray.count
     }
     
+    
     // cell size
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         
         let size = CGSize(width: self.view.frame.size.width / 3, height: self.view.frame.size.width / 3)
-        
+        // let size = CGSize(width: self.collectionViewLayout.accessibilityFrame.size.width / 3, height: self.collectionViewLayout.accessibilityFrame.size.width / 3)
+    
         return size
     }
     

@@ -20,6 +20,7 @@
 		0A1E9D5F1DBC8B9F00080209 /* commentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1E9D5E1DBC8B9F00080209 /* commentVC.swift */; };
 		0A1E9D611DBC8BDC00080209 /* commentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1E9D601DBC8BDC00080209 /* commentCell.swift */; };
 		0A1E9D651DBD32A500080209 /* KILabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A1E9D641DBD32A500080209 /* KILabel.m */; };
+		0A32E22E1DE49667006DC92E /* TimeFrameVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A32E22D1DE49667006DC92E /* TimeFrameVC.swift */; };
 		0A3B76F81DE1C96900A60659 /* RatingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3B76F61DE1C96900A60659 /* RatingViewController.swift */; };
 		0A3B76F91DE1C96900A60659 /* RatingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A3B76F71DE1C96900A60659 /* RatingViewController.xib */; };
 		0A5314601DC1F52E00604F69 /* feedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A53145F1DC1F52D00604F69 /* feedVC.swift */; };
@@ -86,6 +87,7 @@
 		0A1E9D621DBD32A400080209 /* tripinstagram-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "tripinstagram-Bridging-Header.h"; path = "tripinstagram/tripinstagram-Bridging-Header.h"; sourceTree = "<group>"; };
 		0A1E9D631DBD32A500080209 /* KILabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KILabel.h; path = tripinstagram/KILabel.h; sourceTree = "<group>"; };
 		0A1E9D641DBD32A500080209 /* KILabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KILabel.m; path = tripinstagram/KILabel.m; sourceTree = "<group>"; };
+		0A32E22D1DE49667006DC92E /* TimeFrameVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeFrameVC.swift; sourceTree = "<group>"; };
 		0A3B76F61DE1C96900A60659 /* RatingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RatingViewController.swift; sourceTree = "<group>"; };
 		0A3B76F71DE1C96900A60659 /* RatingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RatingViewController.xib; sourceTree = "<group>"; };
 		0A53145F1DC1F52D00604F69 /* feedVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = feedVC.swift; sourceTree = "<group>"; };
@@ -183,6 +185,7 @@
 		0A39D25F1DE31B0E00FC525F /* 3rd Party */ = {
 			isa = PBXGroup;
 			children = (
+				0AD7A8951DCA06BB001CDDC5 /* CosmosDistrib.swift */,
 				0A39D2601DE31B4000FC525F /* CalendarView */,
 			);
 			name = "3rd Party";
@@ -220,7 +223,6 @@
 				0A39D25F1DE31B0E00FC525F /* 3rd Party */,
 				0A3B76F61DE1C96900A60659 /* RatingViewController.swift */,
 				0A3B76F71DE1C96900A60659 /* RatingViewController.xib */,
-				0AD7A8951DCA06BB001CDDC5 /* CosmosDistrib.swift */,
 				0A1D9F391DB2ABBC0002BAD1 /* pictureCell.swift */,
 				0A86266E1DB2A5DC0001C1EE /* homeVC.swift */,
 				0A1D9F411DB78BA30002BAD1 /* guestVC.swift */,
@@ -248,6 +250,7 @@
 				0AD7A8931DC4E23B001CDDC5 /* helper.swift */,
 				0A8626331DB0BDE30001C1EE /* AppDelegate.swift */,
 				0A8626371DB0BDE30001C1EE /* Main.storyboard */,
+				0A32E22D1DE49667006DC92E /* TimeFrameVC.swift */,
 				0A86263A1DB0BDE30001C1EE /* Assets.xcassets */,
 				0A86263C1DB0BDE30001C1EE /* LaunchScreen.storyboard */,
 				0A86263F1DB0BDE30001C1EE /* Info.plist */,
@@ -483,6 +486,7 @@
 				0A9827A31DE318C9008C6C0C /* GLCalendarView.m in Sources */,
 				0AD7A8901DC4B539001CDDC5 /* newsVC.swift in Sources */,
 				0A3B76F81DE1C96900A60659 /* RatingViewController.swift in Sources */,
+				0A32E22E1DE49667006DC92E /* TimeFrameVC.swift in Sources */,
 				0A8626341DB0BDE30001C1EE /* AppDelegate.swift in Sources */,
 				0A81F2A81DCE18380073063D /* rateCell.swift in Sources */,
 				0A8626631DB0DA350001C1EE /* resetPasswordVC.swift in Sources */,

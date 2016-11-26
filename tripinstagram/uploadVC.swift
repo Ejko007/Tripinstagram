@@ -9,15 +9,27 @@
 import UIKit
 import Parse
 
-class uploadVC: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class uploadVC: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, TimeFrameDelegate {
+    
+    var startDate:Date?
+    var endDate:Date?
 
     @IBOutlet weak var tripNameTxt: UITextField!
     @IBOutlet weak var pcImg: UIImageView!
     @IBOutlet weak var titleTxt: UITextView!
     @IBOutlet weak var removeBtn: UIButton!
     @IBOutlet weak var saveBtn: UIButton!
+    @IBOutlet weak var dateFromLbl: UILabel!
+    @IBOutlet weak var dateToLbl: UILabel!
+    @IBOutlet weak var selectDateBtn: UIButton!
+    @IBOutlet weak var personsNrImg: UIImageView!
+    @IBOutlet weak var personsNr: UILabel!
+    @IBOutlet weak var spentsImg: UIImageView!
+    @IBOutlet weak var totalSpentsLbl: UILabel!
+    @IBOutlet weak var currencyLbl: UILabel!
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
 
         // title label at the top
@@ -47,8 +59,27 @@ class uploadVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
         pcImg.isUserInteractionEnabled = true
         pcImg.addGestureRecognizer(picTap)
         
+        // set default fromDate and endDate labels
+        let today = NSDate()
+        startDate = GLDateUtils.date(byAddingDays: 0, to: today as Date)
+        endDate = GLDateUtils.date(byAddingDays: 7, to: today as Date)
+        let dateformatter = DateFormatter()
+        dateformatter.dateFormat = "dd.MM.yyy"
+        dateFromLbl.text = dateformatter.string(from: startDate!)
+        dateToLbl.text = dateformatter.string(from: endDate!)
+        
+        // set default number of persons
+        personsNr.text = "\(2)"
+        
+        // set default total of spents
+        totalSpentsLbl.text = "0.00"
+        
+        // set default currency symbol
+        currencyLbl.text = "CZK"
+        
     }
     
+   
     // preload function
     override func viewWillAppear(_ animated: Bool) {
         
@@ -123,17 +154,43 @@ class uploadVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
         
         tripNameTxt.frame = CGRect(x: 15, y: 15, width: width - 30, height: 20)
         
-        //pcImg.frame = CGRect(x: 15, y: (self.navigationController?.navigationBar.frame.size.height)! + 35, width: self.view.frame.size.width / 4.5, height: self.view.frame.size.width / 4.5)
+        pcImg.frame = CGRect(x: 15, y: tripNameTxt.frame.size.height + 30, width: width / 3, height: width / 3)
         
-        pcImg.frame = CGRect(x: 15, y: 15 + tripNameTxt.frame.size.height + 15, width: width / 4.5, height: width / 4.5)
+        titleTxt.frame = CGRect(x: 15, y: 80 + pcImg.frame.size.height, width:
+            width - 30, height: pcImg.frame.size.height)
         
-        titleTxt.frame = CGRect(x: pcImg.frame.size.width + 25, y: pcImg.frame.origin.y, width:
-            width / 1.488, height: pcImg.frame.size.height)
+        dateFromLbl.frame = CGRect(x: 30 + width / 3, y: tripNameTxt.frame.size.height + 30, width:
+            70, height: 15)
+        
+        selectDateBtn.frame = CGRect(x: 30 + width / 3, y: dateFromLbl.frame.origin.y + 20, width: 30, height: 30)
+        
+        dateToLbl.frame = CGRect(x: 30 + width / 3, y: selectDateBtn.frame.origin.y + 35, width:
+            70, height: 15)
+        
+        personsNrImg.frame = CGRect(x: width - 50, y: tripNameTxt.frame.size.height + 30, width: 25, height: 25)
+        
+        personsNr.frame = CGRect(x: width - 50, y: personsNrImg.frame.origin.y + 25, width: 30, height: 30)
+        
+        totalSpentsLbl.frame = CGRect(x: 30 + width / 3, y: tripNameTxt.frame.size.height + pcImg.frame.height + 5, width: width - 80 - pcImg.frame.width, height: 25)
+        
+        spentsImg.frame = CGRect(x: width - 50, y: totalSpentsLbl.frame.origin.y - 30, width: 25, height: 25)
+        
+        
+        totalSpentsLbl.layer.backgroundColor  = UIColor.lightText.cgColor
+        totalSpentsLbl.layer.cornerRadius = 5
+        totalSpentsLbl.layer.borderColor = UIColor.darkGray.cgColor
+        totalSpentsLbl.layer.borderWidth = 1.0
+        let lablTextRact = CGRect(x: totalSpentsLbl.frame.origin.x + 1, y: totalSpentsLbl.frame.origin.y + 1, width: totalSpentsLbl.frame.width - 10, height: totalSpentsLbl.frame.height - 1)
+        totalSpentsLbl.textAlignment = .center
+        totalSpentsLbl.drawText(in: lablTextRact)
+
+        
+        currencyLbl.frame = CGRect(x: totalSpentsLbl.frame.origin.x + totalSpentsLbl.frame.width + 5, y: totalSpentsLbl.frame.origin.y, width: 25, height: 25)
         
         saveBtn.frame = CGRect(x: 0, y: height / 1.09, width: width, height: width / 8)
         
         
-        removeBtn.frame = CGRect(x: pcImg.frame.origin.x, y: 15 + tripNameTxt.frame.origin.y + 15 + pcImg.frame.size.height + 15, width: pcImg.frame.size.width, height: 20)
+        removeBtn.frame = CGRect(x: pcImg.frame.origin.x, y: 15 + tripNameTxt.frame.origin.y + 10 + pcImg.frame.size.height + 15, width: pcImg.frame.size.width, height: 20)
     }
     
     // hold selected object and dismiss PickerController
@@ -191,6 +248,15 @@ class uploadVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
         object["gender"] = PFUser.current()?.value(forKey: "gender") as! String
         object["isPublished"] = false
         object["publishedAt"] = date
+        object["currencyCode"] = currencyLbl.text
+        object["totalSpents"] =  Double(totalSpentsLbl.text!)
+        object["personsNr"] =  Int(personsNr.text!)
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd.MM.yyy"
+        let datefrom = dateFormatter.date(from: dateFromLbl.text!)
+        let dateTo = dateFormatter.date(from: dateToLbl.text!)
+        object["tripFrom"] = datefrom
+        object["tripTo"] = dateTo
         
         let uuid = UUID().uuidString
         object["uuid"] = "\(PFUser.current()?.username) \(uuid)"
@@ -255,5 +321,44 @@ class uploadVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
                 
             }
         })
+    }
+    
+    func didSelectDateRange(range: GLCalendarDateRange) {
+        let dateformatter = DateFormatter()
+        dateformatter.dateFormat = "dd.MM.yyy"
+        
+        dateFromLbl.text = "\(dateformatter.string(from: range.beginDate))"
+        dateToLbl.text = "\(dateformatter.string(from: range.endDate))"
+        
+        startDate = range.beginDate
+        endDate = range.endDate        
+    }
+
+    func setSelectDateRange(range: GLCalendarDateRange) {
+        let dateformatter = DateFormatter()
+        dateformatter.dateFormat = "dd.MM.yyy"
+        
+        range.beginDate = dateformatter.date(from: dateFromLbl.text!)
+        range.endDate = dateformatter.date(from: dateToLbl.text!)
+        
+        startDate = range.beginDate
+        endDate = range.endDate
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == "showTimeframeVC" {
+            // Select Range
+            let vc = segue.destination as! TimeFrameVC
+            
+            vc.timeFrameDelegate = self
+        }
+        
+    }
+
+    
+    @IBAction func selectDateBtn_clicked(_ sender: Any) {
+    
+    
     }
 }

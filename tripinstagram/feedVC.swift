@@ -510,7 +510,7 @@ class feedVC: UITableViewController {
                 // find rate of current user
                 let query = PFQuery(className: "rates")
                 query.whereKey("username", equalTo: PFUser.current()!.username!)
-                query.whereKey("uuid", equalTo: rateuuid[i.row])
+                query.whereKey("uuid", equalTo: cell.uuidLbl.text!)
                 query.findObjectsInBackground(block: { (objects: [PFObject]?, error: Error?) in
                 if error == nil {
                     

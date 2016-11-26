@@ -65,6 +65,7 @@ let name_of_feed = "Název příspěvlu"
 let hide_str = "Skrýt"
 let no_rates_str = "Tento příspěvek nebyl zatím nikým hodnocen."
 let rate_it_str = "Ohodnotit"
+let choose_data_range_str = "Zvolte termín"
 
 // croping picture and center it
 func cropToBounds(_ image: UIImage, width: Double, height: Double) -> UIImage {
@@ -118,6 +119,7 @@ func maskRoundedImage(_ image: UIImage, radius: Float) -> UIImage {
     
     return roundedImage!
 }
+
 
 // resize image function
 func resizeImage(_ image: UIImage, targetSize: CGSize) -> UIImage {

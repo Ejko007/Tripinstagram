@@ -28,7 +28,6 @@ class postCell: UITableViewCell {
     @IBOutlet weak var uuidLbl: UILabel!
     @IBOutlet weak var rateView: CosmosView!
     @IBOutlet weak var rateBtn: UIButton!
-    @IBOutlet weak var isPublished: UISwitch!
     
 
     // default function
@@ -38,7 +37,7 @@ class postCell: UITableViewCell {
         // set rate controller to precise
         rateView!.settings.fillMode = .precise
         rateView!.updateOnTouch = false
-        
+         
         // clear like title button color
         likeBtn.setTitleColor(UIColor.clear, for: .normal)
         

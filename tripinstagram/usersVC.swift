@@ -17,6 +17,8 @@ class usersVC: UITableViewController, UISearchBarDelegate, UICollectionViewDeleg
     // tableView arrays to hold information from the server
     var usernameArray = [String]()
     var avaArray = [PFFile]()
+    var genderArray = [String]()
+
     
     // collectionView UI
     var collectionView : UICollectionView!
@@ -60,11 +62,13 @@ class usersVC: UITableViewController, UISearchBarDelegate, UICollectionViewDeleg
                 // clean up
                 self.usernameArray.removeAll(keepingCapacity: false)
                 self.avaArray.removeAll(keepingCapacity: false)
+                self.genderArray.removeAll(keepingCapacity: false)
                 
                 // found related objects
                 for object in objects! {
                     self.usernameArray.append(object.value(forKey: "username") as! String)
                     self.avaArray.append(object.value(forKey: "ava") as! PFFile)
+                    self.genderArray.append(object.value(forKey: "gender") as! String)
                 }
                 
                 // reload
@@ -98,11 +102,13 @@ class usersVC: UITableViewController, UISearchBarDelegate, UICollectionViewDeleg
                             // cleanup
                             self.usernameArray.removeAll(keepingCapacity: false)
                             self.avaArray.removeAll(keepingCapacity: false)
+                            self.genderArray.removeAll(keepingCapacity: false)
                             
                             // found related objects
                             for object in objects! {
                                 self.usernameArray.append(object.object(forKey: "username") as! String)
                                 self.avaArray.append(object.object(forKey: "ava") as! PFFile)
+                                self.genderArray.append(object.object(forKey: "gender") as! String)
                             }
                             
                             // reload
@@ -116,11 +122,13 @@ class usersVC: UITableViewController, UISearchBarDelegate, UICollectionViewDeleg
                     // clean up
                     self.usernameArray.removeAll(keepingCapacity: false)
                     self.avaArray.removeAll(keepingCapacity: false)
+                    self.genderArray.removeAll(keepingCapacity: false)
 
                     // found related objects
                     for object in objects! {
                         self.usernameArray.append(object.object(forKey: "username") as! String)
                         self.avaArray.append(object.object(forKey: "ava") as! PFFile)
+                        self.genderArray.append(object.object(forKey: "gender") as! String)
                     }
 
                     // reload
@@ -173,7 +181,7 @@ class usersVC: UITableViewController, UISearchBarDelegate, UICollectionViewDeleg
     
     // cell height
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return self.view.frame.size.height / 4
+        return self.view.frame.size.width / 4
     }
 
     // cell config
@@ -187,6 +195,12 @@ class usersVC: UITableViewController, UISearchBarDelegate, UICollectionViewDeleg
         
         // connect cell's objects with received information from the server
         cell.usernameLbl.text = usernameArray[indexPath.row]
+        if genderArray[indexPath.row] == "male" {
+            cell.usernameLbl.textColor = .blue
+        } else {
+            cell.usernameLbl.textColor = .red
+        }
+
         avaArray[indexPath.row].getDataInBackground(block: { (data: Data?, error: Error?) in
             if error == nil {
                 cell.avaImg.image = UIImage(data: data!)

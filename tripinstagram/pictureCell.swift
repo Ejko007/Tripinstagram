@@ -8,7 +8,8 @@
 
 import UIKit
 
-class pictureCell: UICollectionViewCell {
+
+class pictureCell: UICollectionViewCell, UICollectionViewDelegate {
     
     @IBOutlet weak var picImg: UIImageView!
     
@@ -20,7 +21,7 @@ class pictureCell: UICollectionViewCell {
         let width = UIScreen.main.bounds.width
         
         picImg.frame = CGRect(x: 0, y: 0, width: width / 3, height: width / 3)
-        
-    }
     
+    }
+
 }

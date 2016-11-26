@@ -52,7 +52,7 @@ class postVC: UITableViewController {
         let backSwipe = UISwipeGestureRecognizer(target: self, action: #selector(back(sender:)))
         backSwipe.direction = UISwipeGestureRecognizerDirection.right
         self.view.addGestureRecognizer(backSwipe)
-        
+                
         NotificationCenter.default.addObserver(self, selector: #selector(refresh), name: NSNotification.Name(rawValue: "liked"), object: nil)
         
         // dynamic height cell
@@ -275,7 +275,6 @@ class postVC: UITableViewController {
         cell.commentBtn.layer.setValue(indexPath, forKey: "index")
         cell.moreBtn.layer.setValue(indexPath, forKey: "index")
         cell.rateBtn.layer.setValue(indexPath, forKey: "index")
-        cell.isPublished.layer.setValue(indexPath, forKey: "index")
         
         // @mension is tapped
         cell.titleLbl.userHandleLinkTapHandler = { label, handle, rang in
