@@ -50,6 +50,7 @@
 		0A8626691DB285430001C1EE /* Pacifico.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0A8626681DB285430001C1EE /* Pacifico.ttf */; };
 		0A86266F1DB2A5DC0001C1EE /* homeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A86266E1DB2A5DC0001C1EE /* homeVC.swift */; };
 		0A8626711DB2A62D0001C1EE /* headerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8626701DB2A62D0001C1EE /* headerView.swift */; };
+		0A885C071DE9FE790036CA0F /* uploadEditVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A885C061DE9FE790036CA0F /* uploadEditVC.swift */; };
 		0A98279E1DE318C9008C6C0C /* GLCalendarDateRange.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A98278A1DE318C9008C6C0C /* GLCalendarDateRange.m */; };
 		0A98279F1DE318C9008C6C0C /* GLCalendarDayCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A98278D1DE318C9008C6C0C /* GLCalendarDayCell.m */; };
 		0A9827A01DE318C9008C6C0C /* GLCalendarDayCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A98278E1DE318C9008C6C0C /* GLCalendarDayCell.xib */; };
@@ -119,6 +120,7 @@
 		0A8626681DB285430001C1EE /* Pacifico.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Pacifico.ttf; sourceTree = "<group>"; };
 		0A86266E1DB2A5DC0001C1EE /* homeVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = homeVC.swift; sourceTree = "<group>"; };
 		0A8626701DB2A62D0001C1EE /* headerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = headerView.swift; sourceTree = "<group>"; };
+		0A885C061DE9FE790036CA0F /* uploadEditVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = uploadEditVC.swift; sourceTree = "<group>"; };
 		0A9827891DE318C9008C6C0C /* GLCalendarDateRange.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLCalendarDateRange.h; sourceTree = "<group>"; };
 		0A98278A1DE318C9008C6C0C /* GLCalendarDateRange.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLCalendarDateRange.m; sourceTree = "<group>"; };
 		0A98278C1DE318C9008C6C0C /* GLCalendarDayCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLCalendarDayCell.h; sourceTree = "<group>"; };
@@ -233,6 +235,7 @@
 				0A1D9F3F1DB6AFE30002BAD1 /* followersCell.swift */,
 				0A8626621DB0DA350001C1EE /* resetPasswordVC.swift */,
 				0A1D9F471DB9F2D10002BAD1 /* uploadVC.swift */,
+				0A885C061DE9FE790036CA0F /* uploadEditVC.swift */,
 				0A1D9F4B1DBA4BD90002BAD1 /* postCell.swift */,
 				0A1D9F491DBA4BA50002BAD1 /* postVC.swift */,
 				0A1E9D5A1DBBE2FC00080209 /* navVC.swift */,
@@ -490,6 +493,7 @@
 				0A8626341DB0BDE30001C1EE /* AppDelegate.swift in Sources */,
 				0A81F2A81DCE18380073063D /* rateCell.swift in Sources */,
 				0A8626631DB0DA350001C1EE /* resetPasswordVC.swift in Sources */,
+				0A885C071DE9FE790036CA0F /* uploadEditVC.swift in Sources */,
 				0A8626711DB2A62D0001C1EE /* headerView.swift in Sources */,
 				0A1E9D5D1DBBE33B00080209 /* tabbarVC.swift in Sources */,
 				0AD7A8941DC4E23B001CDDC5 /* helper.swift in Sources */,

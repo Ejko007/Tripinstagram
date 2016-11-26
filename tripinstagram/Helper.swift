@@ -52,6 +52,7 @@ let error_str = "Chyba"      // Error
 let male_str = "muž"
 let female_str = "žena"
 let update_profile_str = "Upravit pofil"  // Update profile
+let update_post_str = "Upravit"  // Update post
 let no_login_and_password_error_str = "Přihlaste se k účtu vyplněním jména a hesla."
 let all_fields_no_empty_str = "Je nutné vyplnit všechny políčka formuláře."
 let password_fields_no_match = "Použité hesla nejsou stejná."

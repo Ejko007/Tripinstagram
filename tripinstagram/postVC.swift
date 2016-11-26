@@ -46,7 +46,6 @@ class postVC: UITableViewController {
         
         // new edit button
         let editBtn = UIBarButtonItem(image: UIImage(named: "edit.png"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(edit))
-        self.navigationItem.rightBarButtonItem = editBtn
         
         // swipe to go back
         let backSwipe = UISwipeGestureRecognizer(target: self, action: #selector(back(sender:)))
@@ -120,10 +119,18 @@ class postVC: UITableViewController {
                 self.tableView.reloadData()
                 
             } else {
-                print(error?.localizedDescription as Any)
+                print(error!.localizedDescription)
+            }
+            
+            // show edit button for current user post only
+            if (self.usernameArray.count == 1) && (PFUser.current()?.username == self.usernameArray.last?.lowercased()) {
+                self.navigationItem.rightBarButtonItems = [editBtn]
+                editBtn.isEnabled = true
+            } else {
+                self.navigationItem.rightBarButtonItems = []
+                editBtn.isEnabled = false
             }
         })
-        
     }
 
     // number of cells
@@ -582,11 +589,21 @@ class postVC: UITableViewController {
         
     }
     
+    // open segue to editPost view controller
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == "editPost" {
+            
+            let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+            _ = storyboard.instantiateViewController(withIdentifier: "uploadEditVC") as! uploadEditVC
+
+            //self.navigationController?.pushViewController(destination, animated: true)
+        }
+    }
     
     // edit button function
     func edit() {
-        
-        
+        self.performSegue(withIdentifier: "editPost", sender: self)
     }
     
     // go back function

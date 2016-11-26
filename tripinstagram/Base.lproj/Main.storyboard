@@ -88,7 +88,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-90" y="83"/>
+            <point key="canvasLocation" x="-90" y="126"/>
         </scene>
         <!--SignUPVC-->
         <scene sceneID="Mmo-gE-H4J">
@@ -258,6 +258,7 @@
         <scene sceneID="agX-lq-qia">
             <objects>
                 <tabBarController storyboardIdentifier="tabBar" id="E0B-5o-fLE" customClass="tabbarVC" customModule="tripinstagram" customModuleProvider="target" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="Z0m-ad-H2e"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="bT7-sw-9e9">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -680,10 +681,13 @@
                             <outlet property="delegate" destination="Dk3-yy-4GC" id="h7t-O6-rBq"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <segue destination="Rde-di-ysN" kind="push" identifier="editPost" id="bfR-W1-hXg"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Pxf-jr-HDx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4634.5" y="962.5"/>
+            <point key="canvasLocation" x="2660" y="4179"/>
         </scene>
         <!--FeedVC-->
         <scene sceneID="Pka-Ie-8f0">
@@ -959,7 +963,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lZB-KD-MTW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5100.5" y="962.5"/>
+            <point key="canvasLocation" x="3116" y="5082"/>
         </scene>
         <!--GuestVC-->
         <scene sceneID="I62-K8-nwP">
@@ -1253,7 +1257,7 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UDq-tY-Eva" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5547.5" y="962.5"/>
+            <point key="canvasLocation" x="3563" y="5082"/>
         </scene>
         <!--FollowersVC-->
         <scene sceneID="BZk-ey-EeX">
@@ -1673,6 +1677,131 @@
             </objects>
             <point key="canvasLocation" x="3592.5" y="962.5"/>
         </scene>
+        <!--Upload EditVC-->
+        <scene sceneID="9Dk-J1-8gX">
+            <objects>
+                <viewController storyboardIdentifier="uploadEditVC" id="Rde-di-ysN" customClass="uploadEditVC" customModule="tripinstagram" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="F2D-KS-0gN">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Název výletu" textAlignment="natural" minimumFontSize="14" clearButtonMode="always" id="l2R-BN-cx1">
+                                <rect key="frame" x="16" y="75" width="343" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pbg" id="CMx-NQ-8oA">
+                                <rect key="frame" x="16" y="113" width="183" height="154"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="qPv-Iy-bXN">
+                                <rect key="frame" x="16" y="306" width="343" height="70"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="6zM-GR-xnd">
+                                <rect key="frame" x="0.0" y="577" width="375" height="40"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.40000000600000002" green="0.80000001190000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Uložit">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="saveBtn_sclicked:" destination="Rde-di-ysN" eventType="touchUpInside" id="9yV-99-dGw"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="hDy-yl-3yY">
+                                <rect key="frame" x="16" y="275" width="69" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <state key="normal" title="Odstranit"/>
+                                <connections>
+                                    <action selector="removeBtn_clicked:" destination="Rde-di-ysN" eventType="touchUpInside" id="Yq4-Cv-s1u"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12.12.2016" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="iau-Ua-bsv">
+                                <rect key="frame" x="217" y="113" width="66" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="28.12.2016" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ukL-a9-8Iu">
+                                <rect key="frame" x="217" y="180" width="66" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="nXI-Xu-wHc">
+                                <rect key="frame" x="217" y="142" width="24" height="28"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="calendar"/>
+                                <connections>
+                                    <action selector="selectDateBtn_clicked:" destination="Rde-di-ysN" eventType="touchUpInside" id="sVG-Gz-Sth"/>
+                                    <segue destination="McT-S0-cd3" kind="modal" id="wUP-lY-3SI"/>
+                                </connections>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Coins" id="oui-bm-Hqw">
+                                <rect key="frame" x="311" y="209" width="30" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="add-user" id="Lhf-Rd-cIS">
+                                <rect key="frame" x="311" y="120" width="30" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="5eV-83-Ggb">
+                                <rect key="frame" x="311" y="163" width="30" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="56789,00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="4hM-8V-9FN">
+                                <rect key="frame" x="217" y="246" width="99" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CZK" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="f7h-Pr-Bv8">
+                                <rect key="frame" x="324" y="247" width="35" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="5Tj-b1-gr8"/>
+                    <connections>
+                        <outlet property="currencyLbl" destination="f7h-Pr-Bv8" id="gC2-BU-uR1"/>
+                        <outlet property="dateFromLbl" destination="iau-Ua-bsv" id="idC-e8-vuZ"/>
+                        <outlet property="dateToLbl" destination="ukL-a9-8Iu" id="Xav-F8-7CI"/>
+                        <outlet property="pcImg" destination="CMx-NQ-8oA" id="abt-H9-jUR"/>
+                        <outlet property="personsNr" destination="5eV-83-Ggb" id="gBW-yg-XuC"/>
+                        <outlet property="personsNrImg" destination="Lhf-Rd-cIS" id="gnI-UZ-UaE"/>
+                        <outlet property="removeBtn" destination="hDy-yl-3yY" id="pZH-QY-B5Z"/>
+                        <outlet property="saveBtn" destination="6zM-GR-xnd" id="kib-X6-Gv5"/>
+                        <outlet property="selectDateBtn" destination="nXI-Xu-wHc" id="TXh-Sr-WOZ"/>
+                        <outlet property="spentsImg" destination="oui-bm-Hqw" id="Kvk-av-hpG"/>
+                        <outlet property="titleTxt" destination="qPv-Iy-bXN" id="JfU-IX-Xhr"/>
+                        <outlet property="totalSpentsLbl" destination="4hM-8V-9FN" id="Vcc-B0-l6b"/>
+                        <outlet property="tripNameTxt" destination="l2R-BN-cx1" id="qyK-IV-z9b"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Fj1-VU-29n" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3128" y="4179"/>
+        </scene>
     </scenes>
     <resources>
         <image name="Coins" width="48" height="48"/>
@@ -1694,4 +1823,7 @@
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4_7.fullscreen"/>
     </simulatedMetricsContainer>
+    <inferredMetricsTieBreakers>
+        <segue reference="wUP-lY-3SI"/>
+    </inferredMetricsTieBreakers>
 </document>
