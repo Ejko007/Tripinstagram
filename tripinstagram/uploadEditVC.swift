@@ -30,7 +30,6 @@ class uploadEditVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
     @IBOutlet weak var pcImg: UIImageView!
     @IBOutlet weak var titleTxt: UITextView!
     @IBOutlet weak var removeBtn: UIButton!
-    @IBOutlet weak var saveBtn: UIButton!
     @IBOutlet weak var dateFromLbl: UILabel!
     @IBOutlet weak var dateToLbl: UILabel!
     @IBOutlet weak var selectDateBtn: UIButton!
@@ -47,10 +46,9 @@ class uploadEditVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
         // title label at the top
         self.navigationItem.title = update_post_str.uppercased()
         
-        // disable save btn by default
-        saveBtn.isEnabled = false
-        saveBtn.backgroundColor = .lightGray
-        saveBtn.titleLabel!.text = save_str
+        // create accept icon to save post
+        let acceptBtn = UIBarButtonItem(image: UIImage(named: "accept.png"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(saveBtn_clicked))
+        navigationItem.rightBarButtonItem = acceptBtn
         
         // hide remove button
         removeBtn.isHidden = false
@@ -108,7 +106,8 @@ class uploadEditVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
                 self.tripNameTxt.text = self.tripNameArray.last
                 self.titleTxt.text = self.titleTxtArray.last
                 self.personsNr.text = "\(self.personsNrArray.last!)"
-                self.totalSpentsLbl.text = "\(self.totalSApentsArray.last!)"
+                
+                self.totalSpentsLbl.text = String(format: "%.2f", self.totalSApentsArray.last!)
                 self.currencyLbl.text = self.currencyArray.last
                 
                 let dateformatter = DateFormatter()
@@ -118,7 +117,6 @@ class uploadEditVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
                 
                 self.startDate = GLDateUtils.date(byAddingDays: 0, to: (self.dateFromArray.last!)!) as Date
                 self.endDate = GLDateUtils.date(byAddingDays: 0, to: (self.dateToArray.last!)!) as Date
-                
                 
             } else {
                 print(error!.localizedDescription)
@@ -151,13 +149,13 @@ class uploadEditVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
     // zooming in/out function
     func zoomImg () {
         
-        
         // define frame of zoomed image
         let zoomed = CGRect(x: 0, y: self.view.center.y - self.view.center.x - self.tabBarController!.tabBar.frame.size.height * 1.5, width: self.view.frame.size.width, height: self.view.frame.size.width)
         
         // frame of unzoomed (small) image
-        let unzoomed = CGRect(x: 15, y: 15, width: self.view.frame.size.width / 4.5, height: self.view.frame.size.width / 4.5)
-        
+        //let unzoomed = CGRect(x: 15, y: 15, width: width / 4.5, height: width / 4.5)
+        let unzoomed = CGRect(x: 15, y: self.tripNameTxt.frame.size.height + 30, width: 106, height: 106)
+
         // id picture is unzoomed, zoom it
         if pcImg.frame == unzoomed {
             
@@ -168,8 +166,15 @@ class uploadEditVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
                 // hide objects from background
                 self.view.backgroundColor = .black
                 self.titleTxt.alpha = 0
-                self.saveBtn.alpha = 0
                 self.tripNameTxt.alpha = 0
+                self.currencyLbl.alpha = 0
+                self.personsNr.alpha = 0
+                self.personsNrImg.alpha = 0
+                self.totalSpentsLbl.alpha = 0
+                self.spentsImg.alpha = 0
+                self.dateFromLbl.alpha = 0
+                self.dateToLbl.alpha = 0
+                self.selectDateBtn.isHidden = true
                 
                 // hide remove button
                 self.removeBtn.isHidden = true
@@ -184,9 +189,17 @@ class uploadEditVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
                 // unhide objects from background
                 self.view.backgroundColor = .white
                 self.titleTxt.alpha = 1
-                self.saveBtn.alpha = 1
                 self.tripNameTxt.alpha = 1
+                self.currencyLbl.alpha = 1
+                self.personsNr.alpha = 1
+                self.personsNrImg.alpha = 1
+                self.totalSpentsLbl.alpha = 1
+                self.spentsImg.alpha = 1
+                self.dateFromLbl.alpha = 1
+                self.dateToLbl.alpha = 1
+                self.selectDateBtn.isHidden = false
                 
+                // show remove button
                 self.removeBtn.isHidden = false
             })
         }
@@ -196,8 +209,6 @@ class uploadEditVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
     func alignement () {
         
         let width = self.view.frame.size.width
-        let height = self.view.frame.size.height
-        
         
         tripNameTxt.frame = CGRect(x: 15, y: 15, width: width - 30, height: 20)
         
@@ -233,8 +244,6 @@ class uploadEditVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
         
         currencyLbl.frame = CGRect(x: totalSpentsLbl.frame.origin.x + totalSpentsLbl.frame.width + 5, y: totalSpentsLbl.frame.origin.y, width: 25, height: 25)
         
-        saveBtn.frame = CGRect(x: 0, y: height / 1.09, width: width, height: width / 8)
-        
         removeBtn.frame = CGRect(x: pcImg.frame.origin.x, y: 15 + tripNameTxt.frame.origin.y + 10 + pcImg.frame.size.height + 15, width: pcImg.frame.size.width, height: 20)
     }
     
@@ -243,11 +252,6 @@ class uploadEditVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
         
         pcImg.image = info[UIImagePickerControllerEditedImage] as? UIImage
         self.dismiss(animated: true, completion: nil)
-        
-        // enable save button
-        saveBtn.isEnabled = true
-        saveBtn.backgroundColor = UIColor(red: 52.0 / 255.0, green: 169.0 / 255.0, blue: 255.0 / 255.0, alpha: 1)
-        
         
         // unhide remove button
         removeBtn.isHidden = false
@@ -264,106 +268,108 @@ class uploadEditVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
         self.viewDidLoad()
     }
     
-    @IBAction func saveBtn_sclicked(_ sender: AnyObject) {
-        // Get currect date and time
-        let date = Date()
-        let calendar = NSCalendar.current
-        let year = calendar.component(.year, from: date as Date)
-        let month = calendar.component(.year, from: date as Date)
-        let day = calendar.component(.year, from: date as Date)
-        let hours = calendar.component(.hour, from: date as Date)
-        let minutes = calendar.component(.minute, from: date as Date)
-        let seconds = calendar.component(.second, from: date as Date)
-        let dateComponents = NSDateComponents()
-        dateComponents.year = year
-        dateComponents.month = month
-        dateComponents.day = day
-        dateComponents.hour = hours
-        dateComponents.minute = minutes
-        dateComponents.second = seconds
+    func saveBtn_clicked(_ sender: AnyObject) {
         
-        // dismiss keyboard
-        self.view.endEditing(true)
-        
-        // send data to server
-        let object = PFObject(className: "posts")
-        object["username"] = PFUser.current()?.username
-        object["ava"] = PFUser.current()?.value(forKey: "ava") as! PFFile
-        object["tripName"] = tripNameTxt.text
-        object["gender"] = PFUser.current()?.value(forKey: "gender") as! String
-        object["isPublished"] = false
-        object["publishedAt"] = date
-        object["currencyCode"] = currencyLbl.text
-        object["totalSpents"] =  Double(totalSpentsLbl.text!)
-        object["personsNr"] =  Int(personsNr.text!)
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd.MM.yyy"
-        let datefrom = dateFormatter.date(from: dateFromLbl.text!)
-        let dateTo = dateFormatter.date(from: dateToLbl.text!)
-        object["tripFrom"] = datefrom
-        object["tripTo"] = dateTo
-        
-        let uuid = UUID().uuidString
-        object["uuid"] = "\(PFUser.current()?.username) \(uuid)"
-        
-        if titleTxt.text.isEmpty {
-            object["title"] = ""
-        } else {
-            object["title"] = titleTxt.text.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
-        }
-        
-        // send pic to server after compression
-        let imageData = UIImageJPEGRepresentation(pcImg.image!, 0.5)
-        let imageFile = PFFile(name: "post.jpg", data: imageData!)
-        object["pic"] = imageFile
-        
-        // STEP 3. Send #hashtag to server
-        let words: [String] = titleTxt.text!.components(separatedBy: CharacterSet.whitespacesAndNewlines)
-        
-        // define tagged word
-        for var word in words {
-            
-            // save #hashtag in server
-            if word.hasPrefix("#") {
-                
-                // cut symbol
-                word = word.trimmingCharacters(in: CharacterSet.punctuationCharacters)
-                word = word.trimmingCharacters(in: CharacterSet.symbols)
-                
-                let hashtagObj = PFObject(className: "hashtags")
-                hashtagObj["to"] = uuid
-                hashtagObj["by"] = PFUser.current()?.username
-                hashtagObj["hashtag"] = word.lowercased()
-                hashtagObj["comment"] = titleTxt.text
-                hashtagObj.saveInBackground(block: { (success: Bool, error: Error?) in
-                    if error == nil {
-                        if success {
-                            print("hashtag \(word) is created")
-                        }
-                        
-                    } else {
-                        print(error!.localizedDescription)
-                    }
-                })
-            }
-        }
-        
-        // finally save information
-        object.saveInBackground (block: { (success:Bool, error: Error?) in
+        // get udpated object from the server
+        let postQuery = PFQuery(className: "posts")
+        postQuery.whereKey("uuid", equalTo: postuuid.last!)
+        postQuery.findObjectsInBackground (block: { (objects: [PFObject]?, error: Error?) in
             if error == nil {
+                for object in objects! {
+                    object["username"] = PFUser.current()?.username
+                    object["ava"] = PFUser.current()?.value(forKey: "ava") as! PFFile
+                    object["tripName"] = self.tripNameTxt.text
+                    object["gender"] = PFUser.current()?.value(forKey: "gender") as! String
+                    object["currencyCode"] = self.currencyLbl.text
+                    object["totalSpents"] =  Double(self.totalSpentsLbl.text!)
+                    object["personsNr"] =  Int(self.personsNr.text!)
+                    let dateFormatter = DateFormatter()
+                    dateFormatter.dateFormat = "dd.MM.yyy"
+                    let datefrom = dateFormatter.date(from: self.dateFromLbl.text!)
+                    let dateTo = dateFormatter.date(from: self.dateToLbl.text!)
+                    object["tripFrom"] = datefrom
+                    object["tripTo"] = dateTo
+                    if self.titleTxt.text.isEmpty {
+                        object["title"] = ""
+                    } else {
+                        object["title"] = self.titleTxt.text.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+                    }
+                    
+                    // send pic to server after compression
+                    let imageData = UIImageJPEGRepresentation(self.pcImg.image!, 0.5)
+                    let imageFile = PFFile(name: "post.jpg", data: imageData!)
+                    object["pic"] = imageFile
+                    
+                    // find and delete #hashtags for this post first
+                    let hashtagQuery = PFQuery(className: "hashtags")
+                    hashtagQuery.whereKey("to", equalTo: postuuid.last!)
+                    hashtagQuery.findObjectsInBackground(block: { (objects: [PFObject]?, error: Error?) in
+                        if error == nil {
+                            for object in objects! {
+                                object.deleteEventually()
+                            }
+                        } else {
+                            print(error!.localizedDescription)
+                        }
+                    })
+                    
+                    // send #hashtag to server
+                    let words: [String] = self.titleTxt.text!.components(separatedBy: CharacterSet.whitespacesAndNewlines)
+                    
+                    // define tagged word
+                    for var word in words {
+                        
+                        // save #hashtag in server
+                        if word.hasPrefix("#") {
+                            
+                            // cut symbol
+                            word = word.trimmingCharacters(in: CharacterSet.punctuationCharacters)
+                            word = word.trimmingCharacters(in: CharacterSet.symbols)
+                            
+                            let hashtagObj = PFObject(className: "hashtags")
+                            hashtagObj["to"] = postuuid.last!
+                            hashtagObj["by"] = PFUser.current()?.username
+                            hashtagObj["hashtag"] = word.lowercased()
+                            hashtagObj["comment"] = self.titleTxt.text
+                            hashtagObj.saveInBackground(block: { (success: Bool, error: Error?) in
+                                if error == nil {
+                                    if success {
+                                        print("hashtag \(word) is created")
+                                    }
+                                } else {
+                                    print(error!.localizedDescription)
+                                }
+                            })
+                        }
+                    }
+                    
+                    // update object on the server
+                    object.saveInBackground (block: { (success:Bool, error: Error?) in
+                        if error == nil {
+                            // send notification wiht name "uploaded"
+                            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "uploaded"), object: nil)
+                            
+                            // switch to another ViewController at 0 index of tabbar
+                            self.tabBarController!.selectedIndex = 0
+                            
+                            // reset everything
+                            self.viewDidLoad()
+                            
+                            // set default values of forms
+                            self.titleTxt.text = ""
+                            self.tripNameTxt.text = ""
+                            
+                        } else {
+                            print(error!.localizedDescription)
+                        }
+                    })
+                }
                 
-                // send notification wiht name "uploaded"
-                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "uploaded"), object: nil)
+                // dismiss keyboard
+                self.view.endEditing(true)
                 
-                // switch to another ViewController at 0 index of tabbar
-                self.tabBarController!.selectedIndex = 0
-                
-                // reset everything
-                self.viewDidLoad()
-                
-                self.titleTxt.text = ""
-                self.tripNameTxt.text = ""
-                
+            } else {
+                print(error!.localizedDescription)
             }
         })
     }
@@ -395,6 +401,9 @@ class uploadEditVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
         if segue.identifier == "showTimeframeVC" {
             // Select Range
             let vc = segue.destination as! TimeFrameVC
+            
+            vc.timeFrame?.beginDate = Date()
+            vc.timeFrame?.endDate = Date()            
             
             vc.timeFrameDelegate = self
         }

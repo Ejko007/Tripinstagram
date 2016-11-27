@@ -522,9 +522,9 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="CZK" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="SOc-Gh-GBq">
-                                <rect key="frame" x="324" y="247" width="35" height="21"/>
+                                <rect key="frame" x="317" y="247" width="31" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -1705,18 +1705,6 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="6zM-GR-xnd">
-                                <rect key="frame" x="0.0" y="577" width="375" height="40"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.40000000600000002" green="0.80000001190000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="Uložit">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="saveBtn_sclicked:" destination="Rde-di-ysN" eventType="touchUpInside" id="9yV-99-dGw"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="hDy-yl-3yY">
                                 <rect key="frame" x="16" y="275" width="69" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -1746,7 +1734,7 @@
                                 <state key="normal" image="calendar"/>
                                 <connections>
                                     <action selector="selectDateBtn_clicked:" destination="Rde-di-ysN" eventType="touchUpInside" id="sVG-Gz-Sth"/>
-                                    <segue destination="McT-S0-cd3" kind="modal" id="wUP-lY-3SI"/>
+                                    <segue destination="3dH-gD-HHm" kind="modal" identifier="showTimeframeVC" id="58i-Sm-xgw"/>
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Coins" id="oui-bm-Hqw">
@@ -1771,10 +1759,10 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CZK" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="f7h-Pr-Bv8">
-                                <rect key="frame" x="324" y="247" width="35" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="CZK" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="f7h-Pr-Bv8">
+                                <rect key="frame" x="317" y="246" width="35" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -1790,7 +1778,6 @@
                         <outlet property="personsNr" destination="5eV-83-Ggb" id="gBW-yg-XuC"/>
                         <outlet property="personsNrImg" destination="Lhf-Rd-cIS" id="gnI-UZ-UaE"/>
                         <outlet property="removeBtn" destination="hDy-yl-3yY" id="pZH-QY-B5Z"/>
-                        <outlet property="saveBtn" destination="6zM-GR-xnd" id="kib-X6-Gv5"/>
                         <outlet property="selectDateBtn" destination="nXI-Xu-wHc" id="TXh-Sr-WOZ"/>
                         <outlet property="spentsImg" destination="oui-bm-Hqw" id="Kvk-av-hpG"/>
                         <outlet property="titleTxt" destination="qPv-Iy-bXN" id="JfU-IX-Xhr"/>
@@ -1801,6 +1788,30 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Fj1-VU-29n" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3128" y="4179"/>
+        </scene>
+        <!--Time FrameVC-->
+        <scene sceneID="fWq-Y9-pev">
+            <objects>
+                <viewController id="3dH-gD-HHm" customClass="TimeFrameVC" customModule="tripinstagram" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Mdk-Pf-kvy">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" id="OVb-jx-rgl" customClass="GLCalendarView">
+                                <rect key="frame" x="0.0" y="75" width="383" height="606"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.66666666669999997" green="0.66666666669999997" blue="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </view>
+                    <connections>
+                        <outlet property="calendarView" destination="OVb-jx-rgl" id="3kE-FC-ylH"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="U6j-di-rI1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3646" y="4179"/>
         </scene>
     </scenes>
     <resources>
@@ -1823,7 +1834,4 @@
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4_7.fullscreen"/>
     </simulatedMetricsContainer>
-    <inferredMetricsTieBreakers>
-        <segue reference="wUP-lY-3SI"/>
-    </inferredMetricsTieBreakers>
 </document>

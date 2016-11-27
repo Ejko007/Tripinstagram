@@ -18,6 +18,7 @@ class TimeFrameVC: UIViewController, UINavigationBarDelegate, GLCalendarViewDele
     
     var timeFrameDelegate:TimeFrameDelegate? = nil
     var timeFrame:GLCalendarDateRange? = nil
+    var rangeUnderEdit:GLCalendarDateRange? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,9 +51,14 @@ class TimeFrameVC: UIViewController, UINavigationBarDelegate, GLCalendarViewDele
         navigationItem.leftBarButtonItem = backBtn
         let acceptBtn = UIBarButtonItem(image: UIImage(named: "accept.png"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(acceptBtn_clicked))
         navigationItem.rightBarButtonItem = acceptBtn
+        let deleteBtn = UIBarButtonItem(image: UIImage(named: "cancel.png"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(deleteBtn_clicked))
+        navigationItem.rightBarButtonItem = deleteBtn
         
         backBtn.tintColor = .white
         acceptBtn.tintColor = .white
+        deleteBtn.tintColor = .white
+        
+        navigationItem.rightBarButtonItems = [acceptBtn,deleteBtn]
         
         // Assign the navigation item to the navigation bar
         navigationBar.items = [navigationItem]
@@ -60,7 +66,8 @@ class TimeFrameVC: UIViewController, UINavigationBarDelegate, GLCalendarViewDele
         // Make the navigation bar a subview of the current view controller
         self.view.addSubview(navigationBar)
        
-        calendarView.delegate = self
+        self.calendarView.delegate = self
+        self.calendarView.showMagnifier = true
         
         calendarView.frame = CGRect(x: 0, y: 75, width: width, height: height - 75)
         GLCalendarView.appearance().rowHeight = 50
@@ -79,6 +86,14 @@ class TimeFrameVC: UIViewController, UINavigationBarDelegate, GLCalendarViewDele
         self.dismiss(animated: true, completion: nil)
     }
     
+    // delete time range button clicked
+    func deleteBtn_clicked(sender: UIBarButtonItem) {
+        if self.rangeUnderEdit != nil {
+            self.calendarView.removeRange(self.rangeUnderEdit!)
+        }
+    }
+    
+    
     // go back function
     func back(sender: UIBarButtonItem) {
         
@@ -90,8 +105,9 @@ class TimeFrameVC: UIViewController, UINavigationBarDelegate, GLCalendarViewDele
         super.viewWillAppear(animated)
         
         let today = NSDate()
+        
         let beginDate = GLDateUtils.date(byAddingDays: 0, to: today as Date!)
-        let endDate = GLDateUtils.date(byAddingDays: 7, to: today as Date!)
+        let endDate = GLDateUtils.date(byAddingDays: 0, to: today as Date!)
         
         let range = GLCalendarDateRange(begin: beginDate, end: endDate)
         range?.backgroundColor = UIColor.lightGray
@@ -104,6 +120,14 @@ class TimeFrameVC: UIViewController, UINavigationBarDelegate, GLCalendarViewDele
             self.calendarView.scroll(to: self.calendarView.lastDate, animated: false)
         }        
         
+    }
+    
+    func calenderView (_ calendarView: GLCalendarView!, beginToEdit range: GLCalendarDateRange!) {
+        self.rangeUnderEdit = range
+    }
+
+    func calenderView(_ calendarView: GLCalendarView!, finishEdit range: GLCalendarDateRange!, continueEditing: Bool) {
+        self.rangeUnderEdit = nil
     }
     
     func calenderView(_ calendarView: GLCalendarView!, canAddRangeWithBegin beginDate: Date!) -> Bool {
@@ -120,16 +144,14 @@ class TimeFrameVC: UIViewController, UINavigationBarDelegate, GLCalendarViewDele
         
     }
     
-    func calenderView(_ calendarView: GLCalendarView!, canUpdate range: GLCalendarDateRange!, toBegin beginDate: Date!, end endDate: Date!) -> Bool {
+    func calenderView(_ calendarView: GLCalendarView!, beginDate canAddRangeWithBeginDate: Date!) -> Bool {
         return true
     }
     
-    func calenderView(_ calendarView: GLCalendarView!, beginToEdit range: GLCalendarDateRange!) {
-        
-    }
     
-    func calenderView(_ calendarView: GLCalendarView!, finishEdit range: GLCalendarDateRange!, continueEditing: Bool) {
-        
+    
+    func calenderView(_ calendarView: GLCalendarView!, canUpdate range: GLCalendarDateRange!, toBegin beginDate: Date!, end endDate: Date!) -> Bool {
+        return true
     }
     
     func calenderView(_ calendarView: GLCalendarView!, didUpdate range: GLCalendarDateRange!, toBegin beginDate: Date!, end endDate: Date!) {

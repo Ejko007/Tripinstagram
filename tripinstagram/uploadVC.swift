@@ -104,13 +104,13 @@ class uploadVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
     // zooming in/out function
     func zoomImg () {
         
-        
         // define frame of zoomed image
         let zoomed = CGRect(x: 0, y: self.view.center.y - self.view.center.x - self.tabBarController!.tabBar.frame.size.height * 1.5, width: self.view.frame.size.width, height: self.view.frame.size.width)
         
         // frame of unzoomed (small) image
-        let unzoomed = CGRect(x: 15, y: 15, width: self.view.frame.size.width / 4.5, height: self.view.frame.size.width / 4.5)
-       
+        //let unzoomed = CGRect(x: 15, y: 15, width: width / 4.5, height: width / 4.5)
+        let unzoomed = CGRect(x: 15, y: self.tripNameTxt.frame.size.height + 30, width: 106, height: 106)
+      
         // id picture is unzoomed, zoom it
         if pcImg.frame == unzoomed {
             
@@ -123,7 +123,15 @@ class uploadVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
                 self.titleTxt.alpha = 0
                 self.saveBtn.alpha = 0
                 self.tripNameTxt.alpha = 0
-                
+                self.currencyLbl.alpha = 0
+                self.personsNr.alpha = 0
+                self.personsNrImg.alpha = 0
+                self.totalSpentsLbl.alpha = 0
+                self.spentsImg.alpha = 0
+                self.dateFromLbl.alpha = 0
+                self.dateToLbl.alpha = 0
+                self.selectDateBtn.isHidden = true
+               
                 // hide remove button
                 self.removeBtn.isHidden = true
 
@@ -139,6 +147,14 @@ class uploadVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
                 self.titleTxt.alpha = 1
                 self.saveBtn.alpha = 1
                 self.tripNameTxt.alpha = 1
+                self.currencyLbl.alpha = 1
+                self.personsNr.alpha = 1
+                self.personsNrImg.alpha = 1
+                self.totalSpentsLbl.alpha = 1
+                self.spentsImg.alpha = 1
+                self.dateFromLbl.alpha = 1
+                self.dateToLbl.alpha = 1
+                self.selectDateBtn.isHidden = false
                 
                 self.removeBtn.isHidden = false
             })
