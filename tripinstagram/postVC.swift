@@ -25,6 +25,13 @@ class postVC: UITableViewController {
     var picArray = [PFFile]()
     var uuidArray = [String]()
     var titleArray = [String]()
+    var tripnameArray = [String]()
+    var personsNrArray = [Int]()
+    var totalDistanceArray = [Double]()
+    var totalSpentsArray = [Double]()
+    var tripFromArray = [Date?]()
+    var tripToArray = [Date?]()
+    var levelArray = [Int]()
     
     var ratingArray = [Double]()
     
@@ -73,9 +80,15 @@ class postVC: UITableViewController {
                 self.picArray.removeAll(keepingCapacity: false)
                 self.uuidArray.removeAll(keepingCapacity: false)
                 self.titleArray.removeAll(keepingCapacity: false)
+                self.tripnameArray.removeAll(keepingCapacity: false)
                 self.ratingArray.removeAll(keepingCapacity: false)
                 self.publishedArray.removeAll(keepingCapacity: false)
-
+                self.personsNrArray.removeAll(keepingCapacity: false)
+                self.totalDistanceArray.removeAll(keepingCapacity: false)
+                self.totalSpentsArray.removeAll(keepingCapacity: false)
+                self.tripFromArray.removeAll(keepingCapacity: false)
+                self.tripToArray.removeAll(keepingCapacity: false)
+                self.levelArray.removeAll(keepingCapacity: false)
                 
                 //find related objects
                 for object in objects! {
@@ -86,7 +99,14 @@ class postVC: UITableViewController {
                     self.picArray.append(object.value(forKey: "pic") as! PFFile)
                     self.uuidArray.append(object.value(forKey: "uuid") as! String)
                     self.titleArray.append(object.value(forKey: "title") as! String)
+                    self.tripnameArray.append(object.value(forKey: "tripName") as! String)
                     self.publishedArray.append(object.value(forKey: "isPublished") as! Bool)
+                    self.personsNrArray.append(object.value(forKey: "personsNr") as! Int)
+                    self.totalDistanceArray.append(object.value(forKey: "totalDistance") as! Double)
+                    self.totalSpentsArray.append(object.value(forKey: "totalSpents") as! Double)
+                    self.tripFromArray.append(object.value(forKey: "tripFrom") as! Date?)
+                    self.tripToArray.append(object.value(forKey: "tripTo") as! Date?)
+                    self.levelArray.append(object.value(forKey: "level") as! Int)
                     
                     // counting rates
                     var sumaRates: Double = 0.0
@@ -156,6 +176,15 @@ class postVC: UITableViewController {
         cell.uuidLbl.text = uuidArray[indexPath.row]
         cell.titleLbl.text = titleArray[indexPath.row]
         cell.titleLbl.sizeToFit()
+        cell.tripNameLbl.text = tripnameArray[indexPath.row]
+        cell.nrPersonsLbl.text = "\(personsNrArray[indexPath.row])"
+        cell.totalDistanceLbl.text = String(format: "%.2f", totalDistanceArray[indexPath.row])
+        cell.totalSpentsLbl.text = String(format: "%.2f", totalSpentsArray[indexPath.row])
+        let dateformatter = DateFormatter()
+        dateformatter.dateFormat = "dd.MM.yyy"
+        cell.fromDateLbl.text = dateformatter.string(from: tripFromArray[indexPath.row]!)
+        cell.toDateLbl.text = dateformatter.string(from: tripToArray[indexPath.row]!)
+        cell.levelLbl.text = "\(levelArray[indexPath.row])"
         
         // place profile picture
         avaArray[indexPath.row].getDataInBackground(block: { (data: Data?, error: Error?) in
@@ -281,7 +310,7 @@ class postVC: UITableViewController {
         cell.usernameBtn.layer.setValue(indexPath, forKey: "index")
         cell.commentBtn.layer.setValue(indexPath, forKey: "index")
         cell.moreBtn.layer.setValue(indexPath, forKey: "index")
-        cell.rateBtn.layer.setValue(indexPath, forKey: "index")
+        //cell.rateBtn.layer.setValue(indexPath, forKey: "index")
         
         // @mension is tapped
         cell.titleLbl.userHandleLinkTapHandler = { label, handle, rang in
@@ -407,10 +436,16 @@ class postVC: UITableViewController {
             self.dateArray.remove(at: i.row)
             self.picArray.remove(at: i.row)
             self.titleArray.remove(at: i.row)
+            self.tripnameArray.remove(at: i.row)
             self.uuidArray.remove(at: i.row)
             self.ratingArray.remove(at: i.row)
             self.publishedArray.remove(at: i.row)
-            
+            self.personsNrArray.remove(at: i.row)
+            self.totalDistanceArray.remove(at: i.row)
+            self.totalSpentsArray.remove(at: i.row)
+            self.tripFromArray.remove(at: i.row)
+            self.tripToArray.remove(at: i.row)
+            self.levelArray.remove(at: i.row)
             
             // STEP 2. Delete post from the server
             let postQuery = PFQuery(className: "posts")
@@ -573,7 +608,7 @@ class postVC: UITableViewController {
         }
         
         // finding affected post and to display its picture in dialog box        
-        let dlgImg = resizeImage(cell.picImg.image!, targetSize: CGSize(width: 300.0, height: 300.0))
+        let dlgImg = resizeImage(cell.picImg.image!, targetSize: CGSize(width: 200.0, height: 200.0))
         
         let menu = PopupDialog(title: question_what_to_do_with_article, message: alertMsg, image: dlgImg)
         

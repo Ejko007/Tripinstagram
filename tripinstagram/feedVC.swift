@@ -25,9 +25,16 @@ class feedVC: UITableViewController {
     var dateArray = [Date?]()
     var picArray = [PFFile]()
     var titleArray = [String]()
+    var tripNameArray = [String]()
     var uuidArray = [String]()
     var ratesArray = [Double]()
     var publishedArray = [Bool]()
+    var personsNrArray = [Int]()
+    var totalDistanceArray = [Double]()
+    var totalSpentsArray = [Double]()
+    var tripFromArray = [Date?]()
+    var tripToArray = [Date?]()
+    var levelArray = [Int]()
     
     var followArray = [String]()
     
@@ -109,9 +116,16 @@ class feedVC: UITableViewController {
                         self.dateArray.removeAll(keepingCapacity: false)
                         self.picArray.removeAll(keepingCapacity: false)
                         self.titleArray.removeAll(keepingCapacity: false)
+                        self.tripNameArray.removeAll(keepingCapacity: false)
                         self.uuidArray.removeAll(keepingCapacity: false)
                         self.ratesArray.removeAll(keepingCapacity: false)
                         self.publishedArray.removeAll(keepingCapacity: false)
+                        self.personsNrArray.removeAll(keepingCapacity: false)
+                        self.totalDistanceArray.removeAll(keepingCapacity: false)
+                        self.totalSpentsArray.removeAll(keepingCapacity: false)
+                        self.tripFromArray.removeAll(keepingCapacity: false)
+                        self.tripToArray.removeAll(keepingCapacity: false)
+                        self.levelArray.removeAll(keepingCapacity: false)
                         
  
                         // find related objects
@@ -122,9 +136,16 @@ class feedVC: UITableViewController {
                             self.dateArray.append(object.createdAt as Date?)
                             self.picArray.append(object.object(forKey: "pic") as! PFFile)
                             self.titleArray.append(object.object(forKey: "title") as! String)
+                            self.tripNameArray.append(object.object(forKey: "tripName") as! String)
                             self.uuidArray.append(object.object(forKey: "uuid") as! String)
                             self.publishedArray.append(object.value(forKey: "isPublished") as! Bool)
-
+                            self.personsNrArray.append(object.value(forKey: "personsNr") as! Int)
+                            self.totalDistanceArray.append(object.value(forKey: "totalDistance") as! Double)
+                            self.totalSpentsArray.append(object.value(forKey: "totalSpents") as! Double)
+                            self.tripFromArray.append(object.value(forKey: "tripFrom") as! Date?)
+                            self.tripToArray.append(object.value(forKey: "tripTo") as! Date?)
+                            self.levelArray.append(object.value(forKey: "level") as! Int)
+                           
                             
                             // calculate related rates values
                             var sumaRates: Double = 0.0
@@ -223,8 +244,15 @@ class feedVC: UITableViewController {
                             self.dateArray.removeAll(keepingCapacity: false)
                             self.picArray.removeAll(keepingCapacity: false)
                             self.titleArray.removeAll(keepingCapacity: false)
+                            self.tripNameArray.removeAll(keepingCapacity: false)
                             self.uuidArray.removeAll(keepingCapacity: false)
                             self.ratesArray.removeAll(keepingCapacity: false)
+                            self.personsNrArray.removeAll(keepingCapacity: false)
+                            self.totalDistanceArray.removeAll(keepingCapacity: false)
+                            self.totalSpentsArray.removeAll(keepingCapacity: false)
+                            self.tripFromArray.removeAll(keepingCapacity: false)
+                            self.tripToArray.removeAll(keepingCapacity: false)
+                            self.levelArray.removeAll(keepingCapacity: false)
                             
                             // find related objects
                             for object in objects! {
@@ -234,7 +262,14 @@ class feedVC: UITableViewController {
                                 self.dateArray.append(object.createdAt as Date?)
                                 self.picArray.append(object.object(forKey: "pic") as! PFFile)
                                 self.titleArray.append(object.object(forKey: "title") as! String)
+                                self.tripNameArray.append(object.object(forKey: "tripName") as! String)
                                 self.uuidArray.append(object.object(forKey: "uuid") as! String)
+                                self.personsNrArray.append(object.object(forKey: "personsNr") as! Int)
+                                self.totalDistanceArray.append(object.object(forKey: "totalDistance") as! Double)
+                                self.totalSpentsArray.append(object.object(forKey: "totalSpents") as! Double)
+                                self.tripFromArray.append(object.value(forKey: "tripFrom") as! Date?)
+                                self.tripToArray.append(object.value(forKey: "tripTo") as! Date?)
+                                self.levelArray.append(object.object(forKey: "level") as! Int)
                                 
                                 // calculate total rates of showing post
                                 var sumaRates: Double = 0.0
@@ -281,6 +316,16 @@ class feedVC: UITableViewController {
         
     }
     
+    // select cell in table view
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        // send post uuid to "postuuid" variable
+        postuuid.append(uuidArray[indexPath.row])
+        
+        // navigate to post view controller
+        let post = self.storyboard?.instantiateViewController(withIdentifier: "postVC") as! postVC
+        self.navigationController?.pushViewController(post, animated: true)
+    }
+    
     // cell numb
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
@@ -304,6 +349,15 @@ class feedVC: UITableViewController {
         cell.uuidLbl.text = uuidArray[indexPath.row]
         cell.titleLbl.text = titleArray[indexPath.row]
         cell.titleLbl.sizeToFit()
+        cell.tripNameLbl.text = tripNameArray[indexPath.row]
+        cell.nrPersonsLbl.text = "\(personsNrArray[indexPath.row])"
+        cell.totalDistanceLbl.text = String(format: "%.2f", totalDistanceArray[indexPath.row])
+        cell.totalSpentsLbl.text = String(format: "%.2f", totalSpentsArray[indexPath.row])
+        let dateformatter = DateFormatter()
+        dateformatter.dateFormat = "dd.MM.yyy"
+        cell.fromDateLbl.text = dateformatter.string(from: tripFromArray[indexPath.row]!)
+        cell.toDateLbl.text = dateformatter.string(from: tripToArray[indexPath.row]!)
+        cell.levelLbl.text = "\(levelArray[indexPath.row])"
         
         // place profile picture
         avaArray[indexPath.row].getDataInBackground(block: { (data: Data?, error: Error?) in
@@ -425,7 +479,7 @@ class feedVC: UITableViewController {
         cell.usernameBtn.layer.setValue(indexPath, forKey: "index")
         cell.commentBtn.layer.setValue(indexPath, forKey: "index")
         cell.moreBtn.layer.setValue(indexPath, forKey: "index")
-        cell.rateBtn.layer.setValue(indexPath, forKey: "index")
+        //cell.rateBtn.layer.setValue(indexPath, forKey: "index")
         
         // @mension is tapped
         cell.titleLbl.userHandleLinkTapHandler = { label, handle, rang in
@@ -620,9 +674,16 @@ class feedVC: UITableViewController {
             self.dateArray.remove(at: i.row)
             self.picArray.remove(at: i.row)
             self.titleArray.remove(at: i.row)
+            self.tripNameArray.remove(at: i.row)
             self.ratesArray.remove(at: i.row)
             self.uuidArray.remove(at: i.row)
             self.publishedArray.remove(at: i.row)
+            self.personsNrArray.remove(at: i.row)
+            self.totalDistanceArray.remove(at: i.row)
+            self.totalSpentsArray.remove(at: i.row)
+            self.tripFromArray.remove(at: i.row)
+            self.tripToArray.remove(at: i.row)
+            self.levelArray.remove(at: i.row)
             
             // STEP 2. Delete post from the server
             let postQuery = PFQuery(className: "posts")
