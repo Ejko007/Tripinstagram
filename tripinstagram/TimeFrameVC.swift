@@ -76,7 +76,7 @@ class TimeFrameVC: UIViewController, UINavigationBarDelegate, GLCalendarViewDele
     }
     
     // accept time range button clicked
-    func acceptBtn_clicked(sender: UIBarButtonItem) {
+    func acceptBtn_clicked(_ sender: UIBarButtonItem) {
         if let selectedTimeframe = timeFrame {
             
             if timeFrameDelegate != nil {
@@ -87,7 +87,7 @@ class TimeFrameVC: UIViewController, UINavigationBarDelegate, GLCalendarViewDele
     }
     
     // delete time range button clicked
-    func deleteBtn_clicked(sender: UIBarButtonItem) {
+    func deleteBtn_clicked(_ sender: UIBarButtonItem) {
         if self.rangeUnderEdit != nil {
             self.calendarView.removeRange(self.rangeUnderEdit!)
         }
@@ -95,7 +95,7 @@ class TimeFrameVC: UIViewController, UINavigationBarDelegate, GLCalendarViewDele
     
     
     // go back function
-    func back(sender: UIBarButtonItem) {
+    func back(_ sender: UIBarButtonItem) {
         
         //push back
         self.dismiss(animated: true, completion: nil)
@@ -104,7 +104,7 @@ class TimeFrameVC: UIViewController, UINavigationBarDelegate, GLCalendarViewDele
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        let today = NSDate()
+        let today = Date()
         
         let beginDate = GLDateUtils.date(byAddingDays: 0, to: today as Date!)
         let endDate = GLDateUtils.date(byAddingDays: 0, to: today as Date!)

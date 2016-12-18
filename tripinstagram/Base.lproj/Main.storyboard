@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -790,6 +790,7 @@
                     </tableView>
                     <connections>
                         <segue destination="Rde-di-ysN" kind="push" identifier="editPost" id="bfR-W1-hXg"/>
+                        <segue destination="MC2-xY-Wc5" kind="push" identifier="showMap" id="z8N-em-QkK"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Pxf-jr-HDx" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -805,7 +806,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <view key="tableFooterView" contentMode="scaleToFill" id="f0v-u9-DMz">
-                            <rect key="frame" x="0.0" y="964" width="375" height="128"/>
+                            <rect key="frame" x="0.0" y="900" width="375" height="128"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" id="Zl4-eH-mgG">
@@ -2027,12 +2028,57 @@
             </objects>
             <point key="canvasLocation" x="3646" y="4179"/>
         </scene>
+        <!--Trip MapVC-->
+        <scene sceneID="02N-oh-XY6">
+            <objects>
+                <viewController storyboardIdentifier="tripMapVC" id="MC2-xY-Wc5" customClass="tripMapVC" customModule="tripinstagram" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Zxj-Zh-TiH">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" showsScale="YES" showsTraffic="YES" id="u0o-ln-LcR">
+                                <rect key="frame" x="0.0" y="667" width="375" height="0.0"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </mapView>
+                            <button opaque="NO" clipsSubviews="YES" alpha="0.5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="YAy-nK-t42">
+                                <rect key="frame" x="324" y="20" width="35" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.1137254902" green="0.1215686275" blue="0.15686274510000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <state key="normal" image="close">
+                                    <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <real key="value" value="17.5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="cancelBtn_clicked:" destination="MC2-xY-Wc5" eventType="touchUpInside" id="lPe-7S-VEZ"/>
+                                    <segue destination="zAj-ms-cRy" kind="unwind" unwindAction="unwindToHomeScreenWithSegue:" id="Cs6-8p-qrF"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="cPE-1P-ImH"/>
+                    <connections>
+                        <outlet property="cancelBtn" destination="YAy-nK-t42" id="UYd-zM-Frq"/>
+                        <outlet property="mapView" destination="u0o-ln-LcR" id="jXz-b0-jcB"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XaG-k3-a4s" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="zAj-ms-cRy" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="2119" y="5020"/>
+        </scene>
     </scenes>
     <resources>
         <image name="Coins" width="48" height="48"/>
         <image name="Map Marker" width="48" height="48"/>
         <image name="add-user" width="512" height="512"/>
         <image name="calendar" width="512" height="512"/>
+        <image name="close" width="40" height="40"/>
         <image name="comment" width="270" height="270"/>
         <image name="default-avatar" width="128" height="128"/>
         <image name="feed" width="25" height="25"/>

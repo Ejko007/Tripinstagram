@@ -7,174 +7,230 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		02DD25F012048BED983615700DBFC748 /* PopupDialogButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF37C25F7479DEE203139F44FA7DC55 /* PopupDialogButton.swift */; };
-		1877976A38430D3D909B57457D581560 /* PopupDialogContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9880755D5E432221D89DAA566FAEA768 /* PopupDialogContainerView.swift */; };
-		4722236F6F94B9797B39FC1CB4BBCD50 /* PopupDialogDefaultButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD0A8F709FFBA11B488BC0C9E5BBBB3 /* PopupDialogDefaultButtons.swift */; };
-		506689EDFC4BE5FCDB30F2562FCEF9EB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEC22C73C1608DFA5D5D78BDCB218219 /* Foundation.framework */; };
-		52604D96D98A5A3F880900B50607BEB2 /* Pods-tripinstagram-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 2A697F318257F2379CB1F11797B1F849 /* Pods-tripinstagram-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		544F326A2187072F77E4F2C449F539D0 /* UIView+Animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6E611D7DACFB863F66332A9B03C848 /* UIView+Animations.swift */; };
-		5455BC4856F792C8D68A51576B19B966 /* PopupDialogOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42F79CD00E4003A64D7113CC6EB42281 /* PopupDialogOverlayView.swift */; };
-		57E359630E40E705429C9E3BDF4FE434 /* PopupDialog-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = E07291AEEC8E0024EBA4FD29AF114077 /* PopupDialog-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		5E584A4B30B6D3767BAECD2835C03050 /* PopupDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9FDDBDB929D9138BC1B09640D7F89FB /* PopupDialog.swift */; };
-		5E8A993B2684EE71473E8DFFEFCD0295 /* PopupDialog-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = EF5106F36959AA600CADBDA2CC8DDFF7 /* PopupDialog-dummy.m */; };
-		70964B5EACCE3AD0A65CF148EF1667AF /* PresentationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB50251D5D793D5475F300ABC57E78F /* PresentationManager.swift */; };
-		70A5F27AF50C0FBE7D615FA6DADABA1E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEC22C73C1608DFA5D5D78BDCB218219 /* Foundation.framework */; };
-		76A06928ADD9BAE6808BD5BF17F24CB0 /* FXBlurView.m in Sources */ = {isa = PBXBuildFile; fileRef = E902E2B88CF006ACF9F980A6B21AC0BB /* FXBlurView.m */; };
-		88F6D942FE4E65B0EE68FE04C452527B /* PopupDialogDefaultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E118531B92B40A7DC5128EA980D24650 /* PopupDialogDefaultViewController.swift */; };
-		8AF981770AFB6276CAA50665752C5B03 /* TransitionAnimations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BE8C9C4FA8744A1B7D55BCD7004F201 /* TransitionAnimations.swift */; };
-		918C78E73E166F140533EB1344CD125F /* TransitionAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810F27E13101A95FB59706105312C9A9 /* TransitionAnimator.swift */; };
-		977DD23962EF62DE4814BC7E13C45659 /* PresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2AA3D57A61BA0FBC28633CF9C61A5B0 /* PresentationController.swift */; };
-		A49CCA2FF22F8AAE75254AE9CBA5D6D5 /* UIViewController+Visibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02EF18454EC7C9D0541FBA8FB9A0BB86 /* UIViewController+Visibility.swift */; };
-		AAF949A370B5F88CEE831DD72DB7FED8 /* Pods-tripinstagram-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = C95A14E2205A98FDE1CC6A166A7F0DEC /* Pods-tripinstagram-dummy.m */; };
-		B7DC0964B09B419EE5DCB5AB07FD2035 /* InteractiveTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61FDC43D8F2590DD35851EA8C914043D /* InteractiveTransition.swift */; };
-		C0EE16EFCA9C1E58AB3C2C027E13F09A /* PopupDialogDefaultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C2C5EF9953D1627D6DFF781BAB2F70 /* PopupDialogDefaultView.swift */; };
-		CDF350B56E4FC8994176DE59939A4CAE /* PopupDialog+Keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E24D4412B2D1B863B6819767B63C468 /* PopupDialog+Keyboard.swift */; };
-		DDB7DC161ACB6BBD53BF9B9B751DB64D /* FXBlurView.h in Headers */ = {isa = PBXBuildFile; fileRef = 6D7D313F2437C5DF4AB5F4178D8B4921 /* FXBlurView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1CF7A7DCD7926926D7E839F1EFDCAD1C /* FXBlurView.h in Headers */ = {isa = PBXBuildFile; fileRef = A990444D1D0C60232A6FC64D798ED8CC /* FXBlurView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		222D0824817090AA54C7F247C8AB4E7A /* PopupDialogDefaultButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 217643EF44A467143362EAE83522C914 /* PopupDialogDefaultButtons.swift */; };
+		2D9E21A99924937280371B401799930D /* PresentationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F533DD39BEF60800CE0A43CE6B9BCED /* PresentationManager.swift */; };
+		4D65A7E7708787C61001821D4573EFCB /* AudioToolBox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 811E695C32311E8AC2ABEBDB46272024 /* AudioToolBox.framework */; };
+		4FF474377FA0D44374B005F8899BDF52 /* PopupDialogDefaultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA2504E6FDA55C038FE0DD16A7E5A97 /* PopupDialogDefaultView.swift */; };
+		55A6962D03CBFF6BBF082D546C6ADFAA /* PopupDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B69334A0DF7EEFA5AD3E4F17CC22FFB /* PopupDialog.swift */; };
+		58F28CA7B8C9297BBCA38C9231F1A249 /* TransitionAnimations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A9C1830E8D6AF06AA824F4AF91D88D1 /* TransitionAnimations.swift */; };
+		5973FA76DB9B316611A2307B308057BF /* PresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF2B788D919D618057732E8C69FEA11 /* PresentationController.swift */; };
+		5A72E8D0C8014DCA2A3C000CC294C7E2 /* PopupDialogOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30AF69B44880D8DF9AF76DDC5A9AFE49 /* PopupDialogOverlayView.swift */; };
+		5ED1C012ED22777F7E32E626749F4EB8 /* fold.caf in Resources */ = {isa = PBXBuildFile; fileRef = 048363722BD6069019F9BC969AA6034D /* fold.caf */; };
+		620DD8F025962604943C3ABAE84212F3 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88982389BE6B9F126C3782B6053AE4FD /* QuartzCore.framework */; };
+		637B1E89BFA487392AEAEC4D9995EE84 /* PopupDialogDefaultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FFF5AD7BBA456139AC293B83324B5A4 /* PopupDialogDefaultViewController.swift */; };
+		8A8EF93D3ACA57043A825CA9C8E05D46 /* ExpandingMenu.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D8E520F32EDD759A3A21AFFE64A5E3A1 /* ExpandingMenu.bundle */; };
+		93C977936B4DC6AA245ACA3EC6739406 /* PopupDialog+Keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B646CAABC01A30A3E45BDFC57B4F8E49 /* PopupDialog+Keyboard.swift */; };
+		9D899933832636109E98B736C02DD76F /* UIView+Animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 033BC0D763A12D0CA4A4885869C5E9F7 /* UIView+Animations.swift */; };
+		9FA2413261B63A0A4E7BE9DDA5869793 /* PopupDialogButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BE52FFBFF9185EF440215EFDD14FAF3 /* PopupDialogButton.swift */; };
+		A173682FB6BC4BEF2ADE0C74A1BD18E4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 219790A4EEC59149699CE44FABDCE28A /* Foundation.framework */; };
+		A70B129FC660FEAD6D7A22ED42E5CDA1 /* ExpandingMenu-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 1EDD43017F8DA142094022A969DDAB71 /* ExpandingMenu-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A8060DF365E106BD8721FB8E20A21A67 /* ExpandingMenuButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5AC957F84811EBD3303AC10316CC456 /* ExpandingMenuButton.swift */; };
+		A8D0A74C02D18992824E5E1F7049CD0E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 219790A4EEC59149699CE44FABDCE28A /* Foundation.framework */; };
+		AC9004CA5459E702C632BA1C880BCC08 /* Pods-tripinstagram-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 2A697F318257F2379CB1F11797B1F849 /* Pods-tripinstagram-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		ADF41D6D965567B0F3C0CC22C142059A /* TransitionAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50D1155050566EBB8E1D2AB8AD98B6A /* TransitionAnimator.swift */; };
+		AE5C1FC561D01F03A87D4B28E0B77CEC /* UIViewController+Visibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FADB5FDB5BFED0D8863C3BC20A40C4C /* UIViewController+Visibility.swift */; };
+		B57404DFBCDE1A069DF3E0E676531F2C /* FXBlurView.m in Sources */ = {isa = PBXBuildFile; fileRef = 01D097925B5D7DAA6F141E88257F7F50 /* FXBlurView.m */; };
+		BE800560D02D058D02FCCB3198A57B18 /* PopupDialog-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 7271007BD0F0FF4530391BD448A17777 /* PopupDialog-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		BF0C26BA59F159C2322F7300B5C41B29 /* PopupDialog-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = D1B62D0A2AD7C3A881680B16A0C9958E /* PopupDialog-dummy.m */; };
+		BFEA1EF24D094D25E3AB431D3AAD7D2E /* selected.caf in Resources */ = {isa = PBXBuildFile; fileRef = F31F20B79FC0EE765708C26A5C72D5C2 /* selected.caf */; };
+		CA506BEAB77C895DB5C987A7F26107A2 /* ExpandingMenu-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 05458578173F5D5AF98D410C72C02307 /* ExpandingMenu-dummy.m */; };
+		DD7FC6727C75297C7AD2418D47D71A0B /* ExpandingMenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6D485903FC54BDF5E6131960FB86DC /* ExpandingMenuItem.swift */; };
+		DDAF080C251673DA4DE9CB8D97A1DB79 /* PopupDialogContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61D1F705E4C9D533E65CB51EB90F592A /* PopupDialogContainerView.swift */; };
+		EA6B5D0FEF051525F950E2613990FB03 /* expanding.caf in Resources */ = {isa = PBXBuildFile; fileRef = 5C1254EF714AC0B798DEE332B51BD942 /* expanding.caf */; };
+		EC68095D2B9E4EE897D9CA66612BC9B0 /* InteractiveTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BB6E2BD72E433F2645FE2ABA04D7AF /* InteractiveTransition.swift */; };
+		F009F66BAAC15AE3BFA82035DAA266DB /* Pods-tripinstagram-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = C95A14E2205A98FDE1CC6A166A7F0DEC /* Pods-tripinstagram-dummy.m */; };
+		F78057FA1E97A5C7B2E432DF14AADD15 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 219790A4EEC59149699CE44FABDCE28A /* Foundation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		EBFA943664976087A304B3431BB931A9 /* PBXContainerItemProxy */ = {
+		12CD1BD8B0B21810C259EE312D84C971 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = B6E1BE69771CF4A5B48866EC026B88BC;
+			remoteGlobalIDString = 2450E2DA3A7E3AA277D7C7290DDC055C;
+			remoteInfo = ExpandingMenu;
+		};
+		2281C6938B82670BCBF0301F37FF2F39 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 340486F2E3C84655B3B4856E11E6860E;
 			remoteInfo = PopupDialog;
+		};
+		E05FE2F84DB673227DC207AB60BCD171 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9EDB241CA84062D18B45D12341F01D5B;
+			remoteInfo = "ExpandingMenu-ExpandingMenu";
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		02EF18454EC7C9D0541FBA8FB9A0BB86 /* UIViewController+Visibility.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIViewController+Visibility.swift"; path = "PopupDialog/Classes/UIViewController+Visibility.swift"; sourceTree = "<group>"; };
+		01D097925B5D7DAA6F141E88257F7F50 /* FXBlurView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FXBlurView.m; path = PopupDialog/Classes/FXBlurView.m; sourceTree = "<group>"; };
+		033BC0D763A12D0CA4A4885869C5E9F7 /* UIView+Animations.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIView+Animations.swift"; path = "PopupDialog/Classes/UIView+Animations.swift"; sourceTree = "<group>"; };
 		03B32011FDC0DCC0CF1AD657C2ADCB8D /* Pods-tripinstagram-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-tripinstagram-frameworks.sh"; sourceTree = "<group>"; };
-		0AF37C25F7479DEE203139F44FA7DC55 /* PopupDialogButton.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PopupDialogButton.swift; path = PopupDialog/Classes/PopupDialogButton.swift; sourceTree = "<group>"; };
+		048363722BD6069019F9BC969AA6034D /* fold.caf */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file; name = fold.caf; path = ExpandingMenu/Assets/Sounds/fold.caf; sourceTree = "<group>"; };
+		05458578173F5D5AF98D410C72C02307 /* ExpandingMenu-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "ExpandingMenu-dummy.m"; sourceTree = "<group>"; };
+		0EA2504E6FDA55C038FE0DD16A7E5A97 /* PopupDialogDefaultView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PopupDialogDefaultView.swift; path = PopupDialog/Classes/PopupDialogDefaultView.swift; sourceTree = "<group>"; };
+		15BB6E2BD72E433F2645FE2ABA04D7AF /* InteractiveTransition.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = InteractiveTransition.swift; path = PopupDialog/Classes/InteractiveTransition.swift; sourceTree = "<group>"; };
+		1EDD43017F8DA142094022A969DDAB71 /* ExpandingMenu-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "ExpandingMenu-umbrella.h"; sourceTree = "<group>"; };
+		217643EF44A467143362EAE83522C914 /* PopupDialogDefaultButtons.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PopupDialogDefaultButtons.swift; path = PopupDialog/Classes/PopupDialogDefaultButtons.swift; sourceTree = "<group>"; };
+		219790A4EEC59149699CE44FABDCE28A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		25AF1908DBEA7BE34187854B27B3C8D9 /* ExpandingMenu.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ExpandingMenu.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A697F318257F2379CB1F11797B1F849 /* Pods-tripinstagram-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-tripinstagram-umbrella.h"; sourceTree = "<group>"; };
-		36C2C5EF9953D1627D6DFF781BAB2F70 /* PopupDialogDefaultView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PopupDialogDefaultView.swift; path = PopupDialog/Classes/PopupDialogDefaultView.swift; sourceTree = "<group>"; };
-		3B6E611D7DACFB863F66332A9B03C848 /* UIView+Animations.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIView+Animations.swift"; path = "PopupDialog/Classes/UIView+Animations.swift"; sourceTree = "<group>"; };
-		3BE8C9C4FA8744A1B7D55BCD7004F201 /* TransitionAnimations.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TransitionAnimations.swift; path = PopupDialog/Classes/TransitionAnimations.swift; sourceTree = "<group>"; };
-		42F79CD00E4003A64D7113CC6EB42281 /* PopupDialogOverlayView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PopupDialogOverlayView.swift; path = PopupDialog/Classes/PopupDialogOverlayView.swift; sourceTree = "<group>"; };
+		2F533DD39BEF60800CE0A43CE6B9BCED /* PresentationManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PresentationManager.swift; path = PopupDialog/Classes/PresentationManager.swift; sourceTree = "<group>"; };
+		2FADB5FDB5BFED0D8863C3BC20A40C4C /* UIViewController+Visibility.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIViewController+Visibility.swift"; path = "PopupDialog/Classes/UIViewController+Visibility.swift"; sourceTree = "<group>"; };
+		2FFF5AD7BBA456139AC293B83324B5A4 /* PopupDialogDefaultViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PopupDialogDefaultViewController.swift; path = PopupDialog/Classes/PopupDialogDefaultViewController.swift; sourceTree = "<group>"; };
+		30AF69B44880D8DF9AF76DDC5A9AFE49 /* PopupDialogOverlayView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PopupDialogOverlayView.swift; path = PopupDialog/Classes/PopupDialogOverlayView.swift; sourceTree = "<group>"; };
+		3BE52FFBFF9185EF440215EFDD14FAF3 /* PopupDialogButton.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PopupDialogButton.swift; path = PopupDialog/Classes/PopupDialogButton.swift; sourceTree = "<group>"; };
 		442824CDA252E3BECC04D73E3541CF55 /* Pods-tripinstagram.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-tripinstagram.modulemap"; sourceTree = "<group>"; };
-		4AD0A8F709FFBA11B488BC0C9E5BBBB3 /* PopupDialogDefaultButtons.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PopupDialogDefaultButtons.swift; path = PopupDialog/Classes/PopupDialogDefaultButtons.swift; sourceTree = "<group>"; };
+		47332D3AA32CB44951CA7C5932C2F2C5 /* PopupDialog.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = PopupDialog.modulemap; sourceTree = "<group>"; };
 		4C5BAC365CAECB5471DB41DB0863B338 /* Pods-tripinstagram.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-tripinstagram.release.xcconfig"; sourceTree = "<group>"; };
-		56992E66D6BA3A05924E9B2F84DEFE43 /* Pods_tripinstagram.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_tripinstagram.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		5E24D4412B2D1B863B6819767B63C468 /* PopupDialog+Keyboard.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "PopupDialog+Keyboard.swift"; path = "PopupDialog/Classes/PopupDialog+Keyboard.swift"; sourceTree = "<group>"; };
-		61FDC43D8F2590DD35851EA8C914043D /* InteractiveTransition.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = InteractiveTransition.swift; path = PopupDialog/Classes/InteractiveTransition.swift; sourceTree = "<group>"; };
-		6D7D313F2437C5DF4AB5F4178D8B4921 /* FXBlurView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FXBlurView.h; path = PopupDialog/Classes/FXBlurView.h; sourceTree = "<group>"; };
-		72EF3082C18A3A04D94D5A1CE1B11C84 /* PopupDialog.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = PopupDialog.xcconfig; sourceTree = "<group>"; };
+		4D434D676CA5933A0B8BD160CBD3223D /* ResourceBundle-ExpandingMenu-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "ResourceBundle-ExpandingMenu-Info.plist"; sourceTree = "<group>"; };
+		57B6263794189B83897F665744541345 /* PopupDialog.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PopupDialog.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5B69334A0DF7EEFA5AD3E4F17CC22FFB /* PopupDialog.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PopupDialog.swift; path = PopupDialog/Classes/PopupDialog.swift; sourceTree = "<group>"; };
+		5C1254EF714AC0B798DEE332B51BD942 /* expanding.caf */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file; name = expanding.caf; path = ExpandingMenu/Assets/Sounds/expanding.caf; sourceTree = "<group>"; };
+		61D1F705E4C9D533E65CB51EB90F592A /* PopupDialogContainerView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PopupDialogContainerView.swift; path = PopupDialog/Classes/PopupDialogContainerView.swift; sourceTree = "<group>"; };
+		6C511B53A4762EB37D87650F4E58AF4A /* ExpandingMenu.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = ExpandingMenu.modulemap; sourceTree = "<group>"; };
+		7271007BD0F0FF4530391BD448A17777 /* PopupDialog-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "PopupDialog-umbrella.h"; sourceTree = "<group>"; };
 		77B03C8CBC09EE6424ABC889FFC35DA1 /* Pods-tripinstagram-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-tripinstagram-acknowledgements.markdown"; sourceTree = "<group>"; };
-		810F27E13101A95FB59706105312C9A9 /* TransitionAnimator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TransitionAnimator.swift; path = PopupDialog/Classes/TransitionAnimator.swift; sourceTree = "<group>"; };
+		811E695C32311E8AC2ABEBDB46272024 /* AudioToolBox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolBox.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/System/Library/Frameworks/AudioToolBox.framework; sourceTree = DEVELOPER_DIR; };
+		827A2111D45A100E2DE98C02E5F5BC37 /* ExpandingMenu.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = ExpandingMenu.xcconfig; sourceTree = "<group>"; };
+		88982389BE6B9F126C3782B6053AE4FD /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/System/Library/Frameworks/QuartzCore.framework; sourceTree = DEVELOPER_DIR; };
+		8A9C1830E8D6AF06AA824F4AF91D88D1 /* TransitionAnimations.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TransitionAnimations.swift; path = PopupDialog/Classes/TransitionAnimations.swift; sourceTree = "<group>"; };
+		8CF2B788D919D618057732E8C69FEA11 /* PresentationController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PresentationController.swift; path = PopupDialog/Classes/PresentationController.swift; sourceTree = "<group>"; };
 		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		9880755D5E432221D89DAA566FAEA768 /* PopupDialogContainerView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PopupDialogContainerView.swift; path = PopupDialog/Classes/PopupDialogContainerView.swift; sourceTree = "<group>"; };
-		AA96D2000689751AA36776F270579AD1 /* PopupDialog.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PopupDialog.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		987D0FEFD2D19CE7E4EDFF98E4A98F77 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		99CE1C4684D2BEEEA99577F223613C10 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A50D1155050566EBB8E1D2AB8AD98B6A /* TransitionAnimator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TransitionAnimator.swift; path = PopupDialog/Classes/TransitionAnimator.swift; sourceTree = "<group>"; };
+		A990444D1D0C60232A6FC64D798ED8CC /* FXBlurView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FXBlurView.h; path = PopupDialog/Classes/FXBlurView.h; sourceTree = "<group>"; };
+		AA6D485903FC54BDF5E6131960FB86DC /* ExpandingMenuItem.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExpandingMenuItem.swift; path = ExpandingMenu/Classes/ExpandingMenuItem.swift; sourceTree = "<group>"; };
 		B04BEF7DCE65D7931C8A2B5D2B3A1DC8 /* Pods-tripinstagram-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-tripinstagram-acknowledgements.plist"; sourceTree = "<group>"; };
-		B901504E1FF8F286C95BBF4325C5435B /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B646CAABC01A30A3E45BDFC57B4F8E49 /* PopupDialog+Keyboard.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "PopupDialog+Keyboard.swift"; path = "PopupDialog/Classes/PopupDialog+Keyboard.swift"; sourceTree = "<group>"; };
 		C95A14E2205A98FDE1CC6A166A7F0DEC /* Pods-tripinstagram-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-tripinstagram-dummy.m"; sourceTree = "<group>"; };
-		C9FDDBDB929D9138BC1B09640D7F89FB /* PopupDialog.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PopupDialog.swift; path = PopupDialog/Classes/PopupDialog.swift; sourceTree = "<group>"; };
-		CA335CD0EA839B389A867F1D931DD955 /* PopupDialog.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = PopupDialog.modulemap; sourceTree = "<group>"; };
-		CEC22C73C1608DFA5D5D78BDCB218219 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		CFB50251D5D793D5475F300ABC57E78F /* PresentationManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PresentationManager.swift; path = PopupDialog/Classes/PresentationManager.swift; sourceTree = "<group>"; };
+		CA1E05F3F2ED538139B8407EE0656C71 /* PopupDialog.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = PopupDialog.xcconfig; sourceTree = "<group>"; };
+		D1B62D0A2AD7C3A881680B16A0C9958E /* PopupDialog-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "PopupDialog-dummy.m"; sourceTree = "<group>"; };
+		D2E752BBE43B13474DE8BCB18804996A /* PopupDialog-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "PopupDialog-prefix.pch"; sourceTree = "<group>"; };
+		D5AC957F84811EBD3303AC10316CC456 /* ExpandingMenuButton.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExpandingMenuButton.swift; path = ExpandingMenu/Classes/ExpandingMenuButton.swift; sourceTree = "<group>"; };
+		D6F4C33097BE939FE6C997B7809029D6 /* Pods_tripinstagram.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_tripinstagram.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D8E520F32EDD759A3A21AFFE64A5E3A1 /* ExpandingMenu.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExpandingMenu.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD4BCE13703BACB724D143DAD41C49A1 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E07291AEEC8E0024EBA4FD29AF114077 /* PopupDialog-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "PopupDialog-umbrella.h"; sourceTree = "<group>"; };
-		E118531B92B40A7DC5128EA980D24650 /* PopupDialogDefaultViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PopupDialogDefaultViewController.swift; path = PopupDialog/Classes/PopupDialogDefaultViewController.swift; sourceTree = "<group>"; };
-		E2AA3D57A61BA0FBC28633CF9C61A5B0 /* PresentationController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PresentationController.swift; path = PopupDialog/Classes/PresentationController.swift; sourceTree = "<group>"; };
 		E775B100AAB142621E329B6BEBF4F7E9 /* Pods-tripinstagram-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-tripinstagram-resources.sh"; sourceTree = "<group>"; };
-		E902E2B88CF006ACF9F980A6B21AC0BB /* FXBlurView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FXBlurView.m; path = PopupDialog/Classes/FXBlurView.m; sourceTree = "<group>"; };
-		EACDAE7E8AC4577A4DEF356124B86D81 /* PopupDialog-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "PopupDialog-prefix.pch"; sourceTree = "<group>"; };
 		ECF710F3B843E69A8293C373BB329DFA /* Pods-tripinstagram.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-tripinstagram.debug.xcconfig"; sourceTree = "<group>"; };
-		EF5106F36959AA600CADBDA2CC8DDFF7 /* PopupDialog-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "PopupDialog-dummy.m"; sourceTree = "<group>"; };
+		EFC57D316F214798EF9A18B975113B30 /* ExpandingMenu-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "ExpandingMenu-prefix.pch"; sourceTree = "<group>"; };
+		F31F20B79FC0EE765708C26A5C72D5C2 /* selected.caf */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file; name = selected.caf; path = ExpandingMenu/Assets/Sounds/selected.caf; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		2D800625206587F393E3AE2CCE3DFEA4 /* Frameworks */ = {
+		19B6788228CF38D61A6C19E984FE62DB /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				70A5F27AF50C0FBE7D615FA6DADABA1E /* Foundation.framework in Frameworks */,
+				A8D0A74C02D18992824E5E1F7049CD0E /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		B47C08A432C5FA26E72A5696322269E6 /* Frameworks */ = {
+		A170F4DFE9240751640F887AA5F3EE35 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				506689EDFC4BE5FCDB30F2562FCEF9EB /* Foundation.framework in Frameworks */,
+				F78057FA1E97A5C7B2E432DF14AADD15 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BC910D7CF9D8A8987D922DBDF412F04D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C44961F816D2551632674058C43B7BE1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4D65A7E7708787C61001821D4573EFCB /* AudioToolBox.framework in Frameworks */,
+				A173682FB6BC4BEF2ADE0C74A1BD18E4 /* Foundation.framework in Frameworks */,
+				620DD8F025962604943C3ABAE84212F3 /* QuartzCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		3DCAB2B7CDE207B3958B6CB957FCC758 /* iOS */ = {
+		122DA2E5084A4393C29BE363C764795C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				CEC22C73C1608DFA5D5D78BDCB218219 /* Foundation.framework */,
+				8EA8AFA3F173DF10F995747BE8C2859D /* iOS */,
 			);
-			name = iOS;
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		5AA2E958ED186C4569E4E0FC1F1CA3A2 /* Support Files */ = {
+		39070709A83B59369B25958D9D17EA4B /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				B901504E1FF8F286C95BBF4325C5435B /* Info.plist */,
-				CA335CD0EA839B389A867F1D931DD955 /* PopupDialog.modulemap */,
-				72EF3082C18A3A04D94D5A1CE1B11C84 /* PopupDialog.xcconfig */,
-				EF5106F36959AA600CADBDA2CC8DDFF7 /* PopupDialog-dummy.m */,
-				EACDAE7E8AC4577A4DEF356124B86D81 /* PopupDialog-prefix.pch */,
-				E07291AEEC8E0024EBA4FD29AF114077 /* PopupDialog-umbrella.h */,
+				987D0FEFD2D19CE7E4EDFF98E4A98F77 /* Info.plist */,
+				47332D3AA32CB44951CA7C5932C2F2C5 /* PopupDialog.modulemap */,
+				CA1E05F3F2ED538139B8407EE0656C71 /* PopupDialog.xcconfig */,
+				D1B62D0A2AD7C3A881680B16A0C9958E /* PopupDialog-dummy.m */,
+				D2E752BBE43B13474DE8BCB18804996A /* PopupDialog-prefix.pch */,
+				7271007BD0F0FF4530391BD448A17777 /* PopupDialog-umbrella.h */,
 			);
 			name = "Support Files";
 			path = "../Target Support Files/PopupDialog";
 			sourceTree = "<group>";
 		};
-		619D52CAF61ABC79B01ECCB1006EE2E2 /* Pods */ = {
+		5F81DC4549BDB23575FD7F02B1CC079E /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				78689E921970BD3194CD9B678DEDCE49 /* PopupDialog */,
+				D8E520F32EDD759A3A21AFFE64A5E3A1 /* ExpandingMenu.bundle */,
+				25AF1908DBEA7BE34187854B27B3C8D9 /* ExpandingMenu.framework */,
+				D6F4C33097BE939FE6C997B7809029D6 /* Pods_tripinstagram.framework */,
+				57B6263794189B83897F665744541345 /* PopupDialog.framework */,
 			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
-		78689E921970BD3194CD9B678DEDCE49 /* PopupDialog */ = {
-			isa = PBXGroup;
-			children = (
-				6D7D313F2437C5DF4AB5F4178D8B4921 /* FXBlurView.h */,
-				E902E2B88CF006ACF9F980A6B21AC0BB /* FXBlurView.m */,
-				61FDC43D8F2590DD35851EA8C914043D /* InteractiveTransition.swift */,
-				C9FDDBDB929D9138BC1B09640D7F89FB /* PopupDialog.swift */,
-				5E24D4412B2D1B863B6819767B63C468 /* PopupDialog+Keyboard.swift */,
-				0AF37C25F7479DEE203139F44FA7DC55 /* PopupDialogButton.swift */,
-				9880755D5E432221D89DAA566FAEA768 /* PopupDialogContainerView.swift */,
-				4AD0A8F709FFBA11B488BC0C9E5BBBB3 /* PopupDialogDefaultButtons.swift */,
-				36C2C5EF9953D1627D6DFF781BAB2F70 /* PopupDialogDefaultView.swift */,
-				E118531B92B40A7DC5128EA980D24650 /* PopupDialogDefaultViewController.swift */,
-				42F79CD00E4003A64D7113CC6EB42281 /* PopupDialogOverlayView.swift */,
-				E2AA3D57A61BA0FBC28633CF9C61A5B0 /* PresentationController.swift */,
-				CFB50251D5D793D5475F300ABC57E78F /* PresentationManager.swift */,
-				3BE8C9C4FA8744A1B7D55BCD7004F201 /* TransitionAnimations.swift */,
-				810F27E13101A95FB59706105312C9A9 /* TransitionAnimator.swift */,
-				3B6E611D7DACFB863F66332A9B03C848 /* UIView+Animations.swift */,
-				02EF18454EC7C9D0541FBA8FB9A0BB86 /* UIViewController+Visibility.swift */,
-				5AA2E958ED186C4569E4E0FC1F1CA3A2 /* Support Files */,
-			);
-			path = PopupDialog;
+			name = Products;
 			sourceTree = "<group>";
 		};
 		7DB346D0F39D3F0E887471402A8071AB = {
 			isa = PBXGroup;
 			children = (
 				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
-				BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */,
-				619D52CAF61ABC79B01ECCB1006EE2E2 /* Pods */,
-				8ECD04F941490D8FA23CCB3B819B8633 /* Products */,
+				122DA2E5084A4393C29BE363C764795C /* Frameworks */,
+				8145379EA72C5D01638C36AD296781E2 /* Pods */,
+				5F81DC4549BDB23575FD7F02B1CC079E /* Products */,
 				C6B41A32D407C4F39B6EECA053CA9B7B /* Targets Support Files */,
 			);
 			sourceTree = "<group>";
 		};
-		8ECD04F941490D8FA23CCB3B819B8633 /* Products */ = {
+		8145379EA72C5D01638C36AD296781E2 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				56992E66D6BA3A05924E9B2F84DEFE43 /* Pods_tripinstagram.framework */,
-				AA96D2000689751AA36776F270579AD1 /* PopupDialog.framework */,
+				FE40695547334ECB3C418EC7BB65A48B /* ExpandingMenu */,
+				F065F61AECD9D8928063893975496158 /* PopupDialog */,
 			);
-			name = Products;
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		8EA8AFA3F173DF10F995747BE8C2859D /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				811E695C32311E8AC2ABEBDB46272024 /* AudioToolBox.framework */,
+				219790A4EEC59149699CE44FABDCE28A /* Foundation.framework */,
+				88982389BE6B9F126C3782B6053AE4FD /* QuartzCore.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
+		AC877EA37DC695003B2E0AB1AEC2B8A8 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				5C1254EF714AC0B798DEE332B51BD942 /* expanding.caf */,
+				048363722BD6069019F9BC969AA6034D /* fold.caf */,
+				F31F20B79FC0EE765708C26A5C72D5C2 /* selected.caf */,
+			);
+			name = Resources;
 			sourceTree = "<group>";
 		};
 		B867E0BC2FFE9DA6EA2DD87887314576 /* Pods-tripinstagram */ = {
@@ -195,14 +251,6 @@
 			path = "Target Support Files/Pods-tripinstagram";
 			sourceTree = "<group>";
 		};
-		BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				3DCAB2B7CDE207B3958B6CB957FCC758 /* iOS */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		C6B41A32D407C4F39B6EECA053CA9B7B /* Targets Support Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -211,36 +259,114 @@
 			name = "Targets Support Files";
 			sourceTree = "<group>";
 		};
+		E7582C0C0A16AB73A60130072D51F175 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				6C511B53A4762EB37D87650F4E58AF4A /* ExpandingMenu.modulemap */,
+				827A2111D45A100E2DE98C02E5F5BC37 /* ExpandingMenu.xcconfig */,
+				05458578173F5D5AF98D410C72C02307 /* ExpandingMenu-dummy.m */,
+				EFC57D316F214798EF9A18B975113B30 /* ExpandingMenu-prefix.pch */,
+				1EDD43017F8DA142094022A969DDAB71 /* ExpandingMenu-umbrella.h */,
+				99CE1C4684D2BEEEA99577F223613C10 /* Info.plist */,
+				4D434D676CA5933A0B8BD160CBD3223D /* ResourceBundle-ExpandingMenu-Info.plist */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/ExpandingMenu";
+			sourceTree = "<group>";
+		};
+		F065F61AECD9D8928063893975496158 /* PopupDialog */ = {
+			isa = PBXGroup;
+			children = (
+				A990444D1D0C60232A6FC64D798ED8CC /* FXBlurView.h */,
+				01D097925B5D7DAA6F141E88257F7F50 /* FXBlurView.m */,
+				15BB6E2BD72E433F2645FE2ABA04D7AF /* InteractiveTransition.swift */,
+				5B69334A0DF7EEFA5AD3E4F17CC22FFB /* PopupDialog.swift */,
+				B646CAABC01A30A3E45BDFC57B4F8E49 /* PopupDialog+Keyboard.swift */,
+				3BE52FFBFF9185EF440215EFDD14FAF3 /* PopupDialogButton.swift */,
+				61D1F705E4C9D533E65CB51EB90F592A /* PopupDialogContainerView.swift */,
+				217643EF44A467143362EAE83522C914 /* PopupDialogDefaultButtons.swift */,
+				0EA2504E6FDA55C038FE0DD16A7E5A97 /* PopupDialogDefaultView.swift */,
+				2FFF5AD7BBA456139AC293B83324B5A4 /* PopupDialogDefaultViewController.swift */,
+				30AF69B44880D8DF9AF76DDC5A9AFE49 /* PopupDialogOverlayView.swift */,
+				8CF2B788D919D618057732E8C69FEA11 /* PresentationController.swift */,
+				2F533DD39BEF60800CE0A43CE6B9BCED /* PresentationManager.swift */,
+				8A9C1830E8D6AF06AA824F4AF91D88D1 /* TransitionAnimations.swift */,
+				A50D1155050566EBB8E1D2AB8AD98B6A /* TransitionAnimator.swift */,
+				033BC0D763A12D0CA4A4885869C5E9F7 /* UIView+Animations.swift */,
+				2FADB5FDB5BFED0D8863C3BC20A40C4C /* UIViewController+Visibility.swift */,
+				39070709A83B59369B25958D9D17EA4B /* Support Files */,
+			);
+			path = PopupDialog;
+			sourceTree = "<group>";
+		};
+		FE40695547334ECB3C418EC7BB65A48B /* ExpandingMenu */ = {
+			isa = PBXGroup;
+			children = (
+				D5AC957F84811EBD3303AC10316CC456 /* ExpandingMenuButton.swift */,
+				AA6D485903FC54BDF5E6131960FB86DC /* ExpandingMenuItem.swift */,
+				AC877EA37DC695003B2E0AB1AEC2B8A8 /* Resources */,
+				E7582C0C0A16AB73A60130072D51F175 /* Support Files */,
+			);
+			path = ExpandingMenu;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		4A7322EB206180FBB39750D4A63A1BB6 /* Headers */ = {
+		2F0CCEFB5A14D2C0125F920C289FAD55 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DDB7DC161ACB6BBD53BF9B9B751DB64D /* FXBlurView.h in Headers */,
-				57E359630E40E705429C9E3BDF4FE434 /* PopupDialog-umbrella.h in Headers */,
+				A70B129FC660FEAD6D7A22ED42E5CDA1 /* ExpandingMenu-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		F23432C2F5E3F1BBECD54BCE7D86F0AB /* Headers */ = {
+		7D22B5F3B7A60CE54750EF104BB2F08F /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				52604D96D98A5A3F880900B50607BEB2 /* Pods-tripinstagram-umbrella.h in Headers */,
+				AC9004CA5459E702C632BA1C880BCC08 /* Pods-tripinstagram-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7FD3AB37AA0E959BC10029F2F5F4E55F /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1CF7A7DCD7926926D7E839F1EFDCAD1C /* FXBlurView.h in Headers */,
+				BE800560D02D058D02FCCB3198A57B18 /* PopupDialog-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		B6E1BE69771CF4A5B48866EC026B88BC /* PopupDialog */ = {
+		2450E2DA3A7E3AA277D7C7290DDC055C /* ExpandingMenu */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = E6FDA3F82CCE7F7C1D135C011F806C6D /* Build configuration list for PBXNativeTarget "PopupDialog" */;
+			buildConfigurationList = 0B511C873E1FDC5B094AE3432858EB9C /* Build configuration list for PBXNativeTarget "ExpandingMenu" */;
 			buildPhases = (
-				EDBD17EB1C3722A166F243356A06D9BA /* Sources */,
-				B47C08A432C5FA26E72A5696322269E6 /* Frameworks */,
-				4A7322EB206180FBB39750D4A63A1BB6 /* Headers */,
+				5E8D0725D09E4864CA4632F751CECE31 /* Sources */,
+				C44961F816D2551632674058C43B7BE1 /* Frameworks */,
+				CE1A89DDFC7680E8C4321AA96D462685 /* Resources */,
+				2F0CCEFB5A14D2C0125F920C289FAD55 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				0C153F559A12F30E7A4579413A2CC318 /* PBXTargetDependency */,
+			);
+			name = ExpandingMenu;
+			productName = ExpandingMenu;
+			productReference = 25AF1908DBEA7BE34187854B27B3C8D9 /* ExpandingMenu.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		340486F2E3C84655B3B4856E11E6860E /* PopupDialog */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DCC917507294FB24E0502FD82BD53F3B /* Build configuration list for PBXNativeTarget "PopupDialog" */;
+			buildPhases = (
+				7BA00055E6F45B862B407F48D2497FA2 /* Sources */,
+				A170F4DFE9240751640F887AA5F3EE35 /* Frameworks */,
+				7FD3AB37AA0E959BC10029F2F5F4E55F /* Headers */,
 			);
 			buildRules = (
 			);
@@ -248,26 +374,44 @@
 			);
 			name = PopupDialog;
 			productName = PopupDialog;
-			productReference = AA96D2000689751AA36776F270579AD1 /* PopupDialog.framework */;
+			productReference = 57B6263794189B83897F665744541345 /* PopupDialog.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		D415FF9BFF87E47C8C299E7F82534E10 /* Pods-tripinstagram */ = {
+		50A0913A658FFC44D646F8874E98D335 /* Pods-tripinstagram */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 222D2BB946357F4FF34D62F8767E10A5 /* Build configuration list for PBXNativeTarget "Pods-tripinstagram" */;
+			buildConfigurationList = 04BE0CBE59E070DF70152619D7489B2B /* Build configuration list for PBXNativeTarget "Pods-tripinstagram" */;
 			buildPhases = (
-				09937F6FC5A533508C0693BE73375D8D /* Sources */,
-				2D800625206587F393E3AE2CCE3DFEA4 /* Frameworks */,
-				F23432C2F5E3F1BBECD54BCE7D86F0AB /* Headers */,
+				0286BECACD4270F163FCD6D6DC7A67F5 /* Sources */,
+				19B6788228CF38D61A6C19E984FE62DB /* Frameworks */,
+				7D22B5F3B7A60CE54750EF104BB2F08F /* Headers */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				E4DD2AC26353E6A7D19B98F12426F856 /* PBXTargetDependency */,
+				7BE5BABB9D1E3790073733EF5DB326D7 /* PBXTargetDependency */,
+				55741C4A9C70FCE572AD279D2F2920D6 /* PBXTargetDependency */,
 			);
 			name = "Pods-tripinstagram";
 			productName = "Pods-tripinstagram";
-			productReference = 56992E66D6BA3A05924E9B2F84DEFE43 /* Pods_tripinstagram.framework */;
+			productReference = D6F4C33097BE939FE6C997B7809029D6 /* Pods_tripinstagram.framework */;
 			productType = "com.apple.product-type.framework";
+		};
+		9EDB241CA84062D18B45D12341F01D5B /* ExpandingMenu-ExpandingMenu */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8A5458424A9B6631B0E9517B99105246 /* Build configuration list for PBXNativeTarget "ExpandingMenu-ExpandingMenu" */;
+			buildPhases = (
+				44B7015C3A69826FCDB057036C9C7E57 /* Sources */,
+				BC910D7CF9D8A8987D922DBDF412F04D /* Frameworks */,
+				D95989ADF0A01414F01A19954E1EB74F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "ExpandingMenu-ExpandingMenu";
+			productName = "ExpandingMenu-ExpandingMenu";
+			productReference = D8E520F32EDD759A3A21AFFE64A5E3A1 /* ExpandingMenu.bundle */;
+			productType = "com.apple.product-type.bundle";
 		};
 /* End PBXNativeTarget section */
 
@@ -278,11 +422,14 @@
 				LastSwiftUpdateCheck = 0730;
 				LastUpgradeCheck = 0700;
 				TargetAttributes = {
-					B6E1BE69771CF4A5B48866EC026B88BC = {
-						LastSwiftMigration = 0810;
+					2450E2DA3A7E3AA277D7C7290DDC055C = {
+						LastSwiftMigration = 0820;
 					};
-					D415FF9BFF87E47C8C299E7F82534E10 = {
-						LastSwiftMigration = 0810;
+					340486F2E3C84655B3B4856E11E6860E = {
+						LastSwiftMigration = 0820;
+					};
+					50A0913A658FFC44D646F8874E98D335 = {
+						LastSwiftMigration = 0820;
 					};
 				};
 			};
@@ -294,62 +441,196 @@
 				en,
 			);
 			mainGroup = 7DB346D0F39D3F0E887471402A8071AB;
-			productRefGroup = 8ECD04F941490D8FA23CCB3B819B8633 /* Products */;
+			productRefGroup = 5F81DC4549BDB23575FD7F02B1CC079E /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				D415FF9BFF87E47C8C299E7F82534E10 /* Pods-tripinstagram */,
-				B6E1BE69771CF4A5B48866EC026B88BC /* PopupDialog */,
+				2450E2DA3A7E3AA277D7C7290DDC055C /* ExpandingMenu */,
+				9EDB241CA84062D18B45D12341F01D5B /* ExpandingMenu-ExpandingMenu */,
+				50A0913A658FFC44D646F8874E98D335 /* Pods-tripinstagram */,
+				340486F2E3C84655B3B4856E11E6860E /* PopupDialog */,
 			);
 		};
 /* End PBXProject section */
 
-/* Begin PBXSourcesBuildPhase section */
-		09937F6FC5A533508C0693BE73375D8D /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
+/* Begin PBXResourcesBuildPhase section */
+		CE1A89DDFC7680E8C4321AA96D462685 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AAF949A370B5F88CEE831DD72DB7FED8 /* Pods-tripinstagram-dummy.m in Sources */,
+				8A8EF93D3ACA57043A825CA9C8E05D46 /* ExpandingMenu.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		EDBD17EB1C3722A166F243356A06D9BA /* Sources */ = {
+		D95989ADF0A01414F01A19954E1EB74F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EA6B5D0FEF051525F950E2613990FB03 /* expanding.caf in Resources */,
+				5ED1C012ED22777F7E32E626749F4EB8 /* fold.caf in Resources */,
+				BFEA1EF24D094D25E3AB431D3AAD7D2E /* selected.caf in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		0286BECACD4270F163FCD6D6DC7A67F5 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				76A06928ADD9BAE6808BD5BF17F24CB0 /* FXBlurView.m in Sources */,
-				B7DC0964B09B419EE5DCB5AB07FD2035 /* InteractiveTransition.swift in Sources */,
-				CDF350B56E4FC8994176DE59939A4CAE /* PopupDialog+Keyboard.swift in Sources */,
-				5E8A993B2684EE71473E8DFFEFCD0295 /* PopupDialog-dummy.m in Sources */,
-				5E584A4B30B6D3767BAECD2835C03050 /* PopupDialog.swift in Sources */,
-				02DD25F012048BED983615700DBFC748 /* PopupDialogButton.swift in Sources */,
-				1877976A38430D3D909B57457D581560 /* PopupDialogContainerView.swift in Sources */,
-				4722236F6F94B9797B39FC1CB4BBCD50 /* PopupDialogDefaultButtons.swift in Sources */,
-				C0EE16EFCA9C1E58AB3C2C027E13F09A /* PopupDialogDefaultView.swift in Sources */,
-				88F6D942FE4E65B0EE68FE04C452527B /* PopupDialogDefaultViewController.swift in Sources */,
-				5455BC4856F792C8D68A51576B19B966 /* PopupDialogOverlayView.swift in Sources */,
-				977DD23962EF62DE4814BC7E13C45659 /* PresentationController.swift in Sources */,
-				70964B5EACCE3AD0A65CF148EF1667AF /* PresentationManager.swift in Sources */,
-				8AF981770AFB6276CAA50665752C5B03 /* TransitionAnimations.swift in Sources */,
-				918C78E73E166F140533EB1344CD125F /* TransitionAnimator.swift in Sources */,
-				544F326A2187072F77E4F2C449F539D0 /* UIView+Animations.swift in Sources */,
-				A49CCA2FF22F8AAE75254AE9CBA5D6D5 /* UIViewController+Visibility.swift in Sources */,
+				F009F66BAAC15AE3BFA82035DAA266DB /* Pods-tripinstagram-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		44B7015C3A69826FCDB057036C9C7E57 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5E8D0725D09E4864CA4632F751CECE31 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CA506BEAB77C895DB5C987A7F26107A2 /* ExpandingMenu-dummy.m in Sources */,
+				A8060DF365E106BD8721FB8E20A21A67 /* ExpandingMenuButton.swift in Sources */,
+				DD7FC6727C75297C7AD2418D47D71A0B /* ExpandingMenuItem.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7BA00055E6F45B862B407F48D2497FA2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B57404DFBCDE1A069DF3E0E676531F2C /* FXBlurView.m in Sources */,
+				EC68095D2B9E4EE897D9CA66612BC9B0 /* InteractiveTransition.swift in Sources */,
+				93C977936B4DC6AA245ACA3EC6739406 /* PopupDialog+Keyboard.swift in Sources */,
+				BF0C26BA59F159C2322F7300B5C41B29 /* PopupDialog-dummy.m in Sources */,
+				55A6962D03CBFF6BBF082D546C6ADFAA /* PopupDialog.swift in Sources */,
+				9FA2413261B63A0A4E7BE9DDA5869793 /* PopupDialogButton.swift in Sources */,
+				DDAF080C251673DA4DE9CB8D97A1DB79 /* PopupDialogContainerView.swift in Sources */,
+				222D0824817090AA54C7F247C8AB4E7A /* PopupDialogDefaultButtons.swift in Sources */,
+				4FF474377FA0D44374B005F8899BDF52 /* PopupDialogDefaultView.swift in Sources */,
+				637B1E89BFA487392AEAEC4D9995EE84 /* PopupDialogDefaultViewController.swift in Sources */,
+				5A72E8D0C8014DCA2A3C000CC294C7E2 /* PopupDialogOverlayView.swift in Sources */,
+				5973FA76DB9B316611A2307B308057BF /* PresentationController.swift in Sources */,
+				2D9E21A99924937280371B401799930D /* PresentationManager.swift in Sources */,
+				58F28CA7B8C9297BBCA38C9231F1A249 /* TransitionAnimations.swift in Sources */,
+				ADF41D6D965567B0F3C0CC22C142059A /* TransitionAnimator.swift in Sources */,
+				9D899933832636109E98B736C02DD76F /* UIView+Animations.swift in Sources */,
+				AE5C1FC561D01F03A87D4B28E0B77CEC /* UIViewController+Visibility.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		E4DD2AC26353E6A7D19B98F12426F856 /* PBXTargetDependency */ = {
+		0C153F559A12F30E7A4579413A2CC318 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "ExpandingMenu-ExpandingMenu";
+			target = 9EDB241CA84062D18B45D12341F01D5B /* ExpandingMenu-ExpandingMenu */;
+			targetProxy = E05FE2F84DB673227DC207AB60BCD171 /* PBXContainerItemProxy */;
+		};
+		55741C4A9C70FCE572AD279D2F2920D6 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = PopupDialog;
-			target = B6E1BE69771CF4A5B48866EC026B88BC /* PopupDialog */;
-			targetProxy = EBFA943664976087A304B3431BB931A9 /* PBXContainerItemProxy */;
+			target = 340486F2E3C84655B3B4856E11E6860E /* PopupDialog */;
+			targetProxy = 2281C6938B82670BCBF0301F37FF2F39 /* PBXContainerItemProxy */;
+		};
+		7BE5BABB9D1E3790073733EF5DB326D7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = ExpandingMenu;
+			target = 2450E2DA3A7E3AA277D7C7290DDC055C /* ExpandingMenu */;
+			targetProxy = 12CD1BD8B0B21810C259EE312D84C971 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		42287DDF97330524BA3EF220F0276DA6 /* Release */ = {
+		02328197C1B78AD62F0CF51273912ED5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = ECF710F3B843E69A8293C373BB329DFA /* Pods-tripinstagram.debug.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-tripinstagram/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-tripinstagram/Pods-tripinstagram.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_tripinstagram;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		18D88431B41E39597B14AB1B29F5BFE7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 827A2111D45A100E2DE98C02E5F5BC37 /* ExpandingMenu.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/ExpandingMenu/ExpandingMenu-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/ExpandingMenu/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/ExpandingMenu/ExpandingMenu.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = ExpandingMenu;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		3681C8BAA225D8D05F8D3A88BDD9BA96 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 827A2111D45A100E2DE98C02E5F5BC37 /* ExpandingMenu.xcconfig */;
+			buildSettings = {
+				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/ExpandingMenu";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/ExpandingMenu/ResourceBundle-ExpandingMenu-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				PRODUCT_NAME = ExpandingMenu;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Debug;
+		};
+		3FA451D268613890FA8A5A03801E11D5 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -380,113 +661,14 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				STRIP_INSTALLED_PRODUCT = NO;
 				SYMROOT = "${SRCROOT}/../build";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
 		};
-		5B7494B0BC0219EEBF9A3B5543CA27E4 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4C5BAC365CAECB5471DB41DB0863B338 /* Pods-tripinstagram.release.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "Target Support Files/Pods-tripinstagram/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-tripinstagram/Pods-tripinstagram.modulemap";
-				MTL_ENABLE_DEBUG_INFO = NO;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = Pods_tripinstagram;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		83E76C6B42A83182BB7C094624608A02 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 72EF3082C18A3A04D94D5A1CE1B11C84 /* PopupDialog.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/PopupDialog/PopupDialog-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/PopupDialog/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/PopupDialog/PopupDialog.modulemap";
-				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_NAME = PopupDialog;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		A25AD84976094AEA31A6F9055990A69C /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = ECF710F3B843E69A8293C373BB329DFA /* Pods-tripinstagram.debug.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "Target Support Files/Pods-tripinstagram/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-tripinstagram/Pods-tripinstagram.modulemap";
-				MTL_ENABLE_DEBUG_INFO = YES;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = Pods_tripinstagram;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		AE9439C22469D35336242DD983DB5C5F /* Debug */ = {
+		5E62115DE8C09934BF8D2FE5D15FED1E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -521,16 +703,33 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				ONLY_ACTIVE_ARCH = YES;
 				STRIP_INSTALLED_PRODUCT = NO;
 				SYMROOT = "${SRCROOT}/../build";
 			};
 			name = Debug;
 		};
-		BBB5A0771510B636A1A908E244CB6333 /* Debug */ = {
+		6594A9835FA67253547EEF8FB2FC2A16 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 72EF3082C18A3A04D94D5A1CE1B11C84 /* PopupDialog.xcconfig */;
+			baseConfigurationReference = 827A2111D45A100E2DE98C02E5F5BC37 /* ExpandingMenu.xcconfig */;
+			buildSettings = {
+				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/ExpandingMenu";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/ExpandingMenu/ResourceBundle-ExpandingMenu-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				PRODUCT_NAME = ExpandingMenu;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Release;
+		};
+		7CCBB6A18FE6114CA4683AF18455C657 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = CA1E05F3F2ED538139B8407EE0656C71 /* PopupDialog.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
@@ -559,14 +758,118 @@
 			};
 			name = Debug;
 		};
+		A1DC26F0389EA2815EF411DDE0A033DC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 827A2111D45A100E2DE98C02E5F5BC37 /* ExpandingMenu.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/ExpandingMenu/ExpandingMenu-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/ExpandingMenu/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/ExpandingMenu/ExpandingMenu.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = ExpandingMenu;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		AB44728BB79904839B49846B2F943C27 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = CA1E05F3F2ED538139B8407EE0656C71 /* PopupDialog.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/PopupDialog/PopupDialog-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/PopupDialog/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/PopupDialog/PopupDialog.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = PopupDialog;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		F22CD74CEECCEDDFDB96F52187054827 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4C5BAC365CAECB5471DB41DB0863B338 /* Pods-tripinstagram.release.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-tripinstagram/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-tripinstagram/Pods-tripinstagram.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_tripinstagram;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		222D2BB946357F4FF34D62F8767E10A5 /* Build configuration list for PBXNativeTarget "Pods-tripinstagram" */ = {
+		04BE0CBE59E070DF70152619D7489B2B /* Build configuration list for PBXNativeTarget "Pods-tripinstagram" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				A25AD84976094AEA31A6F9055990A69C /* Debug */,
-				5B7494B0BC0219EEBF9A3B5543CA27E4 /* Release */,
+				02328197C1B78AD62F0CF51273912ED5 /* Debug */,
+				F22CD74CEECCEDDFDB96F52187054827 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		0B511C873E1FDC5B094AE3432858EB9C /* Build configuration list for PBXNativeTarget "ExpandingMenu" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A1DC26F0389EA2815EF411DDE0A033DC /* Debug */,
+				18D88431B41E39597B14AB1B29F5BFE7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -574,17 +877,26 @@
 		2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				AE9439C22469D35336242DD983DB5C5F /* Debug */,
-				42287DDF97330524BA3EF220F0276DA6 /* Release */,
+				5E62115DE8C09934BF8D2FE5D15FED1E /* Debug */,
+				3FA451D268613890FA8A5A03801E11D5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		E6FDA3F82CCE7F7C1D135C011F806C6D /* Build configuration list for PBXNativeTarget "PopupDialog" */ = {
+		8A5458424A9B6631B0E9517B99105246 /* Build configuration list for PBXNativeTarget "ExpandingMenu-ExpandingMenu" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				BBB5A0771510B636A1A908E244CB6333 /* Debug */,
-				83E76C6B42A83182BB7C094624608A02 /* Release */,
+				3681C8BAA225D8D05F8D3A88BDD9BA96 /* Debug */,
+				6594A9835FA67253547EEF8FB2FC2A16 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DCC917507294FB24E0502FD82BD53F3B /* Build configuration list for PBXNativeTarget "PopupDialog" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7CCBB6A18FE6114CA4683AF18455C657 /* Debug */,
+				AB44728BB79904839B49846B2F943C27 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -58,9 +58,9 @@ class tabbarVC: UITabBarController {
         self.view.addSubview(dot)
         
         // call functions of all types of notifications
-        query(type: ["like"], image: UIImage(named: "likeIcon.png")!)
-        query(type: ["follow"], image: UIImage(named: "followIcon.png")!)
-        query(type: ["mention", "comment"], image: UIImage(named: "commentIcon.png")!)
+        query(["like"], image: UIImage(named: "likeIcon.png")!)
+        query(["follow"], image: UIImage(named: "followIcon.png")!)
+        query(["mention", "comment"], image: UIImage(named: "commentIcon.png")!)
 
         // hide icons objects
         UIView.animate(withDuration: 1, delay: 8, options: [], animations: { () -> Void in
@@ -71,7 +71,7 @@ class tabbarVC: UITabBarController {
     }
     
     // multiple query
-    func query (type: [String], image: UIImage) {
+    func query (_ type: [String], image: UIImage) {
         
         let query = PFQuery(className: "news")
         query.whereKey("to", equalTo: PFUser.current()!.username!)
@@ -81,7 +81,7 @@ class tabbarVC: UITabBarController {
             if error == nil {
                 
                 if count > 0 {
-                    self.placeIcon(image: image, text: "\(count)")
+                    self.placeIcon(image, text: "\(count)")
                 }
                 
             } else {
@@ -91,7 +91,7 @@ class tabbarVC: UITabBarController {
     }
     
     // multiple icons
-    func placeIcon (image: UIImage, text: String) {
+    func placeIcon (_ image: UIImage, text: String) {
         
         // create separate icon
         let view = UIImageView(frame: CGRect(x: icons.contentSize.width, y: 0, width: 50, height: 35))

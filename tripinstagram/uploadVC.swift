@@ -60,7 +60,7 @@ class uploadVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
         pcImg.addGestureRecognizer(picTap)
         
         // set default fromDate and endDate labels
-        let today = NSDate()
+        let today = Date()
         startDate = GLDateUtils.date(byAddingDays: 0, to: today as Date)
         endDate = GLDateUtils.date(byAddingDays: 7, to: today as Date)
         let dateformatter = DateFormatter()
@@ -238,14 +238,14 @@ class uploadVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
     @IBAction func saveBtn_sclicked(_ sender: AnyObject) {
         // Get currect date and time
         let date = Date()
-        let calendar = NSCalendar.current
+        let calendar = Calendar.current
         let year = calendar.component(.year, from: date as Date)
         let month = calendar.component(.year, from: date as Date)
         let day = calendar.component(.year, from: date as Date)
         let hours = calendar.component(.hour, from: date as Date)
         let minutes = calendar.component(.minute, from: date as Date)
         let seconds = calendar.component(.second, from: date as Date)
-        let dateComponents = NSDateComponents()
+        var dateComponents = DateComponents()
         dateComponents.year = year
         dateComponents.month = month
         dateComponents.day = day

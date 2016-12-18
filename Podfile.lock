@@ -1,21 +1,29 @@
 PODS:
+  - ExpandingMenu (0.3.1)
   - PopupDialog (0.5.0)
 
 DEPENDENCIES:
+  - ExpandingMenu (from `https://github.com/monoqlo/ExpandingMenu.git`)
   - PopupDialog (from `https://github.com/Orderella/PopupDialog.git`)
 
 EXTERNAL SOURCES:
+  ExpandingMenu:
+    :git: https://github.com/monoqlo/ExpandingMenu.git
   PopupDialog:
     :git: https://github.com/Orderella/PopupDialog.git
 
 CHECKOUT OPTIONS:
+  ExpandingMenu:
+    :commit: 09783bb43f3c9ce3c6fcf9ccda29f04eac791864
+    :git: https://github.com/monoqlo/ExpandingMenu.git
   PopupDialog:
     :commit: ed82c2f9338192a03c99d8a7b88cc3e99c6041c8
     :git: https://github.com/Orderella/PopupDialog.git
 
 SPEC CHECKSUMS:
+  ExpandingMenu: 107548f3cb8c04b28a8b6b436983f506849484cc
   PopupDialog: 9890441b81105b9076757af2afe2b037be682f3e
 
-PODFILE CHECKSUM: dda6a09ce2c142368af27eed3373f1ebf88f72bf
+PODFILE CHECKSUM: f76d6f9d8e94c2b5a4fa8df970dc2546647f2d98
 
 COCOAPODS: 1.0.1

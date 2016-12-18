@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "44D04613A7591446E9F604C26C55657F"
-               BuildableName = "FoldingCell.framework"
-               BlueprintName = "FoldingCell"
+               BlueprintIdentifier = "2450E2DA3A7E3AA277D7C7290DDC055C"
+               BuildableName = "ExpandingMenu.framework"
+               BlueprintName = "ExpandingMenu"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -45,9 +45,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "44D04613A7591446E9F604C26C55657F"
-            BuildableName = "FoldingCell.framework"
-            BlueprintName = "FoldingCell"
+            BlueprintIdentifier = "2450E2DA3A7E3AA277D7C7290DDC055C"
+            BuildableName = "ExpandingMenu.framework"
+            BlueprintName = "ExpandingMenu"
             ReferencedContainer = "container:Pods.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
