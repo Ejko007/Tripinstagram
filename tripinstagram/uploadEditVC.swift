@@ -374,7 +374,7 @@ class uploadEditVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
         })
     }
     
-    func didSelectDateRange(range: GLCalendarDateRange) {
+    func didSelectDateRange(_ range: GLCalendarDateRange) {
         let dateformatter = DateFormatter()
         dateformatter.dateFormat = "dd.MM.yyy"
         

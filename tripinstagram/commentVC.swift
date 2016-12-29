@@ -57,7 +57,7 @@ class commentVC: UIViewController, UITextViewDelegate, UITableViewDelegate, UITa
         self.navigationItem.leftBarButtonItem = backBtn
         
         // swipe to go back
-        let backSwipe = UISwipeGestureRecognizer(target: self, action: #selector(back(sender:)))
+        let backSwipe = UISwipeGestureRecognizer(target: self, action: #selector(back))
         backSwipe.direction = UISwipeGestureRecognizerDirection.right
         self.view.addGestureRecognizer(backSwipe)
         
@@ -475,7 +475,7 @@ class commentVC: UIViewController, UITextViewDelegate, UITableViewDelegate, UITa
      }
     
     // go back - back function
-    func back(sender: UIBarButtonItem) {
+    func back(_ sender: UIBarButtonItem) {
         
         // push back
         _ = self.navigationController?.popViewController(animated: true)

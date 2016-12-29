@@ -19,6 +19,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
+        // light status bar
+        UIApplication.shared.statusBarStyle = UIStatusBarStyle.lightContent
+        
         // Override point for customization after application launch.
         
         // configuration of using Parse code in Heroku

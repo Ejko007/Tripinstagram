@@ -4,12 +4,22 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>Bolts.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>ExpandingMenu-ExpandingMenu.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
 		<key>ExpandingMenu.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Parse.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -27,22 +37,32 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>23A61EDE70C2510E5B2AA67DEE9EB300</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>2450E2DA3A7E3AA277D7C7290DDC055C</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>340486F2E3C84655B3B4856E11E6860E</key>
+		<key>2C8AA1BAF35413BDB954A1DF93576ED1</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>50A0913A658FFC44D646F8874E98D335</key>
+		<key>7129FAB61478FA70223DADF4921468CD</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>9EDB241CA84062D18B45D12341F01D5B</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>A3759E545326F71944F03EC79B7FEA1F</key>
 		<dict>
 			<key>primary</key>
 			<true/>

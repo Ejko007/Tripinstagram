@@ -16,8 +16,6 @@ class commentCell: UITableViewCell {
     @IBOutlet weak var commentLbl: KILabel!
     @IBOutlet weak var dateLbl: UILabel!
     
-    
-
     override func awakeFromNib() {
         super.awakeFromNib()
     

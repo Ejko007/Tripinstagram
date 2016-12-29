@@ -4,6 +4,8 @@
 use_frameworks!
 
 target 'tripinstagram'
+pod 'Parse'
 pod 'PopupDialog', :git => 'https://github.com/Orderella/PopupDialog.git'
 pod 'ExpandingMenu', :git => 'https://github.com/monoqlo/ExpandingMenu.git'
+
 

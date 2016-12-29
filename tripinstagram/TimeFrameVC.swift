@@ -9,7 +9,7 @@
 import UIKit
 
 protocol TimeFrameDelegate {
-    func didSelectDateRange (range:GLCalendarDateRange)
+    func didSelectDateRange (_ range:GLCalendarDateRange)
 }
 
 class TimeFrameVC: UIViewController, UINavigationBarDelegate, GLCalendarViewDelegate {
@@ -80,7 +80,7 @@ class TimeFrameVC: UIViewController, UINavigationBarDelegate, GLCalendarViewDele
         if let selectedTimeframe = timeFrame {
             
             if timeFrameDelegate != nil {
-                timeFrameDelegate?.didSelectDateRange(range: selectedTimeframe)
+                timeFrameDelegate?.didSelectDateRange(selectedTimeframe)
             }
         }
         self.dismiss(animated: true, completion: nil)

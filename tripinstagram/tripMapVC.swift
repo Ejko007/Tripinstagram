@@ -13,7 +13,6 @@ import Parse
 class tripMapVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
 
     @IBOutlet var mapView: MKMapView!
-    @IBOutlet weak var cancelBtn: UIButton!
     
     var MapViewLocationManager:CLLocationManager! = CLLocationManager()
     var currentLoc: PFGeoPoint! = PFGeoPoint()
@@ -30,67 +29,40 @@ class tripMapVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate 
         let width = UIScreen.main.bounds.width
         let height = UIScreen.main.bounds.height
 
+        let cancelBtn: UIButton = UIButton(frame: CGRect(x: 0, y: 0, width: 25, height: 25))
+        cancelBtn.addTarget(self, action: #selector(cancelBtn_clicked), for: .touchUpInside)
+        let btnImage = UIImage(named: "close.png")
+        cancelBtn.setImage(btnImage, for: .normal)
+        cancelBtn.tag = 1
+        mapView.addSubview(cancelBtn)
+        
         // allow constraints
         mapView.translatesAutoresizingMaskIntoConstraints = false
         cancelBtn.translatesAutoresizingMaskIntoConstraints = false
         
         // constraints
-        let topConstraint = NSLayoutConstraint(item: mapView,
-                                               attribute: .top,
-                                               relatedBy: .equal,
-                                               toItem: self.topLayoutGuide,
-                                               attribute: .bottom,
-                                               multiplier: 1,
-                                               constant: 0)
+        self.view.addConstraints(NSLayoutConstraint.constraints(
+            withVisualFormat: "H:|-0-[mapview(\(width))]-|",
+            options: [],
+            metrics: nil, views: ["mapview":mapView]))
         
-        let trailingConstraint = NSLayoutConstraint(item: self.view,
-                                                    attribute: .trailingMargin,
-                                                    relatedBy: .equal,
-                                                    toItem: mapView,
-                                                    attribute: .trailing,
-                                                    multiplier: 1,
-                                                    constant: 0)
-        
-        let bottomConstraint = NSLayoutConstraint(item: self.bottomLayoutGuide,
-                                                  attribute: .top,
-                                                  relatedBy: .equal,
-                                                  toItem: mapView,
-                                                  attribute: .bottom,
-                                                  multiplier: 1,
-                                                  constant: 0)
-        
-        let widthConstraint = NSLayoutConstraint(item: mapView,
-                                                 attribute: .width,
-                                                 relatedBy: .equal,
-                                                 toItem: nil,
-                                                 attribute: .notAnAttribute,
-                                                 multiplier: 1,
-                                                 constant: width)
-        
-        self.view.addConstraints([trailingConstraint])
-        view.addConstraints([topConstraint, bottomConstraint, widthConstraint])
-
         self.view.addConstraints(NSLayoutConstraint.constraints(
             withVisualFormat: "V:|-[mapview(\(height))]-|",
             options: [],
             metrics: nil, views: ["mapview":mapView]))
-        
+
         self.view.addConstraints(NSLayoutConstraint.constraints(
-            withVisualFormat: "H:|-[mapview(\(width))]-|",
-            options: [],
-            metrics: nil, views: ["mapview":mapView]))
-        
-        self.view.addConstraints(NSLayoutConstraint.constraints(
-            withVisualFormat: "V:|-20-[cancel(35)]",
+            withVisualFormat: "V:|-30-[cancel(25)]",
             options: [],
             metrics: nil, views: ["cancel":cancelBtn]))
 
         self.view.addConstraints(NSLayoutConstraint.constraints(
-            withVisualFormat: "H:|-[cancel(35)]-10-|",
+            withVisualFormat: "H:[cancel(25)]-10-|",
             options: [],
             metrics: nil, views: ["cancel":cancelBtn]))
-           
+        
         mapView.delegate = self
+        
         if #available(iOS 9.0, *) {
             mapView.showsCompass = true
             mapView.showsScale = true
@@ -136,7 +108,7 @@ class tripMapVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate 
                 
                 var index = 0
                 while index < annotations.count - 1 {
-                    self.drawDirection(startPoint: annotations[index].coordinate, endPoint: annotations[index + 1].coordinate)
+                    self.drawDirection(annotations[index].coordinate, endPoint: annotations[index + 1].coordinate)
                     index += 1
                 }
                 
@@ -203,7 +175,7 @@ class tripMapVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate 
     }
     
     // drawing route in details
-    func drawDirection(startPoint: CLLocationCoordinate2D, endPoint: CLLocationCoordinate2D) {
+    func drawDirection(_ startPoint: CLLocationCoordinate2D, endPoint: CLLocationCoordinate2D) {
         
         // Create map items from coordinate
         let startPlacemark = MKPlacemark(coordinate: startPoint, addressDictionary: nil)
@@ -235,12 +207,13 @@ class tripMapVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate 
         }
     }
     
-    @IBAction func cancelBtn_clicked(_ sender: Any) {
-        dismiss(animated: true, completion: nil)
+    // close - dismiss map view
+    func cancelBtn_clicked(_ sender: Any) {
+        
+        let btnsendertag: UIButton = sender as! UIButton
+        if btnsendertag.tag == 1 {
+            dismiss(animated: true, completion: nil)
+        }
     }
     
-//    @IBAction func unwindToHomeScreen(segue: UIStoryboardSegue) {
-//        dismiss(animated: true, completion: nil)
-//    }
-
 }

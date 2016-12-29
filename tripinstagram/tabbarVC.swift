@@ -68,6 +68,7 @@ class tabbarVC: UITabBarController {
                 corner.alpha = 0
                 dot.alpha = 0
             }, completion: nil)
+        
     }
     
     // multiple query
@@ -121,4 +122,5 @@ class tabbarVC: UITabBarController {
     func upload(sender: UIButton) {
         self.selectedIndex = 2
     }
+    
 }

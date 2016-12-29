@@ -339,7 +339,7 @@ class uploadVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
         })
     }
     
-    func didSelectDateRange(range: GLCalendarDateRange) {
+    func didSelectDateRange(_ range: GLCalendarDateRange) {
         let dateformatter = DateFormatter()
         dateformatter.dateFormat = "dd.MM.yyy"
         
@@ -350,7 +350,7 @@ class uploadVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
         endDate = range.endDate        
     }
 
-    func setSelectDateRange(range: GLCalendarDateRange) {
+    func setSelectDateRange(_ range: GLCalendarDateRange) {
         let dateformatter = DateFormatter()
         dateformatter.dateFormat = "dd.MM.yyy"
         

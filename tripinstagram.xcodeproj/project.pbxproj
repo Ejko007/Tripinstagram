@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0A11CD241E0ACECF00D52868 /* spentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A11CD231E0ACECF00D52868 /* spentCell.swift */; };
+		0A11CD261E0AD01C00D52868 /* spentsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A11CD251E0AD01C00D52868 /* spentsVC.swift */; };
 		0A1D9F3A1DB2ABBC0002BAD1 /* pictureCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1D9F391DB2ABBC0002BAD1 /* pictureCell.swift */; };
 		0A1D9F3E1DB6AFA10002BAD1 /* followersVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1D9F3D1DB6AFA10002BAD1 /* followersVC.swift */; };
 		0A1D9F401DB6AFE30002BAD1 /* followersCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1D9F3F1DB6AFE30002BAD1 /* followersCell.swift */; };
@@ -23,8 +25,12 @@
 		0A32E22E1DE49667006DC92E /* TimeFrameVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A32E22D1DE49667006DC92E /* TimeFrameVC.swift */; };
 		0A3B76F81DE1C96900A60659 /* RatingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3B76F61DE1C96900A60659 /* RatingViewController.swift */; };
 		0A3B76F91DE1C96900A60659 /* RatingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A3B76F71DE1C96900A60659 /* RatingViewController.xib */; };
+		0A413D271E13EEA10090B78B /* DatePickerDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A413D261E13EEA10090B78B /* DatePickerDialog.swift */; };
+		0A41AC411E07218900C3EE0C /* splashVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A41AC401E07218900C3EE0C /* splashVC.swift */; };
+		0A430BD31E0C2A3B00D4BF6B /* spentHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A430BD21E0C2A3B00D4BF6B /* spentHeaderCell.swift */; };
 		0A5314601DC1F52E00604F69 /* feedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A53145F1DC1F52D00604F69 /* feedVC.swift */; };
 		0A5314621DC2339800604F69 /* usersVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A5314611DC2339800604F69 /* usersVC.swift */; };
+		0A65F7981E13F3DD00A3548E /* ExpandingMenu.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A65F7971E13F3DD00A3548E /* ExpandingMenu.framework */; };
 		0A81F2A41DCD28900073063D /* PopupDialog.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A81F2A31DCD28900073063D /* PopupDialog.framework */; };
 		0A81F2A61DCE17630073063D /* rateVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A81F2A51DCE17630073063D /* rateVC.swift */; };
 		0A81F2A81DCE18380073063D /* rateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A81F2A71DCE18380073063D /* rateCell.swift */; };
@@ -42,8 +48,8 @@
 		0A8626551DB0BECD0001C1EE /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A8626541DB0BECD0001C1EE /* Security.framework */; };
 		0A8626571DB0BEDF0001C1EE /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A8626561DB0BEDF0001C1EE /* StoreKit.framework */; };
 		0A8626591DB0BEEF0001C1EE /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A8626581DB0BEEF0001C1EE /* SystemConfiguration.framework */; };
-		0A86265C1DB0C3B50001C1EE /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A86265A1DB0C3B50001C1EE /* Bolts.framework */; };
-		0A86265D1DB0C3B50001C1EE /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A86265B1DB0C3B50001C1EE /* Parse.framework */; };
+		0A86265C1DB0C3B50001C1EE /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A86265A1DB0C3B50001C1EE /* Bolts.framework */; settings = {ATTRIBUTES = (Required, ); }; };
+		0A86265D1DB0C3B50001C1EE /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A86265B1DB0C3B50001C1EE /* Parse.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		0A86265F1DB0D9DC0001C1EE /* singInVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A86265E1DB0D9DC0001C1EE /* singInVC.swift */; };
 		0A8626631DB0DA350001C1EE /* resetPasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8626621DB0DA350001C1EE /* resetPasswordVC.swift */; };
 		0A8626651DB147B40001C1EE /* signUPVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8626641DB147B40001C1EE /* signUPVC.swift */; };
@@ -65,6 +71,8 @@
 		0A9827A81DE318C9008C6C0C /* gl-calendar-shadow.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A98279B1DE318C9008C6C0C /* gl-calendar-shadow.png */; };
 		0A9827A91DE318C9008C6C0C /* gl-calendar-shadow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A98279C1DE318C9008C6C0C /* gl-calendar-shadow@2x.png */; };
 		0A9827AA1DE318C9008C6C0C /* gl-calendar-shadow@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A98279D1DE318C9008C6C0C /* gl-calendar-shadow@3x.png */; };
+		0AAA5E501E1294D200D42657 /* spentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAA5E4F1E1294D200D42657 /* spentVC.swift */; };
+		0AAA5E541E1298E500D42657 /* DLRadioButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AAA5E531E1298E500D42657 /* DLRadioButton.m */; };
 		0AD7A8901DC4B539001CDDC5 /* newsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD7A88F1DC4B539001CDDC5 /* newsVC.swift */; };
 		0AD7A8921DC4B577001CDDC5 /* newsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD7A8911DC4B577001CDDC5 /* newsCell.swift */; };
 		0AD7A8941DC4E23B001CDDC5 /* helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD7A8931DC4E23B001CDDC5 /* helper.swift */; };
@@ -74,6 +82,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0A11CD231E0ACECF00D52868 /* spentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = spentCell.swift; sourceTree = "<group>"; };
+		0A11CD251E0AD01C00D52868 /* spentsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = spentsVC.swift; sourceTree = "<group>"; };
 		0A1D9F391DB2ABBC0002BAD1 /* pictureCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = pictureCell.swift; sourceTree = "<group>"; };
 		0A1D9F3D1DB6AFA10002BAD1 /* followersVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = followersVC.swift; sourceTree = "<group>"; };
 		0A1D9F3F1DB6AFE30002BAD1 /* followersCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = followersCell.swift; sourceTree = "<group>"; };
@@ -92,8 +102,12 @@
 		0A32E22D1DE49667006DC92E /* TimeFrameVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeFrameVC.swift; sourceTree = "<group>"; };
 		0A3B76F61DE1C96900A60659 /* RatingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RatingViewController.swift; sourceTree = "<group>"; };
 		0A3B76F71DE1C96900A60659 /* RatingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RatingViewController.xib; sourceTree = "<group>"; };
+		0A413D261E13EEA10090B78B /* DatePickerDialog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DatePickerDialog.swift; path = /Users/ejko/Desktop/XCode10/tripinstagram/tripinstagram/DatePickerDialog.swift; sourceTree = "<absolute>"; };
+		0A41AC401E07218900C3EE0C /* splashVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = splashVC.swift; sourceTree = "<group>"; };
+		0A430BD21E0C2A3B00D4BF6B /* spentHeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = spentHeaderCell.swift; sourceTree = "<group>"; };
 		0A53145F1DC1F52D00604F69 /* feedVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = feedVC.swift; sourceTree = "<group>"; };
 		0A5314611DC2339800604F69 /* usersVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = usersVC.swift; sourceTree = "<group>"; };
+		0A65F7971E13F3DD00A3548E /* ExpandingMenu.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ExpandingMenu.framework; path = "Pods/../build/Debug-iphoneos/ExpandingMenu/ExpandingMenu.framework"; sourceTree = "<group>"; };
 		0A81F2A31DCD28900073063D /* PopupDialog.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PopupDialog.framework; path = "../../../Library/Developer/Xcode/DerivedData/tripinstagram-esugouffqwowrsefrbfyxxyheuxs/Build/Products/Debug-iphonesimulator/PopupDialog/PopupDialog.framework"; sourceTree = "<group>"; };
 		0A81F2A51DCE17630073063D /* rateVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = rateVC.swift; sourceTree = "<group>"; };
 		0A81F2A71DCE18380073063D /* rateCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = rateCell.swift; sourceTree = "<group>"; };
@@ -142,6 +156,9 @@
 		0A98279B1DE318C9008C6C0C /* gl-calendar-shadow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gl-calendar-shadow.png"; sourceTree = "<group>"; };
 		0A98279C1DE318C9008C6C0C /* gl-calendar-shadow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gl-calendar-shadow@2x.png"; sourceTree = "<group>"; };
 		0A98279D1DE318C9008C6C0C /* gl-calendar-shadow@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gl-calendar-shadow@3x.png"; sourceTree = "<group>"; };
+		0AAA5E4F1E1294D200D42657 /* spentVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = spentVC.swift; sourceTree = "<group>"; };
+		0AAA5E521E1298E500D42657 /* DLRadioButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLRadioButton.h; sourceTree = "<group>"; };
+		0AAA5E531E1298E500D42657 /* DLRadioButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLRadioButton.m; sourceTree = "<group>"; };
 		0AD7A88F1DC4B539001CDDC5 /* newsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = newsVC.swift; sourceTree = "<group>"; };
 		0AD7A8911DC4B577001CDDC5 /* newsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = newsCell.swift; sourceTree = "<group>"; };
 		0AD7A8931DC4E23B001CDDC5 /* helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = helper.swift; sourceTree = "<group>"; };
@@ -157,6 +174,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0A65F7981E13F3DD00A3548E /* ExpandingMenu.framework in Frameworks */,
 				0A81F2A41DCD28900073063D /* PopupDialog.framework in Frameworks */,
 				0A8626591DB0BEEF0001C1EE /* SystemConfiguration.framework in Frameworks */,
 				0A86264D1DB0BE850001C1EE /* CFNetwork.framework in Frameworks */,
@@ -189,6 +207,7 @@
 		0A39D25F1DE31B0E00FC525F /* 3rd Party */ = {
 			isa = PBXGroup;
 			children = (
+				0AAA5E511E1298E500D42657 /* DLRadioButton */,
 				0AD7A8951DCA06BB001CDDC5 /* CosmosDistrib.swift */,
 				0A39D2601DE31B4000FC525F /* CalendarView */,
 			);
@@ -228,7 +247,6 @@
 				0A3B76F61DE1C96900A60659 /* RatingViewController.swift */,
 				0A3B76F71DE1C96900A60659 /* RatingViewController.xib */,
 				0A1D9F391DB2ABBC0002BAD1 /* pictureCell.swift */,
-				0A86266E1DB2A5DC0001C1EE /* homeVC.swift */,
 				0A1D9F411DB78BA30002BAD1 /* guestVC.swift */,
 				0A8626701DB2A62D0001C1EE /* headerView.swift */,
 				0A86265E1DB0D9DC0001C1EE /* singInVC.swift */,
@@ -240,6 +258,8 @@
 				0A885C061DE9FE790036CA0F /* uploadEditVC.swift */,
 				0A1D9F4B1DBA4BD90002BAD1 /* postCell.swift */,
 				0A1D9F491DBA4BA50002BAD1 /* postVC.swift */,
+				0A86266E1DB2A5DC0001C1EE /* homeVC.swift */,
+				0A41AC401E07218900C3EE0C /* splashVC.swift */,
 				0A1E9D5A1DBBE2FC00080209 /* navVC.swift */,
 				0A1E9D5C1DBBE33B00080209 /* tabbarVC.swift */,
 				0A1E9D5E1DBC8B9F00080209 /* commentVC.swift */,
@@ -254,6 +274,10 @@
 				0A1D9F431DB8CEC60002BAD1 /* editVC.swift */,
 				0AD7A8931DC4E23B001CDDC5 /* helper.swift */,
 				0A8677B71E04115B00A44177 /* tripMapVC.swift */,
+				0A11CD231E0ACECF00D52868 /* spentCell.swift */,
+				0A430BD21E0C2A3B00D4BF6B /* spentHeaderCell.swift */,
+				0A11CD251E0AD01C00D52868 /* spentsVC.swift */,
+				0AAA5E4F1E1294D200D42657 /* spentVC.swift */,
 				0A8626331DB0BDE30001C1EE /* AppDelegate.swift */,
 				0A8626371DB0BDE30001C1EE /* Main.storyboard */,
 				0A32E22D1DE49667006DC92E /* TimeFrameVC.swift */,
@@ -268,6 +292,7 @@
 		0A8626451DB0BE430001C1EE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0A65F7971E13F3DD00A3548E /* ExpandingMenu.framework */,
 				0A81F2A31DCD28900073063D /* PopupDialog.framework */,
 				0A1E9D621DBD32A400080209 /* tripinstagram-Bridging-Header.h */,
 				0A1E9D631DBD32A500080209 /* KILabel.h */,
@@ -329,6 +354,15 @@
 				0A98279D1DE318C9008C6C0C /* gl-calendar-shadow@3x.png */,
 			);
 			path = Images;
+			sourceTree = "<group>";
+		};
+		0AAA5E511E1298E500D42657 /* DLRadioButton */ = {
+			isa = PBXGroup;
+			children = (
+				0AAA5E521E1298E500D42657 /* DLRadioButton.h */,
+				0AAA5E531E1298E500D42657 /* DLRadioButton.m */,
+			);
+			path = DLRadioButton;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -473,9 +507,11 @@
 				0A1D9F4C1DBA4BD90002BAD1 /* postCell.swift in Sources */,
 				0A1E9D611DBC8BDC00080209 /* commentCell.swift in Sources */,
 				0A5314621DC2339800604F69 /* usersVC.swift in Sources */,
+				0A41AC411E07218900C3EE0C /* splashVC.swift in Sources */,
 				0A98279F1DE318C9008C6C0C /* GLCalendarDayCell.m in Sources */,
 				0AD7A8921DC4B577001CDDC5 /* newsCell.swift in Sources */,
 				0A1D9F3A1DB2ABBC0002BAD1 /* pictureCell.swift in Sources */,
+				0A11CD241E0ACECF00D52868 /* spentCell.swift in Sources */,
 				0A1D9F421DB78BA30002BAD1 /* guestVC.swift in Sources */,
 				0A8677B81E04115B00A44177 /* tripMapVC.swift in Sources */,
 				0AD7A8961DCA06BB001CDDC5 /* CosmosDistrib.swift in Sources */,
@@ -492,15 +528,20 @@
 				0A1E9D651DBD32A500080209 /* KILabel.m in Sources */,
 				0A9827A31DE318C9008C6C0C /* GLCalendarView.m in Sources */,
 				0AD7A8901DC4B539001CDDC5 /* newsVC.swift in Sources */,
+				0A413D271E13EEA10090B78B /* DatePickerDialog.swift in Sources */,
 				0A3B76F81DE1C96900A60659 /* RatingViewController.swift in Sources */,
 				0A32E22E1DE49667006DC92E /* TimeFrameVC.swift in Sources */,
 				0A8626341DB0BDE30001C1EE /* AppDelegate.swift in Sources */,
 				0A81F2A81DCE18380073063D /* rateCell.swift in Sources */,
 				0A8626631DB0DA350001C1EE /* resetPasswordVC.swift in Sources */,
 				0A885C071DE9FE790036CA0F /* uploadEditVC.swift in Sources */,
+				0A430BD31E0C2A3B00D4BF6B /* spentHeaderCell.swift in Sources */,
+				0AAA5E501E1294D200D42657 /* spentVC.swift in Sources */,
 				0A8626711DB2A62D0001C1EE /* headerView.swift in Sources */,
 				0A1E9D5D1DBBE33B00080209 /* tabbarVC.swift in Sources */,
+				0A11CD261E0AD01C00D52868 /* spentsVC.swift in Sources */,
 				0AD7A8941DC4E23B001CDDC5 /* helper.swift in Sources */,
+				0AAA5E541E1298E500D42657 /* DLRadioButton.m in Sources */,
 				0A1D9F441DB8CEC60002BAD1 /* editVC.swift in Sources */,
 				0ADD41E31DBF767E0026B118 /* hashtagsVC.swift in Sources */,
 			);
@@ -570,7 +611,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -616,7 +657,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -639,9 +680,12 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/tripinstagram",
+					"$(PROJECT_DIR)/build/Debug-iphoneos/DatePickerDialog",
+					"$(PROJECT_DIR)/build/Debug-iphoneos/ExpandingMenu",
+					"$(PROJECT_DIR)/build/Debug-iphoneos",
 				);
 				INFOPLIST_FILE = tripinstagram/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ejko.tripinstagram;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -669,9 +713,12 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/tripinstagram",
+					"$(PROJECT_DIR)/build/Debug-iphoneos/DatePickerDialog",
+					"$(PROJECT_DIR)/build/Debug-iphoneos/ExpandingMenu",
+					"$(PROJECT_DIR)/build/Debug-iphoneos",
 				);
 				INFOPLIST_FILE = tripinstagram/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ejko.tripinstagram;
 				PRODUCT_NAME = "$(TARGET_NAME)";

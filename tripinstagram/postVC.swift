@@ -152,9 +152,16 @@ class postVC: UITableViewController {
                 editBtn.isEnabled = false
             }
         })
-        
+ 
+        // hide expanding menu
         configureExpandingMenuButton()
-
+        
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        // dismiss expanding menu
+        self.tabBarController?.view.subviews.last?.isHidden = true
+        
     }
 
     // number of cells
@@ -341,6 +348,7 @@ class postVC: UITableViewController {
             self.navigationController?.pushViewController(hashvc, animated: true)
         }
         
+        //cell.accessoryType = UITableViewCellAccessoryType.detailDisclosureButton
         return cell
     }
     
@@ -643,9 +651,6 @@ class postVC: UITableViewController {
     // edit button function
     func edit() {
         self.performSegue(withIdentifier: "editPost", sender: self)
-        
-        // dismiss expanding menu
-        self.tabBarController?.view.subviews.last?.isHidden = true
     }
     
     // go back function
@@ -659,8 +664,6 @@ class postVC: UITableViewController {
             postuuid.removeLast()
         }
         
-        // dismiss expanding menu
-        self.tabBarController?.view.subviews.last?.isHidden = true
     }
     
     // refreshing function
@@ -671,6 +674,8 @@ class postVC: UITableViewController {
     // configuring expanding menu
     fileprivate func configureExpandingMenuButton() {
         
+        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+
         let menuButtonSize: CGSize = CGSize(width: 30.0, height: 30.0)
         let menuButton = ExpandingMenuButton(frame: CGRect(origin: CGPoint.zero, size: menuButtonSize), centerImage: UIImage(named: "chooser-button-tab")!, centerHighlightedImage: UIImage(named: "chooser-button-tab-highlighted")!)
         menuButton.center = CGPoint(x: self.view.bounds.width - 32.0, y: self.view.bounds.height - 72.0)
@@ -683,17 +688,23 @@ class postVC: UITableViewController {
             self.present(alert, animated: true, completion: nil)
         }
         
-        let item1 = ExpandingMenuItem(size: menuButtonSize, title: "Music", image: UIImage(named: "chooser-moment-icon-music")!, highlightedImage: UIImage(named: "chooser-moment-icon-place-highlighted")!, backgroundImage: UIImage(named: "chooser-moment-button"), backgroundHighlightedImage: UIImage(named: "chooser-moment-button-highlighted")) { () -> Void in
-            showAlert("Music")
+        let item1 = ExpandingMenuItem(size: menuButtonSize, title: spents_menu_str, image: UIImage(named: "chooser-moment-icon-music")!, highlightedImage: UIImage(named: "chooser-moment-icon-place-highlighted")!, backgroundImage: UIImage(named: "chooser-moment-button"), backgroundHighlightedImage: UIImage(named: "chooser-moment-button-highlighted")) { () -> Void in
+            //showAlert("Music")
+            
+            let spentViewController = storyBoard.instantiateViewController(withIdentifier: "spentsVC") as! spentsVC
+            
+            // delegate uuid for displaying spents
+            spentViewController.username = (self.usernameArray.last?.lowercased())!
+            spentViewController.uuid = self.uuidArray.last!
+            
+            self.present(spentViewController, animated:true, completion:nil)
         }
         
-        let item2 = ExpandingMenuItem(size: menuButtonSize, title: triproute_str, image: UIImage(named: "chooser-moment-icon-place")!, highlightedImage: UIImage(named: "chooser-moment-icon-place-highlighted")!, backgroundImage: UIImage(named: "chooser-moment-button"), backgroundHighlightedImage: UIImage(named: "chooser-moment-button-highlighted")) { () -> Void in
+        let item2 = ExpandingMenuItem(size: menuButtonSize, title: triproute_menu_str, image: UIImage(named: "chooser-moment-icon-place")!, highlightedImage: UIImage(named: "chooser-moment-icon-place-highlighted")!, backgroundImage: UIImage(named: "chooser-moment-button"), backgroundHighlightedImage: UIImage(named: "chooser-moment-button-highlighted")) { () -> Void in
             //showAlert("Place")
             
-            let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-            
-            let nextViewController = storyBoard.instantiateViewController(withIdentifier: "tripMapVC") as! tripMapVC
-            self.present(nextViewController, animated:true, completion:nil)
+            let mapViewController = storyBoard.instantiateViewController(withIdentifier: "tripMapVC") as! tripMapVC
+            self.present(mapViewController, animated:true, completion:nil)
         }
         
         let item3 = ExpandingMenuItem(size: menuButtonSize, title: "Camera", image: UIImage(named: "chooser-moment-icon-camera")!, highlightedImage: UIImage(named: "chooser-moment-icon-camera-highlighted")!, backgroundImage: UIImage(named: "chooser-moment-button"), backgroundHighlightedImage: UIImage(named: "chooser-moment-button-highlighted")) { () -> Void in
@@ -718,5 +729,5 @@ class postVC: UITableViewController {
             print("MenuItems dismissed.")
         }
     }
-        
+    
 }
