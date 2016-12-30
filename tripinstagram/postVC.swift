@@ -152,10 +152,12 @@ class postVC: UITableViewController {
                 editBtn.isEnabled = false
             }
         })
- 
+         
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
         // hide expanding menu
         configureExpandingMenuButton()
-        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -678,7 +680,8 @@ class postVC: UITableViewController {
 
         let menuButtonSize: CGSize = CGSize(width: 30.0, height: 30.0)
         let menuButton = ExpandingMenuButton(frame: CGRect(origin: CGPoint.zero, size: menuButtonSize), centerImage: UIImage(named: "chooser-button-tab")!, centerHighlightedImage: UIImage(named: "chooser-button-tab-highlighted")!)
-        menuButton.center = CGPoint(x: self.view.bounds.width - 32.0, y: self.view.bounds.height - 72.0)
+        // menuButton.center = CGPoint(x: self.view.bounds.width - 32.0, y: self.view.bounds.height - 72.0)
+        menuButton.center = CGPoint(x: self.view.bounds.width - 32.0, y: (self.tabBarController?.view.bounds.height)! - 72.0)
         self.tabBarController?.view.addSubview(menuButton)
         //self.view.addSubview(menuButton)
         
@@ -688,7 +691,7 @@ class postVC: UITableViewController {
             self.present(alert, animated: true, completion: nil)
         }
         
-        let item1 = ExpandingMenuItem(size: menuButtonSize, title: spents_menu_str, image: UIImage(named: "chooser-moment-icon-music")!, highlightedImage: UIImage(named: "chooser-moment-icon-place-highlighted")!, backgroundImage: UIImage(named: "chooser-moment-button"), backgroundHighlightedImage: UIImage(named: "chooser-moment-button-highlighted")) { () -> Void in
+        let item1 = ExpandingMenuItem(size: menuButtonSize, title: spents_menu_str, image: UIImage(named: "Coins")!, highlightedImage: UIImage(named: "chooser-moment-icon-place-highlighted")!, backgroundImage: UIImage(named: "chooser-moment-button"), backgroundHighlightedImage: UIImage(named: "chooser-moment-button-highlighted")) { () -> Void in
             //showAlert("Music")
             
             let spentViewController = storyBoard.instantiateViewController(withIdentifier: "spentsVC") as! spentsVC
@@ -722,11 +725,11 @@ class postVC: UITableViewController {
         menuButton.addMenuItems([item1, item2, item3, item4, item5])
         
         menuButton.willPresentMenuItems = { (menu) -> Void in
-            print("MenuItems will present.")
+            // print("MenuItems will present.")
         }
         
         menuButton.didDismissMenuItems = { (menu) -> Void in
-            print("MenuItems dismissed.")
+            // print("MenuItems dismissed.")
         }
     }
     

@@ -8,8 +8,9 @@
 
 import UIKit
 import Parse
+import PopupDialog
 
-class spentVC: UIViewController, UINavigationBarDelegate, UITextFieldDelegate {
+class spentVC: UIViewController, UINavigationBarDelegate, UITextFieldDelegate, UITextViewDelegate {
 
     @IBOutlet weak var spentTypeBtn: DLRadioButton!
     @IBOutlet weak var spentNavigationBar: UINavigationBar!
@@ -25,9 +26,8 @@ class spentVC: UIViewController, UINavigationBarDelegate, UITextFieldDelegate {
     
     // delegating user name from other views
     var username = String()
-    
-    // arrays to hold information from server
     var spentuuid = String()
+    var isNew : Bool = true
     var spentobjectId = String()
     var spentname = String()
     var spentdescription = String()
@@ -46,7 +46,12 @@ class spentVC: UIViewController, UINavigationBarDelegate, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-                
+        
+        var isOwner = false
+        if PFUser.current()?.username!.lowercased() == username.lowercased() {
+            isOwner = true
+        }
+        
         // hide keyboard tap
         let hideTap = UITapGestureRecognizer(target: self, action: #selector(hideKeyboardTap))
         hideTap.numberOfTapsRequired = 1
@@ -56,7 +61,7 @@ class spentVC: UIViewController, UINavigationBarDelegate, UITextFieldDelegate {
         // navigation bar
         self.spentNavigationBar.frame = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 75)
         self.spentNavigationBar.barTintColor = UIColor(colorLiteralRed: 18.0 / 255.0, green: 86.0 / 255.0, blue: 136.0 / 255.0, alpha: 1)
-        self.spentNavigationBar.isTranslucent = true
+        self.spentNavigationBar.isTranslucent = false
         self.spentNavigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]
         
         self.spentNavigationBar.backgroundColor = .white
@@ -145,7 +150,7 @@ class spentVC: UIViewController, UINavigationBarDelegate, UITextFieldDelegate {
         
         //specify placeholder for spent name field
         spentNameTxt.placeholder = spent_name_placehoder_str
-        spentNameTxt.isUserInteractionEnabled = true
+        spentNameTxt.isUserInteractionEnabled = isOwner
         
         //specify spent fromdate label attributes
         spentfromLbl.layer.masksToBounds = true
@@ -163,6 +168,8 @@ class spentVC: UIViewController, UINavigationBarDelegate, UITextFieldDelegate {
         spentDescriptionTxtView!.layer.borderColor = UIColor.lightGray.cgColor
         spentDescriptionTxtView.layer.cornerRadius = 5
         spentDescriptionTxtView.clipsToBounds = true
+        spentDescriptionTxtView.isUserInteractionEnabled = isOwner
+        spentDescriptionTxtView.delegate = self
         
         // create placeholder label programatically
         let placeholderX : CGFloat = self.view.frame.size.width / 75
@@ -172,22 +179,28 @@ class spentVC: UIViewController, UINavigationBarDelegate, UITextFieldDelegate {
         let placeholderFontSize = self.view.frame.size.width / 25
         
         placeholderLbl.frame = CGRect(x: placeholderX, y: placeholderY, width: placeholderWidth, height: placeholderHeight)
-        placeholderLbl.text = enter_text_str
+        if isOwner {
+            placeholderLbl.text = enter_text_str
+        } else {
+            placeholderLbl.text = ""
+        }
         placeholderLbl.font = UIFont(name: "HelveticaNeue", size: placeholderFontSize)
         placeholderLbl.textColor = UIColor.lightGray
         placeholderLbl.textAlignment = NSTextAlignment.left
         spentDescriptionTxtView.addSubview(placeholderLbl)
         
         // enable multiple selection for spent types
-        self.spentTypeBtn.isMultipleSelectionEnabled = true
+        spentTypeBtn.isMultipleSelectionEnabled = true
+        spentTypeBtn.isUserInteractionEnabled = isOwner
         
         // programmatically add buttons
-        // first button
+        // first radio button
         let frameFirst = CGRect(x: self.view.frame.size.width / 2 - 131, y: 130, width: 162, height: 17);
         let firstRadioButton = createRadioButton(frame: frameFirst, title: spent_beginning_str, color: UIColor(colorLiteralRed: 0.00, green: 0.580, blue: 0.969, alpha: 1.00))
         let frameSecond = CGRect(x: self.view.frame.size.width / 2 - 131 + 100, y: 130, width: 162, height: 17);
         let secondRadioButton = createRadioButton(frame: frameSecond, title: spent_other_str, color: UIColor(colorLiteralRed: 1.00, green: 0.361, blue: 0.145, alpha: 1.00))
         firstRadioButton.isEnabled = true
+        // second radio button
         secondRadioButton.isIconOnRight = false
         if spenttype == 0 {
             firstRadioButton.isSelected = true
@@ -199,15 +212,25 @@ class spentVC: UIViewController, UINavigationBarDelegate, UITextFieldDelegate {
         secondRadioButton.contentHorizontalAlignment = .center
         firstRadioButton.contentHorizontalAlignment = .center
         firstRadioButton.otherButtons = [secondRadioButton]
+        spentTypeBtn.isUserInteractionEnabled = isOwner
+        firstRadioButton.isUserInteractionEnabled = isOwner
+        secondRadioButton.isUserInteractionEnabled = isOwner
         
         // show edit button for current user post only
-        if PFUser.current()?.username == username.lowercased() {
+        if isOwner {
             self.navigationItem.rightBarButtonItems = [editBtn]
             editBtn.isEnabled = true
         } else {
             self.navigationItem.rightBarButtonItems = []
             editBtn.isEnabled = false
         }
+        
+        // spent amount field
+        spentAmountTxt.isUserInteractionEnabled = isOwner
+        
+        // date picker hide or show
+        spentDatePicker.isUserInteractionEnabled = isOwner
+        spentDatePicker.isHidden = !isOwner
         
         getSpents()
     }
@@ -257,19 +280,23 @@ class spentVC: UIViewController, UINavigationBarDelegate, UITextFieldDelegate {
             for button in radioButton.selectedButtons() {
                 if button.titleLabel!.text! == spent_beginning_str {
                     spentfromLbl.backgroundColor = UIColor(colorLiteralRed: 0.00, green: 0.580, blue: 0.969, alpha: 1.00)
+                    spenttype = 0
                 } else {
                     spentfromLbl.backgroundColor = UIColor(colorLiteralRed: 1.00, green: 0.361, blue: 0.145, alpha: 1.00)
+                    spenttype = 1
                }
                 //print(String(format: "%@ is selected.\n", button.titleLabel!.text!))
             }
         } else {
             if radioButton.titleLabel!.text! == spent_beginning_str {
                 spentfromLbl.backgroundColor = UIColor(colorLiteralRed: 0.00, green: 0.580, blue: 0.969, alpha: 1.00)
+                spenttype = 0
             } else {
                 spentfromLbl.backgroundColor = UIColor(colorLiteralRed: 1.00, green: 0.361, blue: 0.145, alpha: 1.00)
+                spenttype = 1
             }
 
-            //print(String(format: "%@ is selected.\n", radioButton.selected()!.titleLabel!.text!))
+            print(String(format: "%@ is selected.\n", radioButton.selected()!.titleLabel!.text!))
         }
     }
     
@@ -293,39 +320,80 @@ class spentVC: UIViewController, UINavigationBarDelegate, UITextFieldDelegate {
     // save spent icon is clicked
     func saveTapped (sender: UIBarButtonItem) {
         
-        var stype = Int()
-        
-        let spentObj = PFObject(className: "tripspents")
-        spentObj["spentName"] = self.spentNameTxt.text!
-        spentObj["spentDescription"] = self.spentDescriptionTxtView.text!
-        let dateformatter = DateFormatter()
-        dateformatter.dateFormat = "dd.MM.yyy"
-        spentObj["spentDate"] = dateformatter.date(from: self.spentDateLbl.text!)!
-        spentObj["spentAmount"] = (self.spentAmountTxt.text! as NSString).doubleValue
-        if self.spentTypeBtn.titleLabel?.text! == spent_beginning_str {
-            stype = 0
-        } else {
-            stype = 1
-        }
-        spentObj["spentType"] = stype
-        spentObj["spentCurrency"] = self.spentCurrencyLbl.text!
-        spentObj["uuid"] = spentuuid
-        spentObj.saveInBackground(block: { (success:Bool, error:Error?) in
-            if error == nil {
-                if success {
-
-                
+        // check if new spent or its update
+        if isNew {
+            let spentObj = PFObject(className: "tripspents")
+            spentObj["spentName"] = self.spentNameTxt.text!
+            spentObj["spentDescription"] = self.spentDescriptionTxtView.text!
+            let dateformatter = DateFormatter()
+            dateformatter.dateFormat = "dd.MM.yyy"
+            spentObj["spentDate"] = dateformatter.date(from: self.spentDateLbl.text!)!
+            spentObj["spentAmount"] = (self.spentAmountTxt.text! as NSString).doubleValue
+            spentObj["spentType"] = spenttype
+            spentObj["spentCurrency"] = self.spentCurrencyLbl.text!
+            spentObj["uuid"] = self.spentuuid
+            spentObj.saveInBackground(block: { (success:Bool, error:Error?) in
+                if error == nil {
+                    if success {
+                    
+                    } else {
+                        print(error!.localizedDescription)
+                    }
                 } else {
                     print(error!.localizedDescription)
                 }
-            } else {
-                print(error!.localizedDescription)
-            }
-        })
-        
+            })
+        } else {
+            let spentQuery = PFQuery(className: "tripspents")
+            spentQuery.whereKey("uuid", equalTo: spentuuid)
+            spentQuery.whereKey("objectId", equalTo: spentobjectId)
+            spentQuery.findObjectsInBackground(block: { (objects: [PFObject]?, error: Error?) in
+                if error == nil {
+                    for spentObj in objects! {
+                        spentObj["spentName"] = self.spentNameTxt.text!
+                        spentObj["spentDescription"] = self.spentDescriptionTxtView.text!
+                        let dateformatter = DateFormatter()
+                        dateformatter.dateFormat = "dd.MM.yyy"
+                        spentObj["spentDate"] = dateformatter.date(from: self.spentDateLbl.text!)!
+                        spentObj["spentAmount"] = (self.spentAmountTxt.text! as NSString).doubleValue
+                        spentObj["spentType"] = self.spenttype
+                        spentObj["spentCurrency"] = self.spentCurrencyLbl.text!
+                        spentObj.saveInBackground(block: { (success:Bool, error:Error?) in
+                            if error == nil {
+                                if success {
+                                    
+                                } else {
+                                    print(error!.localizedDescription)
+                                }
+                            } else {
+                                print(error!.localizedDescription)
+                            }
+                        })
+                    }
+                } else {
+                    print(error!.localizedDescription)
+                }
+            })
+        }
         
         //push back
         self.dismiss(animated: true, completion: nil)
+
     }
     
+    // while writing something
+    func textViewDidChange(_ textView: UITextView) {
+        
+        // disable button if entered no text
+        let spacing = CharacterSet.whitespacesAndNewlines
+        
+        // entered text
+        if !spentDescriptionTxtView.text.trimmingCharacters(in: spacing).isEmpty {
+            placeholderLbl.isHidden = true
+            // text is not entered
+        } else {
+            placeholderLbl.isHidden = false
+        }
+    }
+
 }

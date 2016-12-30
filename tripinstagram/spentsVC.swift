@@ -8,6 +8,8 @@
 
 import UIKit
 import Parse
+import PopupDialog
+import ExpandingMenu
 
 class spentsVC: UITableViewController, UINavigationBarDelegate {
     
@@ -37,54 +39,12 @@ class spentsVC: UITableViewController, UINavigationBarDelegate {
     // arrays to hold information from server
     override func viewDidLoad() {
         
-        // find post
-        let spentQuery = PFQuery(className: "tripspents")
-        spentQuery.whereKey("uuid", equalTo: postuuid.last!)
-        spentQuery.addAscendingOrder("spentDate")
-        spentQuery.findObjectsInBackground (block: { (objects: [PFObject]?, error: Error?) in
-            if error == nil {
-                
-                // clean up
-                self.spentArrayInitial.removeAll(keepingCapacity: false)
-                self.spentArrayOther.removeAll(keepingCapacity: false)
-                
-                //find related objects
-                for object in objects! {
-                    
-                    // initial arrays settings
-                    if object.value(forKey: "spentType") as! Int == 0 {
-                        self.spentArrayInitial.append(spent(name: object.value(forKey: "spentName") as! String,
-                                                            description: object.value(forKey: "spentDescription") as! String,
-                                                            sdate: object.value(forKey: "spentDate") as! Date!,
-                                                            amount: object.value(forKey: "spentAmount") as! Double,
-                                                            currency: object.value(forKey: "spentCurrency") as! String,
-                                                            sType: object.value(forKey: "spentType") as! Int,
-                                                            uuid: object.value(forKey: "uuid") as! String,
-                                                            objectId: object.value(forKey: "objectId") as! String))
-                    } else {
-                        self.spentArrayOther.append(spent(name: object.value(forKey: "spentName") as! String,
-                                                            description: object.value(forKey: "spentDescription") as! String,
-                                                            sdate: object.value(forKey: "spentDate") as! Date!,
-                                                            amount: object.value(forKey: "spentAmount") as! Double,
-                                                            currency: object.value(forKey: "spentCurrency") as! String,
-                                                            sType: object.value(forKey: "spentType") as! Int,
-                                                            uuid: object.value(forKey: "uuid") as! String,
-                                                            objectId: object.value(forKey: "objectId") as! String))
-                    }
-                }
-                self.tableView.reloadData()
-                
-            } else {
-                print(error!.localizedDescription)
-            }
-        })
-
         super.viewDidLoad()
         
         // navigation bar
         self.spentNavigationBar.frame = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 75)
         self.spentNavigationBar.barTintColor = UIColor(colorLiteralRed: 18.0 / 255.0, green: 86.0 / 255.0, blue: 136.0 / 255.0, alpha: 1)
-        self.spentNavigationBar.isTranslucent = true
+        self.spentNavigationBar.isTranslucent = false
         self.spentNavigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]
 
         self.spentNavigationBar.backgroundColor = .white
@@ -120,7 +80,64 @@ class spentsVC: UITableViewController, UINavigationBarDelegate {
         // Make the navigation bar a subview of the current view controller
         view.frame = CGRect(x: 0, y: 75, width: width, height: height - 75)
         view.addSubview(self.spentNavigationBar)
+        
+    }
+    
+     // find post
+    func findSpents () {
+       
+        let spentQuery = PFQuery(className: "tripspents")
+        spentQuery.whereKey("uuid", equalTo: postuuid.last!)
+        spentQuery.addAscendingOrder("spentDate")
+        spentQuery.findObjectsInBackground (block: { (objects: [PFObject]?, error: Error?) in
+            if error == nil {
                 
+                // clean up
+                self.spentArrayInitial.removeAll(keepingCapacity: false)
+                self.spentArrayOther.removeAll(keepingCapacity: false)
+                
+                //find related objects
+                for object in objects! {
+                    
+                    // initial arrays settings
+                    if object.value(forKey: "spentType") as! Int == 0 {
+                        self.spentArrayInitial.append(spent(name: object.value(forKey: "spentName") as! String,
+                                                            description: object.value(forKey: "spentDescription") as! String,
+                                                            sdate: object.value(forKey: "spentDate") as! Date!,
+                                                            amount: object.value(forKey: "spentAmount") as! Double,
+                                                            currency: object.value(forKey: "spentCurrency") as! String,
+                                                            sType: object.value(forKey: "spentType") as! Int,
+                                                            uuid: object.value(forKey: "uuid") as! String,
+                                                            objectId: object.value(forKey: "objectId") as! String))
+                    } else {
+                        self.spentArrayOther.append(spent(name: object.value(forKey: "spentName") as! String,
+                                                          description: object.value(forKey: "spentDescription") as! String,
+                                                          sdate: object.value(forKey: "spentDate") as! Date!,
+                                                          amount: object.value(forKey: "spentAmount") as! Double,
+                                                          currency: object.value(forKey: "spentCurrency") as! String,
+                                                          sType: object.value(forKey: "spentType") as! Int,
+                                                          uuid: object.value(forKey: "uuid") as! String,
+                                                          objectId: object.value(forKey: "objectId") as! String))
+                    }
+                }
+                self.tableView.reloadData()
+                
+            } else {
+                print(error!.localizedDescription)
+            }
+        })
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        // display spents records
+        findSpents()
+
+        self.tableView.reloadData()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        self.tableView.reloadData()
     }
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -145,6 +162,17 @@ class spentsVC: UITableViewController, UINavigationBarDelegate {
     // swipe cell for actions
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         // call cell for calling further cell data
+        var result = spent()
+        var initialSpent = Bool()
+        
+        if indexPath.section == 0 {
+            result = spentArrayInitial[indexPath.row]
+            initialSpent = true
+        } else {
+            result = spentArrayOther[indexPath.row]
+            initialSpent = false
+        }
+        
         let cell = tableView.cellForRow(at: indexPath) as! spentCell
         
         // ACTION 1. Delete
@@ -153,16 +181,21 @@ class spentsVC: UITableViewController, UINavigationBarDelegate {
             cell.textLabel?.textColor = .white
             cell.textLabel?.font = UIFont(name:"Helvetica", size:12)
             
-            
-            // STEP 1. Delete comment from server
-            let commentQuery = PFQuery(className: "comments")
-            commentQuery.whereKey("to", equalTo: commentuuid.last!)
-            commentQuery.whereKey("comment", equalTo: cell.spentNameLbl.text!)
-            commentQuery.findObjectsInBackground(block: { (objects: [PFObject]?, error: Error?) in
+            // STEP 1. Delete spent from server
+            let spentQuery = PFQuery(className: "tripspents")
+            spentQuery.whereKey("uuid", equalTo: result.uuid)
+            spentQuery.whereKey("objectId", equalTo: result.objectId)
+            spentQuery.findObjectsInBackground(block: { (objects: [PFObject]?, error: Error?) in
                 if error == nil {
                     for object in objects! {
                         object.deleteEventually()
                     }
+                    
+                    let okbtn = DefaultButton(title: ok_str, action: nil)
+                    let delMenu = PopupDialog(title: delete_str, message: spent_deletion_confirmation_str)
+                    delMenu.addButtons([okbtn])
+                    self.present(delMenu, animated: true, completion: nil)
+
                 } else {
                     print(error!.localizedDescription)
                 }
@@ -171,31 +204,28 @@ class spentsVC: UITableViewController, UINavigationBarDelegate {
             // close cell
             tableView.setEditing(false, animated: true)
             
-            // STEP 3. Delete row from tableView
-            self.spentArrayInitial.remove(at: indexPath.row)
+            // STEP 2. Delete row from tableView
+            if initialSpent {
+                self.spentArrayInitial.remove(at: indexPath.row)
+            } else {
+                self.spentArrayOther.remove(at: indexPath.row)
+            }
             
             tableView.deleteRows(at: [indexPath], with: .fade)
+            
+            // reloading data
+            tableView.reloadData()
         }
         
         // button background
-        //delete.backgroundColor = UIColor.red
         delete.backgroundColor = UIColor(patternImage: UIImage(named: "delete.png")!)
         
-        // comment belongs to user
-        if cell.spentNameLbl.text == PFUser.current()?.username {
+        // spent belongs to current user
+        if self.username == PFUser.current()?.username {
             return [delete]
+        } else {
+            return []
         }
-            
-        // post belongs to user
-        else if commentowner.last == PFUser.current()?.username {
-            return [delete]
-        }
-            
-        // post belongs to other user
-        else {
-            return [delete]
-        }
-        
     }
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -278,6 +308,8 @@ class spentsVC: UITableViewController, UINavigationBarDelegate {
         
         // delegate user name to next view controller
         nextVC.spentuuid = self.uuid
+        nextVC.username = self.username
+        nextVC.isNew = false
         
         if indexPath.section == 0 {
             result = spentArrayInitial[indexPath.row]
@@ -302,13 +334,13 @@ class spentsVC: UITableViewController, UINavigationBarDelegate {
     override func viewWillDisappear(_ animated: Bool) {
         // dismiss expanding menu
         self.tabBarController?.view.subviews.last?.isHidden = false
-        
     }
     
     // go back function
     func back(sender: UIBarButtonItem) {
         //push back
-        self.dismiss(animated: true, completion: nil)        
+        self.dismiss(animated: true, completion: nil)
+ 
     }
     
     // new spent icon is clicked
@@ -318,8 +350,10 @@ class spentsVC: UITableViewController, UINavigationBarDelegate {
         
         // delegate user name to next view controller
         nextVC.username = self.username
+        nextVC.spentuuid = self.uuid
+        nextVC.isNew = true
         
         self.present(nextVC, animated:true, completion:nil)
     }
-    
+
 }
