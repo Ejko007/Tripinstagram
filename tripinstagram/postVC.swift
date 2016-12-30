@@ -29,7 +29,6 @@ class postVC: UITableViewController {
     var tripnameArray = [String]()
     var personsNrArray = [Int]()
     var totalDistanceArray = [Double]()
-    var totalSpentsArray = [Double]()
     var tripFromArray = [Date?]()
     var tripToArray = [Date?]()
     var levelArray = [Int]()
@@ -86,7 +85,6 @@ class postVC: UITableViewController {
                 self.publishedArray.removeAll(keepingCapacity: false)
                 self.personsNrArray.removeAll(keepingCapacity: false)
                 self.totalDistanceArray.removeAll(keepingCapacity: false)
-                self.totalSpentsArray.removeAll(keepingCapacity: false)
                 self.tripFromArray.removeAll(keepingCapacity: false)
                 self.tripToArray.removeAll(keepingCapacity: false)
                 self.levelArray.removeAll(keepingCapacity: false)
@@ -104,7 +102,6 @@ class postVC: UITableViewController {
                     self.publishedArray.append(object.value(forKey: "isPublished") as! Bool)
                     self.personsNrArray.append(object.value(forKey: "personsNr") as! Int)
                     self.totalDistanceArray.append(object.value(forKey: "totalDistance") as! Double)
-                    self.totalSpentsArray.append(object.value(forKey: "totalSpents") as! Double)
                     self.tripFromArray.append(object.value(forKey: "tripFrom") as! Date?)
                     self.tripToArray.append(object.value(forKey: "tripTo") as! Date?)
                     self.levelArray.append(object.value(forKey: "level") as! Int)
@@ -192,7 +189,6 @@ class postVC: UITableViewController {
         cell.tripNameLbl.text = tripnameArray[indexPath.row]
         cell.nrPersonsLbl.text = "\(personsNrArray[indexPath.row])"
         cell.totalDistanceLbl.text = String(format: "%.2f", totalDistanceArray[indexPath.row])
-        cell.totalSpentsLbl.text = String(format: "%.2f", totalSpentsArray[indexPath.row])
         let dateformatter = DateFormatter()
         dateformatter.dateFormat = "dd.MM.yyy"
         cell.fromDateLbl.text = dateformatter.string(from: tripFromArray[indexPath.row]!)
@@ -273,6 +269,24 @@ class postVC: UITableViewController {
             } else {
                 print(error!.localizedDescription)
             }
+        })
+        
+        // count total spents of showing post
+        let countSpents = PFQuery(className: "tripspents")
+        countSpents.whereKey("uuid", equalTo: cell.uuidLbl.text!)
+        countSpents.findObjectsInBackground(block: { (spentsObjects: [PFObject]?, spentsError: Error?) in
+            var sumaSpents: Double = 0.0
+            
+            if spentsError == nil {
+                
+                // calculate summary rates
+                for spentsObject in spentsObjects! {
+                    sumaSpents = sumaSpents + (spentsObject.value(forKey: "spentAmount") as! Double)
+                }
+            } else {
+                print(spentsError!.localizedDescription)
+            }
+            cell.totalSpentsLbl.text = String(format: "%.2f", sumaSpents)
         })
 
         // count total comments of showing post
@@ -456,7 +470,6 @@ class postVC: UITableViewController {
             self.publishedArray.remove(at: i.row)
             self.personsNrArray.remove(at: i.row)
             self.totalDistanceArray.remove(at: i.row)
-            self.totalSpentsArray.remove(at: i.row)
             self.tripFromArray.remove(at: i.row)
             self.tripToArray.remove(at: i.row)
             self.levelArray.remove(at: i.row)
@@ -539,6 +552,20 @@ class postVC: UITableViewController {
                     }
                 } else {
                     print(error!.localizedDescription)
+                }
+            })
+            
+            // STEP 7. Delete spents of post from the server
+            let spentQuery = PFQuery(className: "tripspents")
+            spentQuery.whereKey("uuid", equalTo: cell.uuidLbl.text!)
+            spentQuery.findObjectsInBackground(block: { (spentsobjects: [PFObject]?, spentserror: Error?) in
+                if spentserror == nil {
+                    
+                    for spentobject in spentsobjects! {
+                        spentobject.deleteEventually()
+                    }
+                } else {
+                    print(spentserror!.localizedDescription)
                 }
             })
         }

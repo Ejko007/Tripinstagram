@@ -9,7 +9,6 @@
 import UIKit
 import Parse
 import PopupDialog
-import ExpandingMenu
 
 class spentsVC: UITableViewController, UINavigationBarDelegate {
     
@@ -333,7 +332,7 @@ class spentsVC: UITableViewController, UINavigationBarDelegate {
     // show/dismiss expanding menu
     override func viewWillDisappear(_ animated: Bool) {
         // dismiss expanding menu
-        self.tabBarController?.view.subviews.last?.isHidden = false
+        // self.tabBarController?.view.subviews.last?.isHidden = false
     }
     
     // go back function
