@@ -1,5 +1,5 @@
 //
-//  spentHeaderCell.swift
+//  tripsListHeaderCell.swift
 //  tripinstagram
 //
 //  Created by Pavol Polacek on 05/01/2016.
@@ -8,33 +8,34 @@
 
 import UIKit
 
-class spentHeaderCell: UITableViewCell, UITableViewDelegate {
+class tripsListHeaderCell: UITableViewCell, UITableViewDelegate {
 
-    @IBOutlet weak var spentTypeLbl: UILabel!
+    @IBOutlet weak var triplistDateLbl: UILabel!
+    
     
     override func awakeFromNib() {
-        super.awakeFromNib()        // Initialization code
+        super.awakeFromNib()
         
         // allow constraints
-        spentTypeLbl.translatesAutoresizingMaskIntoConstraints = false
-     
+        triplistDateLbl.translatesAutoresizingMaskIntoConstraints = false
+        
         // constraints
         self.contentView.addConstraints(NSLayoutConstraint.constraints(
-            withVisualFormat: "V:|-[spenttype]-|",
+            withVisualFormat: "V:|-[triplistdate]-|",
             options: [],
-            metrics: nil, views: ["spenttype":spentTypeLbl]))
-       
+            metrics: nil, views: ["triplistdate":triplistDateLbl]))
+        
         self.contentView.addConstraints(NSLayoutConstraint.constraints(
-            withVisualFormat: "H:|-[spenttype]-|",
+            withVisualFormat: "H:|-[triplistdate]-|",
             options: [],
-            metrics: nil, views: ["spenttype":spentTypeLbl]))
+            metrics: nil, views: ["triplistdate":triplistDateLbl]))
         
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
+        
         // Configure the view for the selected state
     }
-    
+
 }

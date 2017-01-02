@@ -75,6 +75,8 @@ let amount_str = "Částka:"
 let spent_name_placehoder_str = "Specifikujte název pro výdej..."
 let deletion_spent_description = "Pokud zvolíte 'Smazat', smaže se uvedený záznam o nákladu."
 let spent_deletion_confirmation_str = "Záznam o vynaloženém nákladu byl úspěšně smazán ze serveru."
+let trip_details = "Detaily"
+let trips_list_str = "Výlety"
 
 
 // croping picture and center it

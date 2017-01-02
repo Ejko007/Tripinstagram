@@ -22,7 +22,6 @@ class uploadEditVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
     var tripNameArray = [String]()
     var personsNrArray = [Int]()
     var currencyArray = [String]()
-    var totalSApentsArray = [Double]()
     var titleTxtArray = [String]()
 
     
@@ -78,7 +77,6 @@ class uploadEditVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
                 self.tripNameArray.removeAll(keepingCapacity: false)
                 self.personsNrArray.removeAll(keepingCapacity: false)
                 self.currencyArray.removeAll(keepingCapacity: false)
-                self.totalSApentsArray.removeAll(keepingCapacity: false)
                 self.titleTxtArray.removeAll(keepingCapacity: false)
                
                 //find related objects
@@ -90,7 +88,6 @@ class uploadEditVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
                     self.tripNameArray.append(object.value(forKey: "tripName") as! String)
                     self.personsNrArray.append(object.value(forKey: "personsNr") as! Int)
                     self.currencyArray.append(object.value(forKey: "currencyCode") as! String)
-                    self.totalSApentsArray.append(object.value(forKey: "totalSpents") as! Double)
                     self.titleTxtArray.append(object.value(forKey: "title") as! String)
                  }
                 
@@ -106,8 +103,6 @@ class uploadEditVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
                 self.tripNameTxt.text = self.tripNameArray.last
                 self.titleTxt.text = self.titleTxtArray.last
                 self.personsNr.text = "\(self.personsNrArray.last!)"
-                
-                self.totalSpentsLbl.text = String(format: "%.2f", self.totalSApentsArray.last!)
                 self.currencyLbl.text = self.currencyArray.last
                 
                 let dateformatter = DateFormatter()

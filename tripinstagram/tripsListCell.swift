@@ -1,5 +1,5 @@
 //
-//  spentHeaderCell.swift
+//  tripsListCell.swift
 //  tripinstagram
 //
 //  Created by Pavol Polacek on 05/01/2016.
@@ -8,27 +8,29 @@
 
 import UIKit
 
-class spentHeaderCell: UITableViewCell, UITableViewDelegate {
+class tripsListCell: UITableViewCell, UITableViewDelegate {
 
-    @IBOutlet weak var spentTypeLbl: UILabel!
+    @IBOutlet weak var triplistCategoryLbl: UILabel!
+    
     
     override func awakeFromNib() {
-        super.awakeFromNib()        // Initialization code
+        super.awakeFromNib()
         
         // allow constraints
-        spentTypeLbl.translatesAutoresizingMaskIntoConstraints = false
-     
+        triplistCategoryLbl.translatesAutoresizingMaskIntoConstraints = false
+       
         // constraints
         self.contentView.addConstraints(NSLayoutConstraint.constraints(
-            withVisualFormat: "V:|-[spenttype]-|",
+            withVisualFormat: "V:|-[listcategory]-|",
             options: [],
-            metrics: nil, views: ["spenttype":spentTypeLbl]))
-       
-        self.contentView.addConstraints(NSLayoutConstraint.constraints(
-            withVisualFormat: "H:|-[spenttype]-|",
-            options: [],
-            metrics: nil, views: ["spenttype":spentTypeLbl]))
+            metrics: nil, views: ["listcategory":triplistCategoryLbl]))
         
+        self.contentView.addConstraints(NSLayoutConstraint.constraints(
+            withVisualFormat: "H:|-[listcategory]-|",
+            options: [],
+            metrics: nil, views: ["listcategory":triplistCategoryLbl]))
+        
+        triplistCategoryLbl.font = UIFont(name: triplistCategoryLbl.font.fontName, size: 15)
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -36,5 +38,5 @@ class spentHeaderCell: UITableViewCell, UITableViewDelegate {
 
         // Configure the view for the selected state
     }
-    
+
 }

@@ -745,8 +745,16 @@ class postVC: UITableViewController {
             showAlert("Thought")
         }
         
-        let item5 = ExpandingMenuItem(size: menuButtonSize, title: "Sleep", image: UIImage(named: "chooser-moment-icon-sleep")!, highlightedImage: UIImage(named: "chooser-moment-icon-sleep-highlighted")!, backgroundImage: UIImage(named: "chooser-moment-button"), backgroundHighlightedImage: UIImage(named: "chooser-moment-button-highlighted")) { () -> Void in
-            showAlert("Sleep")
+        let item5 = ExpandingMenuItem(size: menuButtonSize, title: trip_details, image: UIImage(named: "chooser-moment-icon-sleep")!, highlightedImage: UIImage(named: "chooser-moment-icon-sleep-highlighted")!, backgroundImage: UIImage(named: "chooser-moment-button"), backgroundHighlightedImage: UIImage(named: "chooser-moment-button-highlighted")) { () -> Void in
+            //showAlert("Sleep")
+
+            let tripsListViewController = storyBoard.instantiateViewController(withIdentifier: "tripsListVC") as! tripsListVC
+            self.present(tripsListViewController, animated:true, completion:nil)
+            
+            // delegate uuid for displaying trips
+            tripsListViewController.username = (self.usernameArray.last?.lowercased())!
+            tripsListViewController.uuid = self.uuidArray.last!
+
         }
         
         menuButton.addMenuItems([item1, item2, item3, item4, item5])
