@@ -32,11 +32,12 @@
 		0A45DE511E18296300F3D47B /* tripsListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A45DE501E18296300F3D47B /* tripsListCell.swift */; };
 		0A5314601DC1F52E00604F69 /* feedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A53145F1DC1F52D00604F69 /* feedVC.swift */; };
 		0A5314621DC2339800604F69 /* usersVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A5314611DC2339800604F69 /* usersVC.swift */; };
+		0A55339B1E1AA8A60013CCF1 /* menuListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A55339A1E1AA8A60013CCF1 /* menuListVC.swift */; };
+		0A5BCD181E22421500903D87 /* tripDetailMapVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A5BCD171E22421500903D87 /* tripDetailMapVC.swift */; };
 		0A65F7981E13F3DD00A3548E /* ExpandingMenu.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A65F7971E13F3DD00A3548E /* ExpandingMenu.framework */; };
 		0A81F2A41DCD28900073063D /* PopupDialog.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A81F2A31DCD28900073063D /* PopupDialog.framework */; };
 		0A81F2A61DCE17630073063D /* rateVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A81F2A51DCE17630073063D /* rateVC.swift */; };
 		0A81F2A81DCE18380073063D /* rateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A81F2A71DCE18380073063D /* rateCell.swift */; };
-		0A8447C21E1A7DFE0077FB19 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A8447C11E1A7DFE0077FB19 /* SWRevealViewController.m */; };
 		0A8626341DB0BDE30001C1EE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8626331DB0BDE30001C1EE /* AppDelegate.swift */; };
 		0A8626391DB0BDE30001C1EE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A8626371DB0BDE30001C1EE /* Main.storyboard */; };
 		0A86263B1DB0BDE30001C1EE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A86263A1DB0BDE30001C1EE /* Assets.xcassets */; };
@@ -61,6 +62,8 @@
 		0A8626711DB2A62D0001C1EE /* headerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8626701DB2A62D0001C1EE /* headerView.swift */; };
 		0A8677B81E04115B00A44177 /* tripMapVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8677B71E04115B00A44177 /* tripMapVC.swift */; };
 		0A885C071DE9FE790036CA0F /* uploadEditVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A885C061DE9FE790036CA0F /* uploadEditVC.swift */; };
+		0A97C5AA1E23C7CF00F40048 /* tabbartripDetailMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A97C5A91E23C7CF00F40048 /* tabbartripDetailMap.swift */; };
+		0A97C5AC1E26A67B00F40048 /* tripDetailMapPOIListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A97C5AB1E26A67B00F40048 /* tripDetailMapPOIListVC.swift */; };
 		0A98279E1DE318C9008C6C0C /* GLCalendarDateRange.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A98278A1DE318C9008C6C0C /* GLCalendarDateRange.m */; };
 		0A98279F1DE318C9008C6C0C /* GLCalendarDayCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A98278D1DE318C9008C6C0C /* GLCalendarDayCell.m */; };
 		0A9827A01DE318C9008C6C0C /* GLCalendarDayCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A98278E1DE318C9008C6C0C /* GLCalendarDayCell.xib */; };
@@ -77,6 +80,7 @@
 		0AA0C3B31E18033500790BD8 /* tripsListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA0C3B21E18033500790BD8 /* tripsListVC.swift */; };
 		0AAA5E501E1294D200D42657 /* spentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAA5E4F1E1294D200D42657 /* spentVC.swift */; };
 		0AAA5E541E1298E500D42657 /* DLRadioButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AAA5E531E1298E500D42657 /* DLRadioButton.m */; };
+		0AB078271E1D37F2003CA409 /* PBRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AB078261E1D37F2003CA409 /* PBRevealViewController.m */; };
 		0AD7A8901DC4B539001CDDC5 /* newsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD7A88F1DC4B539001CDDC5 /* newsVC.swift */; };
 		0AD7A8921DC4B577001CDDC5 /* newsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD7A8911DC4B577001CDDC5 /* newsCell.swift */; };
 		0AD7A8941DC4E23B001CDDC5 /* helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD7A8931DC4E23B001CDDC5 /* helper.swift */; };
@@ -113,12 +117,12 @@
 		0A45DE501E18296300F3D47B /* tripsListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = tripsListCell.swift; sourceTree = "<group>"; };
 		0A53145F1DC1F52D00604F69 /* feedVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = feedVC.swift; sourceTree = "<group>"; };
 		0A5314611DC2339800604F69 /* usersVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = usersVC.swift; sourceTree = "<group>"; };
+		0A55339A1E1AA8A60013CCF1 /* menuListVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = menuListVC.swift; sourceTree = "<group>"; };
+		0A5BCD171E22421500903D87 /* tripDetailMapVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = tripDetailMapVC.swift; sourceTree = "<group>"; };
 		0A65F7971E13F3DD00A3548E /* ExpandingMenu.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ExpandingMenu.framework; path = "Pods/../build/Debug-iphoneos/ExpandingMenu/ExpandingMenu.framework"; sourceTree = "<group>"; };
 		0A81F2A31DCD28900073063D /* PopupDialog.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PopupDialog.framework; path = "../../../Library/Developer/Xcode/DerivedData/tripinstagram-esugouffqwowrsefrbfyxxyheuxs/Build/Products/Debug-iphonesimulator/PopupDialog/PopupDialog.framework"; sourceTree = "<group>"; };
 		0A81F2A51DCE17630073063D /* rateVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = rateVC.swift; sourceTree = "<group>"; };
 		0A81F2A71DCE18380073063D /* rateCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = rateCell.swift; sourceTree = "<group>"; };
-		0A8447C01E1A7DFE0077FB19 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
-		0A8447C11E1A7DFE0077FB19 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
 		0A8626301DB0BDE30001C1EE /* tripinstagram.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = tripinstagram.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A8626331DB0BDE30001C1EE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0A8626381DB0BDE30001C1EE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -145,6 +149,8 @@
 		0A8626701DB2A62D0001C1EE /* headerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = headerView.swift; sourceTree = "<group>"; };
 		0A8677B71E04115B00A44177 /* tripMapVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = tripMapVC.swift; sourceTree = "<group>"; };
 		0A885C061DE9FE790036CA0F /* uploadEditVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = uploadEditVC.swift; sourceTree = "<group>"; };
+		0A97C5A91E23C7CF00F40048 /* tabbartripDetailMap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = tabbartripDetailMap.swift; sourceTree = "<group>"; };
+		0A97C5AB1E26A67B00F40048 /* tripDetailMapPOIListVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = tripDetailMapPOIListVC.swift; sourceTree = "<group>"; };
 		0A9827891DE318C9008C6C0C /* GLCalendarDateRange.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLCalendarDateRange.h; sourceTree = "<group>"; };
 		0A98278A1DE318C9008C6C0C /* GLCalendarDateRange.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLCalendarDateRange.m; sourceTree = "<group>"; };
 		0A98278C1DE318C9008C6C0C /* GLCalendarDayCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLCalendarDayCell.h; sourceTree = "<group>"; };
@@ -168,6 +174,8 @@
 		0AAA5E4F1E1294D200D42657 /* spentVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = spentVC.swift; sourceTree = "<group>"; };
 		0AAA5E521E1298E500D42657 /* DLRadioButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLRadioButton.h; sourceTree = "<group>"; };
 		0AAA5E531E1298E500D42657 /* DLRadioButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLRadioButton.m; sourceTree = "<group>"; };
+		0AB078251E1D37F2003CA409 /* PBRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBRevealViewController.h; sourceTree = "<group>"; };
+		0AB078261E1D37F2003CA409 /* PBRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBRevealViewController.m; sourceTree = "<group>"; };
 		0AD7A88F1DC4B539001CDDC5 /* newsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = newsVC.swift; sourceTree = "<group>"; };
 		0AD7A8911DC4B577001CDDC5 /* newsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = newsCell.swift; sourceTree = "<group>"; };
 		0AD7A8931DC4E23B001CDDC5 /* helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = helper.swift; sourceTree = "<group>"; };
@@ -216,7 +224,7 @@
 		0A39D25F1DE31B0E00FC525F /* 3rd Party */ = {
 			isa = PBXGroup;
 			children = (
-				0ABA3F851E1A7D3E00DA2720 /* SWRevealViewController */,
+				0AB078211E1D379D003CA409 /* PBRevealViewController */,
 				0AAA5E511E1298E500D42657 /* DLRadioButton */,
 				0AD7A8951DCA06BB001CDDC5 /* CosmosDistrib.swift */,
 				0A39D2601DE31B4000FC525F /* CalendarView */,
@@ -272,6 +280,7 @@
 				0A41AC401E07218900C3EE0C /* splashVC.swift */,
 				0A1E9D5A1DBBE2FC00080209 /* navVC.swift */,
 				0A1E9D5C1DBBE33B00080209 /* tabbarVC.swift */,
+				0A97C5A91E23C7CF00F40048 /* tabbartripDetailMap.swift */,
 				0A1E9D5E1DBC8B9F00080209 /* commentVC.swift */,
 				0A1E9D601DBC8BDC00080209 /* commentCell.swift */,
 				0A81F2A51DCE17630073063D /* rateVC.swift */,
@@ -284,6 +293,8 @@
 				0A1D9F431DB8CEC60002BAD1 /* editVC.swift */,
 				0AD7A8931DC4E23B001CDDC5 /* helper.swift */,
 				0A8677B71E04115B00A44177 /* tripMapVC.swift */,
+				0A5BCD171E22421500903D87 /* tripDetailMapVC.swift */,
+				0A97C5AB1E26A67B00F40048 /* tripDetailMapPOIListVC.swift */,
 				0A11CD231E0ACECF00D52868 /* spentCell.swift */,
 				0A430BD21E0C2A3B00D4BF6B /* spentHeaderCell.swift */,
 				0A11CD251E0AD01C00D52868 /* spentsVC.swift */,
@@ -291,6 +302,7 @@
 				0A45DE4E1E18218100F3D47B /* tripsListHeaderCell.swift */,
 				0A45DE501E18296300F3D47B /* tripsListCell.swift */,
 				0AA0C3B21E18033500790BD8 /* tripsListVC.swift */,
+				0A55339A1E1AA8A60013CCF1 /* menuListVC.swift */,
 				0A8626331DB0BDE30001C1EE /* AppDelegate.swift */,
 				0A8626371DB0BDE30001C1EE /* Main.storyboard */,
 				0A32E22D1DE49667006DC92E /* TimeFrameVC.swift */,
@@ -378,13 +390,13 @@
 			path = DLRadioButton;
 			sourceTree = "<group>";
 		};
-		0ABA3F851E1A7D3E00DA2720 /* SWRevealViewController */ = {
+		0AB078211E1D379D003CA409 /* PBRevealViewController */ = {
 			isa = PBXGroup;
 			children = (
-				0A8447C01E1A7DFE0077FB19 /* SWRevealViewController.h */,
-				0A8447C11E1A7DFE0077FB19 /* SWRevealViewController.m */,
+				0AB078251E1D37F2003CA409 /* PBRevealViewController.h */,
+				0AB078261E1D37F2003CA409 /* PBRevealViewController.m */,
 			);
-			name = SWRevealViewController;
+			name = PBRevealViewController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -525,9 +537,12 @@
 				0A5314601DC1F52E00604F69 /* feedVC.swift in Sources */,
 				0A1D9F4A1DBA4BA50002BAD1 /* postVC.swift in Sources */,
 				0A1E9D5B1DBBE2FC00080209 /* navVC.swift in Sources */,
+				0A97C5AA1E23C7CF00F40048 /* tabbartripDetailMap.swift in Sources */,
 				0A9827A11DE318C9008C6C0C /* GLCalendarDayCellBackgroundCover.m in Sources */,
 				0A1D9F4C1DBA4BD90002BAD1 /* postCell.swift in Sources */,
 				0A1E9D611DBC8BDC00080209 /* commentCell.swift in Sources */,
+				0AB078271E1D37F2003CA409 /* PBRevealViewController.m in Sources */,
+				0A55339B1E1AA8A60013CCF1 /* menuListVC.swift in Sources */,
 				0A5314621DC2339800604F69 /* usersVC.swift in Sources */,
 				0A45DE4F1E18218100F3D47B /* tripsListHeaderCell.swift in Sources */,
 				0A41AC411E07218900C3EE0C /* splashVC.swift in Sources */,
@@ -542,7 +557,6 @@
 				0A9827A51DE318C9008C6C0C /* GLDateUtils.m in Sources */,
 				0A8626651DB147B40001C1EE /* signUPVC.swift in Sources */,
 				0A1D9F481DB9F2D10002BAD1 /* uploadVC.swift in Sources */,
-				0A8447C21E1A7DFE0077FB19 /* SWRevealViewController.m in Sources */,
 				0A98279E1DE318C9008C6C0C /* GLCalendarDateRange.m in Sources */,
 				0A1E9D5F1DBC8B9F00080209 /* commentVC.swift in Sources */,
 				0A1D9F401DB6AFE30002BAD1 /* followersCell.swift in Sources */,
@@ -559,6 +573,7 @@
 				0A8626341DB0BDE30001C1EE /* AppDelegate.swift in Sources */,
 				0A81F2A81DCE18380073063D /* rateCell.swift in Sources */,
 				0A8626631DB0DA350001C1EE /* resetPasswordVC.swift in Sources */,
+				0A97C5AC1E26A67B00F40048 /* tripDetailMapPOIListVC.swift in Sources */,
 				0A885C071DE9FE790036CA0F /* uploadEditVC.swift in Sources */,
 				0A430BD31E0C2A3B00D4BF6B /* spentHeaderCell.swift in Sources */,
 				0AAA5E501E1294D200D42657 /* spentVC.swift in Sources */,
@@ -570,6 +585,7 @@
 				0AAA5E541E1298E500D42657 /* DLRadioButton.m in Sources */,
 				0A1D9F441DB8CEC60002BAD1 /* editVC.swift in Sources */,
 				0ADD41E31DBF767E0026B118 /* hashtagsVC.swift in Sources */,
+				0A5BCD181E22421500903D87 /* tripDetailMapVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

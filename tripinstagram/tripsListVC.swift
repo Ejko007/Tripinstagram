@@ -18,7 +18,7 @@ class tripsListVC: UITableViewController, UINavigationBarDelegate {
     var username = String()
     var uuid = String()
     
-    @IBOutlet weak var tripsListNavigation: UINavigationBar!
+    @IBOutlet weak var tripsListNavigation: UINavigationItem!
     
     var dateArray = [Date?]()
     
@@ -27,36 +27,41 @@ class tripsListVC: UITableViewController, UINavigationBarDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // navigation bar
-        self.tripsListNavigation.frame = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 75)
-        self.tripsListNavigation.barTintColor = UIColor(colorLiteralRed: 18.0 / 255.0, green: 86.0 / 255.0, blue: 136.0 / 255.0, alpha: 1)
-        self.tripsListNavigation.isTranslucent = false
-        self.tripsListNavigation.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]
-        self.tripsListNavigation.backgroundColor = .white
-        self.tripsListNavigation.tintColor = .white
-        self.tripsListNavigation.delegate = self
+        tableView.estimatedRowHeight = 242.0
+        tableView.rowHeight = UITableViewAutomaticDimension
         
         // Create a navigation item with a title
         let navigationItem = UINavigationItem()
-        navigationItem.title = trips_list_str.uppercased()
+        tripsListNavigation.title = trips_list_str.uppercased()
         
-        // Create left and right button for navigation item
-        // new back button
-        let backBtn = UIBarButtonItem(image: UIImage(named: "back.png"), style: .plain, target: self, action: #selector(back))
-        navigationItem.leftBarButtonItem = backBtn
-        backBtn.tintColor = .white
+        if revealViewController() != nil {
+            let menuBtn = UIBarButtonItem(image: UIImage(named: "menu.png"), style: .plain, target: self.revealViewController(), action: #selector(PBRevealViewController.revealRightView))
+            
+            revealViewController().rightViewRevealOverdraw = 100
+            // revealViewController().rightViewRevealWidth = width - 50
+            //revealViewController().rightViewRevealDisplacement = 0
+            menuBtn.tintColor = .white
+            
+            navigationItem.rightBarButtonItem = menuBtn
+            view.addGestureRecognizer(revealViewController().panGestureRecognizer)
+ 
+            // Create left navigation item - back button
+            let backBtn = UIBarButtonItem(image: UIImage(named: "back.png"), style: .plain, target: self, action: #selector(back))
+            navigationItem.leftBarButtonItem = backBtn
+            backBtn.tintColor = .white
+            
+            tripsListNavigation.rightBarButtonItem = menuBtn
+            tripsListNavigation.leftBarButtonItem = backBtn
+        }
         
-        let spentBtn = UIBarButtonItem(image: UIImage(named: "spent_add.png"), style: .plain, target: self, action: #selector(back))
-        navigationItem.rightBarButtonItem = spentBtn
-        backBtn.tintColor = .white
-        
-        // Assign the navigation item to the navigation bar
-        self.tripsListNavigation.items = [navigationItem]
-        
-        // Make the navigation bar a subview of the current view controller
-        view.frame = CGRect(x: 0, y: 75, width: width, height: height - 75)
-        view.addSubview(self.tripsListNavigation)
-        
+        // navigation bar
+        self.navigationController?.navigationBar.barTintColor = UIColor(colorLiteralRed: 18.0 / 255.0, green: 86.0 / 255.0, blue: 136.0 / 255.0, alpha: 1)
+        self.navigationController?.navigationBar.isTranslucent = false
+        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]
+        self.navigationController?.navigationBar.backgroundColor = .white
+        self.navigationController?.navigationBar.tintColor = .white
+        self.navigationController?.navigationBar.delegate = self
+        self.navigationController?.title = trips_list_str.uppercased()
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -128,6 +133,26 @@ class tripsListVC: UITableViewController, UINavigationBarDelegate {
         return header
     }
 
+    // select trip category
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        var nextTVC = UITabBarController()
+        
+        let storyBoard:UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        
+        switch indexPath.row {
+        case 0: self.performSegue(withIdentifier: "tripDetailMapVC", sender: self)
+        case 1: self.performSegue(withIdentifier: "tripDetailMapVC", sender: self)
+        case 2: self.performSegue(withIdentifier: "tripDetailMapVC", sender: self)
+        case 3: nextTVC = storyBoard.instantiateViewController(withIdentifier: "tabbartripDetailMap") as! tabbartripDetailMap
+        
+        // set initial tab bar to 0 
+        //tabbartripDetailMap
+        nextTVC.selectedIndex = 0
+        self.present(nextTVC, animated: true, completion: nil)
+
+        default: break
+        }
+    }
 
     /*
     // Override to support conditional editing of the table view.
@@ -189,20 +214,13 @@ class tripsListVC: UITableViewController, UINavigationBarDelegate {
                
                 for object in objects! {
                     self.dateArray.append(object.value(forKey: "tripsegmentDate") as! Date?)
-                    
                 }
-                
             } else {
                 print(error!.localizedDescription)
             }
         })
-        
-        
-        
-        
     }
 
-    
     // go back function
     func back(sender: UIBarButtonItem) {
         //push back
@@ -210,17 +228,9 @@ class tripsListVC: UITableViewController, UINavigationBarDelegate {
         
     }
     
-    // new spent icon is clicked
-    func addTapped (sender: UIBarButtonItem) {
-        let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let nextVC = mainStoryboard.instantiateViewController(withIdentifier: "spentVC") as! spentVC
-        
-        // delegate user name to next view controller
-        //nextVC.username = self.username
-        //nextVC.spentuuid = self.uuid
-        nextVC.isNew = true
-        
-        self.present(nextVC, animated:true, completion:nil)
+    @IBAction func unwindToTripsListVC(segue:UIStoryboardSegue) {
+    
+        //self.dismiss(animated: true, completion: nil)
     }
     
 }

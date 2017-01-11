@@ -810,7 +810,6 @@
                         <segue destination="Rde-di-ysN" kind="push" identifier="editPost" id="bfR-W1-hXg"/>
                         <segue destination="MC2-xY-Wc5" kind="push" identifier="showMap" id="z8N-em-QkK"/>
                         <segue destination="R6f-zA-OTs" kind="push" identifier="spentVC" id="Sxv-DM-Sq5"/>
-                        <segue destination="jPn-3G-gRO" kind="push" identifier="tripsListVC" id="n7f-l3-J2h"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Pxf-jr-HDx" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1198,7 +1197,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lZB-KD-MTW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4876.5" y="5081.5"/>
+            <point key="canvasLocation" x="5463.5" y="5081.5"/>
         </scene>
         <!--GuestVC-->
         <scene sceneID="I62-K8-nwP">
@@ -1492,7 +1491,7 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UDq-tY-Eva" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5323.5" y="5081.5"/>
+            <point key="canvasLocation" x="5910.5" y="5081.5"/>
         </scene>
         <!--FollowersVC-->
         <scene sceneID="BZk-ey-EeX">
@@ -2070,7 +2069,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XaG-k3-a4s" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2168" y="5082"/>
+            <point key="canvasLocation" x="2754.5" y="5081.5"/>
         </scene>
         <!--SpentsVC-->
         <scene sceneID="a9J-f4-LGi">
@@ -2168,7 +2167,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Alx-zI-FE5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3752" y="5525"/>
+            <point key="canvasLocation" x="4925.5" y="5524.5"/>
         </scene>
         <!--SpentVC-->
         <scene sceneID="GIE-io-Ctl">
@@ -2273,7 +2272,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="euN-uu-GQP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4287.5" y="5098.5"/>
+            <point key="canvasLocation" x="4874.5" y="5098.5"/>
         </scene>
         <!--NavVC-->
         <scene sceneID="QN0-Qd-j2P">
@@ -2292,29 +2291,22 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tJ2-8N-gdO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2659.5" y="5099.5"/>
+            <point key="canvasLocation" x="3246.5" y="5099.5"/>
         </scene>
         <!--Trips ListVC-->
         <scene sceneID="xjh-Hq-L0L">
             <objects>
                 <tableViewController storyboardIdentifier="tripsListVC" id="CJx-9f-D55" customClass="tripsListVC" customModule="tripinstagram" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="ooa-cB-wN8">
-                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <navigationBar key="tableHeaderView" contentMode="scaleToFill" translucent="NO" id="ny3-Ns-sMx">
-                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                            <items>
-                                <navigationItem id="xSr-Dt-HJQ"/>
-                            </items>
-                        </navigationBar>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="tripsListHeaderCell" id="tUg-zm-NfM" customClass="tripsListHeaderCell" customModule="tripinstagram" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="72" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="tUg-zm-NfM" id="NFX-Gv-Nka">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="v6G-G3-fh9">
@@ -2331,7 +2323,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="tripsListCell" id="fJB-83-R8y" customClass="tripsListCell" customModule="tripinstagram" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="116" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="72" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="fJB-83-R8y" id="8GK-Zf-xaS">
                                     <rect key="frame" x="0.0" y="0.0" width="342" height="43"/>
@@ -2357,14 +2349,18 @@
                             <outlet property="delegate" destination="CJx-9f-D55" id="j11-Rf-LxR"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="pE5-yP-C7H"/>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="EHa-CN-3Dd"/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="tripsListNavigation" destination="ny3-Ns-sMx" id="wre-4w-pmm"/>
+                        <outlet property="tripsListNavigation" destination="EHa-CN-3Dd" id="l5y-Va-51J"/>
+                        <segue destination="H2Q-lG-jnz" kind="unwind" identifier="unwindToTripsListVC" unwindAction="unwindToTripsListVCWithSegue:" id="ZHy-Vc-J8C"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RHZ-Or-n23" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="H2Q-lG-jnz" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2074" y="4150"/>
+            <point key="canvasLocation" x="2223" y="5063"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="x0B-aO-acB">
@@ -2383,45 +2379,271 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hud-6Q-HaO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3246.5" y="5099.5"/>
+            <point key="canvasLocation" x="3833.5" y="5099.5"/>
+        </scene>
+        <!--Reveal View Controller-->
+        <scene sceneID="3Bl-tH-2r4">
+            <objects>
+                <viewController storyboardIdentifier="PBRevealViewController" id="yOK-rw-7Gz" customClass="PBRevealViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5j8-WG-gHh">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="e6i-Wk-wpD"/>
+                    <connections>
+                        <segue destination="mJq-hP-7JQ" kind="custom" identifier="pb_main" customClass="PBRevealViewControllerSegueSetController" id="pTS-Xo-ady"/>
+                        <segue destination="iIy-gM-0Z9" kind="custom" identifier="pb_right" customClass="PBRevealViewControllerSegueSetController" id="lg6-DO-9pa"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BUs-Yx-Xeg" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="716" y="5645"/>
         </scene>
         <!--Navigation Controller-->
-        <scene sceneID="ISy-DI-1hv">
+        <scene sceneID="twB-jD-8Sq">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="jPn-3G-gRO" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="mJq-hP-7JQ" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" id="Kz9-Px-Lv9">
-                        <barButtonItem key="backBarButtonItem" image="back" id="frA-bf-7XL"/>
-                    </navigationItem>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="z1y-8V-XGZ">
+                    <navigationItem key="navigationItem" id="g9D-c0-lgz"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="2Ue-hU-nOk">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="CJx-9f-D55" kind="relationship" relationship="rootViewController" id="J4a-Gg-W2k"/>
+                        <segue destination="CJx-9f-D55" kind="relationship" relationship="rootViewController" id="isq-ps-93T"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ztQ-ms-Ka1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mJD-0D-73E" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2660" y="4150"/>
+            <point key="canvasLocation" x="1748" y="5063"/>
+        </scene>
+        <!--Menu ListVC-->
+        <scene sceneID="CsW-tG-lIz">
+            <objects>
+                <tableViewController id="iIy-gM-0Z9" customClass="menuListVC" customModule="tripinstagram" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="xwO-OR-uKV">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.92549019610000005" green="0.94117647059999998" blue="0.94509803920000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="sectionIndexBackgroundColor" red="0.94117647059999998" green="0.94509803920000002" blue="0.95294117649999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <sections>
+                            <tableViewSection id="g52-kZ-zCT">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="C9l-XN-h5D">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="C9l-XN-h5D" id="RPX-AG-gSO">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Výlety" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="rto-qy-xub">
+                                                    <rect key="frame" x="8" y="9" width="98" height="27"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="15"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" red="0.92549019610000005" green="0.94117647059999998" blue="0.94509803920000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <inset key="separatorInset" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="uHr-TL-hK7">
+                                        <rect key="frame" x="0.0" y="44" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="uHr-TL-hK7" id="MFh-pW-akC">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="comments" id="IfV-Hw-Wa5">
+                                                    <rect key="frame" x="8" y="1" width="35" height="35"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Comments" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="twj-RY-HSg">
+                                                    <rect key="frame" x="51" y="10" width="98.5" height="24"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="13"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" red="0.92549019610000005" green="0.94117647059999998" blue="0.94509803920000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="p5v-lE-yis">
+                                        <rect key="frame" x="0.0" y="88" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="p5v-lE-yis" id="ONE-JM-woz">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Calendar" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="qIH-LF-6QT">
+                                                    <rect key="frame" x="51" y="8" width="81" height="24"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="13"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="calendar" id="Qnm-4a-Hfo">
+                                                    <rect key="frame" x="8" y="0.0" width="35" height="32"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                </imageView>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" red="0.92549019610000005" green="0.94117647059999998" blue="0.94509803920000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="NTt-Ha-uKO">
+                                        <rect key="frame" x="0.0" y="132" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="NTt-Ha-uKO" id="Wny-ix-efm">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="photo" id="eLB-1O-4BG">
+                                                    <rect key="frame" x="8" y="5" width="35" height="35"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Photo" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="DhF-Bd-XwM">
+                                                    <rect key="frame" x="51" y="10" width="63" height="24"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="13"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" red="0.92549019610000005" green="0.94117647059999998" blue="0.94509803920000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="iIy-gM-0Z9" id="hoY-PD-ltY"/>
+                            <outlet property="delegate" destination="iIy-gM-0Z9" id="exe-rl-Os4"/>
+                        </connections>
+                    </tableView>
+                    <connections>
+                        <segue destination="mJq-hP-7JQ" kind="custom" customClass="PBRevealViewControllerSeguePushController" id="ZxN-e4-ks8"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="e2o-ni-I4A" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1283.5" y="6488.5"/>
+        </scene>
+        <!--Trip Detail MapVC-->
+        <scene sceneID="xmW-bi-tn3">
+            <objects>
+                <viewController storyboardIdentifier="tripDetailMapVC" id="LGp-Ay-8ML" customClass="tripDetailMapVC" customModule="tripinstagram" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="wNh-TR-SlN">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" misplaced="YES" id="SLf-h1-c3F">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <items>
+                                    <navigationItem id="vkE-b4-nGl"/>
+                                </items>
+                            </navigationBar>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" mapType="standard" showsUserLocation="YES" showsScale="YES" showsTraffic="YES" id="Fin-ue-hLc">
+                                <rect key="frame" x="0.0" y="44" width="375" height="581"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </mapView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="" image="map-icon" id="rQh-wK-qzS"/>
+                    <connections>
+                        <outlet property="mapView" destination="Fin-ue-hLc" id="rlX-Ty-WgP"/>
+                        <outlet property="tripDetailMapNavBar" destination="SLf-h1-c3F" id="uzb-Tf-HKZ"/>
+                        <outlet property="tripDetailMapNavItem" destination="vkE-b4-nGl" id="9xm-y2-YAJ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1jz-ER-Z2f" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2809.5" y="6184.5"/>
+        </scene>
+        <!--Trip Detail MapPOI ListVC-->
+        <scene sceneID="gJ2-RF-DaK">
+            <objects>
+                <tableViewController storyboardIdentifier="tripDetailMapPOIListVC" id="ORR-nI-Vx2" customClass="tripDetailMapPOIListVC" customModule="tripinstagram" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="174" sectionHeaderHeight="28" sectionFooterHeight="28" id="UjF-xs-LFx">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <navigationBar key="tableFooterView" contentMode="scaleToFill" id="ujE-QY-f4t">
+                            <rect key="frame" x="0.0" y="202" width="375" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <items>
+                                <navigationItem id="duk-Hv-eM6"/>
+                            </items>
+                        </navigationBar>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="174" id="t9d-w9-a7a">
+                                <rect key="frame" x="0.0" y="28" width="375" height="174"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="t9d-w9-a7a" id="FVv-5V-fri">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="173"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="ORR-nI-Vx2" id="l9S-BE-n3o"/>
+                            <outlet property="delegate" destination="ORR-nI-Vx2" id="IgT-zb-N5I"/>
+                        </connections>
+                    </tableView>
+                    <tabBarItem key="tabBarItem" title="" image="icon-poi-processing" id="98K-nS-WJ9"/>
+                    <connections>
+                        <outlet property="tripDetailMapPOINavigationBar" destination="ujE-QY-f4t" id="fwp-QP-4v2"/>
+                        <outlet property="tripDetailMapPOINavigationItem" destination="duk-Hv-eM6" id="V2s-L4-ArT"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xgy-87-PjG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2809.5" y="7031.5"/>
+        </scene>
+        <!--Tabbartrip Detail Map-->
+        <scene sceneID="Zr1-Br-GKI">
+            <objects>
+                <tabBarController storyboardIdentifier="tabbartripDetailMap" automaticallyAdjustsScrollViewInsets="NO" id="xWk-2A-WZo" customClass="tabbartripDetailMap" customModule="tripinstagram" customModuleProvider="target" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="6o3-ec-vau"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="d4R-XM-KFe">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <outlet property="tabbarNavigation" destination="6o3-ec-vau" id="BUK-TN-mKf"/>
+                        <segue destination="LGp-Ay-8ML" kind="relationship" relationship="viewControllers" id="jxM-yQ-KGu"/>
+                        <segue destination="ORR-nI-Vx2" kind="relationship" relationship="viewControllers" id="MmO-ym-Fub"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3Wx-E9-cR5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2222.5" y="6184.5"/>
         </scene>
     </scenes>
     <resources>
         <image name="Coins" width="30" height="30"/>
         <image name="Map Marker" width="48" height="48"/>
         <image name="add-user" width="512" height="512"/>
-        <image name="back" width="26" height="26"/>
         <image name="calendar" width="512" height="512"/>
         <image name="comment" width="270" height="270"/>
+        <image name="comments" width="1024" height="1024"/>
         <image name="default-avatar" width="128" height="128"/>
         <image name="feed" width="25" height="25"/>
         <image name="home" width="25" height="25"/>
+        <image name="icon-poi-processing" width="22" height="26"/>
         <image name="levels" width="20" height="20"/>
         <image name="logout" width="25" height="25"/>
+        <image name="map-icon" width="30" height="24"/>
         <image name="more" width="270" height="270"/>
         <image name="news" width="25" height="25"/>
         <image name="pbg" width="200" height="200"/>
+        <image name="photo" width="1024" height="1024"/>
         <image name="unlike" width="270" height="270"/>
         <image name="users" width="25" height="25"/>
     </resources>
@@ -2431,6 +2653,7 @@
         <simulatedScreenMetrics key="destination" type="retina4_7.fullscreen"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
+        <segue reference="pTS-Xo-ady"/>
         <segue reference="G2m-P2-Xcd"/>
     </inferredMetricsTieBreakers>
 </document>

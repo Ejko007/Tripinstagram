@@ -77,6 +77,9 @@ let deletion_spent_description = "Pokud zvolíte 'Smazat', smaže se uvedený z�
 let spent_deletion_confirmation_str = "Záznam o vynaloženém nákladu byl úspěšně smazán ze serveru."
 let trip_details = "Detaily"
 let trips_list_str = "Výlety"
+let trip_list_str = "Výlet"
+let trip_POI_str = "Body zájmu"
+
 
 
 // croping picture and center it

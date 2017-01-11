@@ -747,13 +747,14 @@ class postVC: UITableViewController {
         
         let item5 = ExpandingMenuItem(size: menuButtonSize, title: trip_details, image: UIImage(named: "chooser-moment-icon-sleep")!, highlightedImage: UIImage(named: "chooser-moment-icon-sleep-highlighted")!, backgroundImage: UIImage(named: "chooser-moment-button"), backgroundHighlightedImage: UIImage(named: "chooser-moment-button-highlighted")) { () -> Void in
             //showAlert("Sleep")
-
-            let tripsListViewController = storyBoard.instantiateViewController(withIdentifier: "tripsListVC") as! tripsListVC
+            
+            
+            let tripsListViewController = storyBoard.instantiateViewController(withIdentifier: "PBRevealViewController") as! PBRevealViewController
             self.present(tripsListViewController, animated:true, completion:nil)
             
             // delegate uuid for displaying trips
-            tripsListViewController.username = (self.usernameArray.last?.lowercased())!
-            tripsListViewController.uuid = self.uuidArray.last!
+            //tripsListViewController.username = (self.usernameArray.last?.lowercased())!
+            //tripsListViewController.uuid = self.uuidArray.last!
 
         }
         
