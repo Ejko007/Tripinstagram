@@ -16,6 +16,7 @@ class tripDetailMapVC: UIViewController, MKMapViewDelegate, CLLocationManagerDel
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var tripDetailMapNavBar: UINavigationBar!
     @IBOutlet weak var tripDetailMapNavItem: UINavigationItem!
+    @IBOutlet weak var mapTypeControl: UISegmentedControl!
     
     var MapViewLocationManager:CLLocationManager! = CLLocationManager()
     var currentLoc: PFGeoPoint! = PFGeoPoint()
@@ -51,6 +52,7 @@ class tripDetailMapVC: UIViewController, MKMapViewDelegate, CLLocationManagerDel
         // allow constraints
         mapView.translatesAutoresizingMaskIntoConstraints = false
         tripDetailMapNavBar.translatesAutoresizingMaskIntoConstraints = false
+        mapTypeControl.translatesAutoresizingMaskIntoConstraints = false
         
         // constraints
         self.view.addConstraints(NSLayoutConstraint.constraints(
@@ -69,12 +71,35 @@ class tripDetailMapVC: UIViewController, MKMapViewDelegate, CLLocationManagerDel
             options: [],
             metrics: nil, views: ["navbar":tripDetailMapNavBar,"mapview":mapView]))
         
+        self.view.addConstraints(NSLayoutConstraint.constraints(
+            withVisualFormat: "H:|-50-[maptype(\(width - 100))]-50-|",
+            options: [],
+            metrics: nil, views: ["maptype":mapTypeControl]))
+        
+        self.view.addConstraints(NSLayoutConstraint.constraints(
+            withVisualFormat: "V:[maptype(\(25))]-20-|",
+            options: [],
+            metrics: nil, views: ["maptype":mapTypeControl]))
+       
+        // customize segmented controller for map type
+        mapTypeControl.tintColor = .white
+        mapTypeControl.backgroundColor = UIColor(colorLiteralRed: 0.00, green: 0.580, blue: 0.969, alpha: 1.00)
+        mapTypeControl.setTitle(standard_str, forSegmentAt: 0)
+        mapTypeControl.setTitle(satelite_str, forSegmentAt: 1)
+        mapTypeControl.setTitle(hybrid_str, forSegmentAt: 2)
+        mapTypeControl.layer.cornerRadius = 5.0
+        mapTypeControl.clipsToBounds = true
+        // initial setting of map type controller
+        mapTypeControl.selectedSegmentIndex = 0
+        
+        self.mapView.addSubview(mapTypeControl)
+        
         if #available(iOS 9.0, *) {
             mapView.showsCompass = true
             mapView.showsScale = true
             mapView.showsTraffic = true
         }
-
+        
         let longpressGestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(pinLocation))
         longpressGestureRecognizer.minimumPressDuration = 0.3
         mapView.addGestureRecognizer(longpressGestureRecognizer)
@@ -184,6 +209,21 @@ class tripDetailMapVC: UIViewController, MKMapViewDelegate, CLLocationManagerDel
     }
     
     
+    @IBAction func maptypeControlAction(_ sender: UISegmentedControl) {
+        
+        switch (sender.selectedSegmentIndex) {
+        case 0:
+            mapView.mapType = .standard
+        case 1:
+            mapView.mapType = .satellite
+        case 2:
+            mapView.mapType = .hybrid
+        default:
+            mapView.mapType = .standard
+        }
+        
+        
+    }
     
     
 

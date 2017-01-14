@@ -11,6 +11,8 @@ import UIKit
 
 
 class tabbartripDetailMap: UITabBarController {
+    
+    var tripuuid = String()
 
     @IBOutlet weak var tabbarNavigation: UINavigationItem!
     

@@ -79,7 +79,13 @@ let trip_details = "Detaily"
 let trips_list_str = "Výlety"
 let trip_list_str = "Výlet"
 let trip_POI_str = "Body zájmu"
-
+let standard_str = "Standard"
+let satelite_str = "Satelit"
+let hybrid_str = "Hybrid"
+let annotation_str = "Anotace"
+let annotation_save_confirm_str = "Anotace byla úspěšně uložena na server do seznamu bodů zájmů. Zde ji můžete dodatečně upravit, případně smazat."
+let description_str = "Popis"
+let trip_POI_search_str = "Hledat body zájmu"
 
 
 // croping picture and center it

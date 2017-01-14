@@ -146,7 +146,7 @@ class tripsListVC: UITableViewController, UINavigationBarDelegate {
         case 3: nextTVC = storyBoard.instantiateViewController(withIdentifier: "tabbartripDetailMap") as! tabbartripDetailMap
         
         // set initial tab bar to 0 
-        //tabbartripDetailMap
+        // tabbartripDetailMap
         nextTVC.selectedIndex = 0
         self.present(nextTVC, animated: true, completion: nil)
 

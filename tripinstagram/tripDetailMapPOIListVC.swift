@@ -7,94 +7,102 @@
 //
 
 import UIKit
+import Parse
 
 class tripDetailMapPOIListVC: UITableViewController {
 
-    
-    @IBOutlet weak var tripDetailMapPOINavigationBar: UINavigationBar!
-    @IBOutlet weak var tripDetailMapPOINavigationItem: UINavigationItem!
-    
+    // arrays to hold information from server
+    var poinameArray = [String]()
+    var poidescriptionArray = [String]()
+    var poidetailsArray = [String]()
+    var poilongitudeArray = [String]()
+    var poilatitudeArray = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // navigation bar
-        tripDetailMapPOINavigationBar.barTintColor = UIColor(colorLiteralRed: 18.0 / 255.0, green: 86.0 / 255.0, blue: 136.0 / 255.0, alpha: 1)
-        tripDetailMapPOINavigationBar.isTranslucent = false
-        tripDetailMapPOINavigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]
-        tripDetailMapPOINavigationBar.backgroundColor = .white
-        tripDetailMapPOINavigationBar.tintColor = .white
-        tripDetailMapPOINavigationItem.title = trip_POI_str.uppercased()
-
+        // navigation bar title
+        self.navigationItem.title = trip_POI_str.uppercased()
+        
         // Create right navigation item - add POI button
         let addPOIBtn = UIBarButtonItem(image: UIImage(named: "add-poi.png"), style: .plain, target: self, action: #selector(addPOI))
-        tripDetailMapPOINavigationItem.rightBarButtonItem = addPOIBtn
+        self.navigationItem.rightBarButtonItem = addPOIBtn
+        self.navigationItem.leftBarButtonItem?.title = update_post_str
         addPOIBtn.tintColor = .white
-
-        // Create left navigation item - back button
-        let backBtn = UIBarButtonItem(image: UIImage(named: "back.png"), style: .plain, target: self, action: #selector(back))
-        tripDetailMapPOINavigationItem.leftBarButtonItem = backBtn
-        backBtn.tintColor = .white
-
         
-        let width = UIScreen.main.bounds.width
-        // let height = UIScreen.main.bounds.height
-
-        // allow constraints
-        tripDetailMapPOINavigationBar.translatesAutoresizingMaskIntoConstraints = false
-       
-        // constraints
-        self.view.addConstraints(NSLayoutConstraint.constraints(
-            withVisualFormat: "H:|-0-[navbar(\(width))]-|",
-            options: [],
-            metrics: nil, views: ["navbar":tripDetailMapPOINavigationBar]))
-
-        // let h = self.tabBarController?.tabBar.frame.height
-        self.view.addConstraints(NSLayoutConstraint.constraints(
-            withVisualFormat: "V:|-[navbar(60)]",
-            options: [],
-            metrics: nil, views: ["navbar":tripDetailMapPOINavigationBar]))
-
-        
+        // load poi records
+        let poiQuery = PFQuery(className: "tripsegmentpoi")
+        // poiQuery.whereKey("uuid", equalTo: PFUser.current()!.username!)
+        poiQuery.findObjectsInBackground(block: {(objects: [PFObject]?, error: Error?) in
+            if error == nil {
+                // clean up
+                self.poinameArray.removeAll(keepingCapacity: false)
+                self.poidescriptionArray.removeAll(keepingCapacity: false)
+                self.poidetailsArray.removeAll(keepingCapacity: false)
+                self.poilongitudeArray.removeAll(keepingCapacity: false)
+                self.poilatitudeArray.removeAll(keepingCapacity: false)
+                
+                // find related objects
+                for object in objects! {
+                    self.poinameArray.append(object.object(forKey: "poiname") as! String)
+                    self.poidescriptionArray.append(object.object(forKey: "poidescription") as! String)
+                    self.poidetailsArray.append(object.object(forKey: "poidetails") as! String)
+                    
+                    let point = object["location"] as! PFGeoPoint
+                    self.poilatitudeArray.append("\(point.latitude)")
+                    self.poilongitudeArray.append("\(point.longitude)")
+                }
+            } else {
+                print(error!.localizedDescription)
+            }
+            
+            self.tableView.reloadData()
+        })
 
         // Uncomment the following line to preserve selection between presentations
         self.clearsSelectionOnViewWillAppear = false
 
         // allow edit feature
-        self.navigationItem.rightBarButtonItem = self.editButtonItem
+        self.navigationItem.leftBarButtonItem = self.editButtonItem
+        
+        // delegation settings
+        tableView.delegate = self
+        tableView.dataSource = self
     }
-
-
     
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
-    }
-
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return poinameArray.count
     }
 
-    /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
+        let cell = tableView.dequeueReusableCell(withIdentifier: "tripDetailMapPOIListCell", for: indexPath) as! tripDetailMapPOIListCell
+        
+        cell.POIName.text = poinameArray[indexPath.row]
+        cell.POIName.sizeToFit()
+        cell.POIDescription.text = poidescriptionArray[indexPath.row]
+        cell.POIDescription.sizeToFit()
+        cell.LongtitudeValueLbl.text = poilongitudeArray[indexPath.row]
+        cell.LongtitudeValueLbl.sizeToFit()
+        cell.LatitudeValueLbl.text = poilatitudeArray[indexPath.row]
+        cell.LatitudeValueLbl.sizeToFit()
+        cell.POIDescriptionTxtView.text = poidetailsArray[indexPath.row]
+        cell.POIDescriptionTxtView.sizeToFit()
+        
+        // assign index
+        cell.showDescriptionBtn.layer.setValue(indexPath, forKey: "index")
+        
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 100
 
         return cell
     }
-    */
 
-    /*
-    // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         // Return false if you do not want the specified item to be editable.
         return true
     }
-    */
 
-    /*
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
@@ -104,30 +112,30 @@ class tripDetailMapPOIListVC: UITableViewController {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }    
     }
-    */
 
-    /*
     // Override to support rearranging the table view.
     override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
 
     }
-    */
-
-    /*
+ 
     // Override to support conditional rearranging of the table view.
     override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
         // Return false if you do not want the item to be re-orderable.
         return true
     }
-    */
 
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        let row = indexPath.row
+        print("\(row)")
+    }
+    */
+    
+    /*
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+
     }
     */
     
@@ -141,6 +149,23 @@ class tripDetailMapPOIListVC: UITableViewController {
     func back(sender: UIBarButtonItem) {
         //push back
         tabBarController?.selectedIndex = 0
+    }
+    
+    @IBAction func showDescriptionTapped(_ sender: AnyObject) {
+        // call index of button
+        let i = sender.layer.value(forKey: "index") as! NSIndexPath
+        
+        // call cell to call further cell data
+        let cell = tableView.cellForRow(at: i as IndexPath) as! tripDetailMapPOIListCell
+        
+        // send related data to global variables
+        descriptionuuid = cell.POIDescriptionTxtView.text!
+        
+        // go to comments. present its VC
+        
+        let destination = self.storyboard?.instantiateViewController(withIdentifier: "tripDetailMapPOIDescVC") as! tripDetailMapPOIDescVC
+        self.navigationController?.pushViewController(destination, animated: true)
+        
     }
 
 }
