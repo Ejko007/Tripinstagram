@@ -78,7 +78,7 @@ let spent_deletion_confirmation_str = "Záznam o vynaloženém nákladu byl úsp
 let trip_details = "Detaily"
 let trips_list_str = "Výlety"
 let trip_list_str = "Výlet"
-let trip_POI_str = "Body zájmu"
+let trip_POI_str = "Body"
 let standard_str = "Standard"
 let satelite_str = "Satelit"
 let hybrid_str = "Hybrid"
@@ -86,6 +86,14 @@ let annotation_str = "Anotace"
 let annotation_save_confirm_str = "Anotace byla úspěšně uložena na server do seznamu bodů zájmů. Zde ji můžete dodatečně upravit, případně smazat."
 let description_str = "Popis"
 let trip_POI_search_str = "Hledat body zájmu"
+let poi_name_str = "Název průchozího bodu"
+let poi_description_str = "Popis průchozího bodu"
+let poi_comment_str = "Komentář k průchozímu bodu"
+let latitude_str = "Latituda"
+let longitude_str = "Longituda"
+let trip_point = "Bod"
+let point_passthru_str = "Průchozí"
+let point_interest_str = "Zájmový"
 
 
 // croping picture and center it

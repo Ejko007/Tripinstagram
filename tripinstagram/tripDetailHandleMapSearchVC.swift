@@ -137,11 +137,15 @@ extension tripDetailHandleMapSearchVC: HandleMapSearch {
         let mypoint = self.mapView.annotations.last
         poiObj["poiname"] = mypoint?.title!
         poiObj["poidescription"] = mypoint?.subtitle!
+        poiObj["poitype"] = 0
         // poiObj["poidetails"] = (mypoint?.description)! as String
         poiObj["poidetails"] = descriptionuuid
         let point = PFGeoPoint(latitude: (mypoint?.coordinate.latitude)!, longitude: (mypoint?.coordinate.longitude)!)
         poiObj["location"] = point
         poiObj["uuid"] = postuuid.last!
+        let uuid = UUID().uuidString
+        poiObj["poiuuid"] = "\(PFUser.current()?.username) \(uuid)"
+
         poiObj.saveInBackground(block: { (success:Bool, error:Error?) in
             if error == nil {
                 if success {
@@ -154,7 +158,10 @@ extension tripDetailHandleMapSearchVC: HandleMapSearch {
                     self.mapView.removeAnnotation(mypoint!)
                     
                     // switch to poi list view controller
+                    self.tabBarController!.selectedIndex = 1
                     
+                    // reset everything
+                    self.viewDidLoad()
                     
                 } else {
                     print(error!.localizedDescription)

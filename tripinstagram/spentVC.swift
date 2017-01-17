@@ -24,6 +24,7 @@ class spentVC: UIViewController, UINavigationBarDelegate, UITextFieldDelegate, U
     @IBOutlet weak var spentfromLbl: UILabel!
     @IBOutlet weak var spentDescriptionTxtView: UITextView!
     
+    
     // delegating user name from other views
     var username = String()
     var spentuuid = String()
