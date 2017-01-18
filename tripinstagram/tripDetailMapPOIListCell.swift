@@ -57,7 +57,9 @@ class tripDetailMapPOIListCell: UITableViewCell {
         
         // localization of label text
         LatitudeLbl.text = latitude_str
+        LatitudeLbl.textAlignment = .center
         LongtitudeLbl.text = longitude_str
+        LongtitudeLbl.textAlignment = .center
         
         // hide description txt view
         POIDescriptionTxtView.isHidden = true

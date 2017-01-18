@@ -2092,7 +2092,7 @@
                                 <rect key="frame" x="0.0" y="72" width="375" height="78"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="3w1-yt-MMa" id="zfR-rv-WqY">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="77"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="78"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ENH-bT-YWy">
@@ -2112,7 +2112,7 @@
                                 <rect key="frame" x="0.0" y="150" width="375" height="168"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="W9k-c2-oCP" id="z1T-MS-BoW">
-                                    <rect key="frame" x="0.0" y="0.0" width="342" height="167"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="341" height="168"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Date" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Sea-PZ-5xp">
@@ -2326,7 +2326,7 @@
                                 <rect key="frame" x="0.0" y="72" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="fJB-83-R8y" id="8GK-Zf-xaS">
-                                    <rect key="frame" x="0.0" y="0.0" width="342" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="341" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ufL-O5-bTd">
@@ -2591,7 +2591,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="300"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="t9d-w9-a7a" id="FVv-5V-fri">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="299.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="300"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="POI name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="yMM-kc-liZ">
@@ -2821,15 +2821,6 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Yeb-rc-qoC">
-                                <rect key="frame" x="16" y="572" width="343" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="15"/>
-                                <state key="normal" title="Save"/>
-                                <connections>
-                                    <action selector="POISaveBtn_Clicked:" destination="NbV-2X-qMo" eventType="touchUpInside" id="fzZ-uc-ibP"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="eBp-G1-IzO" customClass="DLRadioButton">
                                 <rect key="frame" x="49" y="518" width="278" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -2862,7 +2853,6 @@
                         <outlet property="POILongitudeTxt" destination="a4P-lD-aUR" id="5aE-16-fWz"/>
                         <outlet property="POINameLbl" destination="S1c-Wg-iUD" id="eOL-Q4-H44"/>
                         <outlet property="POINameTxt" destination="NrT-Hh-HW4" id="zBJ-mB-SSx"/>
-                        <outlet property="POISaveBtn" destination="Yeb-rc-qoC" id="vQU-gr-aS9"/>
                         <outlet property="POITypeBtn" destination="eBp-G1-IzO" id="fSW-jF-TdC"/>
                     </connections>
                 </viewController>

@@ -160,8 +160,9 @@ extension tripDetailHandleMapSearchVC: HandleMapSearch {
                     // switch to poi list view controller
                     self.tabBarController!.selectedIndex = 1
                     
-                    // reset everything
-                    self.viewDidLoad()
+                    // refreshing function
+                    // send notification if we liked to refresh TableView
+                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "save"), object: nil)
                     
                 } else {
                     print(error!.localizedDescription)

@@ -8,6 +8,7 @@
 
 import UIKit
 import Parse
+import PopupDialog
 
 class tripDetailMapPOIListVC: UITableViewController {
 
@@ -22,6 +23,8 @@ class tripDetailMapPOIListVC: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(refresh), name: NSNotification.Name(rawValue: "save"), object: nil)
         
         // navigation bar title
         self.navigationItem.title = trip_POI_str.uppercased()
@@ -89,9 +92,9 @@ class tripDetailMapPOIListVC: UITableViewController {
         cell.POIDescription.text = poidescriptionArray[indexPath.row]
         cell.POIDescription.sizeToFit()
         cell.LongtitudeValueLbl.text = poilongitudeArray[indexPath.row]
-        cell.LongtitudeValueLbl.sizeToFit()
+        cell.LongtitudeValueLbl.textAlignment = .center
         cell.LatitudeValueLbl.text = poilatitudeArray[indexPath.row]
-        cell.LatitudeValueLbl.sizeToFit()
+        cell.LatitudeValueLbl.textAlignment = .center
         cell.POIDescriptionTxtView.text = poidetailsArray[indexPath.row]
         cell.POIDescriptionTxtView.sizeToFit()
         cell.POIUUID.text = poiuuidArray[indexPath.row]
@@ -154,14 +157,14 @@ class tripDetailMapPOIListVC: UITableViewController {
     }
     
     // Override to support editing the table view.
-//    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-//        if editingStyle == .delete {
-//            // Delete the row from the data source
-//            tableView.deleteRows(at: [indexPath], with: .fade)
-//        } else if editingStyle == .insert {
-//            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-//        }    
-//    }
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            // Delete the row from the data source
+            tableView.deleteRows(at: [indexPath], with: .fade)
+        } else if editingStyle == .insert {
+            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+        }    
+    }
 
     // Override to support rearranging the table view.
     override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
@@ -180,14 +183,19 @@ class tripDetailMapPOIListVC: UITableViewController {
         return CGFloat(tableView.estimatedRowHeight)
     }
     
-    /*
+
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
+        let destination = self.storyboard?.instantiateViewController(withIdentifier: "tripDetailMapPOIVC") as! tripDetailMapPOIVC
+
+        destination.isNewPOI = false
+        
         let row = indexPath.row
-        print("\(row)")
+        poiuuid.append(poiuuidArray[row])
+
+        self.navigationController?.pushViewController(destination, animated: true)       
     }
-    */
     
     /*
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -198,7 +206,9 @@ class tripDetailMapPOIListVC: UITableViewController {
     // add POI function
     func addPOI(sender: UIBarButtonItem) {
         let destination = self.storyboard?.instantiateViewController(withIdentifier: "tripDetailMapPOIVC") as! tripDetailMapPOIVC
+        destination.isNewPOI = true
         self.navigationController?.pushViewController(destination, animated: true)
+        
     }
 
     // go back function
@@ -206,6 +216,48 @@ class tripDetailMapPOIListVC: UITableViewController {
         //push back
         tabBarController?.selectedIndex = 0
     }
+    
+    // refreshing function
+    func refresh () {
+        // load poi records
+        let poiQuery = PFQuery(className: "tripsegmentpoi")
+        // poiQuery.whereKey("uuid", equalTo: PFUser.current()!.username!)
+        poiQuery.findObjectsInBackground(block: {(objects: [PFObject]?, error: Error?) in
+            if error == nil {
+                // clean up
+                self.poinameArray.removeAll(keepingCapacity: false)
+                self.poidescriptionArray.removeAll(keepingCapacity: false)
+                self.poidetailsArray.removeAll(keepingCapacity: false)
+                self.poilongitudeArray.removeAll(keepingCapacity: false)
+                self.poilatitudeArray.removeAll(keepingCapacity: false)
+                self.poiuuidArray.removeAll(keepingCapacity: false)
+                self.poitypeArray.removeAll(keepingCapacity: false)
+                
+                // find related objects
+                for object in objects! {
+                    self.poinameArray.append(object.object(forKey: "poiname") as! String)
+                    self.poidescriptionArray.append(object.object(forKey: "poidescription") as! String)
+                    self.poidetailsArray.append(object.object(forKey: "poidetails") as! String)
+                    self.poiuuidArray.append(object.object(forKey: "poiuuid") as! String)
+                    self.poitypeArray.append(object.object(forKey: "poitype") as! Int)
+                    
+                    let point = object["location"] as! PFGeoPoint
+                    self.poilatitudeArray.append("\(point.latitude)")
+                    self.poilongitudeArray.append("\(point.longitude)")
+                }
+            } else {
+                print(error!.localizedDescription)
+            }
+            
+            let okbtn = DefaultButton(title: ok_str, action: nil)
+            let complMenu = PopupDialog(title: annotation_str, message: annotation_save_confirm_str)
+            complMenu.addButtons([okbtn])
+            self.present(complMenu, animated: true, completion: nil)
+
+            self.tableView.reloadData()
+        })
+    }
+
     
     @IBAction func showDescriptionTapped(_ sender: AnyObject) {
         // call index of button
@@ -220,7 +272,6 @@ class tripDetailMapPOIListVC: UITableViewController {
         // go to POI comments. present its VC
         let destination = self.storyboard?.instantiateViewController(withIdentifier: "tripDetailMapPOIDescVC") as! tripDetailMapPOIDescVC
         self.navigationController?.pushViewController(destination, animated: true)
-        
     }
 
 }
