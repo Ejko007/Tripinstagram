@@ -10,12 +10,20 @@ import UIKit
 import MapKit
 import Parse
 
+class ColorPointAnnotation: MKPointAnnotation {
+    var pinColor: UIColor
+    var pinuuid: String
+    
+    init(pinColor:UIColor, pinuuid:String) {
+        self.pinColor = pinColor
+        self.pinuuid = pinuuid
+        super.init()
+    }
+}
 
 class tripDetailMapVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
 
     @IBOutlet weak var mapView: MKMapView!
-    @IBOutlet weak var tripDetailMapNavBar: UINavigationBar!
-    @IBOutlet weak var tripDetailMapNavItem: UINavigationItem!
     @IBOutlet weak var mapTypeControl: UISegmentedControl!
     
     var MapViewLocationManager:CLLocationManager! = CLLocationManager()
@@ -23,10 +31,11 @@ class tripDetailMapVC: UIViewController, MKMapViewDelegate, CLLocationManagerDel
     
     var tappedCoordinate = CLLocationCoordinate2D()
     var annotations = [MKPointAnnotation]()
+    var coordinates = [CLLocationCoordinate2D]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         mapView.showsUserLocation = true
         mapView.delegate = self
         MapViewLocationManager.delegate = self
@@ -34,16 +43,11 @@ class tripDetailMapVC: UIViewController, MKMapViewDelegate, CLLocationManagerDel
         mapView.setUserTrackingMode(MKUserTrackingMode.follow, animated: true)
         
         // navigation bar
-        tripDetailMapNavBar.barTintColor = UIColor(colorLiteralRed: 18.0 / 255.0, green: 86.0 / 255.0, blue: 136.0 / 255.0, alpha: 1)
-        tripDetailMapNavBar.isTranslucent = false
-        tripDetailMapNavBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]
-        tripDetailMapNavBar.backgroundColor = .white
-        tripDetailMapNavBar.tintColor = .white
-        tripDetailMapNavItem.title = trip_list_str.uppercased()
+        self.navigationItem.title = trip_list_str.uppercased()
         
         // Create left navigation item - back button
         let backBtn = UIBarButtonItem(image: UIImage(named: "back.png"), style: .plain, target: self, action: #selector(back))
-        tripDetailMapNavItem.leftBarButtonItem = backBtn
+        self.navigationItem.leftBarButtonItem = backBtn
         backBtn.tintColor = .white
         
         let width = UIScreen.main.bounds.width
@@ -51,7 +55,6 @@ class tripDetailMapVC: UIViewController, MKMapViewDelegate, CLLocationManagerDel
 
         // allow constraints
         mapView.translatesAutoresizingMaskIntoConstraints = false
-        tripDetailMapNavBar.translatesAutoresizingMaskIntoConstraints = false
         mapTypeControl.translatesAutoresizingMaskIntoConstraints = false
         
         // constraints
@@ -60,16 +63,11 @@ class tripDetailMapVC: UIViewController, MKMapViewDelegate, CLLocationManagerDel
             options: [],
             metrics: nil, views: ["mapview":mapView]))
 
-        self.view.addConstraints(NSLayoutConstraint.constraints(
-            withVisualFormat: "H:|-0-[navbar(\(width))]-|",
-            options: [],
-            metrics: nil, views: ["navbar":tripDetailMapNavBar]))
-
         let h = self.tabBarController?.tabBar.frame.height
         self.view.addConstraints(NSLayoutConstraint.constraints(
-            withVisualFormat: "V:|-[navbar(60)]-0-[mapview(\(height - (h! + 60)))]-|",
+            withVisualFormat: "V:|-0-[mapview(\(height - (h! + 60)))]-|",
             options: [],
-            metrics: nil, views: ["navbar":tripDetailMapNavBar,"mapview":mapView]))
+            metrics: nil, views: ["mapview":mapView]))
         
         self.view.addConstraints(NSLayoutConstraint.constraints(
             withVisualFormat: "H:|-50-[maptype(\(width - 100))]-50-|",
@@ -109,6 +107,7 @@ class tripDetailMapVC: UIViewController, MKMapViewDelegate, CLLocationManagerDel
     
     // pin procedure to pin location on map
     func pinLocation(sender: UILongPressGestureRecognizer) {
+        
         if sender.state != .ended {
             return
         }
@@ -121,15 +120,18 @@ class tripDetailMapVC: UIViewController, MKMapViewDelegate, CLLocationManagerDel
         tappedCoordinate = coordinate
         
         // Annotate on the map view
-        let annotation = MKPointAnnotation()
+        // let annotation = MKPointAnnotation()
+        let annotation = ColorPointAnnotation(pinColor: .green, pinuuid: "")
+        annotation.pinColor = .green
         annotation.coordinate = coordinate
         
         let point = tappedCoordinate
         annotation.coordinate = CLLocationCoordinate2DMake(point.latitude, point.longitude)
-        let title = "Hello"
+        let title = trip_point
         annotation.title = title
-        let subtitle = "Dolly"
+        let subtitle = not_specified_str
         annotation.subtitle = subtitle
+        
         mapView.addAnnotation(annotation)
 
         // Store annotation for later use
@@ -163,9 +165,15 @@ class tripDetailMapVC: UIViewController, MKMapViewDelegate, CLLocationManagerDel
         
         if annotationView == nil {
             annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+            
+            let colorPointAnnotation = annotation as! ColorPointAnnotation
+            annotationView?.pinTintColor = colorPointAnnotation.pinColor
+            
             annotationView?.canShowCallout = true
             annotationView?.isEnabled = true
             annotationView?.isDraggable = true
+        } else {
+            annotationView?.annotation = annotation
         }
         
         let leftIconView = UIImageView(frame: CGRect.init(x: 0, y: 0, width: 20, height: 20))
@@ -175,9 +183,8 @@ class tripDetailMapVC: UIViewController, MKMapViewDelegate, CLLocationManagerDel
         
         // Pin color customization
         if #available(iOS 9.0, *) {
-            annotationView?.pinTintColor = UIColor.red
+            // annotationView?.pinTintColor = colorPointAnnotation.pinColor
         }
-        
         return annotationView
     }
     
@@ -198,6 +205,16 @@ class tripDetailMapVC: UIViewController, MKMapViewDelegate, CLLocationManagerDel
     }
     
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+        
+        let destination = self.storyboard?.instantiateViewController(withIdentifier: "tripDetailMapPOI4MapVC") as! tripDetailMapPOI4MapVC
+        
+        destination.isNewPOI = false
+        
+        poiuuid.removeAll(keepingCapacity: false)
+        let poiannotation = view.annotation as! ColorPointAnnotation
+        poiuuid.append(poiannotation.pinuuid)
+
+        self.navigationController?.pushViewController(destination, animated: true)
         
         print("annotation tapped....")
     }
@@ -225,16 +242,97 @@ class tripDetailMapVC: UIViewController, MKMapViewDelegate, CLLocationManagerDel
         
     }
     
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    // display geopoint from the server
+    override func viewDidAppear(_ animated: Bool) {
+        var annotationColor = UIColor()
+        
+        let annotationQuery = PFQuery(className: "tripsegmentpoi")
+        annotationQuery.whereKey("uuid", equalTo: postuuid.last!)
+        annotationQuery.findObjectsInBackground(block: { (locations: [PFObject]?, locationsError: Error?) in
+            if locationsError == nil {
+                print("Successful query for annotations")
+                
+                let myLocations = locations! as [PFObject]
+                
+                // clean up
+                self.annotations.removeAll(keepingCapacity: false)
+                
+                for location in myLocations {
+                    let point = location["location"] as! PFGeoPoint
+                    // let annotation = MKPointAnnotation()
+                    let poitype = location["poitype"] as! Int
+                    if poitype == 0 {
+                       annotationColor = UIColor(colorLiteralRed: 0.00, green: 0.580, blue: 0.969, alpha: 1.00)
+                    } else {
+                        annotationColor = UIColor(colorLiteralRed: 1.00, green: 0.361, blue: 0.145, alpha: 1.00)
+                    }
+                    let poiuuid = location["poiuuid"] as! String
+                    let annotation = ColorPointAnnotation(pinColor: annotationColor, pinuuid: poiuuid)
+                    annotation.coordinate = CLLocationCoordinate2DMake(point.latitude, point.longitude)
+                    let title = location["poiname"] as! String
+                    annotation.title = title
+                    let subtitle = location["poidescription"] as! String
+                    annotation.subtitle = subtitle
+                    //let description = location["poidetails"] as! String
+                    //annotation.description = mydescription
+                    
+                    self.annotations.append(annotation)
+                    self.mapView.addAnnotation(annotation)
+                }
+                
+                self.mapView.removeOverlays(self.mapView.overlays)
+                for myannotation in self.annotations {
+                    self.coordinates.append(myannotation.coordinate)
+                }
+                
+                let polyline = MKPolyline(coordinates: &self.coordinates, count: self.coordinates.count)
+                let visibleMapRect = self.mapView.mapRectThatFits(polyline.boundingMapRect, edgePadding: UIEdgeInsets(top: 50, left: 50, bottom: 50, right: 50))
+                self.mapView.setRegion(MKCoordinateRegionForMapRect(visibleMapRect), animated: true)
+                
+                var index = 0
+                while index < self.annotations.count - 1 {
+                    self.drawDirection(self.annotations[index].coordinate, endPoint: self.annotations[index + 1].coordinate)
+                    index += 1
+                }
+                
+            } else {
+                print(locationsError!.localizedDescription)
+            }
+        })
     }
-    */
+    
+    // drawing route in details
+    func drawDirection(_ startPoint: CLLocationCoordinate2D, endPoint: CLLocationCoordinate2D) {
+        
+        // Create map items from coordinate
+        let startPlacemark = MKPlacemark(coordinate: startPoint, addressDictionary: nil)
+        let endPlacemark = MKPlacemark(coordinate: endPoint, addressDictionary: nil)
+        let startMapItem = MKMapItem(placemark: startPlacemark)
+        let endMapItem = MKMapItem(placemark: endPlacemark)
+        
+        // Set the source and destination of the route
+        let directionRequest = MKDirectionsRequest()
+        directionRequest.source = startMapItem
+        directionRequest.destination = endMapItem
+        directionRequest.transportType = MKDirectionsTransportType.automobile
+        
+        // Calculate the direction
+        let directions = MKDirections(request: directionRequest)
+        
+        directions.calculate { (routeResponse, routeError) -> Void in
+            
+            guard let routeResponse = routeResponse else {
+                if let routeError = routeError {
+                    print("Error: \(routeError)")
+                }
+                
+                return
+            }
+            
+            let route = routeResponse.routes[0]
+            self.mapView.add(route.polyline, level: MKOverlayLevel.aboveRoads)
+        }
+    }
+
 
 }

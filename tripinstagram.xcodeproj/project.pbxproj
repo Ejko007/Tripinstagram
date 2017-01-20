@@ -91,6 +91,7 @@
 		0AD7A8941DC4E23B001CDDC5 /* helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD7A8931DC4E23B001CDDC5 /* helper.swift */; };
 		0AD7A8961DCA06BB001CDDC5 /* CosmosDistrib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD7A8951DCA06BB001CDDC5 /* CosmosDistrib.swift */; };
 		0ADD41E31DBF767E0026B118 /* hashtagsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADD41E21DBF767E0026B118 /* hashtagsVC.swift */; };
+		0AE0B0241E3154B50035EDDC /* tripDetailMapPOI4MapVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE0B0231E3154B50035EDDC /* tripDetailMapPOI4MapVC.swift */; };
 		0AE71F511E2CE3B500A5D2E9 /* tripDetailMapPOIVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE71F501E2CE3B500A5D2E9 /* tripDetailMapPOIVC.swift */; };
 		256CF4F329E424012BAFD3D1 /* Pods_tripinstagram.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 503628F8173689C10C0623D9 /* Pods_tripinstagram.framework */; };
 /* End PBXBuildFile section */
@@ -192,6 +193,7 @@
 		0AD7A8931DC4E23B001CDDC5 /* helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = helper.swift; sourceTree = "<group>"; };
 		0AD7A8951DCA06BB001CDDC5 /* CosmosDistrib.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CosmosDistrib.swift; sourceTree = "<group>"; };
 		0ADD41E21DBF767E0026B118 /* hashtagsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = hashtagsVC.swift; sourceTree = "<group>"; };
+		0AE0B0231E3154B50035EDDC /* tripDetailMapPOI4MapVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = tripDetailMapPOI4MapVC.swift; sourceTree = "<group>"; };
 		0AE71F501E2CE3B500A5D2E9 /* tripDetailMapPOIVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = tripDetailMapPOIVC.swift; sourceTree = "<group>"; };
 		503628F8173689C10C0623D9 /* Pods_tripinstagram.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_tripinstagram.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C89B57B659938BAFDAFB6F16 /* Pods-tripinstagram.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-tripinstagram.release.xcconfig"; path = "Pods/Target Support Files/Pods-tripinstagram/Pods-tripinstagram.release.xcconfig"; sourceTree = "<group>"; };
@@ -307,6 +309,7 @@
 				0A8677B71E04115B00A44177 /* tripMapVC.swift */,
 				0A5BCD171E22421500903D87 /* tripDetailMapVC.swift */,
 				0AE71F501E2CE3B500A5D2E9 /* tripDetailMapPOIVC.swift */,
+				0AE0B0231E3154B50035EDDC /* tripDetailMapPOI4MapVC.swift */,
 				0A97C5AB1E26A67B00F40048 /* tripDetailMapPOIListVC.swift */,
 				0A97C5AD1E26C4DA00F40048 /* tripDetailMapPOIListCell.swift */,
 				0A4170BC1E2A368E00AB473F /* tripDetailMapPOIDescVC.swift */,
@@ -557,6 +560,7 @@
 				0A1E9D5B1DBBE2FC00080209 /* navVC.swift in Sources */,
 				0A97C5AA1E23C7CF00F40048 /* tabbartripDetailMap.swift in Sources */,
 				0A9827A11DE318C9008C6C0C /* GLCalendarDayCellBackgroundCover.m in Sources */,
+				0AE0B0241E3154B50035EDDC /* tripDetailMapPOI4MapVC.swift in Sources */,
 				0A1D9F4C1DBA4BD90002BAD1 /* postCell.swift in Sources */,
 				0A1E9D611DBC8BDC00080209 /* commentCell.swift in Sources */,
 				0AB078271E1D37F2003CA409 /* PBRevealViewController.m in Sources */,

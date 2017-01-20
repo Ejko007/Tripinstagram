@@ -52,7 +52,7 @@ class tripDetailMapPOIListCell: UITableViewCell {
         // configure backgroud color of POI name
         POIName.backgroundColor = UIColor(red: 74 / 255, green: 144 / 255, blue: 226 / 255, alpha: 30 / 100)
         POIName.tintColor = .black
-        POIName.drawText(in: CGRect(x: 5, y: 20, width: width - 20, height: 20))
+        //POIName.drawText(in: CGRect(x: 5, y: 20, width: width - 20, height: 20))
         
         
         // localization of label text

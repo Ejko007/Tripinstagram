@@ -59,6 +59,12 @@ class spentVC: UIViewController, UINavigationBarDelegate, UITextFieldDelegate, U
         self.view.isUserInteractionEnabled = true
         self.view.addGestureRecognizer(hideTap)
         
+        // hide datepicker tap
+        let hideDatePicker = UITapGestureRecognizer(target: self, action: #selector(spentVC.tapFunction))
+        spentDateLbl.isUserInteractionEnabled = true
+        spentDateLbl.addGestureRecognizer(hideDatePicker)
+
+        
         // navigation bar
         self.spentNavigationBar.frame = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 75)
         self.spentNavigationBar.barTintColor = UIColor(colorLiteralRed: 18.0 / 255.0, green: 86.0 / 255.0, blue: 136.0 / 255.0, alpha: 1)
@@ -232,6 +238,7 @@ class spentVC: UIViewController, UINavigationBarDelegate, UITextFieldDelegate, U
         // date picker hide or show
         spentDatePicker.isUserInteractionEnabled = isOwner
         spentDatePicker.isHidden = !isOwner
+        spentDatePicker.isHidden = true
         
         getSpents()
     }
@@ -260,7 +267,7 @@ class spentVC: UIViewController, UINavigationBarDelegate, UITextFieldDelegate, U
         dateformatter.dateFormat = "dd.MM.yyy"
         spentfromLbl.text = dateformatter.string(from: spentDatePicker.date)
     }
-        
+    
     // initrializing radiobuttons
     private func createRadioButton(frame : CGRect, title : String, color : UIColor) -> DLRadioButton {
         let radioButton = DLRadioButton(frame: frame)
@@ -309,6 +316,7 @@ class spentVC: UIViewController, UINavigationBarDelegate, UITextFieldDelegate, U
     
     // hide keyboard func
     func hideKeyboardTap () {
+        spentDatePicker.isHidden = true
         self.view.endEditing(true)
     }
     
@@ -395,6 +403,11 @@ class spentVC: UIViewController, UINavigationBarDelegate, UITextFieldDelegate, U
         } else {
             placeholderLbl.isHidden = false
         }
+    }
+    
+    func tapFunction(sender:UITapGestureRecognizer) {
+        spentDatePicker.isHidden = !spentDatePicker.isHidden
+        self.view.endEditing(true)
     }
 
 }

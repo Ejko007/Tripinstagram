@@ -1,5 +1,5 @@
 //
-//  tripDetailMapPOIVC.swift
+//  tripDetailMapPOI4MapVC.swift
 //  tripinstagram
 //
 //  Created by Pavol Polacek on 05/01/2016.
@@ -10,19 +10,7 @@ import UIKit
 import Parse
 import PopupDialog
 
-var poiuuid = [String]()
-
-extension UIViewController {
-    func performSegueToReturnBack() {
-        if let nav = self.navigationController {
-            nav.popViewController(animated: true)
-        } else {
-            self.dismiss(animated: true, completion: nil)
-        }
-    }
-}
-
-class tripDetailMapPOIVC: UIViewController {
+class tripDetailMapPOI4MapVC: UIViewController, UINavigationBarDelegate, UITabBarDelegate {
 
     @IBOutlet weak var POINameLbl: UILabel!
     @IBOutlet weak var POINameTxt: UITextField!
@@ -45,6 +33,7 @@ class tripDetailMapPOIVC: UIViewController {
     // size of screen
     let width = UIScreen.main.bounds.width
     let height = UIScreen.main.bounds.height
+    var navBarHeight = CGFloat()
     
     var isOwner = true
     
@@ -54,12 +43,24 @@ class tripDetailMapPOIVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        if PFUser.current()?.username!.lowercased() == username.lowercased() {
-//            isOwner = true
-//        }
+        // navigation bar title
+        self.navigationItem.title = trip_point.uppercased()
         
         // hide uuid stored in uuid label
         POIuuidLbl.isHidden = true
+        
+        // Create left and right button for navigation item
+        // new back button
+        if !isNewPOI {
+            let backBtn = UIBarButtonItem(image: UIImage(named: "back.png"), style: .plain, target: self, action: #selector(back))
+            self.navigationItem.leftBarButtonItem = backBtn
+            backBtn.tintColor = .white
+        }
+        
+        // add save button to the right
+        let saveBtn = UIBarButtonItem(image: UIImage(named: "accept.png"), style: .plain, target: self, action: #selector(POISaveBtn_Clicked))
+        self.navigationItem.rightBarButtonItem = saveBtn
+        saveBtn.tintColor = .white
         
         // check notification of keyboard - to show or not
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: .UIKeyboardWillShow, object: nil)
@@ -122,15 +123,7 @@ class tripDetailMapPOIVC: UIViewController {
                 }
             })
         }
-
-        // navigation bar title
-        self.navigationItem.title = trip_point.uppercased()
         
-        // add save button to the right
-        let saveBtn = UIBarButtonItem(image: UIImage(named: "accept.png"), style: .plain, target: self, action: #selector(POISaveBtn_Clicked))
-        navigationItem.rightBarButtonItem = saveBtn
-        saveBtn.tintColor = .white
-
         // set textview parameters
         POICommentTxtView.backgroundColor = UIColor(colorLiteralRed: 242.0 / 255, green: 242.0 / 255, blue: 242.0 / 255, alpha: 1)
         POICommentTxtView.layer.cornerRadius = 5.0
@@ -163,6 +156,7 @@ class tripDetailMapPOIVC: UIViewController {
 
         // add constraints programaticaly
         scrollView.frame = CGRect(x: 0, y: 0, width: width, height: height)
+        
         addConstraints()
         
         // initialize poiview background color
@@ -184,6 +178,7 @@ class tripDetailMapPOIVC: UIViewController {
         POITypeBtn.translatesAutoresizingMaskIntoConstraints = false
         POILatLongFrameView.translatesAutoresizingMaskIntoConstraints = false
         
+
         self.view.addConstraints(NSLayoutConstraint.constraints(
             withVisualFormat: "H:|-10-[poinamelbl(\(width - 20))]-10-|",
             options: [],
@@ -346,8 +341,15 @@ class tripDetailMapPOIVC: UIViewController {
     func hideKeyboard () {
         self.view.endEditing(true)
     }
+    
+    // go back function
+    func back(sender: UIBarButtonItem) {
+        //push back
+        self.performSegueToReturnBack()
+        //self.dismiss(animated: true, completion: nil)
+    }
 
-    // get data from selected spent from the spents list
+    // get data from selected POI from the POIs list
     func getPOIType() {
         
         if pointtype == 0 {

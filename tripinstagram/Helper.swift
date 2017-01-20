@@ -75,7 +75,7 @@ let amount_str = "Částka:"
 let spent_name_placehoder_str = "Specifikujte název pro výdej..."
 let deletion_spent_description = "Pokud zvolíte 'Smazat', smaže se uvedený záznam o nákladu."
 let spent_deletion_confirmation_str = "Záznam o vynaloženém nákladu byl úspěšně smazán ze serveru."
-let trip_details = "Detaily"
+let trip_details = "Výlety"
 let trips_list_str = "Výlety"
 let trip_list_str = "Výlet"
 let trip_POI_str = "Body"
@@ -94,7 +94,7 @@ let longitude_str = "Longituda"
 let trip_point = "Bod"
 let point_passthru_str = "Průchozí"
 let point_interest_str = "Zájmový"
-
+let not_specified_str = "Nespecifikovaný"
 
 // croping picture and center it
 func cropToBounds(_ image: UIImage, width: Double, height: Double) -> UIImage {
