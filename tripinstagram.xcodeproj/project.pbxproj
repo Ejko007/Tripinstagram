@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 48;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -25,9 +25,9 @@
 		0A32E22E1DE49667006DC92E /* TimeFrameVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A32E22D1DE49667006DC92E /* TimeFrameVC.swift */; };
 		0A3B76F81DE1C96900A60659 /* RatingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3B76F61DE1C96900A60659 /* RatingViewController.swift */; };
 		0A3B76F91DE1C96900A60659 /* RatingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A3B76F71DE1C96900A60659 /* RatingViewController.xib */; };
+		0A3EFBFC1E33507300C21FDB /* SplashVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3EFBFB1E33507300C21FDB /* SplashVC.swift */; };
 		0A413D271E13EEA10090B78B /* DatePickerDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A413D261E13EEA10090B78B /* DatePickerDialog.swift */; };
 		0A4170BD1E2A368E00AB473F /* tripDetailMapPOIDescVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4170BC1E2A368E00AB473F /* tripDetailMapPOIDescVC.swift */; };
-		0A41AC411E07218900C3EE0C /* splashVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A41AC401E07218900C3EE0C /* splashVC.swift */; };
 		0A430BD31E0C2A3B00D4BF6B /* spentHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A430BD21E0C2A3B00D4BF6B /* spentHeaderCell.swift */; };
 		0A45DE4F1E18218100F3D47B /* tripsListHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A45DE4E1E18218100F3D47B /* tripsListHeaderCell.swift */; };
 		0A45DE511E18296300F3D47B /* tripsListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A45DE501E18296300F3D47B /* tripsListCell.swift */; };
@@ -117,9 +117,9 @@
 		0A32E22D1DE49667006DC92E /* TimeFrameVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeFrameVC.swift; sourceTree = "<group>"; };
 		0A3B76F61DE1C96900A60659 /* RatingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RatingViewController.swift; sourceTree = "<group>"; };
 		0A3B76F71DE1C96900A60659 /* RatingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RatingViewController.xib; sourceTree = "<group>"; };
+		0A3EFBFB1E33507300C21FDB /* SplashVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashVC.swift; sourceTree = "<group>"; };
 		0A413D261E13EEA10090B78B /* DatePickerDialog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DatePickerDialog.swift; path = /Users/ejko/Desktop/XCode10/tripinstagram/tripinstagram/DatePickerDialog.swift; sourceTree = "<absolute>"; };
 		0A4170BC1E2A368E00AB473F /* tripDetailMapPOIDescVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = tripDetailMapPOIDescVC.swift; sourceTree = "<group>"; };
-		0A41AC401E07218900C3EE0C /* splashVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = splashVC.swift; sourceTree = "<group>"; };
 		0A430BD21E0C2A3B00D4BF6B /* spentHeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = spentHeaderCell.swift; sourceTree = "<group>"; };
 		0A45DE4E1E18218100F3D47B /* tripsListHeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = tripsListHeaderCell.swift; sourceTree = "<group>"; };
 		0A45DE501E18296300F3D47B /* tripsListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = tripsListCell.swift; sourceTree = "<group>"; };
@@ -291,7 +291,6 @@
 				0A1D9F4B1DBA4BD90002BAD1 /* postCell.swift */,
 				0A1D9F491DBA4BA50002BAD1 /* postVC.swift */,
 				0A86266E1DB2A5DC0001C1EE /* homeVC.swift */,
-				0A41AC401E07218900C3EE0C /* splashVC.swift */,
 				0A1E9D5A1DBBE2FC00080209 /* navVC.swift */,
 				0A1E9D5C1DBBE33B00080209 /* tabbarVC.swift */,
 				0A97C5A91E23C7CF00F40048 /* tabbartripDetailMap.swift */,
@@ -329,6 +328,7 @@
 				0A32E22D1DE49667006DC92E /* TimeFrameVC.swift */,
 				0A86263A1DB0BDE30001C1EE /* Assets.xcassets */,
 				0A86263C1DB0BDE30001C1EE /* LaunchScreen.storyboard */,
+				0A3EFBFB1E33507300C21FDB /* SplashVC.swift */,
 				0A86263F1DB0BDE30001C1EE /* Info.plist */,
 				0A8626681DB285430001C1EE /* Pacifico.ttf */,
 			);
@@ -462,7 +462,7 @@
 				};
 			};
 			buildConfigurationList = 0A86262B1DB0BDE30001C1EE /* Build configuration list for PBXProject "tripinstagram" */;
-			compatibilityVersion = "Xcode 3.2";
+			compatibilityVersion = "Xcode 8.0";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -567,7 +567,6 @@
 				0A55339B1E1AA8A60013CCF1 /* menuListVC.swift in Sources */,
 				0A5314621DC2339800604F69 /* usersVC.swift in Sources */,
 				0A45DE4F1E18218100F3D47B /* tripsListHeaderCell.swift in Sources */,
-				0A41AC411E07218900C3EE0C /* splashVC.swift in Sources */,
 				0A98279F1DE318C9008C6C0C /* GLCalendarDayCell.m in Sources */,
 				0A50EAB41E2800FA0080ACCB /* tripDetailHandleMapSearchVC.swift in Sources */,
 				0AD7A8921DC4B577001CDDC5 /* newsCell.swift in Sources */,
@@ -596,6 +595,7 @@
 				0A3B76F81DE1C96900A60659 /* RatingViewController.swift in Sources */,
 				0A32E22E1DE49667006DC92E /* TimeFrameVC.swift in Sources */,
 				0A8626341DB0BDE30001C1EE /* AppDelegate.swift in Sources */,
+				0A3EFBFC1E33507300C21FDB /* SplashVC.swift in Sources */,
 				0A81F2A81DCE18380073063D /* rateCell.swift in Sources */,
 				0A8626631DB0DA350001C1EE /* resetPasswordVC.swift in Sources */,
 				0A4170BD1E2A368E00AB473F /* tripDetailMapPOIDescVC.swift in Sources */,
