@@ -57,13 +57,6 @@ class postCell: UITableViewCell {
          
         // clear like title button color
         likeBtn.setTitleColor(UIColor.clear, for: .normal)
-        
-        // double tap to like
-//        let likeTap = UITapGestureRecognizer(target: self, action: #selector(likeTapped))
-//        likeTap.numberOfTapsRequired = 2
-//        picImg.isUserInteractionEnabled = true
-//        picImg.addGestureRecognizer(likeTap)
-        
 
         // enable second tap to zoom picture
         let zoomTap = UITapGestureRecognizer(target: self, action: #selector(zoomImg))
@@ -496,57 +489,6 @@ class postCell: UITableViewCell {
                 self.mainContentView.layer.shadowOffset = CGSize.zero
                 self.mainContentView.layer.shadowRadius = 10
 
-            })
-        }
-    }
-    
-    // double tap to like
-    func likeTapped() {
-        
-        // create large like gray heart
-        let likePic = UIImageView(image: UIImage(named: "unlike.png"))
-        likePic.frame.size.width = picImg.frame.size.width / 1.5
-        likePic.frame.size.height = picImg.frame.size.width / 1.5
-        likePic.center = picImg.center
-        likePic.alpha = 0.8
-        self.addSubview(likePic)
-        
-        // hide likePic with animation and transform to be smaller
-        UIView.animate(withDuration: 0.4) { 
-            likePic.alpha = 0
-            likePic.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
-        }
-        
-        // declare title of button
-        let title = likeBtn.title(for: .normal)
-        
-        if title == "unlike" {
-            let object = PFObject(className: "likes")
-            object["by"] = PFUser.current()?.username!
-            object["to"] = uuidLbl.text
-            object.saveInBackground(block: { (success: Bool, error: Error?) in
-                if success {
-                    
-                    self.likeBtn.setTitle("like", for: UIControlState.normal)
-                    self.likeBtn.setBackgroundImage(UIImage(named: "like.png"), for: UIControlState.normal)
-                    
-                    // send notification if we liked to refresh TableView
-                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "liked"), object: nil)
-                    
-                    // send notification as like
-                    if self.usernameBtn.titleLabel?.text != PFUser.current()?.username {
-                        let newsObj = PFObject(className: "news")
-                        newsObj["by"] = PFUser.current()?.username
-                        newsObj["gender"] = PFUser.current()?.object(forKey: "gender") as! String
-                        newsObj["ava"] = PFUser.current()?.object(forKey: "ava") as! PFFile
-                        newsObj["to"] = self.usernameBtn.titleLabel!.text
-                        newsObj["owner"] = self.usernameBtn.titleLabel!.text
-                        newsObj["uuid"] = self.uuidLbl.text
-                        newsObj["type"] = "like"
-                        newsObj["checked"] = "no"
-                        newsObj.saveEventually()
-                    }
-                }
             })
         }
     }

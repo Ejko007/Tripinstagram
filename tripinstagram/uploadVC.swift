@@ -24,9 +24,10 @@ class uploadVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
     @IBOutlet weak var selectDateBtn: UIButton!
     @IBOutlet weak var personsNrImg: UIImageView!
     @IBOutlet weak var personsNr: UILabel!
-    @IBOutlet weak var spentsImg: UIImageView!
-    @IBOutlet weak var totalSpentsLbl: UILabel!
-    @IBOutlet weak var currencyLbl: UILabel!
+    @IBOutlet weak var personsNrStepper: UIStepper!
+    
+    //let pictureWidth = width - 20
+    let pictureWidth = UIScreen.main.bounds.width / 2
     
     override func viewDidLoad() {
         
@@ -69,14 +70,12 @@ class uploadVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
         dateToLbl.text = dateformatter.string(from: endDate!)
         
         // set default number of persons
-        personsNr.text = "\(2)"
-        
-        // set default total of spents
-        totalSpentsLbl.text = "0.00"
-        
-        // set default currency symbol
-        currencyLbl.text = "CZK"
-        
+        personsNrStepper.wraps = true
+        personsNrStepper.autorepeat = true
+        personsNrStepper.maximumValue = 99
+        personsNrStepper.value = 1
+        personsNrStepper.stepValue = 1
+        personsNr.text = Int(personsNrStepper.value).description
     }
     
    
@@ -105,11 +104,11 @@ class uploadVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
     func zoomImg () {
         
         // define frame of zoomed image
-        let zoomed = CGRect(x: 0, y: self.view.center.y - self.view.center.x - self.tabBarController!.tabBar.frame.size.height * 1.5, width: self.view.frame.size.width, height: self.view.frame.size.width)
+        let zoomed = CGRect(x: 0, y: tripNameTxt.frame.size.height + 30, width: self.view.frame.size.width, height: self.view.frame.size.width)
         
         // frame of unzoomed (small) image
         //let unzoomed = CGRect(x: 15, y: 15, width: width / 4.5, height: width / 4.5)
-        let unzoomed = CGRect(x: 15, y: self.tripNameTxt.frame.size.height + 30, width: 106, height: 106)
+        let unzoomed = CGRect(x: 15, y: tripNameTxt.frame.size.height + 30, width: pictureWidth, height: pictureWidth)
       
         // id picture is unzoomed, zoom it
         if pcImg.frame == unzoomed {
@@ -123,13 +122,11 @@ class uploadVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
                 self.titleTxt.alpha = 0
                 self.saveBtn.alpha = 0
                 self.tripNameTxt.alpha = 0
-                self.currencyLbl.alpha = 0
                 self.personsNr.alpha = 0
                 self.personsNrImg.alpha = 0
-                self.totalSpentsLbl.alpha = 0
-                self.spentsImg.alpha = 0
                 self.dateFromLbl.alpha = 0
                 self.dateToLbl.alpha = 0
+                self.personsNrStepper.alpha = 0
                 self.selectDateBtn.isHidden = true
                
                 // hide remove button
@@ -147,13 +144,11 @@ class uploadVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
                 self.titleTxt.alpha = 1
                 self.saveBtn.alpha = 1
                 self.tripNameTxt.alpha = 1
-                self.currencyLbl.alpha = 1
                 self.personsNr.alpha = 1
                 self.personsNrImg.alpha = 1
-                self.totalSpentsLbl.alpha = 1
-                self.spentsImg.alpha = 1
                 self.dateFromLbl.alpha = 1
                 self.dateToLbl.alpha = 1
+                self.personsNrStepper.alpha = 1
                 self.selectDateBtn.isHidden = false
                 
                 self.removeBtn.isHidden = false
@@ -170,38 +165,25 @@ class uploadVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
         
         tripNameTxt.frame = CGRect(x: 15, y: 15, width: width - 30, height: 20)
         
-        pcImg.frame = CGRect(x: 15, y: tripNameTxt.frame.size.height + 30, width: width / 3, height: width / 3)
+        pcImg.frame = CGRect(x: 15, y: tripNameTxt.frame.size.height + 30, width: pictureWidth, height: pictureWidth)
         
         titleTxt.frame = CGRect(x: 15, y: 80 + pcImg.frame.size.height, width:
             width - 30, height: pcImg.frame.size.height)
         
-        dateFromLbl.frame = CGRect(x: 30 + width / 3, y: tripNameTxt.frame.size.height + 30, width:
+        dateFromLbl.frame = CGRect(x: 30 + pictureWidth, y: tripNameTxt.frame.size.height + 30, width:
             70, height: 15)
         
-        selectDateBtn.frame = CGRect(x: 30 + width / 3, y: dateFromLbl.frame.origin.y + 20, width: 30, height: 30)
+        selectDateBtn.frame = CGRect(x: 30 + pictureWidth, y: dateFromLbl.frame.origin.y + 20, width: 30, height: 30)
         
-        dateToLbl.frame = CGRect(x: 30 + width / 3, y: selectDateBtn.frame.origin.y + 35, width:
+        dateToLbl.frame = CGRect(x: 30 + pictureWidth, y: selectDateBtn.frame.origin.y + 35, width:
             70, height: 15)
         
-        personsNrImg.frame = CGRect(x: width - 50, y: tripNameTxt.frame.size.height + 30, width: 25, height: 25)
+        personsNrImg.frame = CGRect(x: 30 + pictureWidth, y: tripNameTxt.frame.size.height + 35 + pictureWidth / 2, width: 25, height: 25)
         
-        personsNr.frame = CGRect(x: width - 50, y: personsNrImg.frame.origin.y + 25, width: 30, height: 30)
+        personsNr.frame = CGRect(x: 80 + pictureWidth, y: tripNameTxt.frame.size.height + 35 + pictureWidth / 2, width: 30, height: 30)
         
-        totalSpentsLbl.frame = CGRect(x: 30 + width / 3, y: tripNameTxt.frame.size.height + pcImg.frame.height + 5, width: width - 80 - pcImg.frame.width, height: 25)
+        personsNrStepper.frame = CGRect(x: 30 + pictureWidth, y: personsNrImg.frame.origin.y + 45, width: 20, height: 20)
         
-        spentsImg.frame = CGRect(x: width - 50, y: totalSpentsLbl.frame.origin.y - 30, width: 25, height: 25)
-        
-        
-        totalSpentsLbl.layer.backgroundColor  = UIColor.lightText.cgColor
-        totalSpentsLbl.layer.cornerRadius = 5
-        totalSpentsLbl.layer.borderColor = UIColor.darkGray.cgColor
-        totalSpentsLbl.layer.borderWidth = 1.0
-        let lablTextRact = CGRect(x: totalSpentsLbl.frame.origin.x + 1, y: totalSpentsLbl.frame.origin.y + 1, width: totalSpentsLbl.frame.width - 10, height: totalSpentsLbl.frame.height - 1)
-        totalSpentsLbl.textAlignment = .center
-        totalSpentsLbl.drawText(in: lablTextRact)
-
-        
-        currencyLbl.frame = CGRect(x: totalSpentsLbl.frame.origin.x + totalSpentsLbl.frame.width + 5, y: totalSpentsLbl.frame.origin.y, width: 25, height: 25)
         
         saveBtn.frame = CGRect(x: 0, y: height / 1.09, width: width, height: width / 8)
         
@@ -263,9 +245,11 @@ class uploadVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
         object["tripName"] = tripNameTxt.text
         object["gender"] = PFUser.current()?.value(forKey: "gender") as! String
         object["isPublished"] = false
+        object["level"] = 0
+        object["totalDistance"] = 0
         object["publishedAt"] = date
-        object["currencyCode"] = currencyLbl.text
-        object["totalSpents"] =  Double(totalSpentsLbl.text!)
+        object["currencyCode"] = "CZK"
+        object["totalSpents"] =  Double("0.00")
         object["personsNr"] =  Int(personsNr.text!)
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd.MM.yyy"
@@ -372,6 +356,14 @@ class uploadVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
         
     }
 
+    // modify personsNr label text according to stepper status
+    @IBAction func personNrStepper_clicked(_ sender: UIStepper) {
+        let step = Int(sender.value)
+        if step >= 1 && step <= 99 {
+            personsNr.text = Int(sender.value).description
+        }
+    }
+    
     
     @IBAction func selectDateBtn_clicked(_ sender: Any) {
     

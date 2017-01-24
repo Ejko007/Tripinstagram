@@ -13,6 +13,7 @@ class uploadEditVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
 
     var startDate:Date?
     var endDate:Date?
+    var removePicture:Bool = false
     
     // arrays to hold information from server
     var dateFromArray = [Date?]()
@@ -34,10 +35,11 @@ class uploadEditVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
     @IBOutlet weak var selectDateBtn: UIButton!
     @IBOutlet weak var personsNrImg: UIImageView!
     @IBOutlet weak var personsNr: UILabel!
-    @IBOutlet weak var spentsImg: UIImageView!
-    @IBOutlet weak var totalSpentsLbl: UILabel!
-    @IBOutlet weak var currencyLbl: UILabel!
+    @IBOutlet weak var personsNrStepper: UIStepper!
     
+    //let pictureWidth = width - 20
+    let pictureWidth = UIScreen.main.bounds.width / 2
+
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -47,10 +49,18 @@ class uploadEditVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
         
         // create accept icon to save post
         let acceptBtn = UIBarButtonItem(image: UIImage(named: "accept.png"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(saveBtn_clicked))
-        navigationItem.rightBarButtonItem = acceptBtn
-        
-        // hide remove button
-        removeBtn.isHidden = false
+        if !removePicture {
+            navigationItem.rightBarButtonItem = acceptBtn
+            // show remove button
+            removeBtn.isHidden = false
+        } else {
+            navigationItem.rightBarButtonItem = nil
+            // hide remove button
+            removeBtn.isHidden = true
+            // standard UI containt
+            pcImg.image = UIImage(named: "pbg.png")
+            titleTxt.text = ""
+        }
         
         // hide keyboard tap
         let hideTap = UITapGestureRecognizer(target: self, action: #selector(hideKeyboardTap))
@@ -94,7 +104,11 @@ class uploadEditVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
                 // place post picture
                 self.picArray.last?.getDataInBackground(block: { (data: Data?, error: Error?) in
                     if error == nil {
-                        self.pcImg.image = UIImage(data: data!)
+                        if self.removePicture {
+                            self.pcImg.image = UIImage(named: "pbg.png")
+                        } else {
+                            self.pcImg.image = UIImage(data: data!)
+                        }
                     } else {
                         print (error!.localizedDescription)
                     }
@@ -103,7 +117,6 @@ class uploadEditVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
                 self.tripNameTxt.text = self.tripNameArray.last
                 self.titleTxt.text = self.titleTxtArray.last
                 self.personsNr.text = "\(self.personsNrArray.last!)"
-                self.currencyLbl.text = self.currencyArray.last
                 
                 let dateformatter = DateFormatter()
                 dateformatter.dateFormat = "dd.MM.yyy"
@@ -145,12 +158,12 @@ class uploadEditVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
     func zoomImg () {
         
         // define frame of zoomed image
-        let zoomed = CGRect(x: 0, y: self.view.center.y - self.view.center.x - self.tabBarController!.tabBar.frame.size.height * 1.5, width: self.view.frame.size.width, height: self.view.frame.size.width)
+        let zoomed = CGRect(x: 0, y: tripNameTxt.frame.size.height + 30, width: self.view.frame.size.width, height: self.view.frame.size.width)
         
         // frame of unzoomed (small) image
         //let unzoomed = CGRect(x: 15, y: 15, width: width / 4.5, height: width / 4.5)
-        let unzoomed = CGRect(x: 15, y: self.tripNameTxt.frame.size.height + 30, width: 106, height: 106)
-
+        let unzoomed = CGRect(x: 15, y: tripNameTxt.frame.size.height + 30, width: pictureWidth, height: pictureWidth)
+        
         // id picture is unzoomed, zoom it
         if pcImg.frame == unzoomed {
             
@@ -162,13 +175,11 @@ class uploadEditVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
                 self.view.backgroundColor = .black
                 self.titleTxt.alpha = 0
                 self.tripNameTxt.alpha = 0
-                self.currencyLbl.alpha = 0
                 self.personsNr.alpha = 0
                 self.personsNrImg.alpha = 0
-                self.totalSpentsLbl.alpha = 0
-                self.spentsImg.alpha = 0
                 self.dateFromLbl.alpha = 0
                 self.dateToLbl.alpha = 0
+                self.personsNrStepper.alpha = 0
                 self.selectDateBtn.isHidden = true
                 
                 // hide remove button
@@ -185,16 +196,13 @@ class uploadEditVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
                 self.view.backgroundColor = .white
                 self.titleTxt.alpha = 1
                 self.tripNameTxt.alpha = 1
-                self.currencyLbl.alpha = 1
                 self.personsNr.alpha = 1
                 self.personsNrImg.alpha = 1
-                self.totalSpentsLbl.alpha = 1
-                self.spentsImg.alpha = 1
                 self.dateFromLbl.alpha = 1
                 self.dateToLbl.alpha = 1
+                self.personsNrStepper.alpha = 1
                 self.selectDateBtn.isHidden = false
                 
-                // show remove button
                 self.removeBtn.isHidden = false
             })
         }
@@ -207,40 +215,27 @@ class uploadEditVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
         
         tripNameTxt.frame = CGRect(x: 15, y: 15, width: width - 30, height: 20)
         
-        pcImg.frame = CGRect(x: 15, y: tripNameTxt.frame.size.height + 30, width: width / 3, height: width / 3)
+        pcImg.frame = CGRect(x: 15, y: tripNameTxt.frame.size.height + 30, width: pictureWidth, height: pictureWidth)
         
         titleTxt.frame = CGRect(x: 15, y: 80 + pcImg.frame.size.height, width:
             width - 30, height: pcImg.frame.size.height)
         
-        dateFromLbl.frame = CGRect(x: 30 + width / 3, y: tripNameTxt.frame.size.height + 30, width:
+        dateFromLbl.frame = CGRect(x: 30 + pictureWidth, y: tripNameTxt.frame.size.height + 30, width:
             70, height: 15)
         
-        selectDateBtn.frame = CGRect(x: 30 + width / 3, y: dateFromLbl.frame.origin.y + 20, width: 30, height: 30)
+        selectDateBtn.frame = CGRect(x: 30 + pictureWidth, y: dateFromLbl.frame.origin.y + 20, width: 30, height: 30)
         
-        dateToLbl.frame = CGRect(x: 30 + width / 3, y: selectDateBtn.frame.origin.y + 35, width:
+        dateToLbl.frame = CGRect(x: 30 + pictureWidth, y: selectDateBtn.frame.origin.y + 35, width:
             70, height: 15)
         
-        personsNrImg.frame = CGRect(x: width - 50, y: tripNameTxt.frame.size.height + 30, width: 25, height: 25)
+        personsNrImg.frame = CGRect(x: 30 + pictureWidth, y: tripNameTxt.frame.size.height + 35 + pictureWidth / 2, width: 25, height: 25)
         
-        personsNr.frame = CGRect(x: width - 50, y: personsNrImg.frame.origin.y + 25, width: 30, height: 30)
+        personsNr.frame = CGRect(x: 80 + pictureWidth, y: tripNameTxt.frame.size.height + 35 + pictureWidth / 2, width: 30, height: 30)
         
-        totalSpentsLbl.frame = CGRect(x: 30 + width / 3, y: tripNameTxt.frame.size.height + pcImg.frame.height + 5, width: width - 80 - pcImg.frame.width, height: 25)
-        
-        spentsImg.frame = CGRect(x: width - 50, y: totalSpentsLbl.frame.origin.y - 30, width: 25, height: 25)
-        
-        
-        totalSpentsLbl.layer.backgroundColor  = UIColor.lightText.cgColor
-        totalSpentsLbl.layer.cornerRadius = 5
-        totalSpentsLbl.layer.borderColor = UIColor.darkGray.cgColor
-        totalSpentsLbl.layer.borderWidth = 1.0
-        let lablTextRact = CGRect(x: totalSpentsLbl.frame.origin.x + 1, y: totalSpentsLbl.frame.origin.y + 1, width: totalSpentsLbl.frame.width - 10, height: totalSpentsLbl.frame.height - 1)
-        totalSpentsLbl.textAlignment = .center
-        totalSpentsLbl.drawText(in: lablTextRact)
-        
-        currencyLbl.frame = CGRect(x: totalSpentsLbl.frame.origin.x + totalSpentsLbl.frame.width + 5, y: totalSpentsLbl.frame.origin.y, width: 25, height: 25)
+        personsNrStepper.frame = CGRect(x: 30 + pictureWidth, y: personsNrImg.frame.origin.y + 45, width: 20, height: 20)
         
         removeBtn.frame = CGRect(x: pcImg.frame.origin.x, y: 15 + tripNameTxt.frame.origin.y + 10 + pcImg.frame.size.height + 15, width: pcImg.frame.size.width, height: 20)
-    }
+   }
     
     // hold selected object and dismiss PickerController
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
@@ -248,8 +243,10 @@ class uploadEditVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
         pcImg.image = info[UIImagePickerControllerEditedImage] as? UIImage
         self.dismiss(animated: true, completion: nil)
         
-        // unhide remove button
+        // unhide remove and right buttons
         removeBtn.isHidden = false
+        let acceptBtn = UIBarButtonItem(image: UIImage(named: "accept.png"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(saveBtn_clicked))
+        navigationItem.rightBarButtonItem = acceptBtn
         
         // enable second tap to zoom picture
         let zoomTap = UITapGestureRecognizer(target: self, action: #selector(zoomImg))
@@ -260,6 +257,7 @@ class uploadEditVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
     
     // clicked remove button
     @IBAction func removeBtn_clicked(_ sender: AnyObject) {
+        removePicture = true
         self.viewDidLoad()
     }
     
@@ -275,8 +273,6 @@ class uploadEditVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
                     object["ava"] = PFUser.current()?.value(forKey: "ava") as! PFFile
                     object["tripName"] = self.tripNameTxt.text
                     object["gender"] = PFUser.current()?.value(forKey: "gender") as! String
-                    object["currencyCode"] = self.currencyLbl.text
-                    object["totalSpents"] =  Double(self.totalSpentsLbl.text!)
                     object["personsNr"] =  Int(self.personsNr.text!)
                     let dateFormatter = DateFormatter()
                     dateFormatter.dateFormat = "dd.MM.yyy"
@@ -405,6 +401,13 @@ class uploadEditVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
         
     }
     
+    // modify personsNr label text according to stepper status
+    @IBAction func personNrStepper_clicked(_ sender: UIStepper) {
+        let step = Int(sender.value)
+        if step >= 1 && step <= 99 {
+            personsNr.text = Int(sender.value).description
+        }
+    }
     
     @IBAction func selectDateBtn_clicked(_ sender: Any) {
         
