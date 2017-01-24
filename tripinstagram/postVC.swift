@@ -162,6 +162,21 @@ class postVC: UITableViewController {
         self.tabBarController?.view.subviews.last?.isHidden = true
         
     }
+    
+    // fading and animation effects
+    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        // define initial state (before the animation)
+        cell.alpha = 0
+        let rotationAngleInRadians = 90.0 * CGFloat(M_PI/180.0)
+        let rotationTransform = CATransform3DMakeRotation(rotationAngleInRadians, 0, 0, 1)
+        //let rotationTransform = CATransform3DTranslate(CATransform3DIdentity, -500, 100, 0)
+        cell.layer.transform = rotationTransform
+        
+        // define the final state (after the animation)
+        UIView.animate(withDuration: 1.0, animations: {cell.alpha = 1})
+        UIView.animate(withDuration: 1.0, animations: {cell.layer.transform = CATransform3DIdentity})
+    }
+
 
     // number of cells
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -737,12 +752,12 @@ class postVC: UITableViewController {
             self.present(mapViewController, animated:true, completion:nil)
         }
         
-        let item3 = ExpandingMenuItem(size: menuButtonSize, title: "Camera", image: UIImage(named: "chooser-moment-icon-camera")!, highlightedImage: UIImage(named: "chooser-moment-icon-camera-highlighted")!, backgroundImage: UIImage(named: "chooser-moment-button"), backgroundHighlightedImage: UIImage(named: "chooser-moment-button-highlighted")) { () -> Void in
-            showAlert("Camera")
+        let item3 = ExpandingMenuItem(size: menuButtonSize, title: camera_str, image: UIImage(named: "chooser-moment-icon-camera")!, highlightedImage: UIImage(named: "chooser-moment-icon-camera-highlighted")!, backgroundImage: UIImage(named: "chooser-moment-button"), backgroundHighlightedImage: UIImage(named: "chooser-moment-button-highlighted")) { () -> Void in
+            showAlert(camera_str)
         }
         
-        let item4 = ExpandingMenuItem(size: menuButtonSize, title: "Thought", image: UIImage(named: "chooser-moment-icon-thought")!, highlightedImage: UIImage(named: "chooser-moment-icon-thought-highlighted")!, backgroundImage: UIImage(named: "chooser-moment-button"), backgroundHighlightedImage: UIImage(named: "chooser-moment-button-highlighted")) { () -> Void in
-            showAlert("Thought")
+        let item4 = ExpandingMenuItem(size: menuButtonSize, title: thought_str, image: UIImage(named: "chooser-moment-icon-thought")!, highlightedImage: UIImage(named: "chooser-moment-icon-thought-highlighted")!, backgroundImage: UIImage(named: "chooser-moment-button"), backgroundHighlightedImage: UIImage(named: "chooser-moment-button-highlighted")) { () -> Void in
+            showAlert(thought_str)
         }
         
         let item5 = ExpandingMenuItem(size: menuButtonSize, title: trip_details, image: UIImage(named: "chooser-moment-icon-sleep")!, highlightedImage: UIImage(named: "chooser-moment-icon-sleep-highlighted")!, backgroundImage: UIImage(named: "chooser-moment-button"), backgroundHighlightedImage: UIImage(named: "chooser-moment-button-highlighted")) { () -> Void in

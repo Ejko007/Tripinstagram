@@ -44,6 +44,8 @@ class postCell: UITableViewCell {
     @IBOutlet weak var totalDistanceLbl: UILabel!
     @IBOutlet weak var kmLbl: UILabel!
     
+    //let pictureWidth = width - 20
+    let pictureWidth = UIScreen.main.bounds.width / 2
 
     // default function
     override func awakeFromNib() {
@@ -57,10 +59,17 @@ class postCell: UITableViewCell {
         likeBtn.setTitleColor(UIColor.clear, for: .normal)
         
         // double tap to like
-        let likeTap = UITapGestureRecognizer(target: self, action: #selector(likeTapped))
-        likeTap.numberOfTapsRequired = 2
+//        let likeTap = UITapGestureRecognizer(target: self, action: #selector(likeTapped))
+//        likeTap.numberOfTapsRequired = 2
+//        picImg.isUserInteractionEnabled = true
+//        picImg.addGestureRecognizer(likeTap)
+        
+
+        // enable second tap to zoom picture
+        let zoomTap = UITapGestureRecognizer(target: self, action: #selector(zoomImg))
+        zoomTap.numberOfTapsRequired = 2
         picImg.isUserInteractionEnabled = true
-        picImg.addGestureRecognizer(likeTap)
+        picImg.addGestureRecognizer(zoomTap)
 
         let width = UIScreen.main.bounds.width
         let height = UIScreen.main.bounds.height
@@ -94,9 +103,6 @@ class postCell: UITableViewCell {
         mapmarkerIcon.translatesAutoresizingMaskIntoConstraints = false
         totalDistanceLbl.translatesAutoresizingMaskIntoConstraints = false
         kmLbl.translatesAutoresizingMaskIntoConstraints = false
-        
-        //let pictureWidth = width - 20
-        let pictureWidth = width / 2
         
         // constraints
         self.contentView.addConstraints(NSLayoutConstraint.constraints(
@@ -398,6 +404,101 @@ class postCell: UITableViewCell {
         }
     }
     
+    // zooming in/out function
+    func zoomImg () {
+        
+        // define frame of zoomed image
+        let zoomed = CGRect(x: 0, y: self.mainContentView.center.y - self.mainContentView.center.x, width: self.mainContentView.frame.size.width, height: self.mainContentView.frame.size.width)
+
+        // frame of unzoomed (small) image
+        //let unzoomed = CGRect(x: 15, y: 15, width: width / 4.5, height: width / 4.5)
+        let unzoomed = CGRect(x: 10, y: 83, width: pictureWidth, height: pictureWidth)
+        
+        // id picture is unzoomed, zoom it
+        if picImg.frame == unzoomed {
+            
+            UIView.animate(withDuration: 0.3, animations: {
+                
+                self.picImg.frame = zoomed
+                
+                // hide objects from background
+                self.mainContentView.backgroundColor = .black
+                self.tripNameLbl.alpha = 0
+                self.avaImg.alpha = 0
+                self.usernameBtn.alpha = 0
+                self.dateLbl.alpha = 0
+                self.likeBtn.alpha = 0
+                self.commentBtn.alpha = 0
+                self.commentNrLbl.alpha = 0
+                self.moreBtn.alpha = 0
+                self.likeLbl.alpha = 0
+                self.titleLbl.alpha = 0
+                self.uuidLbl.alpha = 0
+                self.rateView.alpha = 0
+                self.fromStrLbl.alpha = 0
+                self.toStrLbl.alpha = 0
+                self.fromDateLbl.alpha = 0
+                self.toDateLbl.alpha = 0
+                self.nrPersonsIcon.alpha = 0
+                self.nrPersonsLbl.alpha = 0
+                self.levelIcon.alpha = 0
+                self.levelLbl.alpha = 0
+                self.spentsIcon.alpha = 0
+                self.totalSpentsLbl.alpha = 0
+                self.currencyLbl.alpha = 0
+                self.mapmarkerIcon.alpha = 0
+                self.totalDistanceLbl.alpha = 0
+                self.kmLbl.alpha = 0
+                
+            })
+        } else {
+            
+            UIView.animate(withDuration: 0.3, animations: {
+                
+                self.picImg.frame = unzoomed
+                
+                // unhide objects from background
+                self.mainContentView.backgroundColor = .white
+                self.tripNameLbl.alpha = 1
+                self.avaImg.alpha = 1
+                self.usernameBtn.alpha = 1
+                self.dateLbl.alpha = 1
+                self.likeBtn.alpha = 1
+                self.commentBtn.alpha = 1
+                self.commentNrLbl.alpha = 1
+                self.moreBtn.alpha = 1
+                self.likeLbl.alpha = 1
+                self.titleLbl.alpha = 1
+                self.uuidLbl.alpha = 1
+                self.rateView.alpha = 1
+                self.fromStrLbl.alpha = 1
+                self.toStrLbl.alpha = 1
+                self.fromDateLbl.alpha = 1
+                self.toDateLbl.alpha = 1
+                self.nrPersonsIcon.alpha = 1
+                self.nrPersonsLbl.alpha = 1
+                self.levelIcon.alpha = 1
+                self.levelLbl.alpha = 1
+                self.spentsIcon.alpha = 1
+                self.totalSpentsLbl.alpha = 1
+                self.currencyLbl.alpha = 1
+                self.mapmarkerIcon.alpha = 1
+                self.totalDistanceLbl.alpha = 1
+                self.kmLbl.alpha = 1
+                
+                // add customized graphics to cell
+                self.mainContentView.backgroundColor = UIColor(red: 155 / 255, green: 155 / 255, blue: 155 / 255, alpha: 3 / 100)
+                self.mainContentView.layer.cornerRadius = 8
+                self.mainContentView.clipsToBounds = true
+                self.mainContentView.layer.masksToBounds = false
+                self.mainContentView.layer.shadowColor = UIColor.darkGray.cgColor
+                self.mainContentView.layer.shadowOpacity = 1
+                self.mainContentView.layer.shadowOffset = CGSize.zero
+                self.mainContentView.layer.shadowRadius = 10
+
+            })
+        }
+    }
     
     // double tap to like
     func likeTapped() {

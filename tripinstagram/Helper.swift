@@ -95,6 +95,8 @@ let trip_point = "Bod"
 let point_passthru_str = "Průchozí"
 let point_interest_str = "Zájmový"
 let not_specified_str = "Nespecifikovaný"
+let thought_str = "Příběh"
+let camera_str = "Fotogalerie"
 
 // croping picture and center it
 func cropToBounds(_ image: UIImage, width: Double, height: Double) -> UIImage {
