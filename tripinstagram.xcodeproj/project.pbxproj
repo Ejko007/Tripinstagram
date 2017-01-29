@@ -7,6 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0A0734281E38EBB200517E7B /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0A0734201E38EBB200517E7B /* Info.plist */; };
+		0A0734291E38EBB200517E7B /* UIImageView+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0734211E38EBB200517E7B /* UIImageView+extension.swift */; };
+		0A07342A1E38EBB200517E7B /* ZoomInteractiveTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0734221E38EBB200517E7B /* ZoomInteractiveTransition.swift */; };
+		0A07342B1E38EBB200517E7B /* ZoomNavigationControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0734231E38EBB200517E7B /* ZoomNavigationControllerDelegate.swift */; };
+		0A07342C1E38EBB200517E7B /* ZoomTransitionDestinationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0734241E38EBB200517E7B /* ZoomTransitionDestinationDelegate.swift */; };
+		0A07342D1E38EBB200517E7B /* ZoomTransitioning.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0734261E38EBB200517E7B /* ZoomTransitioning.swift */; };
+		0A07342E1E38EBB200517E7B /* ZoomTransitionSourceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0734271E38EBB200517E7B /* ZoomTransitionSourceDelegate.swift */; };
+		0A0734301E38EEF300517E7B /* tripDetailPhotoNC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A07342F1E38EEF300517E7B /* tripDetailPhotoNC.swift */; };
+		0A0734321E38F2FF00517E7B /* tabbartripDetailPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0734311E38F2FF00517E7B /* tabbartripDetailPhoto.swift */; };
+		0A0792611E3E3BEA0059A9BA /* photoCameraVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A07925F1E3E3BEA0059A9BA /* photoCameraVC.swift */; };
+		0A0792621E3E3BEA0059A9BA /* photoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0792601E3E3BEA0059A9BA /* photoVC.swift */; };
 		0A11CD241E0ACECF00D52868 /* spentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A11CD231E0ACECF00D52868 /* spentCell.swift */; };
 		0A11CD261E0AD01C00D52868 /* spentsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A11CD251E0AD01C00D52868 /* spentsVC.swift */; };
 		0A1D9F3A1DB2ABBC0002BAD1 /* pictureCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1D9F391DB2ABBC0002BAD1 /* pictureCell.swift */; };
@@ -31,6 +42,9 @@
 		0A430BD31E0C2A3B00D4BF6B /* spentHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A430BD21E0C2A3B00D4BF6B /* spentHeaderCell.swift */; };
 		0A45DE4F1E18218100F3D47B /* tripsListHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A45DE4E1E18218100F3D47B /* tripsListHeaderCell.swift */; };
 		0A45DE511E18296300F3D47B /* tripsListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A45DE501E18296300F3D47B /* tripsListCell.swift */; };
+		0A4812FF1E392D2600635270 /* tripDetailsPhotoCollectionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4812FE1E392D2600635270 /* tripDetailsPhotoCollectionVC.swift */; };
+		0A4813011E392EAE00635270 /* tripDetailPhotoViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4813001E392EAE00635270 /* tripDetailPhotoViewCell.swift */; };
+		0A4813031E393F6F00635270 /* tripDetailPhotoDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4813021E393F6F00635270 /* tripDetailPhotoDetailVC.swift */; };
 		0A50EAB01E27FEF90080ACCB /* tripDetailMapSearchHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A50EAAF1E27FEF90080ACCB /* tripDetailMapSearchHistory.swift */; };
 		0A50EAB21E27FFA90080ACCB /* tripDetailMapLocationSearchTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A50EAB11E27FFA90080ACCB /* tripDetailMapLocationSearchTable.swift */; };
 		0A50EAB41E2800FA0080ACCB /* tripDetailHandleMapSearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A50EAB31E2800FA0080ACCB /* tripDetailHandleMapSearchVC.swift */; };
@@ -97,6 +111,19 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0A0734201E38EBB200517E7B /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0A0734211E38EBB200517E7B /* UIImageView+extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+extension.swift"; sourceTree = "<group>"; };
+		0A0734221E38EBB200517E7B /* ZoomInteractiveTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZoomInteractiveTransition.swift; sourceTree = "<group>"; };
+		0A0734231E38EBB200517E7B /* ZoomNavigationControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZoomNavigationControllerDelegate.swift; sourceTree = "<group>"; };
+		0A0734241E38EBB200517E7B /* ZoomTransitionDestinationDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZoomTransitionDestinationDelegate.swift; sourceTree = "<group>"; };
+		0A0734251E38EBB200517E7B /* ZoomTransitioning.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZoomTransitioning.h; sourceTree = "<group>"; };
+		0A0734261E38EBB200517E7B /* ZoomTransitioning.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZoomTransitioning.swift; sourceTree = "<group>"; };
+		0A0734271E38EBB200517E7B /* ZoomTransitionSourceDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZoomTransitionSourceDelegate.swift; sourceTree = "<group>"; };
+		0A07342F1E38EEF300517E7B /* tripDetailPhotoNC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = tripDetailPhotoNC.swift; sourceTree = "<group>"; };
+		0A0734311E38F2FF00517E7B /* tabbartripDetailPhoto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = tabbartripDetailPhoto.swift; sourceTree = "<group>"; };
+		0A07925E1E3A97480059A9BA /* tripinstagram.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = tripinstagram.entitlements; sourceTree = "<group>"; };
+		0A07925F1E3E3BEA0059A9BA /* photoCameraVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = photoCameraVC.swift; sourceTree = "<group>"; };
+		0A0792601E3E3BEA0059A9BA /* photoVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = photoVC.swift; sourceTree = "<group>"; };
 		0A11CD231E0ACECF00D52868 /* spentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = spentCell.swift; sourceTree = "<group>"; };
 		0A11CD251E0AD01C00D52868 /* spentsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = spentsVC.swift; sourceTree = "<group>"; };
 		0A1D9F391DB2ABBC0002BAD1 /* pictureCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = pictureCell.swift; sourceTree = "<group>"; };
@@ -123,6 +150,9 @@
 		0A430BD21E0C2A3B00D4BF6B /* spentHeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = spentHeaderCell.swift; sourceTree = "<group>"; };
 		0A45DE4E1E18218100F3D47B /* tripsListHeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = tripsListHeaderCell.swift; sourceTree = "<group>"; };
 		0A45DE501E18296300F3D47B /* tripsListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = tripsListCell.swift; sourceTree = "<group>"; };
+		0A4812FE1E392D2600635270 /* tripDetailsPhotoCollectionVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = tripDetailsPhotoCollectionVC.swift; sourceTree = "<group>"; };
+		0A4813001E392EAE00635270 /* tripDetailPhotoViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = tripDetailPhotoViewCell.swift; sourceTree = "<group>"; };
+		0A4813021E393F6F00635270 /* tripDetailPhotoDetailVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = tripDetailPhotoDetailVC.swift; sourceTree = "<group>"; };
 		0A50EAAF1E27FEF90080ACCB /* tripDetailMapSearchHistory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = tripDetailMapSearchHistory.swift; sourceTree = "<group>"; };
 		0A50EAB11E27FFA90080ACCB /* tripDetailMapLocationSearchTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = tripDetailMapLocationSearchTable.swift; sourceTree = "<group>"; };
 		0A50EAB31E2800FA0080ACCB /* tripDetailHandleMapSearchVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = tripDetailHandleMapSearchVC.swift; sourceTree = "<group>"; };
@@ -235,9 +265,25 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		0A07341F1E38EBB200517E7B /* ZoomTransitioning */ = {
+			isa = PBXGroup;
+			children = (
+				0A0734201E38EBB200517E7B /* Info.plist */,
+				0A0734211E38EBB200517E7B /* UIImageView+extension.swift */,
+				0A0734221E38EBB200517E7B /* ZoomInteractiveTransition.swift */,
+				0A0734231E38EBB200517E7B /* ZoomNavigationControllerDelegate.swift */,
+				0A0734241E38EBB200517E7B /* ZoomTransitionDestinationDelegate.swift */,
+				0A0734251E38EBB200517E7B /* ZoomTransitioning.h */,
+				0A0734261E38EBB200517E7B /* ZoomTransitioning.swift */,
+				0A0734271E38EBB200517E7B /* ZoomTransitionSourceDelegate.swift */,
+			);
+			path = ZoomTransitioning;
+			sourceTree = "<group>";
+		};
 		0A39D25F1DE31B0E00FC525F /* 3rd Party */ = {
 			isa = PBXGroup;
 			children = (
+				0A07341F1E38EBB200517E7B /* ZoomTransitioning */,
 				0AB078211E1D379D003CA409 /* PBRevealViewController */,
 				0AAA5E511E1298E500D42657 /* DLRadioButton */,
 				0AD7A8951DCA06BB001CDDC5 /* CosmosDistrib.swift */,
@@ -275,6 +321,7 @@
 		0A8626321DB0BDE30001C1EE /* tripinstagram */ = {
 			isa = PBXGroup;
 			children = (
+				0A07925E1E3A97480059A9BA /* tripinstagram.entitlements */,
 				0A39D25F1DE31B0E00FC525F /* 3rd Party */,
 				0A3B76F61DE1C96900A60659 /* RatingViewController.swift */,
 				0A3B76F71DE1C96900A60659 /* RatingViewController.xib */,
@@ -294,10 +341,11 @@
 				0A1E9D5A1DBBE2FC00080209 /* navVC.swift */,
 				0A1E9D5C1DBBE33B00080209 /* tabbarVC.swift */,
 				0A97C5A91E23C7CF00F40048 /* tabbartripDetailMap.swift */,
+				0A0734311E38F2FF00517E7B /* tabbartripDetailPhoto.swift */,
 				0A1E9D5E1DBC8B9F00080209 /* commentVC.swift */,
-				0A1E9D601DBC8BDC00080209 /* commentCell.swift */,
 				0A81F2A51DCE17630073063D /* rateVC.swift */,
 				0A81F2A71DCE18380073063D /* rateCell.swift */,
+				0A1E9D601DBC8BDC00080209 /* commentCell.swift */,
 				0ADD41E21DBF767E0026B118 /* hashtagsVC.swift */,
 				0A53145F1DC1F52D00604F69 /* feedVC.swift */,
 				0A5314611DC2339800604F69 /* usersVC.swift */,
@@ -315,6 +363,8 @@
 				0A50EAAF1E27FEF90080ACCB /* tripDetailMapSearchHistory.swift */,
 				0A50EAB11E27FFA90080ACCB /* tripDetailMapLocationSearchTable.swift */,
 				0A50EAB31E2800FA0080ACCB /* tripDetailHandleMapSearchVC.swift */,
+				0A07925F1E3E3BEA0059A9BA /* photoCameraVC.swift */,
+				0A0792601E3E3BEA0059A9BA /* photoVC.swift */,
 				0A11CD231E0ACECF00D52868 /* spentCell.swift */,
 				0A430BD21E0C2A3B00D4BF6B /* spentHeaderCell.swift */,
 				0A11CD251E0AD01C00D52868 /* spentsVC.swift */,
@@ -323,6 +373,10 @@
 				0A45DE501E18296300F3D47B /* tripsListCell.swift */,
 				0AA0C3B21E18033500790BD8 /* tripsListVC.swift */,
 				0A55339A1E1AA8A60013CCF1 /* menuListVC.swift */,
+				0A07342F1E38EEF300517E7B /* tripDetailPhotoNC.swift */,
+				0A4812FE1E392D2600635270 /* tripDetailsPhotoCollectionVC.swift */,
+				0A4813001E392EAE00635270 /* tripDetailPhotoViewCell.swift */,
+				0A4813021E393F6F00635270 /* tripDetailPhotoDetailVC.swift */,
 				0A8626331DB0BDE30001C1EE /* AppDelegate.swift */,
 				0A8626371DB0BDE30001C1EE /* Main.storyboard */,
 				0A32E22D1DE49667006DC92E /* TimeFrameVC.swift */,
@@ -458,6 +512,11 @@
 						DevelopmentTeam = RXJ28CS78E;
 						LastSwiftMigration = 0820;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -496,6 +555,7 @@
 				0A9827A41DE318C9008C6C0C /* GLCalendarView.xib in Resources */,
 				0A8626391DB0BDE30001C1EE /* Main.storyboard in Resources */,
 				0A3B76F91DE1C96900A60659 /* RatingViewController.xib in Resources */,
+				0A0734281E38EBB200517E7B /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -556,8 +616,10 @@
 			files = (
 				0A9827A21DE318C9008C6C0C /* GLCalendarMonthCoverView.m in Sources */,
 				0A5314601DC1F52E00604F69 /* feedVC.swift in Sources */,
+				0A0734321E38F2FF00517E7B /* tabbartripDetailPhoto.swift in Sources */,
 				0A1D9F4A1DBA4BA50002BAD1 /* postVC.swift in Sources */,
 				0A1E9D5B1DBBE2FC00080209 /* navVC.swift in Sources */,
+				0A4812FF1E392D2600635270 /* tripDetailsPhotoCollectionVC.swift in Sources */,
 				0A97C5AA1E23C7CF00F40048 /* tabbartripDetailMap.swift in Sources */,
 				0A9827A11DE318C9008C6C0C /* GLCalendarDayCellBackgroundCover.m in Sources */,
 				0AE0B0241E3154B50035EDDC /* tripDetailMapPOI4MapVC.swift in Sources */,
@@ -567,12 +629,18 @@
 				0A55339B1E1AA8A60013CCF1 /* menuListVC.swift in Sources */,
 				0A5314621DC2339800604F69 /* usersVC.swift in Sources */,
 				0A45DE4F1E18218100F3D47B /* tripsListHeaderCell.swift in Sources */,
+				0A0734301E38EEF300517E7B /* tripDetailPhotoNC.swift in Sources */,
 				0A98279F1DE318C9008C6C0C /* GLCalendarDayCell.m in Sources */,
+				0A4813011E392EAE00635270 /* tripDetailPhotoViewCell.swift in Sources */,
+				0A07342A1E38EBB200517E7B /* ZoomInteractiveTransition.swift in Sources */,
+				0A0734291E38EBB200517E7B /* UIImageView+extension.swift in Sources */,
 				0A50EAB41E2800FA0080ACCB /* tripDetailHandleMapSearchVC.swift in Sources */,
 				0AD7A8921DC4B577001CDDC5 /* newsCell.swift in Sources */,
+				0A0792611E3E3BEA0059A9BA /* photoCameraVC.swift in Sources */,
 				0A1D9F3A1DB2ABBC0002BAD1 /* pictureCell.swift in Sources */,
 				0A11CD241E0ACECF00D52868 /* spentCell.swift in Sources */,
 				0A1D9F421DB78BA30002BAD1 /* guestVC.swift in Sources */,
+				0A4813031E393F6F00635270 /* tripDetailPhotoDetailVC.swift in Sources */,
 				0A8677B81E04115B00A44177 /* tripMapVC.swift in Sources */,
 				0AA0C3B31E18033500790BD8 /* tripsListVC.swift in Sources */,
 				0AD7A8961DCA06BB001CDDC5 /* CosmosDistrib.swift in Sources */,
@@ -591,6 +659,7 @@
 				0A1E9D651DBD32A500080209 /* KILabel.m in Sources */,
 				0A9827A31DE318C9008C6C0C /* GLCalendarView.m in Sources */,
 				0AD7A8901DC4B539001CDDC5 /* newsVC.swift in Sources */,
+				0A07342B1E38EBB200517E7B /* ZoomNavigationControllerDelegate.swift in Sources */,
 				0A413D271E13EEA10090B78B /* DatePickerDialog.swift in Sources */,
 				0A3B76F81DE1C96900A60659 /* RatingViewController.swift in Sources */,
 				0A32E22E1DE49667006DC92E /* TimeFrameVC.swift in Sources */,
@@ -598,12 +667,16 @@
 				0A3EFBFC1E33507300C21FDB /* SplashVC.swift in Sources */,
 				0A81F2A81DCE18380073063D /* rateCell.swift in Sources */,
 				0A8626631DB0DA350001C1EE /* resetPasswordVC.swift in Sources */,
+				0A07342C1E38EBB200517E7B /* ZoomTransitionDestinationDelegate.swift in Sources */,
 				0A4170BD1E2A368E00AB473F /* tripDetailMapPOIDescVC.swift in Sources */,
 				0A97C5AC1E26A67B00F40048 /* tripDetailMapPOIListVC.swift in Sources */,
 				0A885C071DE9FE790036CA0F /* uploadEditVC.swift in Sources */,
+				0A07342E1E38EBB200517E7B /* ZoomTransitionSourceDelegate.swift in Sources */,
 				0A430BD31E0C2A3B00D4BF6B /* spentHeaderCell.swift in Sources */,
 				0AAA5E501E1294D200D42657 /* spentVC.swift in Sources */,
+				0A07342D1E38EBB200517E7B /* ZoomTransitioning.swift in Sources */,
 				0A8626711DB2A62D0001C1EE /* headerView.swift in Sources */,
+				0A0792621E3E3BEA0059A9BA /* photoVC.swift in Sources */,
 				0A1E9D5D1DBBE33B00080209 /* tabbarVC.swift in Sources */,
 				0A11CD261E0AD01C00D52868 /* spentsVC.swift in Sources */,
 				0AD7A8941DC4E23B001CDDC5 /* helper.swift in Sources */,
@@ -743,6 +816,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = tripinstagram/tripinstagram.entitlements;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -776,6 +850,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = tripinstagram/tripinstagram.entitlements;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";

@@ -10,7 +10,7 @@ import UIKit
 import Parse
 import PopupDialog
 
-class tripDetailMapPOI4MapVC: UIViewController, UINavigationBarDelegate, UITabBarDelegate {
+class tripDetailMapPOI4MapVC: UIViewController, UINavigationBarDelegate, UITabBarDelegate, CLLocationManagerDelegate {
 
     @IBOutlet weak var POINameLbl: UILabel!
     @IBOutlet weak var POINameTxt: UITextField!
@@ -26,6 +26,7 @@ class tripDetailMapPOI4MapVC: UIViewController, UINavigationBarDelegate, UITabBa
     @IBOutlet weak var POILatLongFrameView: UIView!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var POIuuidLbl: UILabel!
+    @IBOutlet weak var POIActualPositionBtn: UIButton!
     
     var pointtype : Int = 0
     var isNewPOI : Bool = true
@@ -40,9 +41,27 @@ class tripDetailMapPOI4MapVC: UIViewController, UINavigationBarDelegate, UITabBa
     // keyboard to hold frame size
     var keyboard = CGRect()
 
+    // location manager for actual geolocation
+    let manager = CLLocationManager()
+    var curLocationLatitude = Double()
+    var curLocationLongitude = Double()
+
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        isAuthorizedtoGetUserLocation()
         
+        // initialize location manager and delegate it
+        if CLLocationManager.locationServicesEnabled() {
+            manager.delegate = self
+            manager.desiredAccuracy = kCLLocationAccuracyBest
+            manager.requestWhenInUseAuthorization()
+            manager.requestLocation()
+            manager.startUpdatingLocation()
+        } else {
+            manager.requestAlwaysAuthorization()
+        }
+
         // navigation bar title
         self.navigationItem.title = trip_point.uppercased()
         
@@ -122,6 +141,9 @@ class tripDetailMapPOI4MapVC: UIViewController, UINavigationBarDelegate, UITabBa
                     print(error!.localizedDescription)
                 }
             })
+        } else {
+            POILatitudeTxt.text = "\(0.00)"
+            POILongitudeTxt.text = "\(0.00)"
         }
         
         // set textview parameters
@@ -153,6 +175,7 @@ class tripDetailMapPOI4MapVC: UIViewController, UINavigationBarDelegate, UITabBa
         POICommentLbl.text = poi_comment_str
         POILatitudeLbl.text = latitude_str
         POILongitudeLbl.text = longitude_str
+        POIActualPositionBtn.setTitle(get_actual_position_str, for: .normal)
 
         // add constraints programaticaly
         scrollView.frame = CGRect(x: 0, y: 0, width: width, height: height)
@@ -177,7 +200,7 @@ class tripDetailMapPOI4MapVC: UIViewController, UINavigationBarDelegate, UITabBa
         POILongitudeTxt.translatesAutoresizingMaskIntoConstraints = false
         POITypeBtn.translatesAutoresizingMaskIntoConstraints = false
         POILatLongFrameView.translatesAutoresizingMaskIntoConstraints = false
-        
+        POIActualPositionBtn.translatesAutoresizingMaskIntoConstraints = false
 
         self.view.addConstraints(NSLayoutConstraint.constraints(
             withVisualFormat: "H:|-10-[poinamelbl(\(width - 20))]-10-|",
@@ -220,9 +243,9 @@ class tripDetailMapPOI4MapVC: UIViewController, UINavigationBarDelegate, UITabBa
             options: [],
             metrics: nil,
             views: ["poitype":POITypeBtn]))
-        
+
         self.view.addConstraints(NSLayoutConstraint.constraints(
-            withVisualFormat: "V:|-10-[poinamelbl(15)]-10-[poiname(20)]-10-[poidesclbl(15)]-10-[poidesc(20)]-10-[poicommlbl(15)]-10-[poicomm(\(height - 520))]-10-[poiview(140)]",
+            withVisualFormat: "V:|-10-[poinamelbl(15)]-10-[poiname(20)]-10-[poidesclbl(15)]-10-[poidesc(20)]-10-[poicommlbl(15)]-10-[poicomm(\(height - 540))]-10-[poiview(150)]",
             options: [],
             metrics: nil,
             views: ["poinamelbl":POINameLbl,"poiname":POINameTxt,"poidesclbl":POIDescLbl,"poidesc":POIDescTxt,"poicommlbl":POICommentLbl,"poicomm":POICommentTxtView,"poiview":POILatLongFrameView]))
@@ -241,7 +264,7 @@ class tripDetailMapPOI4MapVC: UIViewController, UINavigationBarDelegate, UITabBa
         
         POILatLongFrameView.layer.cornerRadius = 5.0
         POILatLongFrameView.layer.masksToBounds = true
-        POILatLongFrameView.frame = CGRect(x: 0, y: 0, width: width - 20, height: 140)
+        POILatLongFrameView.frame = CGRect(x: 0, y: 0, width: width - 20, height: 190)
         POILatLongFrameView.backgroundColor = UIColor(colorLiteralRed: 0.00, green: 0.580, blue: 0.969, alpha: 1.00)
         POILatLongFrameView.tintColor = .white
         self.view.addSubview(POILatLongFrameView)
@@ -271,14 +294,42 @@ class tripDetailMapPOI4MapVC: UIViewController, UINavigationBarDelegate, UITabBa
             options: [],
             metrics: nil,
             views: ["poilongitude":POILongitudeTxt]))
- 
+
         self.POILatLongFrameView.addConstraints(NSLayoutConstraint.constraints(
-            withVisualFormat: "V:|-10-[poilatitudelbl(20)]-10-[poilatitude(20)]-10-[poilongitudelbl(20)]-10-[poilongitude(20)]-10-|",
+            withVisualFormat: "H:|-10-[getlocbtn(\(poiLatLongView_width - 20))]-10-|",
             options: [],
             metrics: nil,
-            views: ["poilatitudelbl":POILatitudeLbl,"poilatitude":POILatitudeTxt,"poilongitudelbl":POILongitudeLbl,"poilongitude":POILongitudeTxt]))
+            views: ["getlocbtn":POIActualPositionBtn]))
+
+        self.POILatLongFrameView.addConstraints(NSLayoutConstraint.constraints(
+            withVisualFormat: "V:|-10-[poilatitudelbl(15)]-10-[poilatitude(20)]-10-[poilongitudelbl(15)]-10-[poilongitude(20)]-10-[getlocbtn(20)]-10-|",
+            options: [],
+            metrics: nil,
+            views: ["poilatitudelbl":POILatitudeLbl,"poilatitude":POILatitudeTxt,"poilongitudelbl":POILongitudeLbl,"poilongitude":POILongitudeTxt,"getlocbtn":POIActualPositionBtn]))
     }
+
+    // find user location
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        if let location = locations.last {
+            let locValue:CLLocationCoordinate2D = location.coordinate
+            curLocationLatitude = locValue.latitude
+            curLocationLongitude = locValue.longitude
+        }
+    }
+    
+    // location faild during finding user location
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print("Failed to find user's location: \(error.localizedDescription)")
+    }
+    
+    //if we have no permission to access user location, then ask user for permission.
+    func isAuthorizedtoGetUserLocation() {
         
+        if CLLocationManager.authorizationStatus() != .authorizedWhenInUse     {
+            manager.requestWhenInUseAuthorization()
+        }
+    }
+
     // initrializing radiobuttons
     private func createRadioButton(frame : CGRect, title : String, color : UIColor) -> DLRadioButton {
         let radioButton = DLRadioButton(frame: frame)
@@ -422,5 +473,14 @@ class tripDetailMapPOI4MapVC: UIViewController, UINavigationBarDelegate, UITabBa
                 }
             })
         }
+    }
+    
+    @IBAction func POIActualPositionBtn_Clicked(_ sender: Any) {
+        // get actual location
+        POILatitudeTxt.text = "\(curLocationLatitude)"
+        POILongitudeTxt.text = "\(curLocationLongitude)"
+        
+        // to save battery
+        // manager.stopUpdatingLocation()
     }
 }

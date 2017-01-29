@@ -141,7 +141,11 @@ class tripsListVC: UITableViewController, UINavigationBarDelegate {
         
         switch indexPath.row {
         case 0: self.performSegue(withIdentifier: "tripDetailMapVC", sender: self)
-        case 1: self.performSegue(withIdentifier: "tripDetailMapVC", sender: self)
+        case 1: nextTVC = storyBoard.instantiateViewController(withIdentifier: "tabbartripDetailPhoto") as! tabbartripDetailPhoto
+            // set initial tab bar to 0
+            // tabbartripDetailMap
+            nextTVC.selectedIndex = 0
+            self.present(nextTVC, animated: true, completion: nil)
         case 2: self.performSegue(withIdentifier: "tripDetailMapVC", sender: self)
         case 3: nextTVC = storyBoard.instantiateViewController(withIdentifier: "tabbartripDetailMap") as! tabbartripDetailMap
         

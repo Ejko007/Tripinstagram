@@ -10,6 +10,8 @@ import UIKit
 import Parse
 import Bolts
 import PopupDialog
+import UserNotifications
+
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -96,6 +98,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // color of window
         window?.backgroundColor = .white
+        
+        // push notification enablement
+        if #available(iOS 10.0, *) {
+            let center = UNUserNotificationCenter.current()
+            let options: UNAuthorizationOptions = [.alert, .badge, .sound]
+            center.requestAuthorization(options: options, completionHandler: { authorized, error in
+                if authorized {
+                    application.registerForRemoteNotifications()
+                }
+            })
+        }
+        
         
         //Parse.initialize(with: configuration)
 
