@@ -43,14 +43,14 @@ class feedVC: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // setup cell height dynamicly
+        self.tableView.estimatedRowHeight = UIScreen.main.bounds.width
+        self.tableView.rowHeight = UITableViewAutomaticDimension
 
         // title at top
         self.navigationItem.title = feeds_str.uppercased()
-        
-        // automatic row height - dynamic cell
-        tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.estimatedRowHeight = 450
-        
+                
         // pull to refresh
         refresher.addTarget(self, action: #selector(feedVC.loadPosts), for: UIControlEvents.valueChanged)
         tableView.addSubview(refresher)
@@ -341,14 +341,7 @@ class feedVC: UITableViewController {
         UIView.animate(withDuration: 1.0, animations: {cell.alpha = 1})
         UIView.animate(withDuration: 1.0, animations: {cell.layer.transform = CATransform3DIdentity})
     }
-    
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        // autosize row height
-        tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.estimatedRowHeight = 400
-        return CGFloat(tableView.estimatedRowHeight)
-    }
-    
+        
     // cell config
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         

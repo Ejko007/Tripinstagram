@@ -50,27 +50,23 @@ class tripDetailMapVC: UIViewController, MKMapViewDelegate, CLLocationManagerDel
         self.navigationItem.leftBarButtonItem = backBtn
         backBtn.tintColor = .white
         
-        let width = UIScreen.main.bounds.width
-        let height = UIScreen.main.bounds.height
-
         // allow constraints
         mapView.translatesAutoresizingMaskIntoConstraints = false
         mapTypeControl.translatesAutoresizingMaskIntoConstraints = false
         
         // constraints
         self.view.addConstraints(NSLayoutConstraint.constraints(
-            withVisualFormat: "H:|-0-[mapview(\(width))]-|",
+            withVisualFormat: "H:|-0-[mapview]-0-|",
             options: [],
             metrics: nil, views: ["mapview":mapView]))
 
-        let h = self.tabBarController?.tabBar.frame.height
         self.view.addConstraints(NSLayoutConstraint.constraints(
-            withVisualFormat: "V:|-0-[mapview(\(height - (h! + 60)))]-|",
+            withVisualFormat: "V:|-0-[mapview]-0-|",
             options: [],
             metrics: nil, views: ["mapview":mapView]))
         
         self.view.addConstraints(NSLayoutConstraint.constraints(
-            withVisualFormat: "H:|-50-[maptype(\(width - 100))]-50-|",
+            withVisualFormat: "H:|-50-[maptype]-50-|",
             options: [],
             metrics: nil, views: ["maptype":mapTypeControl]))
         

@@ -41,6 +41,10 @@ class postVC: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // setup cell height dynamicly
+        self.tableView.estimatedRowHeight = UIScreen.main.bounds.width
+        self.tableView.rowHeight = UITableViewAutomaticDimension
+        
         // title label at the top
         self.navigationItem.title = photo_str.uppercased()
         
@@ -62,8 +66,8 @@ class postVC: UITableViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(refresh), name: NSNotification.Name(rawValue: "liked"), object: nil)
         
         // dynamic height cell
-        tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.estimatedRowHeight = 450
+        //tableView.rowHeight = UITableViewAutomaticDimension
+        //tableView.estimatedRowHeight = 350
         
         // find post
         let postQuery = PFQuery(className: "posts")

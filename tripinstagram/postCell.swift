@@ -50,7 +50,7 @@ class postCell: UITableViewCell {
     // default function
     override func awakeFromNib() {
         super.awakeFromNib()
-        
+                
         // set rate controller to precise
         rateView!.settings.fillMode = .precise
         rateView!.updateOnTouch = false
@@ -65,7 +65,6 @@ class postCell: UITableViewCell {
         picImg.addGestureRecognizer(zoomTap)
 
         let width = UIScreen.main.bounds.width
-        let height = UIScreen.main.bounds.height
         
         // allow constraints
         tripNameLbl.translatesAutoresizingMaskIntoConstraints = false
@@ -99,195 +98,160 @@ class postCell: UITableViewCell {
         
         // constraints
         self.contentView.addConstraints(NSLayoutConstraint.constraints(
-            withVisualFormat: "V:|-10-[mainview(\(height - 20 - 170))]-10-|",
+            withVisualFormat: "V:|-[mainview]-|",
             options: [],
             metrics: nil, views: ["mainview":mainContentView]))
 
         self.contentView.addConstraints(NSLayoutConstraint.constraints(
-            withVisualFormat: "H:|-10-[mainview(\(width - 20))]-10-|",
+            withVisualFormat: "H:|-[mainview]-|",
             options: [],
             metrics: nil, views: ["mainview":mainContentView]))
         
-        self.contentView.addSubview(mainContentView)
+        self.mainContentView.backgroundColor = UIColor(red: 155 / 255, green: 155 / 255, blue: 155 / 255, alpha: 3 / 100)
+        self.mainContentView.layer.cornerRadius = 8
+        self.mainContentView.clipsToBounds = true
+        self.mainContentView.layer.masksToBounds = false
+        self.mainContentView.layer.shadowColor = UIColor.darkGray.cgColor
+        self.mainContentView.layer.shadowOpacity = 1
+        self.mainContentView.layer.shadowOffset = CGSize.zero
+        self.mainContentView.layer.shadowRadius = 10
         
-        //make dictionary for views
-        let viewsDictionary = ["view1":mainContentView!]
-        
-        //sizing constraints for view
-        let view1_constraint_H = NSLayoutConstraint.constraints(
-            withVisualFormat: "H:[view1]",
-            options: NSLayoutFormatOptions(rawValue: 0),
-            metrics: nil, views: viewsDictionary)
-        let view1_constraint_V = NSLayoutConstraint.constraints(
-            withVisualFormat: "V:[view1]",
-            options: NSLayoutFormatOptions(rawValue:0),
-            metrics: nil, views: viewsDictionary)
-        
-        mainContentView.addConstraints(view1_constraint_H)
-        mainContentView.addConstraints(view1_constraint_V)
-        mainContentView.backgroundColor = UIColor(red: 155 / 255, green: 155 / 255, blue: 155 / 255, alpha: 3 / 100)
-        mainContentView.layer.cornerRadius = 8
-        mainContentView.clipsToBounds = true
-        mainContentView.layer.masksToBounds = false
-        mainContentView.layer.shadowColor = UIColor.darkGray.cgColor
-        mainContentView.layer.shadowOpacity = 1
-        mainContentView.layer.shadowOffset = CGSize.zero
-        mainContentView.layer.shadowRadius = 10
-        
-        self.contentView.addConstraints(NSLayoutConstraint.constraints(
-            withVisualFormat: "V:|-10-[ava(30)]-10-[tripname(23)]-10-[pic(\(pictureWidth))]-5-[like(30)]",
+        self.mainContentView.addConstraints(NSLayoutConstraint.constraints(
+            withVisualFormat: "V:|-10-[ava(30)]-10-[tripname(23)]-10-[pic(\(pictureWidth))]-5-[like(30)]-5-[spenticon(30)]-5-[titletxt]-|",
             options: [],
-            metrics: nil, views: ["ava":avaImg, "tripname":tripNameLbl ,"pic":picImg, "like": likeBtn]))
+            metrics: nil, views: ["ava":avaImg, "tripname":tripNameLbl ,"pic":picImg, "like": likeBtn, "spenticon":spentsIcon, "titletxt":titleLbl]))
         
-        self.contentView.addConstraints(NSLayoutConstraint.constraints(
-            withVisualFormat: "V:|-10-[username(30)]-10-[tripname(23)]-10-[fromstr]-5-[fromdate]-10-[tostr]-5-[todate]-10-[nrpersonicon(30)]",
+        self.mainContentView.addConstraints(NSLayoutConstraint.constraints(
+            withVisualFormat: "V:|-10-[username(30)]-10-[tripname(23)]-10-[fromstr]-5-[fromdate]-10-[tostr]-5-[todate]-10-[nrpersonicon(30)]-10-[rating(30)]",
             options: [],
-            metrics: nil, views: ["username":usernameBtn, "tripname":tripNameLbl ,"fromstr":fromStrLbl, "fromdate": fromDateLbl, "tostr":toStrLbl, "todate":toDateLbl, "nrpersonicon":nrPersonsIcon]))
+            metrics: nil, views: ["username":usernameBtn, "tripname":tripNameLbl ,"fromstr":fromStrLbl, "fromdate": fromDateLbl, "tostr":toStrLbl, "todate":toDateLbl, "nrpersonicon":nrPersonsIcon, "rating":rateView]))
         
-        self.contentView.addConstraints(NSLayoutConstraint.constraints(
+        self.mainContentView.addConstraints(NSLayoutConstraint.constraints(
             withVisualFormat: "V:[todate]-15-[nrpersons]",
             options: [],
             metrics: nil, views: ["todate":toDateLbl, "nrpersons":nrPersonsLbl]))
         
-        self.contentView.addConstraints(NSLayoutConstraint.constraints(
+        self.mainContentView.addConstraints(NSLayoutConstraint.constraints(
             withVisualFormat: "V:[todate]-10-[levelicon(30)]",
             options: [],
             metrics: nil, views: ["todate":toDateLbl, "levelicon":levelIcon]))
 
-        self.contentView.addConstraints(NSLayoutConstraint.constraints(
+        self.mainContentView.addConstraints(NSLayoutConstraint.constraints(
             withVisualFormat: "V:[todate]-15-[level]",
             options: [],
             metrics: nil, views: ["todate":toDateLbl, "level":levelLbl]))
         
-        self.contentView.addConstraints(NSLayoutConstraint.constraints(
-            withVisualFormat: "V:|-10-[username]",
+        self.mainContentView.addConstraints(NSLayoutConstraint.constraints(
+            withVisualFormat: "V:[pic]-5-[likesnr(30)]",
             options: [],
-            metrics: nil, views: ["username":usernameBtn]))
-         
-        self.contentView.addConstraints(NSLayoutConstraint.constraints(
+            metrics: nil, views: ["pic":picImg, "likesnr":likeLbl]))
+
+        self.mainContentView.addConstraints(NSLayoutConstraint.constraints(
             withVisualFormat: "V:[pic]-5-[comment(30)]-10-[totalspents]",
             options: [],
             metrics: nil, views: ["pic":picImg, "comment":commentBtn, "totalspents":totalSpentsLbl]))
- 
-        self.contentView.addConstraints(NSLayoutConstraint.constraints(
-            withVisualFormat: "V:[comment(30)]-10-[currency]",
-            options: [],
-            metrics: nil, views: ["comment":commentBtn, "currency":currencyLbl]))
         
-        self.contentView.addConstraints(NSLayoutConstraint.constraints(
+        self.mainContentView.addConstraints(NSLayoutConstraint.constraints(
+            withVisualFormat: "V:[pic]-5-[comment(30)]-10-[currency]",
+            options: [],
+            metrics: nil, views: ["pic":picImg, "comment":commentBtn, "currency":currencyLbl]))
+        
+        self.mainContentView.addConstraints(NSLayoutConstraint.constraints(
+            withVisualFormat: "V:[comment(30)]-5-[distanceicon(30)]",
+            options: [],
+            metrics: nil, views: ["comment":commentBtn, "distanceicon":mapmarkerIcon]))
+
+        self.mainContentView.addConstraints(NSLayoutConstraint.constraints(
             withVisualFormat: "V:[comment(30)]-10-[distance]",
             options: [],
             metrics: nil, views: ["comment":commentBtn, "distance":totalDistanceLbl]))
 
-        self.contentView.addConstraints(NSLayoutConstraint.constraints(
+        self.mainContentView.addConstraints(NSLayoutConstraint.constraints(
             withVisualFormat: "V:[comment(30)]-10-[kmlbl]",
             options: [],
             metrics: nil, views: ["comment":commentBtn, "kmlbl":kmLbl]))
 
-        self.contentView.addConstraints(NSLayoutConstraint.constraints(
+        self.mainContentView.addConstraints(NSLayoutConstraint.constraints(
             withVisualFormat: "V:[pic]-10-[comments]",
             options: [],
             metrics: nil, views: ["pic":picImg, "comments":commentNrLbl]))
-
-        self.contentView.addConstraints(NSLayoutConstraint.constraints(
+        
+        self.mainContentView.addConstraints(NSLayoutConstraint.constraints(
             withVisualFormat: "V:|-15-[date]",
             options: [],
             metrics: nil, views: ["date":dateLbl]))
         
-        self.contentView.addConstraints(NSLayoutConstraint.constraints(
-            withVisualFormat: "V:[like(30)]",
-            options: [],
-            metrics: nil, views: ["like":likeBtn]))
-        
-        self.contentView.addConstraints(NSLayoutConstraint.constraints(
+        self.mainContentView.addConstraints(NSLayoutConstraint.constraints(
             withVisualFormat: "V:[pic]-5-[more(30)]",
             options: [],
-            metrics: nil, views: ["pic":picImg, "more": moreBtn]))
+            metrics: nil, views: ["pic":picImg, "more":moreBtn]))
         
-        self.contentView.addConstraints(NSLayoutConstraint.constraints(
-            withVisualFormat: "V:[pic]-10-[likes]-10-[spentsicon(30)]-5-[title]-5-|",
-            options: [],
-            metrics: nil, views: ["pic":picImg, "likes": likeLbl, "spentsicon":spentsIcon, "title":titleLbl]))
+        // horizontal alignement
         
-        self.contentView.addConstraints(NSLayoutConstraint.constraints(
-            withVisualFormat: "V:[pic]-10-[likes]-10-[mapmarker(30)]",
+        self.mainContentView.addConstraints(NSLayoutConstraint.constraints(
+            withVisualFormat: "H:|-10-[ava(30)]-10-[username]-10-[datelbl(30)]-10-|",
             options: [],
-            metrics: nil, views: ["pic":picImg, "likes": likeLbl, "mapmarker":mapmarkerIcon]))
+            metrics: nil, views: ["ava":avaImg, "username":usernameBtn, "datelbl":dateLbl]))
 
-        self.contentView.addConstraints(NSLayoutConstraint.constraints(
-            withVisualFormat: "V:[personsicon]-10-[rates]",
-            options: [],
-            metrics: nil, views: ["personsicon":nrPersonsIcon, "rates": rateView]))
- 
-        self.contentView.addConstraints(NSLayoutConstraint.constraints(
-            withVisualFormat: "H:|-10-[ava(30)]-10-[username]",
-            options: [],
-            metrics: nil, views: ["ava":avaImg, "username":usernameBtn]))
-
-        self.contentView.addConstraints(NSLayoutConstraint.constraints(
-            withVisualFormat: "H:|-10-[tripname(\(width - 40))]-10-|",
+        self.mainContentView.addConstraints(NSLayoutConstraint.constraints(
+            withVisualFormat: "H:|-10-[tripname]-10-|",
             options: [],
             metrics: nil, views: ["tripname":tripNameLbl]))
 
-        self.contentView.addConstraints(NSLayoutConstraint.constraints(
-            withVisualFormat: "H:|-10-[pic(\(pictureWidth))]-10-[fromstr]-|",
+        self.mainContentView.addConstraints(NSLayoutConstraint.constraints(
+            withVisualFormat: "H:|-10-[pic(\(pictureWidth))]-10-[fromstr]",
             options: [],
             metrics: nil, views: ["pic":picImg, "fromstr":fromStrLbl]))
  
-        self.contentView.addConstraints(NSLayoutConstraint.constraints(
-            withVisualFormat: "H:|-10-[pic(\(pictureWidth))]-10-[fromdate]-|",
+        self.mainContentView.addConstraints(NSLayoutConstraint.constraints(
+            withVisualFormat: "H:|-10-[pic(\(pictureWidth))]-10-[fromdate]",
             options: [],
             metrics: nil, views: ["pic":picImg, "fromdate":fromDateLbl]))
-
-        self.contentView.addConstraints(NSLayoutConstraint.constraints(
-            withVisualFormat: "H:|-10-[pic(\(pictureWidth))]-10-[nrpersonicon(30)]-10-[nrpersons]-10-[levelicon(30)]-10-[level]-|",
-            options: [],
-            metrics: nil, views: ["pic":picImg, "nrpersonicon":nrPersonsIcon, "nrpersons":nrPersonsLbl, "levelicon":levelIcon, "level":levelLbl]))
-
-        self.contentView.addConstraints(NSLayoutConstraint.constraints(
-            withVisualFormat: "H:|-10-[pic(\(pictureWidth))]-10-[tostr]-|",
+        
+        self.mainContentView.addConstraints(NSLayoutConstraint.constraints(
+            withVisualFormat: "H:|-10-[pic(\(pictureWidth))]-10-[tostr]",
             options: [],
             metrics: nil, views: ["pic":picImg, "tostr":toStrLbl]))
-
-        self.contentView.addConstraints(NSLayoutConstraint.constraints(
-            withVisualFormat: "H:|-10-[pic(\(pictureWidth))]-10-[todate]-|",
+        
+        self.mainContentView.addConstraints(NSLayoutConstraint.constraints(
+            withVisualFormat: "H:|-10-[pic(\(pictureWidth))]-10-[todate]",
             options: [],
             metrics: nil, views: ["pic":picImg, "todate":toDateLbl]))
-
-        self.contentView.addConstraints(NSLayoutConstraint.constraints(
-            withVisualFormat: "H:|-10-[like(30)]-5-[likes(30)]-10-[comment(30)]-5-[comments(30)]",
+        
+        self.mainContentView.addConstraints(NSLayoutConstraint.constraints(
+            withVisualFormat: "H:[nrpersonicon(30)]-5-[nrpersons(20)]-10-[levelicon(30)]-5-[level(20)]-10-|",
             options: [],
-            metrics: nil, views: ["like": likeBtn, "likes": likeLbl, "comment":commentBtn, "comments":commentNrLbl]))
+            metrics: nil, views: ["nrpersonicon":nrPersonsIcon, "nrpersons":nrPersonsLbl, "levelicon":levelIcon, "level":levelLbl]))
 
-        self.contentView.addConstraints(NSLayoutConstraint.constraints(
-            withVisualFormat: "H:[pic(\(pictureWidth))]-10-[rates]-10-|",
+        self.mainContentView.addConstraints(NSLayoutConstraint.constraints(
+            withVisualFormat: "H:|-10-[pic(\(pictureWidth))]-10-[rates]-10-|",
             options: [],
             metrics: nil, views: ["pic":picImg, "rates":rateView]))
 
-        self.contentView.addConstraints(NSLayoutConstraint.constraints(
+        self.mainContentView.addConstraints(NSLayoutConstraint.constraints(
+            withVisualFormat: "H:|-10-[like(30)]-5-[likes(30)]-10-[comment(30)]-5-[comments(30)]",
+            options: [],
+            metrics: nil, views: ["like": likeBtn, "likes": likeLbl, "comment":commentBtn, "comments":commentNrLbl]))
+ 
+        self.mainContentView.addConstraints(NSLayoutConstraint.constraints(
             withVisualFormat: "H:[more(30)]-10-|",
             options: [],
             metrics: nil, views: ["more":moreBtn]))
-
-        self.contentView.addConstraints(NSLayoutConstraint.constraints(
-            withVisualFormat: "H:|-10-[title]-10-|",
-            options: [],
-            metrics: nil, views: ["title": titleLbl]))
         
-        self.contentView.addConstraints(NSLayoutConstraint.constraints(
-            withVisualFormat: "H:|[date]-10-|",
-            options: [],
-            metrics: nil, views: ["date": dateLbl]))
-
-        self.contentView.addConstraints(NSLayoutConstraint.constraints(
+        self.mainContentView.addConstraints(NSLayoutConstraint.constraints(
             withVisualFormat: "H:|-10-[spentsicon(30)]-10-[spents]-5-[currency]",
             options: [],
             metrics: nil, views: ["spentsicon":spentsIcon,"spents":totalSpentsLbl,"currency":currencyLbl]))
 
-        self.contentView.addConstraints(NSLayoutConstraint.constraints(
+        self.mainContentView.addConstraints(NSLayoutConstraint.constraints(
             withVisualFormat: "H:|-10-[pic(\(pictureWidth))]-[mapmarker(30)]-10-[distance]-5-[kmlbl]",
             options: [],
             metrics: nil, views: ["pic":picImg,"mapmarker":mapmarkerIcon, "distance":totalDistanceLbl, "kmlbl":kmLbl]))
+
+        self.mainContentView.addConstraints(NSLayoutConstraint.constraints(
+            withVisualFormat: "H:|-10-[title]-10-|",
+            options: [],
+            metrics: nil, views: ["title": titleLbl]))
 
         
         // round trip name frame
