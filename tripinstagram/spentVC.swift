@@ -12,9 +12,7 @@ import PopupDialog
 
 class spentVC: UIViewController, UINavigationBarDelegate, UITextFieldDelegate, UITextViewDelegate {
 
-    @IBOutlet weak var spentTypeBtn: DLRadioButton!
-    @IBOutlet weak var spentNavigationBar: UINavigationBar!
-    
+    @IBOutlet weak var spentTypeBtn: DLRadioButton!    
     @IBOutlet weak var spentNameTxt: UITextField!
     @IBOutlet weak var spentDatePicker: UIDatePicker!
     @IBOutlet weak var spentDateLbl: UILabel!
@@ -66,34 +64,21 @@ class spentVC: UIViewController, UINavigationBarDelegate, UITextFieldDelegate, U
 
         
         // navigation bar
-        self.spentNavigationBar.frame = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 75)
-        self.spentNavigationBar.barTintColor = UIColor(colorLiteralRed: 18.0 / 255.0, green: 86.0 / 255.0, blue: 136.0 / 255.0, alpha: 1)
-        self.spentNavigationBar.isTranslucent = false
-        self.spentNavigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]
+        self.navigationController?.navigationBar.frame = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 65)
+        self.navigationController?.navigationBar.barTintColor = UIColor(colorLiteralRed: 18.0 / 255.0, green: 86.0 / 255.0, blue: 136.0 / 255.0, alpha: 1)
+        self.navigationController?.navigationBar.isTranslucent = false
+        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]
         
-        self.spentNavigationBar.backgroundColor = .white
-        self.spentNavigationBar.tintColor = .white
-        self.spentNavigationBar.delegate = self
+        self.navigationController?.navigationBar.backgroundColor = .white
+        self.navigationController?.navigationBar.tintColor = .white
         
         // Create a navigation item with a title
-        let navigationItem = UINavigationItem()
-        navigationItem.title = spents_menu_str.uppercased()
+        self.navigationItem.title = spent_str.uppercased()
 
-        // Create left and right button for navigation item
-        // new back button
-        let backBtn = UIBarButtonItem(image: UIImage(named: "back.png"), style: .plain, target: self, action: #selector(back))
-        navigationItem.leftBarButtonItem = backBtn
-        backBtn.tintColor = .white
+        // append accept button to the left
         let editBtn = UIBarButtonItem(image: UIImage(named: "accept.png"), style: .plain, target: self, action: #selector(saveTapped))
         navigationItem.rightBarButtonItem = editBtn
         editBtn.tintColor = .white
-       
-        // Assign the navigation item to the navigation bar
-        self.spentNavigationBar.items = [navigationItem]
-        
-        // Make the navigation bar a subview of the current view controller
-        view.frame = CGRect(x: 0, y: 75, width: width, height: height - 75)
-        view.addSubview(self.spentNavigationBar)
         
         // allow constraints
         spentTypeBtn.translatesAutoresizingMaskIntoConstraints = false
@@ -108,9 +93,9 @@ class spentVC: UIViewController, UINavigationBarDelegate, UITextFieldDelegate, U
         
         // constraints
         self.view.addConstraints(NSLayoutConstraint.constraints(
-            withVisualFormat: "V:|-85-[spentname(30)]-10-[spenttypebtn(20)]-10-[fromlbl(40)]",
+            withVisualFormat: "V:|-10-[spentname]-10-[spenttypebtn(20)]-10-[fromlbl(40)]",
             options: [],
-            metrics: nil, views: ["spentname":spentNameTxt, "spenttypebtn": spentTypeBtn,"fromlbl":spentfromLbl]))
+            metrics: nil, views: ["spentname":spentNameTxt, "spenttypebtn":spentTypeBtn, "fromlbl":spentfromLbl]))
 
         self.view.addConstraints(NSLayoutConstraint.constraints(
             withVisualFormat: "V:[fromlbl]-10-[amountlbl]-10-[spentdescription(60)]-10-[datepicker(150)]",
@@ -123,14 +108,19 @@ class spentVC: UIViewController, UINavigationBarDelegate, UITextFieldDelegate, U
             metrics: nil, views: ["fromlbl":spentfromLbl, "amount": spentAmountTxt, "spentdescription":spentDescriptionTxtView,"datepicker":spentDatePicker]))
 
         self.view.addConstraints(NSLayoutConstraint.constraints(
-            withVisualFormat: "V:[fromlbl]-10-[spentcurrency]-10-[spentdescription(60)]-10-[datepicker(150)]",
+            withVisualFormat: "V:[fromlbl]-10-[currencylbl]-10-[spentdescription(60)]-10-[datepicker(150)]",
             options: [],
-            metrics: nil, views: ["fromlbl":spentfromLbl, "spentcurrency": spentCurrencyLbl, "spentdescription":spentDescriptionTxtView, "datepicker":spentDatePicker]))
-
+            metrics: nil, views: ["fromlbl":spentfromLbl, "currencylbl": spentCurrencyLbl, "spentdescription":spentDescriptionTxtView,"datepicker":spentDatePicker]))
+        
         self.view.addConstraints(NSLayoutConstraint.constraints(
             withVisualFormat: "H:|-10-[spentname]-10-|",
             options: [],
             metrics: nil, views: ["spentname":spentNameTxt]))
+
+        self.view.addConstraints(NSLayoutConstraint.constraints(
+            withVisualFormat: "H:|-10-[spenttype]-10-|",
+            options: [],
+            metrics: nil, views: ["spenttype":spentTypeBtn]))
 
         self.view.addConstraints(NSLayoutConstraint.constraints(
             withVisualFormat: "H:|-10-[fromlbl]-10-|",
@@ -138,10 +128,15 @@ class spentVC: UIViewController, UINavigationBarDelegate, UITextFieldDelegate, U
             metrics: nil, views: ["fromlbl":spentfromLbl]))
 
         self.view.addConstraints(NSLayoutConstraint.constraints(
-            withVisualFormat: "H:|-10-[amountlbl(60)]-10-[amount(170)]-10-[spentcurrency(40)]-10-|",
+            withVisualFormat: "H:|-10-[amountlbl(60)]-10-[amount(170)]",
             options: [],
-            metrics: nil, views: ["amountlbl":spentAmountLbl, "amount":spentAmountTxt, "spentcurrency":spentCurrencyLbl]))
+            metrics: nil, views: ["amountlbl":spentAmountLbl, "amount":spentAmountTxt]))
 
+        self.view.addConstraints(NSLayoutConstraint.constraints(
+            withVisualFormat: "H:[spentcurrency(40)]-10-|",
+            options: [],
+            metrics: nil, views: ["spentcurrency":spentCurrencyLbl]))
+        
         self.view.addConstraints(NSLayoutConstraint.constraints(
             withVisualFormat: "H:|-10-[spentdescription]-10-|",
             options: [],
@@ -202,9 +197,9 @@ class spentVC: UIViewController, UINavigationBarDelegate, UITextFieldDelegate, U
         
         // programmatically add buttons
         // first radio button
-        let frameFirst = CGRect(x: self.view.frame.size.width / 2 - 131, y: 130, width: 162, height: 17);
+        let frameFirst = CGRect(x: self.view.frame.size.width / 2 - 120, y: 50, width: 162, height: 17);
         let firstRadioButton = createRadioButton(frame: frameFirst, title: spent_beginning_str, color: UIColor(colorLiteralRed: 0.00, green: 0.580, blue: 0.969, alpha: 1.00))
-        let frameSecond = CGRect(x: self.view.frame.size.width / 2 - 131 + 100, y: 130, width: 162, height: 17);
+        let frameSecond = CGRect(x: self.view.frame.size.width / 2 - 120 + 100, y: 50, width: 162, height: 17);
         let secondRadioButton = createRadioButton(frame: frameSecond, title: spent_other_str, color: UIColor(colorLiteralRed: 1.00, green: 0.361, blue: 0.145, alpha: 1.00))
         firstRadioButton.isEnabled = true
         // second radio button
@@ -258,6 +253,14 @@ class spentVC: UIViewController, UINavigationBarDelegate, UITextFieldDelegate, U
             spentfromLbl.backgroundColor = UIColor(colorLiteralRed: 0.00, green: 0.580, blue: 0.969, alpha: 1.00)
         } else {
             spentfromLbl.backgroundColor = UIColor(colorLiteralRed: 1.00, green: 0.361, blue: 0.145, alpha: 1.00)
+        }
+        
+        let spacing = CharacterSet.whitespacesAndNewlines
+        if !spentDescriptionTxtView.text.trimmingCharacters(in: spacing).isEmpty {
+            placeholderLbl.isHidden = true
+            // text is not entered
+        } else {
+            placeholderLbl.isHidden = false
         }
     }
     
@@ -319,13 +322,7 @@ class spentVC: UIViewController, UINavigationBarDelegate, UITextFieldDelegate, U
         spentDatePicker.isHidden = true
         self.view.endEditing(true)
     }
-    
-    // go back function
-    func back(sender: UIBarButtonItem) {
-        //push back
-        self.dismiss(animated: true, completion: nil)
-    }
-    
+        
     // save spent icon is clicked
     func saveTapped (sender: UIBarButtonItem) {
         
@@ -386,7 +383,7 @@ class spentVC: UIViewController, UINavigationBarDelegate, UITextFieldDelegate, U
         }
         
         //push back
-        self.dismiss(animated: true, completion: nil)
+        _ = navigationController?.popViewController(animated: true)
 
     }
     

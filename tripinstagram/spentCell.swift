@@ -46,10 +46,15 @@ class spentCell: UITableViewCell, UITableViewDelegate {
             metrics: nil, views: ["spentdate":spentDateLbl, "spentname":spentNameLbl]))
   
         self.contentView.addConstraints(NSLayoutConstraint.constraints(
-            withVisualFormat: "H:|-10-[spentdate(80)]-10-[spentamount(180)]-10-[spentcurrency(40)]-10-|",
+            withVisualFormat: "H:[spentdate(80)]-10-[spentamount]",
             options: [],
-            metrics: nil, views: ["spentdate":spentDateLbl, "spentamount":spentAmountLbl, "spentcurrency":spentCurrencyLbl]))
-        
+            metrics: nil, views: ["spentdate":spentDateLbl, "spentamount":spentAmountLbl]))
+
+        self.contentView.addConstraints(NSLayoutConstraint.constraints(
+            withVisualFormat: "H:[spentamount]-10-[spentcurrency]-10-|",
+            options: [],
+            metrics: nil, views: ["spentamount":spentAmountLbl, "spentcurrency":spentCurrencyLbl]))
+
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {

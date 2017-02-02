@@ -10,9 +10,7 @@ import UIKit
 import Parse
 import PopupDialog
 
-class spentsVC: UITableViewController, UINavigationBarDelegate {
-    
-    @IBOutlet weak var spentNavigationBar: UINavigationBar!
+class spentsVC: UITableViewController {
     
     // size of screen
     let width = UIScreen.main.bounds.width
@@ -41,45 +39,29 @@ class spentsVC: UITableViewController, UINavigationBarDelegate {
         super.viewDidLoad()
         
         // navigation bar
-        self.spentNavigationBar.frame = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 75)
-        self.spentNavigationBar.barTintColor = UIColor(colorLiteralRed: 18.0 / 255.0, green: 86.0 / 255.0, blue: 136.0 / 255.0, alpha: 1)
-        self.spentNavigationBar.isTranslucent = false
-        self.spentNavigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]
+        self.navigationController?.navigationBar.frame = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 65)
+        self.navigationController?.navigationBar.barTintColor = UIColor(colorLiteralRed: 18.0 / 255.0, green: 86.0 / 255.0, blue: 136.0 / 255.0, alpha: 1)
+        self.navigationController?.navigationBar.isTranslucent = false
+        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]
 
-        self.spentNavigationBar.backgroundColor = .white
-        self.spentNavigationBar.tintColor = .white
-        self.spentNavigationBar.delegate = self
+        self.navigationController?.navigationBar.backgroundColor = .white
+        self.navigationController?.navigationBar.tintColor = .white
         
         // Create a navigation item with a title
-        let navigationItem = UINavigationItem()
-        navigationItem.title = spents_menu_str.uppercased()
-        
-        // Create left and right button for navigation item
-        // new back button
-        let backBtn = UIBarButtonItem(image: UIImage(named: "back.png"), style: .plain, target: self, action: #selector(back))
-        navigationItem.leftBarButtonItem = backBtn
-        backBtn.tintColor = .white
+        self.navigationItem.title = spents_menu_str.uppercased()
         
         let spentBtn = UIBarButtonItem(image: UIImage(named: "spent_add.png"), style: .plain, target: self, action: #selector(addTapped))
-        navigationItem.rightBarButtonItem = spentBtn
-        backBtn.tintColor = .white
+        self.navigationItem.rightBarButtonItem = spentBtn
+        spentBtn.tintColor = .white
         
         // show edit button for current user post only
         if (PFUser.current()?.username == self.username) {
-            navigationItem.rightBarButtonItems = [spentBtn]
+            self.navigationItem.rightBarButtonItems = [spentBtn]
             spentBtn.isEnabled = true
         } else {
             self.navigationItem.rightBarButtonItems = []
             spentBtn.isEnabled = false
         }
-        
-        // Assign the navigation item to the navigation bar
-        self.spentNavigationBar.items = [navigationItem]
-        
-        // Make the navigation bar a subview of the current view controller
-        view.frame = CGRect(x: 0, y: 75, width: width, height: height - 75)
-        view.addSubview(self.spentNavigationBar)
-        
     }
     
      // find post
@@ -136,7 +118,7 @@ class spentsVC: UITableViewController, UINavigationBarDelegate {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        self.tableView.reloadData()
+        // self.tableView.reloadData()
     }
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -325,8 +307,7 @@ class spentsVC: UITableViewController, UINavigationBarDelegate {
         nextVC.spentuuid = result.uuid
         nextVC.spentobjectId = result.objectId
         
-        self.present(nextVC, animated:true, completion:nil)
-        
+        self.navigationController!.pushViewController(nextVC, animated: true)        
     }
     
     // show/dismiss expanding menu
@@ -352,7 +333,7 @@ class spentsVC: UITableViewController, UINavigationBarDelegate {
         nextVC.spentuuid = self.uuid
         nextVC.isNew = true
         
-        self.present(nextVC, animated:true, completion:nil)
+        self.navigationController!.pushViewController(nextVC, animated: true)
     }
 
 }

@@ -741,12 +741,13 @@ class postVC: UITableViewController {
             //showAlert("Music")
             
             let spentViewController = storyBoard.instantiateViewController(withIdentifier: "spentsVC") as! spentsVC
+            self.navigationController!.pushViewController(spentViewController, animated: true)
             
             // delegate uuid for displaying spents
             spentViewController.username = (self.usernameArray.last?.lowercased())!
             spentViewController.uuid = self.uuidArray.last!
             
-            self.present(spentViewController, animated:true, completion:nil)
+            // self.present(spentViewController, animated:true, completion:nil)
         }
         
         let item2 = ExpandingMenuItem(size: menuButtonSize, title: triproute_menu_str, image: UIImage(named: "chooser-moment-icon-place")!, highlightedImage: UIImage(named: "chooser-moment-icon-place-highlighted")!, backgroundImage: UIImage(named: "chooser-moment-button"), backgroundHighlightedImage: UIImage(named: "chooser-moment-button-highlighted")) { () -> Void in
