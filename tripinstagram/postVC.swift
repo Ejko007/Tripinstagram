@@ -13,7 +13,6 @@ import ExpandingMenu
 
 var postuuid = [String]()
 
-
 class postVC: UITableViewController {
     
 
@@ -36,6 +35,7 @@ class postVC: UITableViewController {
     var ratingArray = [Double]()
     
     var publishedArray = [Bool]()
+    
     
     // default finction
     override func viewDidLoad() {
@@ -171,14 +171,21 @@ class postVC: UITableViewController {
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         // define initial state (before the animation)
         cell.alpha = 0
-        let rotationAngleInRadians = 90.0 * CGFloat(M_PI/180.0)
-        let rotationTransform = CATransform3DMakeRotation(rotationAngleInRadians, 0, 0, 1)
-        //let rotationTransform = CATransform3DTranslate(CATransform3DIdentity, -500, 100, 0)
+        //let rotationAngleInRadians = 90.0 * CGFloat(M_PI/180.0)
+        //let rotationTransform = CATransform3DMakeRotation(rotationAngleInRadians, 0, 0, 1)
+        let rotationTransform = CATransform3DTranslate(CATransform3DIdentity, -500, 100, 0)
         cell.layer.transform = rotationTransform
         
         // define the final state (after the animation)
         UIView.animate(withDuration: 1.0, animations: {cell.alpha = 1})
         UIView.animate(withDuration: 1.0, animations: {cell.layer.transform = CATransform3DIdentity})
+  
+        // fading animation
+        let gradient = CAGradientLayer()
+        gradient.frame = cell.bounds
+        gradient.colors = [UIColor.white.cgColor, UIColor.black.cgColor]
+        tableView.layer.insertSublayer(gradient, at: 0)
+        
     }
 
 
@@ -754,7 +761,13 @@ class postVC: UITableViewController {
             //showAlert("Place")
             
             let mapViewController = storyBoard.instantiateViewController(withIdentifier: "tripMapVC") as! tripMapVC
-            self.present(mapViewController, animated:true, completion:nil)
+            self.navigationController!.pushViewController(mapViewController, animated: true)
+
+            // delegate uuid for displaying spents
+            mapViewController.username = (self.usernameArray.last?.lowercased())!
+            mapViewController.uuid = self.uuidArray.last!
+
+            // self.present(mapViewController, animated:true, completion:nil)
         }
         
         let item3 = ExpandingMenuItem(size: menuButtonSize, title: camera_str, image: UIImage(named: "chooser-moment-icon-camera")!, highlightedImage: UIImage(named: "chooser-moment-icon-camera-highlighted")!, backgroundImage: UIImage(named: "chooser-moment-button"), backgroundHighlightedImage: UIImage(named: "chooser-moment-button-highlighted")) { () -> Void in

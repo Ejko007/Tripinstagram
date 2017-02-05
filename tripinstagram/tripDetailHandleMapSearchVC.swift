@@ -32,21 +32,18 @@ class tripDetailHandleMapSearchVC : UIViewController {
         // navigation bar title
         self.navigationItem.title = trip_POI_search_str.uppercased()
 
-        let width = UIScreen.main.bounds.width
-        let height = UIScreen.main.bounds.height
-
         // add mapview contraints
         mapView.translatesAutoresizingMaskIntoConstraints = false
         
         // constraints
         self.view.addConstraints(NSLayoutConstraint.constraints(
-            withVisualFormat: "H:|-0-[mapview(\(width))]-|",
+            withVisualFormat: "H:|-0-[mapview]-0-|",
             options: [],
             metrics: nil, views: ["mapview":mapView]))
         
-        let h = self.tabBarController?.tabBar.frame.height
         self.view.addConstraints(NSLayoutConstraint.constraints(
-            withVisualFormat: "V:|-0-[mapview(\(height - (h! + 60)))]-|",
+            // withVisualFormat: "V:|-0-[mapview(\(height - (h! + 60)))]-|",
+            withVisualFormat: "V:|-0-[mapview]-0-|",
             options: [],
             metrics: nil, views: ["mapview":mapView]))
        

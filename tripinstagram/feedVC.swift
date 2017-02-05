@@ -10,6 +10,37 @@ import UIKit
 import Parse
 import PopupDialog
 
+extension UIImage {
+    var bwImage: UIImage? {
+        guard let cgImage = cgImage,
+            let bwContext = bwContext else {
+                return nil
+        }
+        
+        let rect = CGRect(origin: .zero, size: size)
+        bwContext.draw(cgImage, in: rect)
+        let bwCgImage = bwContext.makeImage()
+        
+        return bwCgImage.flatMap { UIImage(cgImage: $0) }
+    }
+    
+    private var bwContext: CGContext? {
+        let bwContext = CGContext(data: nil,
+                                  width: Int(size.width * scale),
+                                  height: Int(size.height * scale),
+                                  bitsPerComponent: 8,
+                                  bytesPerRow: Int(size.width * scale),
+                                  space: CGColorSpaceCreateDeviceGray(),
+                                  bitmapInfo: CGImageAlphaInfo.none.rawValue)
+        
+        bwContext?.interpolationQuality = .high
+        bwContext?.setShouldAntialias(false)
+        
+        return bwContext
+    }
+    
+}
+
 class feedVC: UITableViewController {
     
     // UI objects
@@ -330,6 +361,7 @@ class feedVC: UITableViewController {
     
     // fading and animation effects
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        
         // define initial state (before the animation)
         cell.alpha = 0
         let rotationAngleInRadians = 90.0 * CGFloat(M_PI/180.0)
@@ -340,6 +372,7 @@ class feedVC: UITableViewController {
         // define the final state (after the animation)
         UIView.animate(withDuration: 1.0, animations: {cell.alpha = 1})
         UIView.animate(withDuration: 1.0, animations: {cell.layer.transform = CATransform3DIdentity})
+        
     }
         
     // cell config
@@ -897,6 +930,29 @@ class feedVC: UITableViewController {
         // show menu
         self.present(menu, animated: true, completion: nil)
         
+    }
+    
+    // get country codes procedure
+    func counrtyNames() -> NSArray{
+        
+        let countryCodes = NSLocale.isoCountryCodes
+        let countries:NSMutableArray = NSMutableArray()
+        
+        for countryCode  in countryCodes{
+            let dictionary : NSDictionary = NSDictionary(object:countryCode, forKey:NSLocale.Key.countryCode as NSCopying)
+            
+            //get identifire of the counrty
+            let identifier:NSString? = NSLocale.localeIdentifier(fromComponents: dictionary as! [String : String]) as NSString?
+            
+            let country = (Locale.current as NSLocale).displayName(forKey: NSLocale.Key.countryCode, value: countryCode)
+            //replace "NSLocaleIdentifier"  with "NSLocaleCountryCode" to get language name
+            
+            if country != nil {//check the country name is  not nil
+                countries.add(country!)
+            }
+        }
+        NSLog("\(countries)")
+        return countries
     }
      
 }

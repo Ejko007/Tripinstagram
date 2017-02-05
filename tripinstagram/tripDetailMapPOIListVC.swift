@@ -20,6 +20,10 @@ class tripDetailMapPOIListVC: UITableViewController {
     var poilatitudeArray = [String]()
     var poiuuidArray = [String]()
     var poitypeArray = [Int]()
+    var poiorderArray = [Int]()
+    
+    // post uuid
+    var uuid = String()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,7 +41,8 @@ class tripDetailMapPOIListVC: UITableViewController {
         
         // load poi records
         let poiQuery = PFQuery(className: "tripsegmentpoi")
-        // poiQuery.whereKey("uuid", equalTo: PFUser.current()!.username!)
+        poiQuery.order(byAscending: "poiorder")
+        poiQuery.whereKey("uuid", equalTo: postuuid.last!)
         poiQuery.findObjectsInBackground(block: {(objects: [PFObject]?, error: Error?) in
             if error == nil {
                 // clean up
@@ -48,6 +53,7 @@ class tripDetailMapPOIListVC: UITableViewController {
                 self.poilatitudeArray.removeAll(keepingCapacity: false)
                 self.poiuuidArray.removeAll(keepingCapacity: false)
                 self.poitypeArray.removeAll(keepingCapacity: false)
+                self.poiorderArray.removeAll(keepingCapacity: false)
                 
                 // find related objects
                 for object in objects! {
@@ -56,6 +62,7 @@ class tripDetailMapPOIListVC: UITableViewController {
                     self.poidetailsArray.append(object.object(forKey: "poidetails") as! String)
                     self.poiuuidArray.append(object.object(forKey: "poiuuid") as! String)
                     self.poitypeArray.append(object.object(forKey: "poitype") as! Int)
+                    self.poiorderArray.append(object.object(forKey: "poiorder") as! Int)
                     
                     let point = object["location"] as! PFGeoPoint
                     self.poilatitudeArray.append("\(point.latitude)")
@@ -104,6 +111,7 @@ class tripDetailMapPOIListVC: UITableViewController {
         } else {
            cell.POITypeView.backgroundColor = UIColor(colorLiteralRed: 1.00, green: 0.361, blue: 0.145, alpha: 1.00)
        }
+       cell.POIOrderLbl.text = "\(poiorderArray[indexPath.row])"
         
         // assign index
         cell.showDescriptionBtn.layer.setValue(indexPath, forKey: "index")
@@ -147,6 +155,7 @@ class tripDetailMapPOIListVC: UITableViewController {
         self.poilatitudeArray.remove(at: indexPath.row)
         self.poiuuidArray.remove(at: indexPath.row)
         self.poitypeArray.remove(at: indexPath.row)
+        self.poiorderArray.remove(at: indexPath.row)
         
         tableView.deleteRows(at: [indexPath], with: .fade)
 
@@ -168,7 +177,7 @@ class tripDetailMapPOIListVC: UITableViewController {
 
     // Override to support rearranging the table view.
     override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
+        
     }
  
     // Override to support conditional rearranging of the table view.
@@ -221,7 +230,9 @@ class tripDetailMapPOIListVC: UITableViewController {
     func refresh () {
         // load poi records
         let poiQuery = PFQuery(className: "tripsegmentpoi")
+        poiQuery.order(byAscending: "poiorder")
         // poiQuery.whereKey("uuid", equalTo: PFUser.current()!.username!)
+        poiQuery.whereKey("uuid", equalTo: postuuid.last!)
         poiQuery.findObjectsInBackground(block: {(objects: [PFObject]?, error: Error?) in
             if error == nil {
                 // clean up
@@ -232,6 +243,7 @@ class tripDetailMapPOIListVC: UITableViewController {
                 self.poilatitudeArray.removeAll(keepingCapacity: false)
                 self.poiuuidArray.removeAll(keepingCapacity: false)
                 self.poitypeArray.removeAll(keepingCapacity: false)
+                self.poiorderArray.removeAll(keepingCapacity: false)
                 
                 // find related objects
                 for object in objects! {
@@ -240,6 +252,7 @@ class tripDetailMapPOIListVC: UITableViewController {
                     self.poidetailsArray.append(object.object(forKey: "poidetails") as! String)
                     self.poiuuidArray.append(object.object(forKey: "poiuuid") as! String)
                     self.poitypeArray.append(object.object(forKey: "poitype") as! Int)
+                    self.poiorderArray.append(object.object(forKey: "poiorder") as! Int)
                     
                     let point = object["location"] as! PFGeoPoint
                     self.poilatitudeArray.append("\(point.latitude)")

@@ -61,7 +61,7 @@ class tripDetailMapPOIVC: UIViewController,CLLocationManagerDelegate {
         super.viewDidLoad()
         
 //        if PFUser.current()?.username!.lowercased() == username.lowercased() {
-//            isOwner = true
+//           isOwner = true
 //        }
         
         isAuthorizedtoGetUserLocation()

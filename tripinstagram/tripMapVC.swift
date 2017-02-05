@@ -10,15 +10,24 @@ import UIKit
 import MapKit
 import Parse
 
-class tripMapVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
+class tripMapVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate, UITabBarControllerDelegate {
 
-    @IBOutlet var mapView: MKMapView!
+    @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet weak var mapTypeControl: UISegmentedControl!
     
     var MapViewLocationManager:CLLocationManager! = CLLocationManager()
     var currentLoc: PFGeoPoint! = PFGeoPoint()
  
     var coordinates = [CLLocationCoordinate2D]()
     var annotations = [MKPointAnnotation]()
+    
+    // delegating user name from other views
+    var username = String()
+    var uuid = String()
+    
+    var startLocation:CLLocation!
+    var lastLocation: CLLocation!
+    var traveledDistance:Double = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,41 +38,59 @@ class tripMapVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate 
         MapViewLocationManager.startUpdatingLocation()
         mapView.setUserTrackingMode(MKUserTrackingMode.follow, animated: true)
         
-        let width = UIScreen.main.bounds.width
-        let height = UIScreen.main.bounds.height
+        // Create a navigation item with a title
+        self.navigationItem.title = triproute_menu_str.uppercased()
 
-        let cancelBtn: UIButton = UIButton(frame: CGRect(x: 0, y: 0, width: 25, height: 25))
-        cancelBtn.addTarget(self, action: #selector(cancelBtn_clicked), for: .touchUpInside)
-        let btnImage = UIImage(named: "close.png")
-        cancelBtn.setImage(btnImage, for: .normal)
-        cancelBtn.tag = 1
-        mapView.addSubview(cancelBtn)
-        
+        // new edit button
+        let editBtn = UIBarButtonItem(image: UIImage(named: "edit.png"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(edit))
+
+        // show edit button for current user post only
+        if PFUser.current()?.username == self.username.lowercased() {
+            self.navigationItem.rightBarButtonItems = [editBtn]
+            editBtn.isEnabled = true
+        } else {
+            self.navigationItem.rightBarButtonItems = []
+            editBtn.isEnabled = false
+        }
+
         // allow constraints
         mapView.translatesAutoresizingMaskIntoConstraints = false
-        cancelBtn.translatesAutoresizingMaskIntoConstraints = false
+        mapTypeControl.translatesAutoresizingMaskIntoConstraints = false
         
         // constraints
         self.view.addConstraints(NSLayoutConstraint.constraints(
-            withVisualFormat: "H:|-0-[mapview(\(width))]-|",
+            withVisualFormat: "H:|-0-[mapview]-0-|",
             options: [],
             metrics: nil, views: ["mapview":mapView]))
         
         self.view.addConstraints(NSLayoutConstraint.constraints(
-            withVisualFormat: "V:|-[mapview(\(height))]-|",
+            withVisualFormat: "V:|-0-[mapview]-0-|",
             options: [],
             metrics: nil, views: ["mapview":mapView]))
-
+        
         self.view.addConstraints(NSLayoutConstraint.constraints(
-            withVisualFormat: "V:|-30-[cancel(25)]",
+            withVisualFormat: "H:|-50-[maptype]-50-|",
             options: [],
-            metrics: nil, views: ["cancel":cancelBtn]))
-
+            metrics: nil, views: ["maptype":mapTypeControl]))
+        
         self.view.addConstraints(NSLayoutConstraint.constraints(
-            withVisualFormat: "H:[cancel(25)]-10-|",
+            withVisualFormat: "V:[maptype(\(25))]-20-|",
             options: [],
-            metrics: nil, views: ["cancel":cancelBtn]))
-                
+            metrics: nil, views: ["maptype":mapTypeControl]))
+
+        // customize segmented controller for map type
+        mapTypeControl.tintColor = .white
+        mapTypeControl.backgroundColor = UIColor(colorLiteralRed: 0.00, green: 0.580, blue: 0.969, alpha: 1.00)
+        mapTypeControl.setTitle(standard_str, forSegmentAt: 0)
+        mapTypeControl.setTitle(satelite_str, forSegmentAt: 1)
+        mapTypeControl.setTitle(hybrid_str, forSegmentAt: 2)
+        mapTypeControl.layer.cornerRadius = 5.0
+        mapTypeControl.clipsToBounds = true
+        // initial setting of map type controller
+        mapTypeControl.selectedSegmentIndex = 0
+        
+        self.mapView.addSubview(mapTypeControl)
+
         if #available(iOS 9.0, *) {
             mapView.showsCompass = true
             mapView.showsScale = true
@@ -120,14 +147,38 @@ class tripMapVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate 
     
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
         
+        let destination = self.storyboard?.instantiateViewController(withIdentifier: "tripDetailMapPOI4MapVC") as! tripDetailMapPOI4MapVC
+        
+        destination.isNewPOI = false
+        
+        poiuuid.removeAll(keepingCapacity: false)
+        let poiannotation = view.annotation as! ColorPointAnnotation
+        poiuuid.append(poiannotation.pinuuid)
+        
+        self.navigationController?.pushViewController(destination, animated: true)
+        
         print("annotation tapped....")
     }
     
+    @IBAction func maptypeControlAction(_ sender: UISegmentedControl) {
+        
+        switch (sender.selectedSegmentIndex) {
+        case 0:
+            mapView.mapType = .standard
+        case 1:
+            mapView.mapType = .satellite
+        case 2:
+            mapView.mapType = .hybrid
+        default:
+            mapView.mapType = .standard
+        }
+    }
     
     // display geopoint from the server
     override func viewDidAppear(_ animated: Bool) {
+        var annotationColor = UIColor()
         
-        let annotationQuery = PFQuery(className: "triproute")
+        let annotationQuery = PFQuery(className: "tripsegmentpoi")
         annotationQuery.whereKey("uuid", equalTo: postuuid.last!)
         annotationQuery.findObjectsInBackground(block: { (locations: [PFObject]?, locationsError: Error?) in
             if locationsError == nil {
@@ -137,14 +188,23 @@ class tripMapVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate 
                 
                 for location in myLocations {
                     let point = location["location"] as! PFGeoPoint
-                    let annotation = MKPointAnnotation()
+                    // let annotation = MKPointAnnotation()
+                    let poitype = location["poitype"] as! Int
+                    if poitype == 0 {
+                        annotationColor = UIColor(colorLiteralRed: 0.00, green: 0.580, blue: 0.969, alpha: 1.00)
+                    } else {
+                        annotationColor = UIColor(colorLiteralRed: 1.00, green: 0.361, blue: 0.145, alpha: 1.00)
+                    }
+                    let poiuuid = location["poiuuid"] as! String
+                    let annotation = ColorPointAnnotation(pinColor: annotationColor, pinuuid: poiuuid)
                     annotation.coordinate = CLLocationCoordinate2DMake(point.latitude, point.longitude)
-                    let title = location["title"] as! String
+                    let title = location["poiname"] as! String
                     annotation.title = title
-                    let subtitle = location["subtitle"] as! String
+                    let subtitle = location["poidescription"] as! String
                     annotation.subtitle = subtitle
-                    //let description = location["description"] as! String
-                    //annotation.description = ""
+                    //let description = location["poidetails"] as! String
+                    //annotation.description = mydescription
+
                     
                     self.annotations.append(annotation)
                     self.mapView.addAnnotation(annotation)
@@ -204,7 +264,7 @@ class tripMapVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate 
         
         // Pin color customization
         if #available(iOS 9.0, *) {
-            annotationView?.pinTintColor = UIColor.red
+            // annotationView?.pinTintColor = UIColor.red
         }
         
         return annotationView
@@ -238,6 +298,7 @@ class tripMapVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate 
         let startMapItem = MKMapItem(placemark: startPlacemark)
         let endMapItem = MKMapItem(placemark: endPlacemark)
         
+        
         // Set the source and destination of the route
         let directionRequest = MKDirectionsRequest()
         directionRequest.source = startMapItem
@@ -257,18 +318,48 @@ class tripMapVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate 
                 return
             }
             
+            for route in routeResponse.routes {
+                print("Distance = \(route.distance)")
+                for step in route.steps {
+                    print(step.instructions)
+                }
+            }
+            
             let route = routeResponse.routes[0]
             self.mapView.add(route.polyline, level: MKOverlayLevel.aboveRoads)
         }
     }
     
-    // close - dismiss map view
-    func cancelBtn_clicked(_ sender: Any) {
+    //    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+    //
+    //        if startLocation == nil {
+    //            startLocation = locations.first
+    //        } else {
+    //            if let lastLocation = locations.last {
+    //                let distance = startLocation.distance(from: lastLocation)
+    //                let lastDistance = lastLocation.distance(from: lastLocation)
+    //                traveledDistance += lastDistance
+    //                print( "\(startLocation)")
+    //                print( "\(lastLocation)")
+    //                print("FULL DISTANCE: \(traveledDistance)")
+    //                print("STRAIGHT DISTANCE: \(distance)")
+    //            }
+    //        }
+    //        lastLocation = locations.last
+    //    }
+
+    // edit map coordinates - opening other tabbar controller
+    func edit() {
+        var nextTVC = UITabBarController()
+        let storyBoard:UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+
+        nextTVC = storyBoard.instantiateViewController(withIdentifier: "tabbartripDetailMap") as! tabbartripDetailMap
         
-        let btnsendertag: UIButton = sender as! UIButton
-        if btnsendertag.tag == 1 {
-            dismiss(animated: true, completion: nil)
-        }
+        // set initial tab bar to 0
+        // tabbartripDetailMap
+        nextTVC.selectedIndex = 0
+        nextTVC.delegate = self
+        self.present(nextTVC, animated: true, completion: nil)
     }
-    
+        
 }

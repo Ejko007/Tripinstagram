@@ -234,13 +234,11 @@ class tripDetailMapVC: UIViewController, MKMapViewDelegate, CLLocationManagerDel
         default:
             mapView.mapType = .standard
         }
-        
-        
     }
     
     // display geopoint from the server
     override func viewDidAppear(_ animated: Bool) {
-        var annotationColor = UIColor()
+        var annotationColor = UIColor() 
         
         let annotationQuery = PFQuery(className: "tripsegmentpoi")
         annotationQuery.whereKey("uuid", equalTo: postuuid.last!)

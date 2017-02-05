@@ -20,6 +20,7 @@ class tripDetailMapPOIListCell: UITableViewCell {
     @IBOutlet weak var POIDescriptionTxtView: UITextView!
     @IBOutlet weak var POIUUID: UILabel!
     @IBOutlet weak var POITypeView: UIView!
+    @IBOutlet weak var POIOrderLbl: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -45,14 +46,22 @@ class tripDetailMapPOIListCell: UITableViewCell {
         POIDescriptionTxtView.translatesAutoresizingMaskIntoConstraints = false
         POIUUID.translatesAutoresizingMaskIntoConstraints = false
         POITypeView.translatesAutoresizingMaskIntoConstraints = false
+        POIOrderLbl.translatesAutoresizingMaskIntoConstraints = false
         
         // set frame size for show description button icon
         showDescriptionBtn.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
         
+        // set frame size for poiorder label
+        POIOrderLbl.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+        POIOrderLbl.layer.cornerRadius = 15.0
+        POIOrderLbl.clipsToBounds = true
+        POIOrderLbl.backgroundColor = UIColor(red: 223 / 255, green: 0, blue: 31 / 255, alpha: 1)
+        POIOrderLbl.textColor = .white
+        self.contentView.addSubview(POIOrderLbl)
+        
         // configure backgroud color of POI name
         POIName.backgroundColor = UIColor(red: 74 / 255, green: 144 / 255, blue: 226 / 255, alpha: 30 / 100)
         POIName.tintColor = .black
-        //POIName.drawText(in: CGRect(x: 5, y: 20, width: width - 20, height: 20))
         
         
         // localization of label text
@@ -65,6 +74,7 @@ class tripDetailMapPOIListCell: UITableViewCell {
         POIDescriptionTxtView.isHidden = true
         POIUUID.isHidden = true
         
+        // poitype label settings
         POITypeView.frame = CGRect(x: 0, y: 0, width: width - 140, height: 110)
         POITypeView.layer.cornerRadius = 5.0
         POITypeView.clipsToBounds = true
@@ -72,13 +82,13 @@ class tripDetailMapPOIListCell: UITableViewCell {
         
         // add constraints to both subview and cell view
         self.contentView.addConstraints(NSLayoutConstraint.constraints(
-            withVisualFormat: "H:|-10-[poiname(\(width - 20))]-10-|",
+            withVisualFormat: "H:|-10-[poiname]-10-|",
             options: [],
             metrics: nil,
             views: ["poiname":POIName]))
         
         self.contentView.addConstraints(NSLayoutConstraint.constraints(
-            withVisualFormat: "H:|-10-[poidescription(\(width - 20))]-10-|",
+            withVisualFormat: "H:|-10-[poidescription]-10-|",
             options: [],
             metrics: nil,
             views: ["poidescription":POIDescription]))
@@ -114,6 +124,12 @@ class tripDetailMapPOIListCell: UITableViewCell {
             views: ["longvalue":LongtitudeValueLbl]))
         
         self.contentView.addConstraints(NSLayoutConstraint.constraints(
+            withVisualFormat: "H:[poiorder(30)]-10-|",
+            options: [],
+            metrics: nil,
+            views: ["poiorder":POIOrderLbl]))
+
+        self.contentView.addConstraints(NSLayoutConstraint.constraints(
             withVisualFormat: "H:[showpoidescbtn(30)]-10-|",
             options: [],
             metrics: nil,
@@ -126,11 +142,17 @@ class tripDetailMapPOIListCell: UITableViewCell {
             views: ["latlbl":LatitudeLbl, "latvalue":LatitudeValueLbl, "longlbl":LongtitudeLbl, "longvalue":LongtitudeValueLbl]))
         
         self.contentView.addConstraints(NSLayoutConstraint.constraints(
-            withVisualFormat: "V:|-10-[poiname(20)]-10-[poidesc(15)]-10-[poitypeview(\(POITypeView.frame.height))]-10-|",
+            withVisualFormat: "V:|-10-[poiname]-10-[poidesc]-10-[poitypeview(\(POITypeView.frame.height))]-10-|",
             options: [],
             metrics: nil,
             views: ["poiname":POIName, "poidesc":POIDescription, "poitypeview":POITypeView]))
-        
+
+        self.contentView.addConstraints(NSLayoutConstraint.constraints(
+            withVisualFormat: "V:|-10-[poiname]-10-[poidesc]-10-[poiorder(30)]",
+            options: [],
+            metrics: nil,
+            views: ["poiname":POIName, "poidesc":POIDescription,"poiorder":POIOrderLbl]))
+
         self.contentView.addConstraints(NSLayoutConstraint.constraints(
             withVisualFormat: "V:[showpoidescbtn(30)]-10-|",
             options: [],

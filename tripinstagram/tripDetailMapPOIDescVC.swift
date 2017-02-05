@@ -34,32 +34,28 @@ class tripDetailMapPOIDescVC: UIViewController {
         tripDetailDescLabel.text = description_str
         tripDetailDescSaveBtn.setTitle(save_str,for: .normal)
         
-        // add constraints
-        let width = UIScreen.main.bounds.width
-        let height = UIScreen.main.bounds.height
-        
+        // add constraints        
         tripDetailDescLabel.translatesAutoresizingMaskIntoConstraints = false
         tripDetailTxtView.translatesAutoresizingMaskIntoConstraints = false
         tripDetailDescSaveBtn.translatesAutoresizingMaskIntoConstraints = false
         
         self.view.addConstraints(NSLayoutConstraint.constraints(
-            withVisualFormat: "H:|-10-[desclbl(\(width - 20))]-10-|",
+            withVisualFormat: "H:|-10-[desclbl]-10-|",
             options: [],
             metrics: nil, views: ["desclbl":tripDetailDescLabel]))
        
         self.view.addConstraints(NSLayoutConstraint.constraints(
-            withVisualFormat: "H:|-10-[desctxtview(\(width - 20))]-10-|",
+            withVisualFormat: "H:|-10-[desctxtview]-10-|",
             options: [],
             metrics: nil, views: ["desctxtview":tripDetailTxtView]))
         
         self.view.addConstraints(NSLayoutConstraint.constraints(
-            withVisualFormat: "H:|-10-[savebtn(\(width - 20))]-10-|",
+            withVisualFormat: "H:|-10-[savebtn]-10-|",
             options: [],
             metrics: nil, views: ["savebtn":tripDetailDescSaveBtn]))
         
-        let h = self.tabBarController?.tabBar.frame.height
         self.view.addConstraints(NSLayoutConstraint.constraints(
-            withVisualFormat: "V:|-10-[desclbl(30)]-10-[desctxtview(\(height - (h! + 160)))]-10-[savebtn(30)]-10-|",
+            withVisualFormat: "V:|-10-[desclbl]-10-[desctxtview]-10-[savebtn(30)]-10-|",
             options: [],
             metrics: nil, views: ["desclbl":tripDetailDescLabel,"desctxtview":tripDetailTxtView, "savebtn":tripDetailDescSaveBtn]))
         

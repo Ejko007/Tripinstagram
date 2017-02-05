@@ -34,7 +34,6 @@ class tripDetailMapPOI4MapVC: UIViewController, UINavigationBarDelegate, UITabBa
     // size of screen
     let width = UIScreen.main.bounds.width
     let height = UIScreen.main.bounds.height
-    var navBarHeight = CGFloat()
     
     var isOwner = true
     
