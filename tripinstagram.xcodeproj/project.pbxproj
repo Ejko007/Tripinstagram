@@ -33,6 +33,7 @@
 		0A1E9D5F1DBC8B9F00080209 /* commentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1E9D5E1DBC8B9F00080209 /* commentVC.swift */; };
 		0A1E9D611DBC8BDC00080209 /* commentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1E9D601DBC8BDC00080209 /* commentCell.swift */; };
 		0A1E9D651DBD32A500080209 /* KILabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A1E9D641DBD32A500080209 /* KILabel.m */; };
+		0A21870C1E48E6FE00496620 /* FlagKit.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A21870B1E48E6FE00496620 /* FlagKit.xcassets */; };
 		0A32E22E1DE49667006DC92E /* TimeFrameVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A32E22D1DE49667006DC92E /* TimeFrameVC.swift */; };
 		0A3B76F81DE1C96900A60659 /* RatingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3B76F61DE1C96900A60659 /* RatingViewController.swift */; };
 		0A3B76F91DE1C96900A60659 /* RatingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A3B76F71DE1C96900A60659 /* RatingViewController.xib */; };
@@ -141,6 +142,7 @@
 		0A1E9D621DBD32A400080209 /* tripinstagram-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "tripinstagram-Bridging-Header.h"; path = "tripinstagram/tripinstagram-Bridging-Header.h"; sourceTree = "<group>"; };
 		0A1E9D631DBD32A500080209 /* KILabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KILabel.h; path = tripinstagram/KILabel.h; sourceTree = "<group>"; };
 		0A1E9D641DBD32A500080209 /* KILabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KILabel.m; path = tripinstagram/KILabel.m; sourceTree = "<group>"; };
+		0A21870B1E48E6FE00496620 /* FlagKit.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = FlagKit.xcassets; sourceTree = "<group>"; };
 		0A32E22D1DE49667006DC92E /* TimeFrameVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeFrameVC.swift; sourceTree = "<group>"; };
 		0A3B76F61DE1C96900A60659 /* RatingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RatingViewController.swift; sourceTree = "<group>"; };
 		0A3B76F71DE1C96900A60659 /* RatingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RatingViewController.xib; sourceTree = "<group>"; };
@@ -379,6 +381,7 @@
 				0A4813021E393F6F00635270 /* tripDetailPhotoDetailVC.swift */,
 				0A8626331DB0BDE30001C1EE /* AppDelegate.swift */,
 				0A8626371DB0BDE30001C1EE /* Main.storyboard */,
+				0A21870B1E48E6FE00496620 /* FlagKit.xcassets */,
 				0A32E22D1DE49667006DC92E /* TimeFrameVC.swift */,
 				0A86263A1DB0BDE30001C1EE /* Assets.xcassets */,
 				0A86263C1DB0BDE30001C1EE /* LaunchScreen.storyboard */,
@@ -553,6 +556,7 @@
 				0A9827A81DE318C9008C6C0C /* gl-calendar-shadow.png in Resources */,
 				0A9827AA1DE318C9008C6C0C /* gl-calendar-shadow@3x.png in Resources */,
 				0A9827A41DE318C9008C6C0C /* GLCalendarView.xib in Resources */,
+				0A21870C1E48E6FE00496620 /* FlagKit.xcassets in Resources */,
 				0A8626391DB0BDE30001C1EE /* Main.storyboard in Resources */,
 				0A3B76F91DE1C96900A60659 /* RatingViewController.xib in Resources */,
 				0A0734281E38EBB200517E7B /* Info.plist in Resources */,

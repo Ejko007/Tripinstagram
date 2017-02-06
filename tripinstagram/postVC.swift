@@ -31,7 +31,8 @@ class postVC: UITableViewController {
     var tripFromArray = [Date?]()
     var tripToArray = [Date?]()
     var levelArray = [Int]()
-    
+    var countriesArray = Array<Array<String>>()
+
     var ratingArray = [Double]()
     
     var publishedArray = [Bool]()
@@ -92,6 +93,7 @@ class postVC: UITableViewController {
                 self.tripFromArray.removeAll(keepingCapacity: false)
                 self.tripToArray.removeAll(keepingCapacity: false)
                 self.levelArray.removeAll(keepingCapacity: false)
+                self.countriesArray.removeAll(keepingCapacity: false)
                 
                 //find related objects
                 for object in objects! {
@@ -109,6 +111,8 @@ class postVC: UITableViewController {
                     self.tripFromArray.append(object.value(forKey: "tripFrom") as! Date?)
                     self.tripToArray.append(object.value(forKey: "tripTo") as! Date?)
                     self.levelArray.append(object.value(forKey: "level") as! Int)
+                    let countries = object["countries"]! as? [String]
+                    self.countriesArray.append(countries!)
                     
                     // counting rates
                     var sumaRates: Double = 0.0
@@ -499,6 +503,7 @@ class postVC: UITableViewController {
             self.tripFromArray.remove(at: i.row)
             self.tripToArray.remove(at: i.row)
             self.levelArray.remove(at: i.row)
+            self.countriesArray.remove(at: i.row)
             
             // STEP 2. Delete post from the server
             let postQuery = PFQuery(className: "posts")

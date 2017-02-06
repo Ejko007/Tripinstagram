@@ -43,6 +43,7 @@ class postCell: UITableViewCell {
     @IBOutlet weak var mapmarkerIcon: UIImageView!
     @IBOutlet weak var totalDistanceLbl: UILabel!
     @IBOutlet weak var kmLbl: UILabel!
+    @IBOutlet weak var countriesView: UIView!
     
     //let pictureWidth = width - 20
     let pictureWidth = UIScreen.main.bounds.width / 2
@@ -95,6 +96,7 @@ class postCell: UITableViewCell {
         mapmarkerIcon.translatesAutoresizingMaskIntoConstraints = false
         totalDistanceLbl.translatesAutoresizingMaskIntoConstraints = false
         kmLbl.translatesAutoresizingMaskIntoConstraints = false
+        countriesView.translatesAutoresizingMaskIntoConstraints = false
         
         // constraints
         self.contentView.addConstraints(NSLayoutConstraint.constraints(
@@ -106,7 +108,7 @@ class postCell: UITableViewCell {
             withVisualFormat: "H:|-[mainview]-|",
             options: [],
             metrics: nil, views: ["mainview":mainContentView]))
-        
+                
         self.mainContentView.backgroundColor = UIColor(red: 155 / 255, green: 155 / 255, blue: 155 / 255, alpha: 3 / 100)
         self.mainContentView.layer.cornerRadius = 8
         self.mainContentView.clipsToBounds = true
@@ -117,9 +119,9 @@ class postCell: UITableViewCell {
         self.mainContentView.layer.shadowRadius = 10
         
         self.mainContentView.addConstraints(NSLayoutConstraint.constraints(
-            withVisualFormat: "V:|-10-[ava(30)]-10-[tripname(23)]-10-[pic(\(pictureWidth))]-5-[like(30)]-5-[spenticon(30)]-5-[titletxt]-|",
+            withVisualFormat: "V:|-10-[ava(30)]-10-[tripname(23)]-10-[pic(\(pictureWidth))]-5-[like(30)]-5-[spenticon(30)]-5-[countries(30)]-5-[titletxt]-|",
             options: [],
-            metrics: nil, views: ["ava":avaImg, "tripname":tripNameLbl ,"pic":picImg, "like": likeBtn, "spenticon":spentsIcon, "titletxt":titleLbl]))
+            metrics: nil, views: ["ava":avaImg, "tripname":tripNameLbl ,"pic":picImg, "like": likeBtn, "spenticon":spentsIcon, "countries":countriesView, "titletxt":titleLbl]))
         
         self.mainContentView.addConstraints(NSLayoutConstraint.constraints(
             withVisualFormat: "V:|-10-[username(30)]-10-[tripname(23)]-10-[fromstr]-5-[fromdate]-10-[tostr]-5-[todate]-10-[nrpersonicon(30)]-10-[rating(30)]",
@@ -247,6 +249,11 @@ class postCell: UITableViewCell {
             withVisualFormat: "H:|-10-[pic(\(pictureWidth))]-[mapmarker(30)]-10-[distance]-5-[kmlbl]",
             options: [],
             metrics: nil, views: ["pic":picImg,"mapmarker":mapmarkerIcon, "distance":totalDistanceLbl, "kmlbl":kmLbl]))
+
+        self.mainContentView.addConstraints(NSLayoutConstraint.constraints(
+            withVisualFormat: "H:|-10-[countries]-10-|",
+            options: [],
+            metrics: nil, views: ["countries": countriesView]))
 
         self.mainContentView.addConstraints(NSLayoutConstraint.constraints(
             withVisualFormat: "H:|-10-[title]-10-|",

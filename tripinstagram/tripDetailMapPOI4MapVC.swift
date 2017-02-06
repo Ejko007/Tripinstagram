@@ -411,6 +411,15 @@ class tripDetailMapPOI4MapVC: UIViewController, UINavigationBarDelegate, UITabBa
     
     // save POI coordinates to server
     func POISaveBtn_Clicked() {
+        // get count of objects
+        var number : Int = 0
+        let query = PFQuery(className:"tripsegmentpoi")
+        query.whereKey("poiuuid", equalTo: poiuuid.last!)
+        query.countObjectsInBackground { (counts: Int32, error: Error?) in
+            if error == nil {
+                number = Int(counts)
+            }
+        }
         
         if self.isNewPOI {
             let poiObj = PFObject(className: "tripsegmentpoi")
@@ -423,6 +432,11 @@ class tripDetailMapPOI4MapVC: UIViewController, UINavigationBarDelegate, UITabBa
             poiObj["uuid"] = postuuid.last!
             let uuid = UUID().uuidString
             poiObj["poiuuid"] = "\(PFUser.current()?.username) \(uuid)"
+            if number == 0 {
+                poiObj["poiorder"] = number
+            } else {
+                poiObj["poiorder"] = number - 1
+            }
             
             poiObj.saveInBackground(block: { (success:Bool, error:Error?) in
                 if error == nil {

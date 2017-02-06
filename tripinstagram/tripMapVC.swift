@@ -205,6 +205,39 @@ class tripMapVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate,
                     //let description = location["poidetails"] as! String
                     //annotation.description = mydescription
 
+                    // get address from location
+                    let geoCoder = CLGeocoder()
+                    let place = CLLocation(latitude: point.latitude, longitude: point.longitude)
+                    
+                    geoCoder.reverseGeocodeLocation(place, completionHandler: { (placemarks, error) in
+                        var placeMark: CLPlacemark!
+                        placeMark = placemarks?[0]
+                        
+                        // address dictionary
+                        if let locationName = placeMark.addressDictionary!["Name"] as? NSString {
+                            print(locationName)
+                        }
+
+                        // stret address
+                        if let streetName = placeMark.addressDictionary!["Throughfare"] as? NSString {
+                            print(streetName)
+                        }
+
+                        // city name
+                        if let cityName = placeMark.addressDictionary!["City"] as? NSString {
+                            print(cityName)
+                        }
+                        
+                        // zip name
+                        if let zipName = placeMark.addressDictionary!["ZIP"] as? NSString {
+                            print(zipName)
+                        }
+                        
+                        // country name
+                        if let countryName = placeMark.addressDictionary!["Country"] as? NSString {
+                            print(countryName)
+                        }
+                    })
                     
                     self.annotations.append(annotation)
                     self.mapView.addAnnotation(annotation)

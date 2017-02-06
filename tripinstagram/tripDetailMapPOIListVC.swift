@@ -40,6 +40,22 @@ class tripDetailMapPOIListVC: UITableViewController {
         addPOIBtn.tintColor = .white
         
         // load poi records
+        loadPOI()
+        
+        // Uncomment the following line to preserve selection between presentations
+        self.clearsSelectionOnViewWillAppear = false
+
+        // allow edit feature
+        self.navigationItem.leftBarButtonItem = self.editButtonItem
+        
+        // delegation settings
+        tableView.delegate = self
+        tableView.dataSource = self
+    }
+    
+    // load POI from the server
+    func loadPOI() {
+        // load poi records
         let poiQuery = PFQuery(className: "tripsegmentpoi")
         poiQuery.order(byAscending: "poiorder")
         poiQuery.whereKey("uuid", equalTo: postuuid.last!)
@@ -71,19 +87,8 @@ class tripDetailMapPOIListVC: UITableViewController {
             } else {
                 print(error!.localizedDescription)
             }
-            
             self.tableView.reloadData()
         })
-
-        // Uncomment the following line to preserve selection between presentations
-        self.clearsSelectionOnViewWillAppear = false
-
-        // allow edit feature
-        self.navigationItem.leftBarButtonItem = self.editButtonItem
-        
-        // delegation settings
-        tableView.delegate = self
-        tableView.dataSource = self
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -111,7 +116,7 @@ class tripDetailMapPOIListVC: UITableViewController {
         } else {
            cell.POITypeView.backgroundColor = UIColor(colorLiteralRed: 1.00, green: 0.361, blue: 0.145, alpha: 1.00)
        }
-       cell.POIOrderLbl.text = "\(poiorderArray[indexPath.row])"
+       cell.POIOrderLbl.text = "\(poiorderArray[indexPath.row] + 1)"
         
         // assign index
         cell.showDescriptionBtn.layer.setValue(indexPath, forKey: "index")
@@ -178,6 +183,65 @@ class tripDetailMapPOIListVC: UITableViewController {
     // Override to support rearranging the table view.
     override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
         
+        // retrieving item
+        let poiorderitemToMove = poiorderArray[fromIndexPath.row]
+        let poinameitemToMove = poinameArray[fromIndexPath.row]
+        let poidescriptionitemToMove = poidescriptionArray[fromIndexPath.row]
+        let poidetailsitemToMove = poidetailsArray[fromIndexPath.row]
+        let poilongitudeitemToMove = poilongitudeArray[fromIndexPath.row]
+        let poilatitudeitemToMove = poilatitudeArray[fromIndexPath.row]
+        let poiuuiditemToMove = poiuuidArray[fromIndexPath.row]
+        let poitypeitemToMove = poitypeArray[fromIndexPath.row]
+        
+        // removing item
+        poiorderArray.remove(at: fromIndexPath.row)
+        poinameArray.remove(at: fromIndexPath.row)
+        poidescriptionArray.remove(at: fromIndexPath.row)
+        poidetailsArray.remove(at: fromIndexPath.row)
+        poilongitudeArray.remove(at: fromIndexPath.row)
+        poilatitudeArray.remove(at: fromIndexPath.row)
+        poiuuidArray.remove(at: fromIndexPath.row)
+        poitypeArray.remove(at: fromIndexPath.row)
+        
+        // inserting item
+        poiorderArray.insert(poiorderitemToMove, at: to.row)
+        poinameArray.insert(poinameitemToMove, at: to.row)
+        poidescriptionArray.insert(poidescriptionitemToMove, at: to.row)
+        poidetailsArray.insert(poidetailsitemToMove, at: to.row)
+        poilongitudeArray.insert(poilongitudeitemToMove, at: to.row)
+        poilatitudeArray.insert(poilatitudeitemToMove, at: to.row)
+        poiuuidArray.insert(poiuuiditemToMove, at: to.row)
+        poitypeArray.insert(poitypeitemToMove, at: to.row)
+        
+        // update poi records on the server
+        let poiQuery = PFQuery(className: "tripsegmentpoi")
+        poiQuery.whereKey("uuid", equalTo: postuuid.last!)
+        poiQuery.findObjectsInBackground(block: {(objects: [PFObject]?, error: Error?) in
+            if error == nil {
+                var index: Int = 0
+                self.poiorderArray.removeAll(keepingCapacity: false)
+                for object in objects! {
+                    object["poiname"] = self.poinameArray[index]
+                    object["poidescription"] = self.poidescriptionArray[index]
+                    object["poidetails"] = self.poidetailsArray[index]
+                    object["poitype"] = self.poitypeArray[index]
+                    let point = PFGeoPoint(latitude: Double(self.poilatitudeArray[index])!, longitude: Double(self.poilongitudeArray[index])!)
+                    object["location"] = point
+                    object["poiorder"] = index
+                    self.poiorderArray.append(object.object(forKey: "poiorder") as! Int)
+                    
+                    object.saveEventually { (success: Bool, error: Error?) in
+                        if error != nil {
+                            print(error!.localizedDescription)
+                        } else {
+                            // update table view row
+                        }
+                    }
+                    index += 1
+                }
+            }
+            self.tableView.reloadData()
+        })
     }
  
     // Override to support conditional rearranging of the table view.
