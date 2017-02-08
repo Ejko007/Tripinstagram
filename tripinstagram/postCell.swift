@@ -119,7 +119,7 @@ class postCell: UITableViewCell {
         self.mainContentView.layer.shadowRadius = 10
         
         self.mainContentView.addConstraints(NSLayoutConstraint.constraints(
-            withVisualFormat: "V:|-10-[ava(30)]-10-[tripname(23)]-10-[pic(\(pictureWidth))]-5-[like(30)]-5-[spenticon(30)]-5-[countries(30)]-5-[titletxt]-|",
+            withVisualFormat: "V:|-10-[ava(30)]-10-[tripname(23)]-10-[pic(\(pictureWidth))]-5-[like(30)]-5-[spenticon(30)]-5-[countries(15)]-5-[titletxt]-|",
             options: [],
             metrics: nil, views: ["ava":avaImg, "tripname":tripNameLbl ,"pic":picImg, "like": likeBtn, "spenticon":spentsIcon, "countries":countriesView, "titletxt":titleLbl]))
         
@@ -274,6 +274,9 @@ class postCell: UITableViewCell {
         // create hidden button over rateView
         rateView.backgroundColor = .clear
         rateView.starSize = 15
+        
+        // countries view settings
+        countriesView.backgroundColor = UIColor(white: 1, alpha: 0)
      }
     
     // clicked like button

@@ -40,6 +40,9 @@ class postVC: UITableViewController {
     
     // default finction
     override func viewDidLoad() {
+        
+        var countries = [String]()
+
         super.viewDidLoad()
         
         // setup cell height dynamicly
@@ -93,6 +96,7 @@ class postVC: UITableViewController {
                 self.tripFromArray.removeAll(keepingCapacity: false)
                 self.tripToArray.removeAll(keepingCapacity: false)
                 self.levelArray.removeAll(keepingCapacity: false)
+                countries.removeAll(keepingCapacity: false)
                 self.countriesArray.removeAll(keepingCapacity: false)
                 
                 //find related objects
@@ -111,8 +115,10 @@ class postVC: UITableViewController {
                     self.tripFromArray.append(object.value(forKey: "tripFrom") as! Date?)
                     self.tripToArray.append(object.value(forKey: "tripTo") as! Date?)
                     self.levelArray.append(object.value(forKey: "level") as! Int)
-                    let countries = object["countries"]! as? [String]
-                    self.countriesArray.append(countries!)
+                    countries.removeAll(keepingCapacity: false)
+                    countries = object.object(forKey: "countries") as! [String]
+                    // countries = object["countries"] as! [String]
+                    self.countriesArray.append(countries)
                     
                     // counting rates
                     var sumaRates: Double = 0.0
@@ -233,6 +239,44 @@ class postVC: UITableViewController {
               print(error!.localizedDescription)
             }
         })
+        
+        // place country flag
+        //Add your images
+        var flagsImageArray = [UIImage]()
+        var countItems = Int()
+        var flagsCodes = [String]()
+        var subview = UIImageView()
+        
+        flagsCodes.removeAll(keepingCapacity: false)
+        
+        flagsCodes = countriesArray[indexPath.row]
+        countItems = flagsCodes.count
+        if countItems > 14 {
+            countItems = 13
+        }
+        
+        flagsImageArray.removeAll(keepingCapacity: false)
+        
+        for j in 0...countItems - 1 {
+            if let flagImage = UIImage(named: IsoCountryCodes.searchByName(name: flagsCodes[j]).alpha2) {
+                flagsImageArray.append(flagImage)
+            }
+        }
+        
+        // remove all subviews
+        for view in cell.countriesView.subviews {
+            view.removeFromSuperview()
+        }
+        
+        var count = 0
+        for i in 0...countItems - 1 {
+            //Add a subview at the position
+            subview = UIImageView(frame: CGRect(x: 20 * CGFloat(i), y: 0, width: 20, height: 15))
+            subview.image = flagsImageArray[count]
+            //self.view.addSubview(subview)
+            cell.countriesView.addSubview(subview)
+            count += 1
+        }
         
         // place post picture
         picArray[indexPath.row].getDataInBackground(block: { (data: Data?, error: Error?) in

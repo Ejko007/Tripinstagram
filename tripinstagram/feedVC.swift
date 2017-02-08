@@ -38,7 +38,6 @@ extension UIImage {
         
         return bwContext
     }
-    
 }
 
 class feedVC: UITableViewController {
@@ -115,6 +114,8 @@ class feedVC: UITableViewController {
     // load posts
     func loadPosts() {
         
+        var countries = [String]()
+        
         // STEP 1. Find posts related to people who we are following
         let followQuery = PFQuery(className: "follow")
         followQuery.whereKey("follower", equalTo: PFUser.current()!.username!)
@@ -157,6 +158,7 @@ class feedVC: UITableViewController {
                         self.tripFromArray.removeAll(keepingCapacity: false)
                         self.tripToArray.removeAll(keepingCapacity: false)
                         self.levelArray.removeAll(keepingCapacity: false)
+                        countries.removeAll(keepingCapacity: false)
                         self.countriesArray.removeAll(keepingCapacity: false)
  
                         // find related objects
@@ -175,8 +177,10 @@ class feedVC: UITableViewController {
                             self.tripFromArray.append(object.value(forKey: "tripFrom") as! Date?)
                             self.tripToArray.append(object.value(forKey: "tripTo") as! Date?)
                             self.levelArray.append(object.value(forKey: "level") as! Int)
-                            let countries = object["countries"]! as? [String]
-                            self.countriesArray.append(countries!)
+                            countries.removeAll(keepingCapacity: false)
+                            countries = object.object(forKey: "countries") as! [String]
+                            // countries = object["countries"] as! [String]
+                            self.countriesArray.append(countries)
                             
                             // calculate related rates values
                             var sumaRates: Double = 0.0
@@ -232,6 +236,8 @@ class feedVC: UITableViewController {
     // pagination
     func loadMore () {
         
+        var countries = [String]()
+
         // if posts on the server are more than shown
         if page <= uuidArray.count {
             
@@ -283,6 +289,7 @@ class feedVC: UITableViewController {
                             self.tripFromArray.removeAll(keepingCapacity: false)
                             self.tripToArray.removeAll(keepingCapacity: false)
                             self.levelArray.removeAll(keepingCapacity: false)
+                            countries.removeAll(keepingCapacity: false)
                             self.countriesArray.removeAll(keepingCapacity: false)
                             
                             // find related objects
@@ -300,8 +307,10 @@ class feedVC: UITableViewController {
                                 self.tripFromArray.append(object.value(forKey: "tripFrom") as! Date?)
                                 self.tripToArray.append(object.value(forKey: "tripTo") as! Date?)
                                 self.levelArray.append(object.object(forKey: "level") as! Int)
-                                let countries = object["countries"]! as? [String]
-                                self.countriesArray.append(countries!)
+                                countries.removeAll(keepingCapacity: false)
+                                countries = object.object(forKey: "countries") as! [String]
+                                // countries = object["countries"] as! [String]
+                                self.countriesArray.append(countries)
                                 
                                 // calculate total rates of showing post
                                 var sumaRates: Double = 0.0
@@ -414,36 +423,44 @@ class feedVC: UITableViewController {
                 print(error!.localizedDescription)
             }
         })
-        
+
         // place country flag
-        //Divide the screen height and width /3 because 3*3
         //Add your images
-        let firstImage = UIImage(named: "CZ")!
-        let secondImage = UIImage(named: "SK")!
-        let thirdImage = UIImage(named: "IT")!
-        let fourthImage = UIImage(named: "DE")!
-        let fifthImage = UIImage(named: "GB")!
-        let sixthImage = UIImage(named: "ES")!
-        let seventhImage = UIImage(named: "NL")!
+        var flagsImageArray = [UIImage]()
+        var countItems = Int()
+        var flagsCodes = [String]()
+        var subview = UIImageView()
         
-        var imageArray:[UIImage] = [firstImage, secondImage, thirdImage, fourthImage, fifthImage, sixthImage, seventhImage]
+        flagsCodes.removeAll(keepingCapacity: false)
+        
+        flagsCodes = countriesArray[indexPath.row]
+        countItems = flagsCodes.count
+        if countItems > 14 {
+           countItems = 13
+        }
+        
+        flagsImageArray.removeAll(keepingCapacity: false)
+        
+        for j in 0...countItems - 1 {
+                if let flagImage = UIImage(named: IsoCountryCodes.searchByName(name: flagsCodes[j]).alpha2) {
+                flagsImageArray.append(flagImage)
+            }
+        }
+        
+        // remove all subviews
+        for view in cell.countriesView.subviews {
+            view.removeFromSuperview()
+        }
+        
         var count = 0
-        for i in 0...6{
+        for i in 0...countItems - 1 {
             //Add a subview at the position
-            let subview = UIImageView(frame: CGRect(x: 40 * CGFloat(i), y: 0, width: 40, height: 30))
-            subview.image = imageArray[count]
+            subview = UIImageView(frame: CGRect(x: 20 * CGFloat(i), y: 0, width: 20, height: 15))
+            subview.image = flagsImageArray[count]
             //self.view.addSubview(subview)
             cell.countriesView.addSubview(subview)
             count += 1
         }
-        
-//        let czimageView = UIImageView(image: UIImage(named: "CZ")!)
-//        czimageView.frame = CGRect(x: 0, y: 0, width: 40, height: 30)
-//        let skimageView = UIImageView(image: UIImage(named: "SK")!)
-//        skimageView.frame = CGRect(x: 0, y: 0, width: 40, height: 30)
-//        let countrypictures = [czimageView,skimageView]
-//        cell.countriesView.addSubview(czimageView)
-        
         
         // place post picture
         picArray[indexPath.row].getDataInBackground(block: { (data: Data?, error: Error?) in
@@ -967,28 +984,4 @@ class feedVC: UITableViewController {
         self.present(menu, animated: true, completion: nil)
         
     }
-    
-    // get country codes procedure
-    func counrtyNames() -> NSArray{
-        
-        let countryCodes = NSLocale.isoCountryCodes
-        let countries:NSMutableArray = NSMutableArray()
-        
-        for countryCode  in countryCodes{
-            let dictionary : NSDictionary = NSDictionary(object:countryCode, forKey:NSLocale.Key.countryCode as NSCopying)
-            
-            //get identifire of the counrty
-            let identifier : NSString? = NSLocale.localeIdentifier(fromComponents: dictionary as! [String : String]) as NSString?
-            
-            let country = (Locale.current as NSLocale).displayName(forKey: NSLocale.Key.countryCode, value: countryCode)
-            //replace "NSLocaleIdentifier"  with "NSLocaleCountryCode" to get language name
-            
-            if country != nil {//check the country name is  not nil
-                countries.add(country!)
-            }
-        }
-        NSLog("\(countries)")
-        return countries
-    }
-     
 }
