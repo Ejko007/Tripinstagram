@@ -43,6 +43,9 @@
 		0A413D271E13EEA10090B78B /* DatePickerDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A413D261E13EEA10090B78B /* DatePickerDialog.swift */; };
 		0A4170BD1E2A368E00AB473F /* tripDetailMapPOIDescVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4170BC1E2A368E00AB473F /* tripDetailMapPOIDescVC.swift */; };
 		0A430BD31E0C2A3B00D4BF6B /* spentHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A430BD21E0C2A3B00D4BF6B /* spentHeaderCell.swift */; };
+		0A431AD61E4C890E00F22575 /* itineraryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A431AD51E4C890E00F22575 /* itineraryVC.swift */; };
+		0A431AD81E4CA07F00F22575 /* tripMapMasterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A431AD71E4CA07F00F22575 /* tripMapMasterVC.swift */; };
+		0A431ADA1E4DDB8700F22575 /* TabySegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A431AD91E4DDB8700F22575 /* TabySegmentedControl.swift */; };
 		0A45DE4F1E18218100F3D47B /* tripsListHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A45DE4E1E18218100F3D47B /* tripsListHeaderCell.swift */; };
 		0A45DE511E18296300F3D47B /* tripsListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A45DE501E18296300F3D47B /* tripsListCell.swift */; };
 		0A4812FF1E392D2600635270 /* tripDetailsPhotoCollectionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4812FE1E392D2600635270 /* tripDetailsPhotoCollectionVC.swift */; };
@@ -103,6 +106,10 @@
 		0AAA5E501E1294D200D42657 /* spentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAA5E4F1E1294D200D42657 /* spentVC.swift */; };
 		0AAA5E541E1298E500D42657 /* DLRadioButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AAA5E531E1298E500D42657 /* DLRadioButton.m */; };
 		0AB078271E1D37F2003CA409 /* PBRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AB078261E1D37F2003CA409 /* PBRevealViewController.m */; };
+		0AD6AB981E4BA0EE00691146 /* SMSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD6AB961E4BA0EE00691146 /* SMSegment.swift */; };
+		0AD6AB991E4BA0EE00691146 /* SMSegmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD6AB971E4BA0EE00691146 /* SMSegmentView.swift */; };
+		0AD6AB9C1E4BA50200691146 /* SMSegmentAppearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD6AB9A1E4BA50200691146 /* SMSegmentAppearance.swift */; };
+		0AD6AB9D1E4BA50200691146 /* SMSegmentViewConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD6AB9B1E4BA50200691146 /* SMSegmentViewConstants.swift */; };
 		0AD7A8901DC4B539001CDDC5 /* newsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD7A88F1DC4B539001CDDC5 /* newsVC.swift */; };
 		0AD7A8921DC4B577001CDDC5 /* newsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD7A8911DC4B577001CDDC5 /* newsCell.swift */; };
 		0AD7A8941DC4E23B001CDDC5 /* helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD7A8931DC4E23B001CDDC5 /* helper.swift */; };
@@ -154,6 +161,9 @@
 		0A413D261E13EEA10090B78B /* DatePickerDialog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DatePickerDialog.swift; path = /Users/ejko/Desktop/XCode10/tripinstagram/tripinstagram/DatePickerDialog.swift; sourceTree = "<absolute>"; };
 		0A4170BC1E2A368E00AB473F /* tripDetailMapPOIDescVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = tripDetailMapPOIDescVC.swift; sourceTree = "<group>"; };
 		0A430BD21E0C2A3B00D4BF6B /* spentHeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = spentHeaderCell.swift; sourceTree = "<group>"; };
+		0A431AD51E4C890E00F22575 /* itineraryVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = itineraryVC.swift; sourceTree = "<group>"; };
+		0A431AD71E4CA07F00F22575 /* tripMapMasterVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = tripMapMasterVC.swift; sourceTree = "<group>"; };
+		0A431AD91E4DDB8700F22575 /* TabySegmentedControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabySegmentedControl.swift; sourceTree = "<group>"; };
 		0A45DE4E1E18218100F3D47B /* tripsListHeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = tripsListHeaderCell.swift; sourceTree = "<group>"; };
 		0A45DE501E18296300F3D47B /* tripsListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = tripsListCell.swift; sourceTree = "<group>"; };
 		0A4812FE1E392D2600635270 /* tripDetailsPhotoCollectionVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = tripDetailsPhotoCollectionVC.swift; sourceTree = "<group>"; };
@@ -224,6 +234,10 @@
 		0AAA5E531E1298E500D42657 /* DLRadioButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLRadioButton.m; sourceTree = "<group>"; };
 		0AB078251E1D37F2003CA409 /* PBRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBRevealViewController.h; sourceTree = "<group>"; };
 		0AB078261E1D37F2003CA409 /* PBRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBRevealViewController.m; sourceTree = "<group>"; };
+		0AD6AB961E4BA0EE00691146 /* SMSegment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMSegment.swift; sourceTree = "<group>"; };
+		0AD6AB971E4BA0EE00691146 /* SMSegmentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMSegmentView.swift; sourceTree = "<group>"; };
+		0AD6AB9A1E4BA50200691146 /* SMSegmentAppearance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMSegmentAppearance.swift; sourceTree = "<group>"; };
+		0AD6AB9B1E4BA50200691146 /* SMSegmentViewConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMSegmentViewConstants.swift; sourceTree = "<group>"; };
 		0AD7A88F1DC4B539001CDDC5 /* newsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = newsVC.swift; sourceTree = "<group>"; };
 		0AD7A8911DC4B577001CDDC5 /* newsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = newsCell.swift; sourceTree = "<group>"; };
 		0AD7A8931DC4E23B001CDDC5 /* helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = helper.swift; sourceTree = "<group>"; };
@@ -298,6 +312,8 @@
 		0A39D25F1DE31B0E00FC525F /* 3rd Party */ = {
 			isa = PBXGroup;
 			children = (
+				0A431AD91E4DDB8700F22575 /* TabySegmentedControl.swift */,
+				0AD6AB951E4BA0CF00691146 /* SMSegmentView */,
 				0A0D97AD1E49D4B000FA9B7B /* ISOCountryCodes */,
 				0A07341F1E38EBB200517E7B /* ZoomTransitioning */,
 				0AB078211E1D379D003CA409 /* PBRevealViewController */,
@@ -369,6 +385,8 @@
 				0AD7A8911DC4B577001CDDC5 /* newsCell.swift */,
 				0A1D9F431DB8CEC60002BAD1 /* editVC.swift */,
 				0AD7A8931DC4E23B001CDDC5 /* helper.swift */,
+				0A431AD71E4CA07F00F22575 /* tripMapMasterVC.swift */,
+				0A431AD51E4C890E00F22575 /* itineraryVC.swift */,
 				0A8677B71E04115B00A44177 /* tripMapVC.swift */,
 				0A5BCD171E22421500903D87 /* tripDetailMapVC.swift */,
 				0AE71F501E2CE3B500A5D2E9 /* tripDetailMapPOIVC.swift */,
@@ -489,6 +507,17 @@
 				0AB078261E1D37F2003CA409 /* PBRevealViewController.m */,
 			);
 			name = PBRevealViewController;
+			sourceTree = "<group>";
+		};
+		0AD6AB951E4BA0CF00691146 /* SMSegmentView */ = {
+			isa = PBXGroup;
+			children = (
+				0AD6AB9A1E4BA50200691146 /* SMSegmentAppearance.swift */,
+				0AD6AB9B1E4BA50200691146 /* SMSegmentViewConstants.swift */,
+				0AD6AB961E4BA0EE00691146 /* SMSegment.swift */,
+				0AD6AB971E4BA0EE00691146 /* SMSegmentView.swift */,
+			);
+			name = SMSegmentView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -637,6 +666,7 @@
 				0A0734321E38F2FF00517E7B /* tabbartripDetailPhoto.swift in Sources */,
 				0A1D9F4A1DBA4BA50002BAD1 /* postVC.swift in Sources */,
 				0A1E9D5B1DBBE2FC00080209 /* navVC.swift in Sources */,
+				0A431AD81E4CA07F00F22575 /* tripMapMasterVC.swift in Sources */,
 				0A4812FF1E392D2600635270 /* tripDetailsPhotoCollectionVC.swift in Sources */,
 				0A97C5AA1E23C7CF00F40048 /* tabbartripDetailMap.swift in Sources */,
 				0A9827A11DE318C9008C6C0C /* GLCalendarDayCellBackgroundCover.m in Sources */,
@@ -644,6 +674,7 @@
 				0A1D9F4C1DBA4BD90002BAD1 /* postCell.swift in Sources */,
 				0A0D97B01E49D4CC00FA9B7B /* IsoCountries.swift in Sources */,
 				0A1E9D611DBC8BDC00080209 /* commentCell.swift in Sources */,
+				0A431AD61E4C890E00F22575 /* itineraryVC.swift in Sources */,
 				0AB078271E1D37F2003CA409 /* PBRevealViewController.m in Sources */,
 				0A55339B1E1AA8A60013CCF1 /* menuListVC.swift in Sources */,
 				0A5314621DC2339800604F69 /* usersVC.swift in Sources */,
@@ -654,11 +685,13 @@
 				0A07342A1E38EBB200517E7B /* ZoomInteractiveTransition.swift in Sources */,
 				0A0D97B11E49D4CC00FA9B7B /* IsoCountryCodes.swift in Sources */,
 				0A0734291E38EBB200517E7B /* UIImageView+extension.swift in Sources */,
+				0AD6AB9D1E4BA50200691146 /* SMSegmentViewConstants.swift in Sources */,
 				0A50EAB41E2800FA0080ACCB /* tripDetailHandleMapSearchVC.swift in Sources */,
 				0AD7A8921DC4B577001CDDC5 /* newsCell.swift in Sources */,
 				0A0792611E3E3BEA0059A9BA /* photoCameraVC.swift in Sources */,
 				0A1D9F3A1DB2ABBC0002BAD1 /* pictureCell.swift in Sources */,
 				0A11CD241E0ACECF00D52868 /* spentCell.swift in Sources */,
+				0A431ADA1E4DDB8700F22575 /* TabySegmentedControl.swift in Sources */,
 				0A1D9F421DB78BA30002BAD1 /* guestVC.swift in Sources */,
 				0A4813031E393F6F00635270 /* tripDetailPhotoDetailVC.swift in Sources */,
 				0A8677B81E04115B00A44177 /* tripMapVC.swift in Sources */,
@@ -695,6 +728,7 @@
 				0A430BD31E0C2A3B00D4BF6B /* spentHeaderCell.swift in Sources */,
 				0AAA5E501E1294D200D42657 /* spentVC.swift in Sources */,
 				0A07342D1E38EBB200517E7B /* ZoomTransitioning.swift in Sources */,
+				0AD6AB991E4BA0EE00691146 /* SMSegmentView.swift in Sources */,
 				0A8626711DB2A62D0001C1EE /* headerView.swift in Sources */,
 				0A0792621E3E3BEA0059A9BA /* photoVC.swift in Sources */,
 				0A1E9D5D1DBBE33B00080209 /* tabbarVC.swift in Sources */,
@@ -705,6 +739,8 @@
 				0AAA5E541E1298E500D42657 /* DLRadioButton.m in Sources */,
 				0A1D9F441DB8CEC60002BAD1 /* editVC.swift in Sources */,
 				0ADD41E31DBF767E0026B118 /* hashtagsVC.swift in Sources */,
+				0AD6AB981E4BA0EE00691146 /* SMSegment.swift in Sources */,
+				0AD6AB9C1E4BA50200691146 /* SMSegmentAppearance.swift in Sources */,
 				0A5BCD181E22421500903D87 /* tripDetailMapVC.swift in Sources */,
 				0AE71F511E2CE3B500A5D2E9 /* tripDetailMapPOIVC.swift in Sources */,
 			);

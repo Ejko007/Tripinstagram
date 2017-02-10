@@ -31,6 +31,8 @@ class tripMapVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate,
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.view.backgroundColor = UIColor(white: 0.95, alpha: 1.0)
 
         mapView.showsUserLocation = true
         mapView.delegate = self
@@ -38,9 +40,6 @@ class tripMapVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate,
         MapViewLocationManager.startUpdatingLocation()
         mapView.setUserTrackingMode(MKUserTrackingMode.follow, animated: true)
         
-        // Create a navigation item with a title
-        self.navigationItem.title = triproute_menu_str.uppercased()
-
         // new edit button
         let editBtn = UIBarButtonItem(image: UIImage(named: "edit.png"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(edit))
 
@@ -52,7 +51,7 @@ class tripMapVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate,
             self.navigationItem.rightBarButtonItems = []
             editBtn.isEnabled = false
         }
-
+        
         // allow constraints
         mapView.translatesAutoresizingMaskIntoConstraints = false
         mapTypeControl.translatesAutoresizingMaskIntoConstraints = false
@@ -77,7 +76,7 @@ class tripMapVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate,
             withVisualFormat: "V:[maptype(\(25))]-20-|",
             options: [],
             metrics: nil, views: ["maptype":mapTypeControl]))
-
+       
         // customize segmented controller for map type
         mapTypeControl.tintColor = .white
         mapTypeControl.backgroundColor = UIColor(colorLiteralRed: 0.00, green: 0.580, blue: 0.969, alpha: 1.00)
@@ -101,7 +100,7 @@ class tripMapVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate,
         longpressGestureRecognizer.minimumPressDuration = 0.3
         mapView.addGestureRecognizer(longpressGestureRecognizer)
     }
-    
+        
     // pin procedure to pin location on map
     func pinLocation(sender: UILongPressGestureRecognizer) {
         if sender.state != .ended {

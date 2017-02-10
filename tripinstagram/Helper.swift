@@ -100,6 +100,8 @@ let thought_str = "Příběh"
 let photogallery_str = "Fotogalerie"
 let get_actual_position_str = "Použít aktuální pozici"
 let camera_str = "Fotoaparát"
+let map_str = "Mapa"
+let map_itinerary_str = "Itinerář"
 
 // croping picture and center it
 func cropToBounds(_ image: UIImage, width: Double, height: Double) -> UIImage {

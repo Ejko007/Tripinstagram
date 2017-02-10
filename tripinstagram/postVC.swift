@@ -809,12 +809,13 @@ class postVC: UITableViewController {
         let item2 = ExpandingMenuItem(size: menuButtonSize, title: triproute_menu_str, image: UIImage(named: "chooser-moment-icon-place")!, highlightedImage: UIImage(named: "chooser-moment-icon-place-highlighted")!, backgroundImage: UIImage(named: "chooser-moment-button"), backgroundHighlightedImage: UIImage(named: "chooser-moment-button-highlighted")) { () -> Void in
             //showAlert("Place")
             
-            let mapViewController = storyBoard.instantiateViewController(withIdentifier: "tripMapVC") as! tripMapVC
+            //let mapViewController = storyBoard.instantiateViewController(withIdentifier: "tripMapVC") as! tripMapVC
+            let mapViewController = storyBoard.instantiateViewController(withIdentifier: "tripMapMasterVC") as! tripMapMasterVC
             self.navigationController!.pushViewController(mapViewController, animated: true)
 
             // delegate uuid for displaying spents
-            mapViewController.username = (self.usernameArray.last?.lowercased())!
-            mapViewController.uuid = self.uuidArray.last!
+            //mapViewController.username = (self.usernameArray.last?.lowercased())!
+            //mapViewController.uuid = self.uuidArray.last!
 
             // self.present(mapViewController, animated:true, completion:nil)
         }

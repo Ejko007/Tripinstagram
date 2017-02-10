@@ -784,8 +784,8 @@
                     </tableView>
                     <connections>
                         <segue destination="Rde-di-ysN" kind="push" identifier="editPost" id="bfR-W1-hXg"/>
-                        <segue destination="MC2-xY-Wc5" kind="push" identifier="showMap" id="z8N-em-QkK"/>
                         <segue destination="0vR-Ce-jma" kind="push" identifier="spentsVC" id="oej-BE-2kh"/>
+                        <segue destination="DaM-rP-TwJ" kind="push" identifier="showMap" id="x6K-sb-bbw"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Pxf-jr-HDx" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1179,7 +1179,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lZB-KD-MTW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6050.5" y="5081.5"/>
+            <point key="canvasLocation" x="7224.5" y="5081.5"/>
         </scene>
         <!--GuestVC-->
         <scene sceneID="I62-K8-nwP">
@@ -1473,7 +1473,7 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UDq-tY-Eva" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6497.5" y="5081.5"/>
+            <point key="canvasLocation" x="7671.5" y="5081.5"/>
         </scene>
         <!--FollowersVC-->
         <scene sceneID="BZk-ey-EeX">
@@ -2024,7 +2024,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" showsScale="YES" showsTraffic="YES" id="u0o-ln-LcR">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" mapType="standard" showsUserLocation="YES" showsScale="YES" showsTraffic="YES" id="u0o-ln-LcR">
                                 <rect key="frame" x="0.0" y="667" width="375" height="0.0"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </mapView>
@@ -2044,7 +2044,9 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="cPE-1P-ImH"/>
+                    <navigationItem key="navigationItem" id="cPE-1P-ImH">
+                        <nil key="title"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="mapTypeControl" destination="OnW-Nb-kKi" id="jh2-jF-jmw"/>
                         <outlet property="mapView" destination="u0o-ln-LcR" id="jXz-b0-jcB"/>
@@ -2052,7 +2054,67 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XaG-k3-a4s" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2754.5" y="5081.5"/>
+            <point key="canvasLocation" x="3834" y="6185"/>
+        </scene>
+        <!--ItineraryVC-->
+        <scene sceneID="pjW-Pv-zyd">
+            <objects>
+                <viewController storyboardIdentifier="itineraryVC" id="XJi-vF-gSg" customClass="itineraryVC" customModule="tripinstagram" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="KY2-gQ-6Az">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="134.56" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="vQc-C8-t72">
+                                <rect key="frame" x="139" y="58" width="153" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="km" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="T4P-J9-UcE">
+                                <rect key="frame" x="317" y="58" width="42" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="XXy-b6-8ZY">
+                                <rect key="frame" x="-6" y="112" width="386" height="555"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="itineraryCell" id="e7a-WK-k4V">
+                                        <rect key="frame" x="0.0" y="28" width="386" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="e7a-WK-k4V" id="FN4-1c-ZNW">
+                                            <rect key="frame" x="0.0" y="0.0" width="386" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="XJi-vF-gSg" id="6Yg-TL-mYv"/>
+                                    <outlet property="delegate" destination="XJi-vF-gSg" id="nkx-Eo-pGz"/>
+                                </connections>
+                            </tableView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="map" id="0ii-Yp-Iwv">
+                                <rect key="frame" x="16" y="39" width="80" height="80"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="ogG-8M-9Ab"/>
+                    <connections>
+                        <outlet property="distanceLbl" destination="vQc-C8-t72" id="AGA-lW-SoJ"/>
+                        <outlet property="itineraryTableView" destination="XXy-b6-8ZY" id="NQY-Qn-ys3"/>
+                        <outlet property="kmLbl" destination="T4P-J9-UcE" id="vef-FH-iyA"/>
+                        <outlet property="mapIcon" destination="0ii-Yp-Iwv" id="GNm-84-Ags"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RPS-lb-RDd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4394.5" y="6184.5"/>
         </scene>
         <!--SpentsVC-->
         <scene sceneID="a9J-f4-LGi">
@@ -2068,7 +2130,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="78"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="3w1-yt-MMa" id="zfR-rv-WqY">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="77"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="78"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ENH-bT-YWy">
@@ -2088,7 +2150,7 @@
                                 <rect key="frame" x="0.0" y="106" width="375" height="168"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="W9k-c2-oCP" id="z1T-MS-BoW">
-                                    <rect key="frame" x="0.0" y="0.0" width="341" height="167"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="341" height="168"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Date" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Sea-PZ-5xp">
@@ -2142,7 +2204,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Alx-zI-FE5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3808" y="5082"/>
+            <point key="canvasLocation" x="4981.5" y="5081.5"/>
         </scene>
         <!--SpentVC-->
         <scene sceneID="GIE-io-Ctl">
@@ -2239,7 +2301,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="euN-uu-GQP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4373" y="5082"/>
+            <point key="canvasLocation" x="5546.5" y="5081.5"/>
         </scene>
         <!--Trips ListVC-->
         <scene sceneID="xjh-Hq-L0L">
@@ -2254,7 +2316,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="tUg-zm-NfM" id="NFX-Gv-Nka">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="v6G-G3-fh9">
@@ -2274,7 +2336,7 @@
                                 <rect key="frame" x="0.0" y="72" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="fJB-83-R8y" id="8GK-Zf-xaS">
-                                    <rect key="frame" x="0.0" y="0.0" width="342" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="341" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ufL-O5-bTd">
@@ -2895,7 +2957,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="5i8-Qv-pnH" id="BUh-pP-kzF">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="mRA-X6-Qoc">
@@ -3358,7 +3420,61 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gQm-v8-a7y" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3247" y="5082"/>
+            <point key="canvasLocation" x="4420.5" y="5081.5"/>
+        </scene>
+        <!--Trip Map MasterVC-->
+        <scene sceneID="Fpc-5W-tCR">
+            <objects>
+                <viewController storyboardIdentifier="tripMapMasterVC" id="lcA-Hp-1xk" customClass="tripMapMasterVC" customModule="tripinstagram" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="c87-GF-fkq">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="TNd-oH-1p9" customClass="TabySegmentedControl" customModule="tripinstagram" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="74" width="375" height="29"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <segments>
+                                    <segment title="First"/>
+                                    <segment title="Second"/>
+                                </segments>
+                            </segmentedControl>
+                            <containerView opaque="NO" contentMode="scaleToFill" misplaced="YES" id="XMK-4Y-yev">
+                                <rect key="frame" x="0.0" y="126" width="375" height="499"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                            </containerView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="gKc-4s-kXV">
+                        <nil key="title"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="contentView" destination="XMK-4Y-yev" id="WCe-hu-bbZ"/>
+                        <outlet property="segmentedControl" destination="TNd-oH-1p9" id="Vjg-ms-AFF"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QTr-VR-ZsI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3246.5" y="5081.5"/>
+        </scene>
+        <!--NavVC-->
+        <scene sceneID="4Hb-Gy-Lan">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="DaM-rP-TwJ" customClass="navVC" customModule="tripinstagram" customModuleProvider="target" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="gXw-Zd-mjb"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="nFh-mD-TSa">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="lcA-Hp-1xk" kind="relationship" relationship="rootViewController" id="nGU-Gw-BnQ"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="E2t-gm-FHt" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2786" y="5082"/>
         </scene>
     </scenes>
     <resources>
@@ -3377,6 +3493,7 @@
         <image name="icon-poi-processing" width="22" height="26"/>
         <image name="levels" width="20" height="20"/>
         <image name="logout" width="25" height="25"/>
+        <image name="map" width="1024" height="1024"/>
         <image name="map-icon" width="30" height="24"/>
         <image name="more" width="270" height="270"/>
         <image name="news" width="25" height="25"/>
