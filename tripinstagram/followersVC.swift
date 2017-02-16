@@ -18,6 +18,7 @@ class followersVC: UITableViewController {
     // Arrays to hold data received from server
     var usernameArray = [String]()
     var avaArray = [PFFile]()
+    var userGenderArray = [String]()
 
     // Array showing who do we follow or who following us
     var followArray = [String]()
@@ -79,11 +80,13 @@ class followersVC: UITableViewController {
                         // clean up
                         self.usernameArray.removeAll(keepingCapacity: false)
                         self.avaArray.removeAll(keepingCapacity: false)
+                        self.userGenderArray.removeAll(keepingCapacity: false)
                         
                         // find related objects in User class of Parse
                         for object in objects! {
                             self.usernameArray.append(object.object(forKey: "username") as! String)
                             self.avaArray.append(object.object(forKey: "ava") as! PFFile)
+                            self.userGenderArray.append(object.object(forKey: "gender") as! String)
                             self.tableView.reloadData()
                         }
                     } else {
@@ -123,11 +126,13 @@ class followersVC: UITableViewController {
                         // clean array
                         self.usernameArray.removeAll(keepingCapacity: false)
                         self.avaArray.removeAll(keepingCapacity: false)
+                        self.userGenderArray.removeAll(keepingCapacity: false)
                         
                         // find related objects in "User" class of Parse
                         for object in objects! {
                             self.usernameArray.append(object.object(forKey: "username") as! String)
                             self.avaArray.append(object.object(forKey: "ava") as! PFFile)
+                            self.userGenderArray.append(object.object(forKey: "gender") as! String)
                             self.tableView.reloadData()
                         }
                     } else {
@@ -161,6 +166,11 @@ class followersVC: UITableViewController {
         
         // STEP 1. connect data from server to objects
         cell.usernameLbl.text = usernameArray[indexPath.row]
+        if userGenderArray[indexPath.row] == "male" {
+            cell.usernameLbl.textColor = .blue
+        } else {
+            cell.usernameLbl.textColor = .red
+        }
         avaArray[indexPath.row].getDataInBackground(block: { (data:Data?, error:Error?) in
             if error == nil {
                 cell.avaImg.image = UIImage(data:data!)

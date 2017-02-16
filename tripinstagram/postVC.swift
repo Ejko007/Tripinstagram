@@ -163,7 +163,6 @@ class postVC: UITableViewController {
                 editBtn.isEnabled = false
             }
         })
-         
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -210,7 +209,7 @@ class postVC: UITableViewController {
         
         // define cell
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! postCell
-        
+
         // connect objects with our information from array
         cell.usernameBtn.setTitle(usernameArray[indexPath.row], for: UIControlState.normal)
         cell.usernameBtn.sizeToFit()
@@ -260,6 +259,8 @@ class postVC: UITableViewController {
         for j in 0...countItems - 1 {
             if let flagImage = UIImage(named: IsoCountryCodes.searchByName(name: flagsCodes[j]).alpha2) {
                 flagsImageArray.append(flagImage)
+            } else {
+                flagsImageArray.append(UIImage(named: "WW")!)
             }
         }
         
@@ -411,6 +412,7 @@ class postVC: UITableViewController {
         cell.usernameBtn.layer.setValue(indexPath, forKey: "index")
         cell.commentBtn.layer.setValue(indexPath, forKey: "index")
         cell.moreBtn.layer.setValue(indexPath, forKey: "index")
+        cell.rateView.layer.setValue(indexPath, forKey: "index")
         //cell.rateBtn.layer.setValue(indexPath, forKey: "index")
         
         // @mension is tapped
@@ -708,6 +710,25 @@ class postVC: UITableViewController {
             })
         }
         
+        // RATE ACTION
+        let rate = DefaultButton(title: rate_it_str) {
+            
+            // call index of button
+            let i = sender.layer.value(forKey: "index") as! NSIndexPath
+            
+            // call cell to call further cell data
+            let cell = self.tableView.cellForRow(at: i as IndexPath) as! postCell
+            
+            // send related data to global variables
+            rateuuid.append(cell.uuidLbl.text!)
+            rateowner.append(cell.usernameBtn.titleLabel!.text!)
+            
+            // go to rates. present its VC
+            let rateVC = self.storyboard?.instantiateViewController(withIdentifier: "rateVC") as! rateVC
+            self.navigationController?.pushViewController(rateVC, animated: true)
+        }
+
+        
         // CANCEL ACTION
         // let cancel = UIAlertAction (title: "Zrušit", style: .cancel, handler: nil)
         let cancel = CancelButton(title: cancel_button_str, action: nil)
@@ -732,7 +753,7 @@ class postVC: UITableViewController {
         if cell.usernameBtn.titleLabel?.text == PFUser.current()?.username {
             menu.addButtons([del, publish, cancel])
         } else {
-            menu.addButtons([compl, cancel])
+            menu.addButtons([compl, rate, cancel])
         }
             
         // show menu
@@ -809,13 +830,20 @@ class postVC: UITableViewController {
         let item2 = ExpandingMenuItem(size: menuButtonSize, title: triproute_menu_str, image: UIImage(named: "chooser-moment-icon-place")!, highlightedImage: UIImage(named: "chooser-moment-icon-place-highlighted")!, backgroundImage: UIImage(named: "chooser-moment-button"), backgroundHighlightedImage: UIImage(named: "chooser-moment-button-highlighted")) { () -> Void in
             //showAlert("Place")
             
+            // initialize global arrays to save memmory
+            geoplacemarkArray.removeAll(keepingCapacity: false)
+            itineraryInstructions.removeAll(keepingCapacity: false)
+            itineraryInstructionsArray.removeAll(keepingCapacity: false)
+            itineraryDistances.removeAll(keepingCapacity: false)
+            
             //let mapViewController = storyBoard.instantiateViewController(withIdentifier: "tripMapVC") as! tripMapVC
             let mapViewController = storyBoard.instantiateViewController(withIdentifier: "tripMapMasterVC") as! tripMapMasterVC
             self.navigationController!.pushViewController(mapViewController, animated: true)
 
-            // delegate uuid for displaying spents
-            //mapViewController.username = (self.usernameArray.last?.lowercased())!
-            //mapViewController.uuid = self.uuidArray.last!
+            // delegate uuid for displaying map
+            //
+            mapViewController.username = (self.usernameArray.last?.lowercased())!
+            mapViewController.uuid = self.uuidArray.last!
 
             // self.present(mapViewController, animated:true, completion:nil)
         }

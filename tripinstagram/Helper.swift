@@ -102,6 +102,7 @@ let get_actual_position_str = "Použít aktuální pozici"
 let camera_str = "Fotoaparát"
 let map_str = "Mapa"
 let map_itinerary_str = "Itinerář"
+let km_str = "km"
 
 // croping picture and center it
 func cropToBounds(_ image: UIImage, width: Double, height: Double) -> UIImage {
@@ -182,6 +183,28 @@ func resizeImage(_ image: UIImage, targetSize: CGSize) -> UIImage {
     UIGraphicsEndImageContext()
     
     return newImage!
+}
+
+extension Double {
+    /// Rounds the double to decimal places value
+    func roundTo(places:Int) -> Double {
+        let divisor = pow(10.0, Double(places))
+        return (self * divisor).rounded() / divisor
+    }
+}
+
+extension UIImage {
+    func imageResize (sizeChange:CGSize)-> UIImage{
+        
+        let hasAlpha = true
+        let scale: CGFloat = 0.0 // Use scale factor of main screen
+        
+        UIGraphicsBeginImageContextWithOptions(sizeChange, !hasAlpha, scale)
+        self.draw(in: CGRect(origin: CGPoint.zero, size: sizeChange))
+        
+        let scaledImage = UIGraphicsGetImageFromCurrentImageContext()
+        return scaledImage!
+    }
 }
 
 

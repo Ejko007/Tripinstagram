@@ -50,6 +50,7 @@ class rateVC: UIViewController, UITextViewDelegate, UITableViewDelegate, UITable
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         // title at the top
         self.navigationItem.title = rates_str.uppercased()
         
@@ -163,6 +164,7 @@ class rateVC: UIViewController, UITextViewDelegate, UITableViewDelegate, UITable
                         self.usernameArray.append(object.object(forKey: "username") as! String)
                         self.genderArray.append(object.object(forKey: "gender") as! String)
                         self.avaArray.append(object.object(forKey: "ava") as! PFFile)
+                        
                         self.rateTxtArray.append(object.object(forKey: "ratingtxt") as! String)
                         self.ratingArray.append(object.object(forKey: "rating") as! Double)
                         self.dateArray.append(object.createdAt as Date?)
@@ -257,7 +259,7 @@ class rateVC: UIViewController, UITextViewDelegate, UITableViewDelegate, UITable
         
         // declare cell
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") as! rateCell
-        
+    
         cell.usernameBtn.setTitle(usernameArray[indexPath.row], for: .normal)
         cell.usernameBtn.sizeToFit()
         if genderArray[indexPath.row] == "male" {

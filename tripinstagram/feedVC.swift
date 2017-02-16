@@ -442,8 +442,10 @@ class feedVC: UITableViewController {
         flagsImageArray.removeAll(keepingCapacity: false)
         
         for j in 0...countItems - 1 {
-                if let flagImage = UIImage(named: IsoCountryCodes.searchByName(name: flagsCodes[j]).alpha2) {
+            if let flagImage = UIImage(named: IsoCountryCodes.searchByName(name: flagsCodes[j]).alpha2) {
                 flagsImageArray.append(flagImage)
+            } else {
+                flagsImageArray.append(UIImage(named: "WW")!)
             }
         }
         
@@ -457,7 +459,7 @@ class feedVC: UITableViewController {
             //Add a subview at the position
             subview = UIImageView(frame: CGRect(x: 20 * CGFloat(i), y: 0, width: 20, height: 15))
             subview.image = flagsImageArray[count]
-            //self.view.addSubview(subview)
+             //self.view.addSubview(subview)
             cell.countriesView.addSubview(subview)
             count += 1
         }
@@ -955,6 +957,24 @@ class feedVC: UITableViewController {
         })
         }
         
+        // RATE ACTION
+        let rate = DefaultButton(title: rate_it_str) {
+            // send rates to server
+            // call index of button
+            let i = sender.layer.value(forKey: "index") as! NSIndexPath
+            
+            // call cell to call further cell data
+            let cell = self.tableView.cellForRow(at: i as IndexPath) as! postCell
+            
+            // send related data to global variables
+            rateuuid.append(cell.uuidLbl.text!)
+            rateowner.append(cell.usernameBtn.titleLabel!.text!)
+            
+            // go to rates. present its VC
+            let rateVC = self.storyboard?.instantiateViewController(withIdentifier: "rateVC") as! rateVC
+            self.navigationController?.pushViewController(rateVC, animated: true)
+        }
+        
         // CANCEL ACTION
         let cancel = CancelButton(title: cancel_button_str, action: nil)
         
@@ -977,7 +997,7 @@ class feedVC: UITableViewController {
         if cell.usernameBtn.titleLabel?.text == PFUser.current()?.username {
             menu.addButtons([del, publish, cancel])
         } else {
-            menu.addButtons([compl, cancel])
+            menu.addButtons([compl, rate, cancel])
         }
         
         // show menu

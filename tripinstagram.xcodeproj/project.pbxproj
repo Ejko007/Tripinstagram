@@ -51,6 +51,10 @@
 		0A4812FF1E392D2600635270 /* tripDetailsPhotoCollectionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4812FE1E392D2600635270 /* tripDetailsPhotoCollectionVC.swift */; };
 		0A4813011E392EAE00635270 /* tripDetailPhotoViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4813001E392EAE00635270 /* tripDetailPhotoViewCell.swift */; };
 		0A4813031E393F6F00635270 /* tripDetailPhotoDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4813021E393F6F00635270 /* tripDetailPhotoDetailVC.swift */; };
+		0A4939511E4F0E0D006D9218 /* itineraryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4939501E4F0E0D006D9218 /* itineraryCell.swift */; };
+		0A4939531E4F3A0C006D9218 /* itineraryHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4939521E4F3A0C006D9218 /* itineraryHeaderCell.swift */; };
+		0A4939551E507744006D9218 /* itineraryFooterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4939541E507744006D9218 /* itineraryFooterCell.swift */; };
+		0A4939571E559CE1006D9218 /* CosmosDistrib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4939561E559CE1006D9218 /* CosmosDistrib.swift */; };
 		0A50EAB01E27FEF90080ACCB /* tripDetailMapSearchHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A50EAAF1E27FEF90080ACCB /* tripDetailMapSearchHistory.swift */; };
 		0A50EAB21E27FFA90080ACCB /* tripDetailMapLocationSearchTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A50EAB11E27FFA90080ACCB /* tripDetailMapLocationSearchTable.swift */; };
 		0A50EAB41E2800FA0080ACCB /* tripDetailHandleMapSearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A50EAB31E2800FA0080ACCB /* tripDetailHandleMapSearchVC.swift */; };
@@ -113,7 +117,6 @@
 		0AD7A8901DC4B539001CDDC5 /* newsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD7A88F1DC4B539001CDDC5 /* newsVC.swift */; };
 		0AD7A8921DC4B577001CDDC5 /* newsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD7A8911DC4B577001CDDC5 /* newsCell.swift */; };
 		0AD7A8941DC4E23B001CDDC5 /* helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD7A8931DC4E23B001CDDC5 /* helper.swift */; };
-		0AD7A8961DCA06BB001CDDC5 /* CosmosDistrib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD7A8951DCA06BB001CDDC5 /* CosmosDistrib.swift */; };
 		0ADD41E31DBF767E0026B118 /* hashtagsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADD41E21DBF767E0026B118 /* hashtagsVC.swift */; };
 		0AE0B0241E3154B50035EDDC /* tripDetailMapPOI4MapVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE0B0231E3154B50035EDDC /* tripDetailMapPOI4MapVC.swift */; };
 		0AE71F511E2CE3B500A5D2E9 /* tripDetailMapPOIVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE71F501E2CE3B500A5D2E9 /* tripDetailMapPOIVC.swift */; };
@@ -169,6 +172,10 @@
 		0A4812FE1E392D2600635270 /* tripDetailsPhotoCollectionVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = tripDetailsPhotoCollectionVC.swift; sourceTree = "<group>"; };
 		0A4813001E392EAE00635270 /* tripDetailPhotoViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = tripDetailPhotoViewCell.swift; sourceTree = "<group>"; };
 		0A4813021E393F6F00635270 /* tripDetailPhotoDetailVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = tripDetailPhotoDetailVC.swift; sourceTree = "<group>"; };
+		0A4939501E4F0E0D006D9218 /* itineraryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = itineraryCell.swift; sourceTree = "<group>"; };
+		0A4939521E4F3A0C006D9218 /* itineraryHeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = itineraryHeaderCell.swift; sourceTree = "<group>"; };
+		0A4939541E507744006D9218 /* itineraryFooterCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = itineraryFooterCell.swift; sourceTree = "<group>"; };
+		0A4939561E559CE1006D9218 /* CosmosDistrib.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CosmosDistrib.swift; sourceTree = "<group>"; };
 		0A50EAAF1E27FEF90080ACCB /* tripDetailMapSearchHistory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = tripDetailMapSearchHistory.swift; sourceTree = "<group>"; };
 		0A50EAB11E27FFA90080ACCB /* tripDetailMapLocationSearchTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = tripDetailMapLocationSearchTable.swift; sourceTree = "<group>"; };
 		0A50EAB31E2800FA0080ACCB /* tripDetailHandleMapSearchVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = tripDetailHandleMapSearchVC.swift; sourceTree = "<group>"; };
@@ -241,7 +248,6 @@
 		0AD7A88F1DC4B539001CDDC5 /* newsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = newsVC.swift; sourceTree = "<group>"; };
 		0AD7A8911DC4B577001CDDC5 /* newsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = newsCell.swift; sourceTree = "<group>"; };
 		0AD7A8931DC4E23B001CDDC5 /* helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = helper.swift; sourceTree = "<group>"; };
-		0AD7A8951DCA06BB001CDDC5 /* CosmosDistrib.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CosmosDistrib.swift; sourceTree = "<group>"; };
 		0ADD41E21DBF767E0026B118 /* hashtagsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = hashtagsVC.swift; sourceTree = "<group>"; };
 		0AE0B0231E3154B50035EDDC /* tripDetailMapPOI4MapVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = tripDetailMapPOI4MapVC.swift; sourceTree = "<group>"; };
 		0AE71F501E2CE3B500A5D2E9 /* tripDetailMapPOIVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = tripDetailMapPOIVC.swift; sourceTree = "<group>"; };
@@ -312,13 +318,13 @@
 		0A39D25F1DE31B0E00FC525F /* 3rd Party */ = {
 			isa = PBXGroup;
 			children = (
+				0A4939561E559CE1006D9218 /* CosmosDistrib.swift */,
 				0A431AD91E4DDB8700F22575 /* TabySegmentedControl.swift */,
 				0AD6AB951E4BA0CF00691146 /* SMSegmentView */,
 				0A0D97AD1E49D4B000FA9B7B /* ISOCountryCodes */,
 				0A07341F1E38EBB200517E7B /* ZoomTransitioning */,
 				0AB078211E1D379D003CA409 /* PBRevealViewController */,
 				0AAA5E511E1298E500D42657 /* DLRadioButton */,
-				0AD7A8951DCA06BB001CDDC5 /* CosmosDistrib.swift */,
 				0A39D2601DE31B4000FC525F /* CalendarView */,
 			);
 			name = "3rd Party";
@@ -375,9 +381,9 @@
 				0A97C5A91E23C7CF00F40048 /* tabbartripDetailMap.swift */,
 				0A0734311E38F2FF00517E7B /* tabbartripDetailPhoto.swift */,
 				0A1E9D5E1DBC8B9F00080209 /* commentVC.swift */,
+				0A1E9D601DBC8BDC00080209 /* commentCell.swift */,
 				0A81F2A51DCE17630073063D /* rateVC.swift */,
 				0A81F2A71DCE18380073063D /* rateCell.swift */,
-				0A1E9D601DBC8BDC00080209 /* commentCell.swift */,
 				0ADD41E21DBF767E0026B118 /* hashtagsVC.swift */,
 				0A53145F1DC1F52D00604F69 /* feedVC.swift */,
 				0A5314611DC2339800604F69 /* usersVC.swift */,
@@ -385,9 +391,12 @@
 				0AD7A8911DC4B577001CDDC5 /* newsCell.swift */,
 				0A1D9F431DB8CEC60002BAD1 /* editVC.swift */,
 				0AD7A8931DC4E23B001CDDC5 /* helper.swift */,
-				0A431AD71E4CA07F00F22575 /* tripMapMasterVC.swift */,
+				0A4939501E4F0E0D006D9218 /* itineraryCell.swift */,
+				0A4939521E4F3A0C006D9218 /* itineraryHeaderCell.swift */,
+				0A4939541E507744006D9218 /* itineraryFooterCell.swift */,
 				0A431AD51E4C890E00F22575 /* itineraryVC.swift */,
 				0A8677B71E04115B00A44177 /* tripMapVC.swift */,
+				0A431AD71E4CA07F00F22575 /* tripMapMasterVC.swift */,
 				0A5BCD171E22421500903D87 /* tripDetailMapVC.swift */,
 				0AE71F501E2CE3B500A5D2E9 /* tripDetailMapPOIVC.swift */,
 				0AE0B0231E3154B50035EDDC /* tripDetailMapPOI4MapVC.swift */,
@@ -674,6 +683,7 @@
 				0A1D9F4C1DBA4BD90002BAD1 /* postCell.swift in Sources */,
 				0A0D97B01E49D4CC00FA9B7B /* IsoCountries.swift in Sources */,
 				0A1E9D611DBC8BDC00080209 /* commentCell.swift in Sources */,
+				0A4939511E4F0E0D006D9218 /* itineraryCell.swift in Sources */,
 				0A431AD61E4C890E00F22575 /* itineraryVC.swift in Sources */,
 				0AB078271E1D37F2003CA409 /* PBRevealViewController.m in Sources */,
 				0A55339B1E1AA8A60013CCF1 /* menuListVC.swift in Sources */,
@@ -688,6 +698,7 @@
 				0AD6AB9D1E4BA50200691146 /* SMSegmentViewConstants.swift in Sources */,
 				0A50EAB41E2800FA0080ACCB /* tripDetailHandleMapSearchVC.swift in Sources */,
 				0AD7A8921DC4B577001CDDC5 /* newsCell.swift in Sources */,
+				0A4939531E4F3A0C006D9218 /* itineraryHeaderCell.swift in Sources */,
 				0A0792611E3E3BEA0059A9BA /* photoCameraVC.swift in Sources */,
 				0A1D9F3A1DB2ABBC0002BAD1 /* pictureCell.swift in Sources */,
 				0A11CD241E0ACECF00D52868 /* spentCell.swift in Sources */,
@@ -696,13 +707,13 @@
 				0A4813031E393F6F00635270 /* tripDetailPhotoDetailVC.swift in Sources */,
 				0A8677B81E04115B00A44177 /* tripMapVC.swift in Sources */,
 				0AA0C3B31E18033500790BD8 /* tripsListVC.swift in Sources */,
-				0AD7A8961DCA06BB001CDDC5 /* CosmosDistrib.swift in Sources */,
 				0A9827A51DE318C9008C6C0C /* GLDateUtils.m in Sources */,
 				0A8626651DB147B40001C1EE /* signUPVC.swift in Sources */,
 				0A1D9F481DB9F2D10002BAD1 /* uploadVC.swift in Sources */,
 				0A50EAB21E27FFA90080ACCB /* tripDetailMapLocationSearchTable.swift in Sources */,
 				0A98279E1DE318C9008C6C0C /* GLCalendarDateRange.m in Sources */,
 				0A1E9D5F1DBC8B9F00080209 /* commentVC.swift in Sources */,
+				0A4939551E507744006D9218 /* itineraryFooterCell.swift in Sources */,
 				0A1D9F401DB6AFE30002BAD1 /* followersCell.swift in Sources */,
 				0A1D9F3E1DB6AFA10002BAD1 /* followersVC.swift in Sources */,
 				0A86265F1DB0D9DC0001C1EE /* singInVC.swift in Sources */,
@@ -717,6 +728,7 @@
 				0A3B76F81DE1C96900A60659 /* RatingViewController.swift in Sources */,
 				0A32E22E1DE49667006DC92E /* TimeFrameVC.swift in Sources */,
 				0A8626341DB0BDE30001C1EE /* AppDelegate.swift in Sources */,
+				0A4939571E559CE1006D9218 /* CosmosDistrib.swift in Sources */,
 				0A3EFBFC1E33507300C21FDB /* SplashVC.swift in Sources */,
 				0A81F2A81DCE18380073063D /* rateCell.swift in Sources */,
 				0A8626631DB0DA350001C1EE /* resetPasswordVC.swift in Sources */,

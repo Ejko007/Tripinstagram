@@ -250,6 +250,7 @@ class uploadVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
         object["publishedAt"] = date
         object["currencyCode"] = "CZK"
         object["totalSpents"] =  Double("0.00")
+        object["countries"] = [""]
         object["personsNr"] =  Int(personsNr.text!)
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd.MM.yyy"

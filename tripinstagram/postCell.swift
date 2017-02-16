@@ -8,6 +8,7 @@
 
 import UIKit
 import Parse
+import PopupDialog
 
 class postCell: UITableViewCell {
     
@@ -54,7 +55,9 @@ class postCell: UITableViewCell {
                 
         // set rate controller to precise
         rateView!.settings.fillMode = .precise
-        rateView!.updateOnTouch = false
+        rateView!.updateOnTouch = true
+        let rateTap = UITapGestureRecognizer(target: self, action: #selector(handleTap(_ :)))
+        rateView.addGestureRecognizer(rateTap)
          
         // clear like title button color
         likeBtn.setTitleColor(UIColor.clear, for: .normal)
@@ -277,6 +280,7 @@ class postCell: UITableViewCell {
         
         // countries view settings
         countriesView.backgroundColor = UIColor(white: 1, alpha: 0)
+        
      }
     
     // clicked like button
@@ -465,5 +469,10 @@ class postCell: UITableViewCell {
 
             })
         }
+    }
+    
+    func handleTap(_ sender: AnyObject) {
+        print("hello world")
+        
     }
 }

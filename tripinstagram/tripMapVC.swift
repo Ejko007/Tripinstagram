@@ -10,8 +10,22 @@ import UIKit
 import MapKit
 import Parse
 
-class tripMapVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate, UITabBarControllerDelegate {
+struct poigeoplacemark {
+    var order = Int()
+    var locationName = String()
+    var streetName = String()
+    var cityName = String()
+    var zipName = String()
+    var countryName = String()
+}
 
+var itineraryInstructions = [String]()
+var itineraryInstructionsArray = [itineraryInstructions]
+var itineraryDistances = [Double]()
+var geoplacemarkArray = [poigeoplacemark]()
+
+class tripMapVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate, UITabBarControllerDelegate {
+    
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var mapTypeControl: UISegmentedControl!
     
@@ -28,6 +42,7 @@ class tripMapVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate,
     var startLocation:CLLocation!
     var lastLocation: CLLocation!
     var traveledDistance:Double = 0
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -176,14 +191,26 @@ class tripMapVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate,
     // display geopoint from the server
     override func viewDidAppear(_ animated: Bool) {
         var annotationColor = UIColor()
+        var mygeoplacemark = poigeoplacemark()
         
         let annotationQuery = PFQuery(className: "tripsegmentpoi")
         annotationQuery.whereKey("uuid", equalTo: postuuid.last!)
+        annotationQuery.order(byAscending: "poiorder")
         annotationQuery.findObjectsInBackground(block: { (locations: [PFObject]?, locationsError: Error?) in
             if locationsError == nil {
                 print("Successful query for annotations")
 
-                let myLocations = locations! as [PFObject]
+                let myUnsortedLocations = locations! as [PFObject]
+                let myLocations = myUnsortedLocations.sorted(by: { (s1: PFObject, s2: PFObject) -> Bool in
+                    return (s1["poiorder"] as! Int) < (s2["poiorder"] as! Int)
+                })
+//                
+//                print("\(myLocations[0]["poiorder"] as! Int)")
+//                print("\(myLocations[0]["poiname"] as! String)")
+//                print("\(myLocations[1]["poiorder"] as! Int)")
+//                print("\(myLocations[1]["poiname"] as! String)")
+                
+                geoplacemarkArray.removeAll(keepingCapacity: false)
                 
                 for location in myLocations {
                     let point = location["location"] as! PFGeoPoint
@@ -209,39 +236,58 @@ class tripMapVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate,
                     let place = CLLocation(latitude: point.latitude, longitude: point.longitude)
                     
                     geoCoder.reverseGeocodeLocation(place, completionHandler: { (placemarks, error) in
+                        
                         var placeMark: CLPlacemark!
                         placeMark = placemarks?[0]
                         
                         // address dictionary
                         if let locationName = placeMark.addressDictionary!["Name"] as? NSString {
                             print(locationName)
+                            mygeoplacemark.locationName = locationName as String
                         }
 
                         // stret address
                         if let streetName = placeMark.addressDictionary!["Throughfare"] as? NSString {
                             print(streetName)
+                            mygeoplacemark.streetName = streetName as String
                         }
 
                         // city name
                         if let cityName = placeMark.addressDictionary!["City"] as? NSString {
                             print(cityName)
+                            mygeoplacemark.cityName = cityName as String
                         }
                         
                         // zip name
                         if let zipName = placeMark.addressDictionary!["ZIP"] as? NSString {
                             print(zipName)
+                            mygeoplacemark.zipName = zipName as String
                         }
                         
                         // country name
                         if let countryName = placeMark.addressDictionary!["Country"] as? NSString {
                             print(countryName)
+                            mygeoplacemark.countryName = countryName as String
                         }
+                        
+                        // poiorder
+                        if let poiorder = location["poiorder"] as? Int {
+                            print(poiorder)
+                            mygeoplacemark.order = poiorder as Int
+                        }
+                        
+                        geoplacemarkArray.append(mygeoplacemark)
                     })
                     
                     self.annotations.append(annotation)
                     self.mapView.addAnnotation(annotation)
                 }
                 
+                _ = geoplacemarkArray.sorted(by: { (pg1: poigeoplacemark, pg2: poigeoplacemark) -> Bool in
+                    return pg1.order < pg2.order
+                })
+
+                self.coordinates.removeAll(keepingCapacity: false)
                 self.mapView.removeOverlays(self.mapView.overlays)
                 for myannotation in self.annotations {
                     self.coordinates.append(myannotation.coordinate)
@@ -340,6 +386,10 @@ class tripMapVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate,
         // Calculate the direction
         let directions = MKDirections(request: directionRequest)
         
+        itineraryDistances.removeAll(keepingCapacity: false)
+        itineraryInstructionsArray.removeAll(keepingCapacity: false)
+        
+        // calculate distance and prepare itinerary
         directions.calculate { (routeResponse, routeError) -> Void in
             
             guard let routeResponse = routeResponse else {
@@ -352,9 +402,13 @@ class tripMapVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate,
             
             for route in routeResponse.routes {
                 print("Distance = \(route.distance)")
+                itineraryDistances.append((route.distance / 1000.00).roundTo(places: 2))  // in kilometers
+                itineraryInstructions.removeAll(keepingCapacity: false)
                 for step in route.steps {
                     print(step.instructions)
+                    itineraryInstructions.append(step.instructions)
                 }
+                itineraryInstructionsArray.append(itineraryInstructions)
             }
             
             let route = routeResponse.routes[0]

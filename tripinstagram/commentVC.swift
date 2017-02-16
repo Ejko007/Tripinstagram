@@ -45,8 +45,6 @@ class commentVC: UIViewController, UITextViewDelegate, UITableViewDelegate, UITa
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // tableView.backgroundColor = .red
 
         // title at the top
         self.navigationItem.title = comments_str.uppercased()
@@ -246,7 +244,7 @@ class commentVC: UIViewController, UITextViewDelegate, UITableViewDelegate, UITa
         
         // declare cell
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") as! commentCell
-        
+    
         cell.usernameBtn.setTitle(usernameArray[indexPath.row], for: .normal)
         cell.usernameBtn.sizeToFit()
         if genderArray[indexPath.row] == "male" {
