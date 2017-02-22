@@ -393,7 +393,7 @@ class feedVC: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         // define cell
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! postCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! feedCell
         
         // connect objects with our information from array
         cell.usernameBtn.setTitle(usernameArray[indexPath.row], for: UIControlState.normal)
@@ -406,14 +406,10 @@ class feedVC: UITableViewController {
         cell.uuidLbl.text = uuidArray[indexPath.row]
         cell.titleLbl.text = titleArray[indexPath.row]
         cell.titleLbl.sizeToFit()
-        cell.tripNameLbl.text = tripNameArray[indexPath.row]
-        cell.nrPersonsLbl.text = "\(personsNrArray[indexPath.row])"
-        cell.totalDistanceLbl.text = String(format: "%.2f", totalDistanceArray[indexPath.row])
         let dateformatter = DateFormatter()
         dateformatter.dateFormat = "dd.MM.yyy"
         cell.fromDateLbl.text = dateformatter.string(from: tripFromArray[indexPath.row]!)
         cell.toDateLbl.text = dateformatter.string(from: tripToArray[indexPath.row]!)
-        cell.levelLbl.text = "\(levelArray[indexPath.row])"
         
         // place profile picture
         avaArray[indexPath.row].getDataInBackground(block: { (data: Data?, error: Error?) in
@@ -447,21 +443,6 @@ class feedVC: UITableViewController {
             } else {
                 flagsImageArray.append(UIImage(named: "WW")!)
             }
-        }
-        
-        // remove all subviews
-        for view in cell.countriesView.subviews {
-            view.removeFromSuperview()
-        }
-        
-        var count = 0
-        for i in 0...countItems - 1 {
-            //Add a subview at the position
-            subview = UIImageView(frame: CGRect(x: 20 * CGFloat(i), y: 0, width: 20, height: 15))
-            subview.image = flagsImageArray[count]
-             //self.view.addSubview(subview)
-            cell.countriesView.addSubview(subview)
-            count += 1
         }
         
         // place post picture
@@ -543,24 +524,6 @@ class feedVC: UITableViewController {
             }
         })
         
-        // calculate total spents of showing post
-        var sumaSpents: Double = 0.0
-        let countSpents = PFQuery(className: "tripspents")
-        countSpents.whereKey("uuid", equalTo: cell.uuidLbl.text!)
-        countSpents.findObjectsInBackground(block: { (spentsObjects: [PFObject]?, spentsError: Error?) in
-            
-            if spentsError == nil {
-                
-                // calculate summary rates
-                for spentsObject in spentsObjects! {
-                    sumaSpents = sumaSpents + (spentsObject.value(forKey: "spentAmount") as! Double)
-                }
-            } else {
-                print(spentsError!.localizedDescription)
-            }
-            cell.totalSpentsLbl.text = String(format: "%.2f", sumaSpents)
-        })
-       
         // calculate total rates of showing post
         cell.rateView.updateOnTouch = false
         var sumaRates: Double = 0.0

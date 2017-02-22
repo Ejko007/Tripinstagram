@@ -22,6 +22,7 @@
 		0A0D97B11E49D4CC00FA9B7B /* IsoCountryCodes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0D97AF1E49D4CC00FA9B7B /* IsoCountryCodes.swift */; };
 		0A11CD241E0ACECF00D52868 /* spentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A11CD231E0ACECF00D52868 /* spentCell.swift */; };
 		0A11CD261E0AD01C00D52868 /* spentsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A11CD251E0AD01C00D52868 /* spentsVC.swift */; };
+		0A1226551E5C5420002197B9 /* feedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1226541E5C5420002197B9 /* feedCell.swift */; };
 		0A1D9F3A1DB2ABBC0002BAD1 /* pictureCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1D9F391DB2ABBC0002BAD1 /* pictureCell.swift */; };
 		0A1D9F3E1DB6AFA10002BAD1 /* followersVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1D9F3D1DB6AFA10002BAD1 /* followersVC.swift */; };
 		0A1D9F401DB6AFE30002BAD1 /* followersCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1D9F3F1DB6AFE30002BAD1 /* followersCell.swift */; };
@@ -141,6 +142,7 @@
 		0A0D97AF1E49D4CC00FA9B7B /* IsoCountryCodes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IsoCountryCodes.swift; sourceTree = "<group>"; };
 		0A11CD231E0ACECF00D52868 /* spentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = spentCell.swift; sourceTree = "<group>"; };
 		0A11CD251E0AD01C00D52868 /* spentsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = spentsVC.swift; sourceTree = "<group>"; };
+		0A1226541E5C5420002197B9 /* feedCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = feedCell.swift; sourceTree = "<group>"; };
 		0A1D9F391DB2ABBC0002BAD1 /* pictureCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = pictureCell.swift; sourceTree = "<group>"; };
 		0A1D9F3D1DB6AFA10002BAD1 /* followersVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = followersVC.swift; sourceTree = "<group>"; };
 		0A1D9F3F1DB6AFE30002BAD1 /* followersCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = followersCell.swift; sourceTree = "<group>"; };
@@ -375,6 +377,8 @@
 				0A885C061DE9FE790036CA0F /* uploadEditVC.swift */,
 				0A1D9F4B1DBA4BD90002BAD1 /* postCell.swift */,
 				0A1D9F491DBA4BA50002BAD1 /* postVC.swift */,
+				0A1226541E5C5420002197B9 /* feedCell.swift */,
+				0A53145F1DC1F52D00604F69 /* feedVC.swift */,
 				0A86266E1DB2A5DC0001C1EE /* homeVC.swift */,
 				0A1E9D5A1DBBE2FC00080209 /* navVC.swift */,
 				0A1E9D5C1DBBE33B00080209 /* tabbarVC.swift */,
@@ -385,7 +389,6 @@
 				0A81F2A51DCE17630073063D /* rateVC.swift */,
 				0A81F2A71DCE18380073063D /* rateCell.swift */,
 				0ADD41E21DBF767E0026B118 /* hashtagsVC.swift */,
-				0A53145F1DC1F52D00604F69 /* feedVC.swift */,
 				0A5314611DC2339800604F69 /* usersVC.swift */,
 				0AD7A88F1DC4B539001CDDC5 /* newsVC.swift */,
 				0AD7A8911DC4B577001CDDC5 /* newsCell.swift */,
@@ -701,6 +704,7 @@
 				0A4939531E4F3A0C006D9218 /* itineraryHeaderCell.swift in Sources */,
 				0A0792611E3E3BEA0059A9BA /* photoCameraVC.swift in Sources */,
 				0A1D9F3A1DB2ABBC0002BAD1 /* pictureCell.swift in Sources */,
+				0A1226551E5C5420002197B9 /* feedCell.swift in Sources */,
 				0A11CD241E0ACECF00D52868 /* spentCell.swift in Sources */,
 				0A431ADA1E4DDB8700F22575 /* TabySegmentedControl.swift in Sources */,
 				0A1D9F421DB78BA30002BAD1 /* guestVC.swift in Sources */,
