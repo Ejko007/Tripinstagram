@@ -398,10 +398,13 @@ class feedVC: UITableViewController {
         // connect objects with our information from array
         cell.usernameBtn.setTitle(usernameArray[indexPath.row], for: UIControlState.normal)
         cell.usernameBtn.sizeToFit()
+        // cell.avaImg.layer.borderWidth = 2
         if genderArray[indexPath.row] == "male" {
             cell.usernameBtn.tintColor = .blue
+            //cell.avaImg.layer.borderColor = UIColor.blue.cgColor
         } else {
             cell.usernameBtn.tintColor = .red
+            //cell.avaImg.layer.borderColor = UIColor.red.cgColor
         }
         cell.uuidLbl.text = uuidArray[indexPath.row]
         cell.titleLbl.text = titleArray[indexPath.row]
@@ -432,7 +435,7 @@ class feedVC: UITableViewController {
         flagsCodes = countriesArray[indexPath.row]
         countItems = flagsCodes.count
         if countItems > 14 {
-           countItems = 13
+            countItems = 13
         }
         
         flagsImageArray.removeAll(keepingCapacity: false)
@@ -444,6 +447,30 @@ class feedVC: UITableViewController {
                 flagsImageArray.append(UIImage(named: "WW")!)
             }
         }
+        
+        // remove all subviews
+        for view in cell.countriesView.subviews {
+            view.removeFromSuperview()
+        }
+        
+        var count = 0
+        for i in 0...countItems - 1 {
+            //Add a subview at the position
+            subview = UIImageView(frame: CGRect(x: 20 * CGFloat(i), y: 0, width: 30, height: 20))
+            subview.image = flagsImageArray[count]
+            //self.view.addSubview(subview)
+            cell.countriesView.addSubview(subview)
+            count += 1
+        }
+        
+        // place post picture
+        picArray[indexPath.row].getDataInBackground(block: { (data: Data?, error: Error?) in
+            if error == nil {
+                cell.picImg.image = UIImage(data: data!)
+            } else {
+                print (error!.localizedDescription)
+            }
+        })
         
         // place post picture
         picArray[indexPath.row].getDataInBackground(block: { (data: Data?, error: Error?) in
@@ -592,7 +619,7 @@ class feedVC: UITableViewController {
         let i = sender.layer.value(forKey: "index") as! NSIndexPath
         
         // call cell to call further data
-        let cell = tableView.cellForRow(at: i as IndexPath) as! postCell
+        let cell = tableView.cellForRow(at: i as IndexPath) as! feedCell
         
         // if user tapped on himself go home - otherwise go guest
         if cell.usernameBtn.titleLabel?.text?.uppercased() == PFUser.current()?.username?.uppercased() {
@@ -613,7 +640,7 @@ class feedVC: UITableViewController {
         let i = sender.layer.value(forKey: "index") as! NSIndexPath
         
         // call cell to call further cell data
-        let cell = tableView.cellForRow(at: i as IndexPath) as! postCell
+        let cell = tableView.cellForRow(at: i as IndexPath) as! feedCell
         
         // send related data to global variables
         rateuuid.append(cell.uuidLbl.text!)
@@ -719,7 +746,7 @@ class feedVC: UITableViewController {
         let i = sender.layer.value(forKey: "index") as! NSIndexPath
         
         // call cell to call further cell data
-        let cell = tableView.cellForRow(at: i as IndexPath) as! postCell
+        let cell = tableView.cellForRow(at: i as IndexPath) as! feedCell
         
         // send related data to global variables
         commentuuid.append(cell.uuidLbl.text!)
@@ -739,7 +766,7 @@ class feedVC: UITableViewController {
         let i = sender.layer.value(forKey: "index") as! NSIndexPath
         
         // call cell to call further cell data
-        let cell = tableView.cellForRow(at: i as IndexPath) as! postCell
+        let cell = tableView.cellForRow(at: i as IndexPath) as! feedCell
         
         // DELETE ACTION
         let del = DefaultButton(title: delete_str) {
@@ -927,7 +954,7 @@ class feedVC: UITableViewController {
             let i = sender.layer.value(forKey: "index") as! NSIndexPath
             
             // call cell to call further cell data
-            let cell = self.tableView.cellForRow(at: i as IndexPath) as! postCell
+            let cell = self.tableView.cellForRow(at: i as IndexPath) as! feedCell
             
             // send related data to global variables
             rateuuid.append(cell.uuidLbl.text!)

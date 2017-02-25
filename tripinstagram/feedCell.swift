@@ -32,13 +32,16 @@ class feedCell: UITableViewCell {
     @IBOutlet weak var fromDateLbl: UILabel!
     @IBOutlet weak var toDateLbl: UILabel!
     
+    @IBOutlet weak var feedUserNameView: UIView!
     @IBOutlet weak var feedDefBarView: UIView!
     @IBOutlet weak var feedDateDefView: UIView!
     @IBOutlet weak var feedCommentView: UIView!
     
+    @IBOutlet weak var countriesView: UIView!
+    
     //let pictureWidth = width - 20
     let pictureWidth = UIScreen.main.bounds.width
-    let pictureHeight = UIScreen.main.bounds.height / 3
+    let pictureHeight = UIScreen.main.bounds.height / 3 + 50
     
     // default function
     override func awakeFromNib() {
@@ -79,6 +82,8 @@ class feedCell: UITableViewCell {
         feedDefBarView.translatesAutoresizingMaskIntoConstraints = false
         feedDateDefView.translatesAutoresizingMaskIntoConstraints = false
         feedCommentView.translatesAutoresizingMaskIntoConstraints = false
+        feedUserNameView.translatesAutoresizingMaskIntoConstraints = false
+        countriesView.translatesAutoresizingMaskIntoConstraints = false
         
         // feeddef view opacity properties settings
         // feedDefBarView.backgroundColor = UIColor(white: 0.8, alpha: 0.5)
@@ -88,23 +93,52 @@ class feedCell: UITableViewCell {
         
         // feeddate view opacity properties settings
         feedDateDefView.backgroundColor = UIColor.black.withAlphaComponent(0.5)
+        fromDateLbl.textColor = UIColor.black
+        toDateLbl.textColor = UIColor.black
+        
+        // feeduserview view opacity properties settings
+        feedUserNameView.backgroundColor = UIColor.white.withAlphaComponent(0.6)
+        dateLbl.textColor = UIColor.black
+        
+        // cell background color
+        self.contentView.backgroundColor = UIColor(red: 155 / 255, green: 155 / 255, blue: 155 / 255, alpha: 3 / 100)
         
         // constraints
         // vertical constraints
-        self.contentView.addConstraints(NSLayoutConstraint.constraints(
-            withVisualFormat: "V:|-10-[ava(30)]-10-[pic(\(pictureHeight))]-(-40)-[feeddefbarview]-(-\(pictureHeight))-[feeddateview]",
+        self.feedUserNameView.addConstraints(NSLayoutConstraint.constraints(
+            withVisualFormat: "V:|-5-[ava(30)]-5-|",
             options: [],
-            metrics: nil, views: ["ava":avaImg, "pic":picImg, "feeddefbarview":feedDefBarView, "feeddateview":feedDateDefView]))
+            metrics: nil, views: ["ava":avaImg]))
+        
+        self.feedUserNameView.addConstraints(NSLayoutConstraint.constraints(
+            withVisualFormat: "V:|-5-[username(30)]-5-|",
+            options: [],
+            metrics: nil, views: ["username":usernameBtn]))
+
+        self.feedUserNameView.addConstraints(NSLayoutConstraint.constraints(
+            withVisualFormat: "V:|-5-[datelbl(30)]-5-|",
+            options: [],
+            metrics: nil, views: ["datelbl":dateLbl]))
         
         self.contentView.addConstraints(NSLayoutConstraint.constraints(
-            withVisualFormat: "V:|-10-[username(30)]-10-[pic(\(pictureHeight))]-(-40)-[feeddefbarview]-(-\(pictureHeight))-[feeddateview]",
+            withVisualFormat: "V:|-0-[usernameview]-30-[feeddateview]",
             options: [],
-            metrics: nil, views: ["username":usernameBtn,"pic":picImg, "feeddefbarview":feedDefBarView, "feeddateview":feedDateDefView]))
+            metrics: nil, views: ["usernameview":feedUserNameView, "feeddateview":feedDateDefView]))
+
+        self.contentView.addConstraints(NSLayoutConstraint.constraints(
+            withVisualFormat: "V:|-0-[usernameview]-5-[feedcountryview]",
+            options: [],
+            metrics: nil, views: ["usernameview":feedUserNameView, "feedcountryview":countriesView]))
         
         self.contentView.addConstraints(NSLayoutConstraint.constraints(
-            withVisualFormat: "V:|-10-[datelbl(30)]-10-[pic(\(pictureHeight))]-(-40)-[feeddefbarview]-0-[feedcommentview]-|",
+            withVisualFormat: "V:|-0-[usernameview]-(-40)-[pic(\(pictureHeight))]-(-40)-[feeddefbarview]",
             options: [],
-            metrics: nil, views: ["datelbl":dateLbl,"pic":picImg, "feeddefbarview":feedDefBarView, "feedcommentview":feedCommentView]))
+            metrics: nil, views: ["usernameview":feedUserNameView, "pic":picImg, "feeddefbarview":feedDefBarView]))
+
+        self.contentView.addConstraints(NSLayoutConstraint.constraints(
+            withVisualFormat: "V:|-0-[usernameview]-(-40)-[pic(\(pictureHeight))]-(-40)-[feeddefbarview]-0-[feedcommentview]-|",
+            options: [],
+            metrics: nil, views: ["usernameview":feedUserNameView, "pic":picImg, "feeddefbarview":feedDefBarView, "feedcommentview":feedCommentView]))
 
         self.feedDefBarView.addConstraints(NSLayoutConstraint.constraints(
             withVisualFormat: "V:|-5-[likebtn(30)]-5-|",
@@ -147,11 +181,16 @@ class feedCell: UITableViewCell {
             metrics: nil, views: ["titlelbl":titleLbl]))
        
         // horizontal alignement
-        self.contentView.addConstraints(NSLayoutConstraint.constraints(
+        self.feedUserNameView.addConstraints(NSLayoutConstraint.constraints(
             withVisualFormat: "H:|-10-[ava(30)]-10-[username]-10-[datelbl(30)]-10-|",
             options: [],
             metrics: nil, views: ["ava":avaImg, "username":usernameBtn, "datelbl":dateLbl]))
         
+        self.contentView.addConstraints(NSLayoutConstraint.constraints(
+            withVisualFormat: "H:|-0-[usernameview(\(pictureWidth))]-0-|",
+            options: [],
+            metrics: nil, views: ["usernameview":feedUserNameView]))
+
         self.contentView.addConstraints(NSLayoutConstraint.constraints(
             withVisualFormat: "H:|-0-[pic(\(pictureWidth))]-0-|",
             options: [],
@@ -161,6 +200,11 @@ class feedCell: UITableViewCell {
             withVisualFormat: "H:[feeddateview]-10-|",
             options: [],
             metrics: nil, views: ["feeddateview":feedDateDefView]))
+
+        self.contentView.addConstraints(NSLayoutConstraint.constraints(
+            withVisualFormat: "H:|-10-[feedcountryview]",
+            options: [],
+            metrics: nil, views: ["feedcountryview":countriesView]))
         
         self.contentView.addConstraints(NSLayoutConstraint.constraints(
             withVisualFormat: "H:|-0-[feeddefbarview]-0-|",
@@ -178,22 +222,22 @@ class feedCell: UITableViewCell {
             metrics: nil, views: ["likebtn":likeBtn, "likenr":likeLbl, "commentbtn":commentBtn, "commentnr":commentNrLbl, "rateview":rateView, "morebtn":moreBtn]))
 
         self.feedDateDefView.addConstraints(NSLayoutConstraint.constraints(
-            withVisualFormat: "H:[fromlbl(70)]-10-|",
+            withVisualFormat: "H:[fromlbl(80)]-10-|",
             options: [],
             metrics: nil, views: ["fromlbl":fromStrLbl]))
         
         self.feedDateDefView.addConstraints(NSLayoutConstraint.constraints(
-            withVisualFormat: "H:[fromdate(70)]-10-|",
+            withVisualFormat: "H:[fromdate(80)]-10-|",
             options: [],
             metrics: nil, views: ["fromdate":fromDateLbl]))
         
         self.feedDateDefView.addConstraints(NSLayoutConstraint.constraints(
-            withVisualFormat: "H:[todatelbl(70)]-10-|",
+            withVisualFormat: "H:[todatelbl(80)]-10-|",
             options: [],
             metrics: nil, views: ["todatelbl":toStrLbl]))
         
         self.feedDateDefView.addConstraints(NSLayoutConstraint.constraints(
-            withVisualFormat: "H:[todate(70)]-10-|",
+            withVisualFormat: "H:[todate(80)]-10-|",
             options: [],
             metrics: nil, views: ["todate":toDateLbl]))
 
@@ -203,15 +247,19 @@ class feedCell: UITableViewCell {
             metrics: nil, views: ["titlelbl":titleLbl]))
         
         // add additional cell properties
-        self.backgroundColor = .white
+        self.backgroundColor = UIColor(red: 155 / 255, green: 155 / 255, blue: 155 / 255, alpha: 3 / 100)
         
         // round ava
         avaImg.layer.cornerRadius = avaImg.frame.size.width / 2
         avaImg.clipsToBounds = true
+        avaImg.layer.borderColor = UIColor.white.cgColor
+        avaImg.layer.borderWidth = 2
         
         // create hidden button over rateView
         rateView.backgroundColor = .clear
         rateView.starSize = 15
+        
+        self.contentView.bringSubview(toFront: feedUserNameView)
         
     }
     

@@ -62,7 +62,7 @@ class navVC: UINavigationController {
         self.navigationBar.shadowImage = UIImage()
         self.view.backgroundColor = .clear
         
-        self.navigationBar.apply(gradient: [UIColor.black, UIColor.lightGray])
+        self.navigationBar.apply(gradient: [UIColor(colorLiteralRed: 18.0 / 255.0, green: 86.0 / 255.0, blue: 136.0 / 255.0, alpha: 0), UIColor(colorLiteralRed: 18.0 / 255.0, green: 86.0 / 255.0, blue: 136.0 / 255.0, alpha: 1)])
         
         // unable translucent
         self.navigationBar.isTranslucent = true

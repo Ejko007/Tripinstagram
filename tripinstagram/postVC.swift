@@ -219,9 +219,6 @@ class postVC: UITableViewController {
             cell.usernameBtn.tintColor = .red
         }
         cell.uuidLbl.text = uuidArray[indexPath.row]
-        cell.titleLbl.text = titleArray[indexPath.row]
-        cell.titleLbl.sizeToFit()
-        cell.tripNameLbl.text = tripnameArray[indexPath.row]
         cell.nrPersonsLbl.text = "\(personsNrArray[indexPath.row])"
         cell.totalDistanceLbl.text = String(format: "%.2f", totalDistanceArray[indexPath.row])
         let dateformatter = DateFormatter()
@@ -288,64 +285,6 @@ class postVC: UITableViewController {
             }
         })
         
-        // calcula post date
-        let from = dateArray[indexPath.row]
-        let now = NSDate()
-        // let components : NSCalendar.Unit = [.second, .minute, .hour, .day, .weekOfMonth]
-        let difference = Calendar.current.dateComponents([.second, .minute, .hour, .day, .weekOfMonth], from: from! as Date, to: now as Date)
-        
-        // logic what  to show
-        if difference.second! <= 0 {
-            cell.dateLbl.text = now_str
-        }
-        
-        if difference.second! > 0 && difference.minute! == 0 {
-            cell.dateLbl.text = "\(difference.second!)"+seconds_abbrav_str+"."
-        }
-        
-        if difference.minute! > 0 && difference.hour! == 0 {
-            cell.dateLbl.text = "\(difference.minute!)"+minutes_abbrav_str+"."
-            
-        }
-        
-        if difference.hour! > 0 && difference.day! == 0 {
-            cell.dateLbl.text = "\(difference.hour!)"+hours_abbrav_str+"."
-        }
-        
-        if difference.day! > 0 && difference.weekOfMonth! == 0 {
-            cell.dateLbl.text = "\(difference.day!)"+days_abbrav_str+"."
-        }
-        
-        if difference.weekOfMonth! > 0 {
-            cell.dateLbl.text = "\(difference.weekOfMonth!)"+weeks_abbrav_str+"."
-        }
-        
-        // manipulating like button on did user like or not
-        let didLike = PFQuery(className: "likes")
-        didLike.whereKey("by", equalTo: PFUser.current()!.username!)
-        didLike.whereKey("to", equalTo: cell.uuidLbl.text!)
-        didLike.countObjectsInBackground (block: { (count: Int32, error: Error?) in
-            if count == 0 {
-                cell.likeBtn.setTitle("unlike", for: .normal)
-                cell.likeBtn.setBackgroundImage(UIImage(named: "unlike.png"), for: UIControlState.normal)
-            } else {
-                cell.likeBtn.setTitle("like", for: .normal)
-                cell.likeBtn.setBackgroundImage(UIImage(named: "like.png"), for: UIControlState.normal)
-            }
-        })
-        
-        // count total likes of showing post
-        let countLikes = PFQuery(className: "likes")
-        countLikes.whereKey("to", equalTo: cell.uuidLbl.text!)
-        countLikes.countObjectsInBackground(block:  { (count: Int32, error: Error?) in
-            
-            if error == nil {
-                cell.likeLbl.text = "\(count)"
-            } else {
-                print(error!.localizedDescription)
-            }
-        })
-        
         // count total spents of showing post
         let countSpents = PFQuery(className: "tripspents")
         countSpents.whereKey("uuid", equalTo: cell.uuidLbl.text!)
@@ -363,84 +302,10 @@ class postVC: UITableViewController {
             }
             cell.totalSpentsLbl.text = String(format: "%.2f", sumaSpents)
         })
-
-        // count total comments of showing post
-        let countComments = PFQuery(className: "comments")
-        countComments.whereKey("to", equalTo: cell.uuidLbl.text!)
-        countComments.countObjectsInBackground(block:  { (count: Int32, error: Error?) in
-            
-            if error == nil {
-                cell.commentNrLbl.text = "\(count)"
-            } else {
-                print(error!.localizedDescription)
-            }
-        })
-
-        // assign rates value
-        cell.rateView.updateOnTouch = false
-        cell.rateView.rating = 0.0
-        
-        let countRates = PFQuery(className: "rates")
-        countRates.whereKey("uuid", equalTo: cell.uuidLbl.text!)
-        countRates.findObjectsInBackground(block: { (ratesObjects: [PFObject]?, ratesError: Error?) in
-
-            var sumaRates: Double = 0.0
-
-            var i: Int = 1
-            if ratesError == nil {
-                
-                // calculate summary rates
-                for ratesObject in ratesObjects! {
-                    sumaRates = sumaRates + (ratesObject.value(forKey: "rating") as! Double)
-                    i += 1
-                }
-                
-                // add rates value to array
-                if i > 1 {
-                    sumaRates = sumaRates / Double((i - 1))
-                }
-                
-            } else {
-                print(ratesError!.localizedDescription)
-            }
-            
-            cell.rateView.rating = sumaRates
-        })
-    
         
         // assign index
         cell.usernameBtn.layer.setValue(indexPath, forKey: "index")
-        cell.commentBtn.layer.setValue(indexPath, forKey: "index")
-        cell.moreBtn.layer.setValue(indexPath, forKey: "index")
-        cell.rateView.layer.setValue(indexPath, forKey: "index")
-        //cell.rateBtn.layer.setValue(indexPath, forKey: "index")
         
-        // @mension is tapped
-        cell.titleLbl.userHandleLinkTapHandler = { label, handle, rang in
-            var mention = handle
-            mention = String(mention.characters.dropFirst())
-            
-            // if tapped on @current user go home, else go guest
-            if mention.lowercased() == PFUser.current()?.username {
-                let home = self.storyboard?.instantiateViewController(withIdentifier: "homeVC") as! homeVC
-                self.navigationController?.pushViewController(home, animated: true)
-            } else {
-                guestname.append(mention.lowercased())
-                let guest = self.storyboard?.instantiateViewController(withIdentifier: "guestVC") as! guestVC
-                self.navigationController?.pushViewController(guest, animated: true)
-            }
-        }
-        
-        // hashtag is tapped
-        cell.titleLbl.hashtagLinkTapHandler = { label, handle, range in
-            var mention = handle
-            mention = String(mention.characters.dropFirst())
-            hashtag.append(mention.lowercased())
-            let hashvc = self.storyboard?.instantiateViewController(withIdentifier: "hashtagsVC") as! hashtagsVC
-            self.navigationController?.pushViewController(hashvc, animated: true)
-        }
-        
-        //cell.accessoryType = UITableViewCellAccessoryType.detailDisclosureButton
         return cell
     }
     
