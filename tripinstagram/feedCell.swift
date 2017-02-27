@@ -27,21 +27,16 @@ class feedCell: UITableViewCell {
     @IBOutlet weak var titleLbl: KILabel!
     @IBOutlet weak var uuidLbl: UILabel!
     @IBOutlet weak var rateView: CosmosView!
-    @IBOutlet weak var fromStrLbl: UILabel!
-    @IBOutlet weak var toStrLbl: UILabel!
-    @IBOutlet weak var fromDateLbl: UILabel!
-    @IBOutlet weak var toDateLbl: UILabel!
     
     @IBOutlet weak var feedUserNameView: UIView!
     @IBOutlet weak var feedDefBarView: UIView!
-    @IBOutlet weak var feedDateDefView: UIView!
     @IBOutlet weak var feedCommentView: UIView!
     
     @IBOutlet weak var countriesView: UIView!
     
     //let pictureWidth = width - 20
     let pictureWidth = UIScreen.main.bounds.width
-    let pictureHeight = UIScreen.main.bounds.height / 3 + 50
+    let pictureHeight = round(UIScreen.main.bounds.height / 3) + 50
     
     // default function
     override func awakeFromNib() {
@@ -75,12 +70,7 @@ class feedCell: UITableViewCell {
         titleLbl.translatesAutoresizingMaskIntoConstraints = false
         uuidLbl.translatesAutoresizingMaskIntoConstraints = false
         rateView.translatesAutoresizingMaskIntoConstraints = false
-        fromStrLbl.translatesAutoresizingMaskIntoConstraints = false
-        fromDateLbl.translatesAutoresizingMaskIntoConstraints = false
-        toStrLbl.translatesAutoresizingMaskIntoConstraints = false
-        toDateLbl.translatesAutoresizingMaskIntoConstraints = false
         feedDefBarView.translatesAutoresizingMaskIntoConstraints = false
-        feedDateDefView.translatesAutoresizingMaskIntoConstraints = false
         feedCommentView.translatesAutoresizingMaskIntoConstraints = false
         feedUserNameView.translatesAutoresizingMaskIntoConstraints = false
         countriesView.translatesAutoresizingMaskIntoConstraints = false
@@ -90,11 +80,7 @@ class feedCell: UITableViewCell {
         feedDefBarView.backgroundColor = UIColor.black.withAlphaComponent(0.5)
         likeLbl.textColor = UIColor.white
         commentNrLbl.textColor = UIColor.white
-        
-        // feeddate view opacity properties settings
-        feedDateDefView.backgroundColor = UIColor.black.withAlphaComponent(0.5)
-        fromDateLbl.textColor = UIColor.black
-        toDateLbl.textColor = UIColor.black
+        uuidLbl.isHidden = true
         
         // feeduserview view opacity properties settings
         feedUserNameView.backgroundColor = UIColor.white.withAlphaComponent(0.6)
@@ -120,11 +106,6 @@ class feedCell: UITableViewCell {
             options: [],
             metrics: nil, views: ["datelbl":dateLbl]))
         
-        self.contentView.addConstraints(NSLayoutConstraint.constraints(
-            withVisualFormat: "V:|-0-[usernameview]-30-[feeddateview]",
-            options: [],
-            metrics: nil, views: ["usernameview":feedUserNameView, "feeddateview":feedDateDefView]))
-
         self.contentView.addConstraints(NSLayoutConstraint.constraints(
             withVisualFormat: "V:|-0-[usernameview]-5-[feedcountryview]",
             options: [],
@@ -170,11 +151,6 @@ class feedCell: UITableViewCell {
             options: [],
             metrics: nil, views: ["morebtn":moreBtn]))
         
-        self.feedDateDefView.addConstraints(NSLayoutConstraint.constraints(
-            withVisualFormat: "V:|-5-[fromlbl(15)]-5-[fromdate(15)]-5-[tolbl(15)]-5-[todate(15)]",
-            options: [],
-            metrics: nil, views: ["fromlbl":fromStrLbl, "fromdate":fromDateLbl, "tolbl":toStrLbl, "todate":toDateLbl]))
-
         self.feedCommentView.addConstraints(NSLayoutConstraint.constraints(
             withVisualFormat: "V:|-5-[titlelbl]-5-|",
             options: [],
@@ -197,11 +173,6 @@ class feedCell: UITableViewCell {
             metrics: nil, views: ["pic":picImg]))
         
         self.contentView.addConstraints(NSLayoutConstraint.constraints(
-            withVisualFormat: "H:[feeddateview]-10-|",
-            options: [],
-            metrics: nil, views: ["feeddateview":feedDateDefView]))
-
-        self.contentView.addConstraints(NSLayoutConstraint.constraints(
             withVisualFormat: "H:|-10-[feedcountryview]",
             options: [],
             metrics: nil, views: ["feedcountryview":countriesView]))
@@ -220,26 +191,6 @@ class feedCell: UITableViewCell {
             withVisualFormat: "H:|-10-[likebtn(30)]-10-[likenr(30)]-10-[commentbtn(30)]-10-[commentnr(30)]-10-[rateview]-10-[morebtn(30)]-10-|",
             options: [],
             metrics: nil, views: ["likebtn":likeBtn, "likenr":likeLbl, "commentbtn":commentBtn, "commentnr":commentNrLbl, "rateview":rateView, "morebtn":moreBtn]))
-
-        self.feedDateDefView.addConstraints(NSLayoutConstraint.constraints(
-            withVisualFormat: "H:[fromlbl(80)]-10-|",
-            options: [],
-            metrics: nil, views: ["fromlbl":fromStrLbl]))
-        
-        self.feedDateDefView.addConstraints(NSLayoutConstraint.constraints(
-            withVisualFormat: "H:[fromdate(80)]-10-|",
-            options: [],
-            metrics: nil, views: ["fromdate":fromDateLbl]))
-        
-        self.feedDateDefView.addConstraints(NSLayoutConstraint.constraints(
-            withVisualFormat: "H:[todatelbl(80)]-10-|",
-            options: [],
-            metrics: nil, views: ["todatelbl":toStrLbl]))
-        
-        self.feedDateDefView.addConstraints(NSLayoutConstraint.constraints(
-            withVisualFormat: "H:[todate(80)]-10-|",
-            options: [],
-            metrics: nil, views: ["todate":toDateLbl]))
 
         self.feedCommentView.addConstraints(NSLayoutConstraint.constraints(
             withVisualFormat: "H:|-5-[titlelbl]-5-|",
@@ -385,10 +336,6 @@ class feedCell: UITableViewCell {
                 self.titleLbl.alpha = 0
                 self.uuidLbl.alpha = 0
                 self.rateView.alpha = 0
-                self.fromStrLbl.alpha = 0
-                self.toStrLbl.alpha = 0
-                self.fromDateLbl.alpha = 0
-                self.toDateLbl.alpha = 0
             })
         } else {
             
@@ -409,10 +356,6 @@ class feedCell: UITableViewCell {
                 self.titleLbl.alpha = 1
                 self.uuidLbl.alpha = 1
                 self.rateView.alpha = 1
-                self.fromStrLbl.alpha = 1
-                self.toStrLbl.alpha = 1
-                self.fromDateLbl.alpha = 1
-                self.toDateLbl.alpha = 1
                 
                 // add customized graphics to cell
                 self.contentView.backgroundColor = UIColor(red: 155 / 255, green: 155 / 255, blue: 155 / 255, alpha: 3 / 100)

@@ -42,13 +42,9 @@ extension UINavigationBar {
 
 class navVC: UINavigationController {
     
-    
-    
-
     // default fun
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         
         // color of title at the top in navigation controller
         self.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]

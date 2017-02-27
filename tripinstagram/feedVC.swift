@@ -411,8 +411,6 @@ class feedVC: UITableViewController {
         cell.titleLbl.sizeToFit()
         let dateformatter = DateFormatter()
         dateformatter.dateFormat = "dd.MM.yyy"
-        cell.fromDateLbl.text = dateformatter.string(from: tripFromArray[indexPath.row]!)
-        cell.toDateLbl.text = dateformatter.string(from: tripToArray[indexPath.row]!)
         
         // place profile picture
         avaArray[indexPath.row].getDataInBackground(block: { (data: Data?, error: Error?) in
@@ -456,7 +454,7 @@ class feedVC: UITableViewController {
         var count = 0
         for i in 0...countItems - 1 {
             //Add a subview at the position
-            subview = UIImageView(frame: CGRect(x: 20 * CGFloat(i), y: 0, width: 30, height: 20))
+            subview = UIImageView(frame: CGRect(x: 30 * CGFloat(i), y: 0, width: 30, height: 20))
             subview.image = flagsImageArray[count]
             //self.view.addSubview(subview)
             cell.countriesView.addSubview(subview)

@@ -10,6 +10,7 @@ import UIKit
 import Parse
 import PopupDialog
 import ExpandingMenu
+import MapKit
 
 var postuuid = [String]()
 
@@ -36,8 +37,7 @@ class postVC: UITableViewController {
     var ratingArray = [Double]()
     
     var publishedArray = [Bool]()
-    
-    
+        
     // default finction
     override func viewDidLoad() {
         
@@ -269,7 +269,7 @@ class postVC: UITableViewController {
         var count = 0
         for i in 0...countItems - 1 {
             //Add a subview at the position
-            subview = UIImageView(frame: CGRect(x: 20 * CGFloat(i), y: 0, width: 20, height: 15))
+            subview = UIImageView(frame: CGRect(x: 30 * CGFloat(i), y: 0, width: 30, height: 20))
             subview.image = flagsImageArray[count]
             //self.view.addSubview(subview)
             cell.countriesView.addSubview(subview)

@@ -9,6 +9,7 @@
 import UIKit
 import Parse
 import PopupDialog
+import MapKit
 
 class postCell: UITableViewCell {
     
@@ -22,7 +23,10 @@ class postCell: UITableViewCell {
     @IBOutlet weak var uuidLbl: UILabel!
     
     @IBOutlet weak var postDateView: UIView!
+    @IBOutlet weak var fromDateStrLbl: UILabel!
+    @IBOutlet weak var calendarIcon: UIImageView!
     @IBOutlet weak var fromDateLbl: UILabel!
+    @IBOutlet weak var toDateStrLbl: UILabel!
     @IBOutlet weak var toDateLbl: UILabel!
     
     @IBOutlet weak var nrPersonsIcon: UIImageView!
@@ -39,10 +43,16 @@ class postCell: UITableViewCell {
     @IBOutlet weak var totalDistanceLbl: UILabel!
     @IBOutlet weak var kmLbl: UILabel!
     @IBOutlet weak var countriesView: UIView!
+    @IBOutlet weak var pictureView: UIView!
+    @IBOutlet weak var postMapView: MKMapView!
+    
     
     //let pictureWidth = width - 20
     let pictureWidth = UIScreen.main.bounds.width
-    let pictureHeight = UIScreen.main.bounds.height / 3 + 50
+    let pictureHeight = round(UIScreen.main.bounds.height / 3) + 50
+    
+    var MapViewLocationManager:CLLocationManager! = CLLocationManager()
+    var currentLoc: PFGeoPoint! = PFGeoPoint()
 
     // default function
     override func awakeFromNib() {
@@ -62,6 +72,7 @@ class postCell: UITableViewCell {
         usernameBtn.translatesAutoresizingMaskIntoConstraints = false
         picImg.translatesAutoresizingMaskIntoConstraints = false
         uuidLbl.translatesAutoresizingMaskIntoConstraints = false
+        toDateStrLbl.translatesAutoresizingMaskIntoConstraints = false
         toDateLbl.translatesAutoresizingMaskIntoConstraints = false
         nrPersonsIcon.translatesAutoresizingMaskIntoConstraints = false
         nrPersonsLbl.translatesAutoresizingMaskIntoConstraints = false
@@ -71,21 +82,26 @@ class postCell: UITableViewCell {
         totalSpentsLbl.translatesAutoresizingMaskIntoConstraints = false
         currencyLbl.translatesAutoresizingMaskIntoConstraints = false
         mapmarkerIcon.translatesAutoresizingMaskIntoConstraints = false
+        calendarIcon.translatesAutoresizingMaskIntoConstraints = false
+        fromDateStrLbl.translatesAutoresizingMaskIntoConstraints = false
         fromDateLbl.translatesAutoresizingMaskIntoConstraints = false
         totalDistanceLbl.translatesAutoresizingMaskIntoConstraints = false
         kmLbl.translatesAutoresizingMaskIntoConstraints = false
         countriesView.translatesAutoresizingMaskIntoConstraints = false
         zoomin.translatesAutoresizingMaskIntoConstraints = false
-        
+        pictureView.translatesAutoresizingMaskIntoConstraints = false
+        uuidLbl.translatesAutoresizingMaskIntoConstraints = false
+        postMapView.translatesAutoresizingMaskIntoConstraints = false
 
-//        self.mainContentView.backgroundColor = UIColor(red: 155 / 255, green: 155 / 255, blue: 155 / 255, alpha: 3 / 100)
-//        self.mainContentView.layer.cornerRadius = 8
-//        self.mainContentView.clipsToBounds = true
-//        self.mainContentView.layer.masksToBounds = false
-//        self.mainContentView.layer.shadowColor = UIColor.darkGray.cgColor
-//        self.mainContentView.layer.shadowOpacity = 1
-//        self.mainContentView.layer.shadowOffset = CGSize.zero
-//        self.mainContentView.layer.shadowRadius = 10
+
+        self.contentView.backgroundColor = UIColor(red: 155 / 255, green: 155 / 255, blue: 155 / 255, alpha: 3 / 100)
+        self.contentView.layer.cornerRadius = 8
+        self.contentView.clipsToBounds = true
+        self.contentView.layer.masksToBounds = false
+        self.contentView.layer.shadowColor = UIColor.darkGray.cgColor
+        self.contentView.layer.shadowOpacity = 1
+        self.contentView.layer.shadowOffset = CGSize.zero
+        self.contentView.layer.shadowRadius = 10
 
         
         // set opacity for postFinAndDestView
@@ -95,13 +111,33 @@ class postCell: UITableViewCell {
         totalDistanceLbl.textColor = UIColor.white
         kmLbl.textColor = UIColor.white
         
+        // change color of button image
+        let origImage = UIImage(named: "zoom_in")
+        let tintedImage = origImage?.withRenderingMode(UIImageRenderingMode.alwaysTemplate)
+        zoomin.setImage(tintedImage, for: .normal)
+        zoomin.tintColor = .white
+        
         // feeduserview view opacity properties settings
         postUserView.backgroundColor = UIColor.white.withAlphaComponent(0.6)
         nrPersonsLbl.textColor = UIColor.black
         levelLbl.textColor = UIColor.black
         
+        // hide uuid label
+        uuidLbl.isHidden = true
+        
         // constraints
         // vertical constraints
+        
+        self.pictureView.addConstraints(NSLayoutConstraint.constraints(
+            withVisualFormat: "V:|-45-[countryview(20)]-(\(pictureHeight - 65))-|",
+            options: [],
+            metrics: nil, views: ["countryview":countriesView]))
+       
+        self.pictureView.addConstraints(NSLayoutConstraint.constraints(
+            withVisualFormat: "V:|-45-[zoom(20)]-(\(pictureHeight - 65))-|",
+            options: [],
+            metrics: nil, views: ["zoom":zoomin]))
+        
         self.postUserView.addConstraints(NSLayoutConstraint.constraints(
             withVisualFormat: "V:|-5-[ava(30)]-5-|",
             options: [],
@@ -118,7 +154,7 @@ class postCell: UITableViewCell {
             metrics: nil, views: ["personicon":nrPersonsIcon]))
 
         self.postUserView.addConstraints(NSLayoutConstraint.constraints(
-            withVisualFormat: "V:|-5-[nrperson(30)]-5-|",
+            withVisualFormat: "V:|-5-[nrperson]-5-|",
             options: [],
             metrics: nil, views: ["nrperson":nrPersonsLbl]))
         
@@ -128,37 +164,22 @@ class postCell: UITableViewCell {
             metrics: nil, views: ["levelicon":levelIcon]))
 
         self.postUserView.addConstraints(NSLayoutConstraint.constraints(
-            withVisualFormat: "V:|-5-[level(30)]-5-|",
+            withVisualFormat: "V:|-5-[level]-5-|",
             options: [],
             metrics: nil, views: ["level":levelLbl]))
         
-        self.contentView.addConstraints(NSLayoutConstraint.constraints(
-            withVisualFormat: "V:|-0-[usernameview(40)]-5-[postcountryview(20)]",
-            options: [],
-            metrics: nil, views: ["usernameview":postUserView, "postcountryview":countriesView]))
-        
-        self.contentView.addConstraints(NSLayoutConstraint.constraints(
-            withVisualFormat: "V:|-0-[usernameview(40)]-10-[zoom(30)]",
-            options: [],
-            metrics: nil, views: ["usernameview":postUserView, "zoom":zoomin]))
-
-        self.contentView.addConstraints(NSLayoutConstraint.constraints(
-            withVisualFormat: "V:|-0-[usernameview(40)]-(-40)-[pic(\(pictureHeight))]-(-40)-[postfindestbarview]-0-[postdateview]-0-|",
-            options: [],
-            metrics: nil, views: ["usernameview":postUserView, "pic":picImg, "postfindestbarview":postFinAndDestView, "postdateview":postDateView]))
-               
         self.postFinAndDestView.addConstraints(NSLayoutConstraint.constraints(
             withVisualFormat: "V:|-5-[postspenticon(30)]-5-|",
             options: [],
             metrics: nil, views: ["postspenticon":spentsIcon]))
         
         self.postFinAndDestView.addConstraints(NSLayoutConstraint.constraints(
-            withVisualFormat: "V:|-5-[totalspent(30)]-5-|",
+            withVisualFormat: "V:|-5-[totalspent]-5-|",
             options: [],
             metrics: nil, views: ["totalspent":totalSpentsLbl]))
         
         self.postFinAndDestView.addConstraints(NSLayoutConstraint.constraints(
-            withVisualFormat: "V:|-5-[currencyLbl(30)]-5-|",
+            withVisualFormat: "V:|-5-[currencyLbl]-5-|",
             options: [],
             metrics: nil, views: ["currencyLbl":currencyLbl]))
         
@@ -168,30 +189,60 @@ class postCell: UITableViewCell {
             metrics: nil, views: ["mapmarker":mapmarkerIcon]))
         
         self.postFinAndDestView.addConstraints(NSLayoutConstraint.constraints(
-            withVisualFormat: "V:|-5-[totalDistance(30)]-5-|",
+            withVisualFormat: "V:|-5-[totalDistance]-5-|",
             options: [],
             metrics: nil, views: ["totalDistance":totalDistanceLbl]))
         
         self.postFinAndDestView.addConstraints(NSLayoutConstraint.constraints(
-            withVisualFormat: "V:|-5-[km(30)]-5-|",
+            withVisualFormat: "V:|-5-[km]-5-|",
             options: [],
             metrics: nil, views: ["km":kmLbl]))
         
+        self.postDateView.addConstraints(NSLayoutConstraint.constraints(
+            withVisualFormat: "V:|-5-[fromdatestrlbl]-5-|",
+            options: [],
+            metrics: nil, views: ["fromdatestrlbl":fromDateStrLbl]))
+
         self.postDateView.addConstraints(NSLayoutConstraint.constraints(
             withVisualFormat: "V:|-5-[fromdatelbl]-5-|",
             options: [],
             metrics: nil, views: ["fromdatelbl":fromDateLbl]))
         
         self.postDateView.addConstraints(NSLayoutConstraint.constraints(
+            withVisualFormat: "V:|-5-[calendaricon(30)]-5-|",
+            options: [],
+            metrics: nil, views: ["calendaricon":calendarIcon]))
+
+        self.postDateView.addConstraints(NSLayoutConstraint.constraints(
+            withVisualFormat: "V:|-5-[todatestrlbl]-5-|",
+            options: [],
+            metrics: nil, views: ["todatestrlbl":toDateStrLbl]))
+
+        self.postDateView.addConstraints(NSLayoutConstraint.constraints(
             withVisualFormat: "V:|-5-[todatelbl]-5-|",
             options: [],
             metrics: nil, views: ["todatelbl":toDateLbl]))
         
+        self.contentView.addConstraints(NSLayoutConstraint.constraints(
+            withVisualFormat: "V:|-0-[usernameview]-(-40)-[pic(\(pictureHeight))]-(\(-pictureHeight))-[pictureview]-(-40)-[postfindestbarview]-0-[postdateview]-0-[mapview(\(UIScreen.main.bounds.height - pictureHeight - 40 - (44 + 49 + UIApplication.shared.statusBarFrame.height)))]-|",
+            options: [],
+            metrics: nil, views: ["usernameview":postUserView, "pic":picImg, "pictureview":pictureView, "postfindestbarview":postFinAndDestView, "postdateview":postDateView, "mapview":postMapView]))
+ 
         // horizontal alignement
+        self.pictureView.addConstraints(NSLayoutConstraint.constraints(
+            withVisualFormat: "H:|-10-[country(30)]-(\(pictureWidth - 70))-[zoom(20)]-10-|",
+            options: [],
+            metrics: nil, views: ["country":countriesView, "zoom":zoomin]))
+        
         self.postUserView.addConstraints(NSLayoutConstraint.constraints(
             withVisualFormat: "H:|-10-[ava(30)]-10-[username]-[personicon(30)]-5-[personsnr(20)]-10-[levelicon(30)]-5-[level(20)]-10-|",
             options: [],
             metrics: nil, views: ["ava":avaImg, "username":usernameBtn, "personicon":nrPersonsIcon, "personsnr":nrPersonsLbl, "levelicon":levelIcon, "level":levelLbl]))
+ 
+        self.contentView.addConstraints(NSLayoutConstraint.constraints(
+            withVisualFormat: "H:|-0-[pictureview(\(pictureWidth))]-0-|",
+            options: [],
+            metrics: nil, views: ["pictureview":pictureView]))
         
         self.contentView.addConstraints(NSLayoutConstraint.constraints(
             withVisualFormat: "H:|-0-[usernameview(\(pictureWidth))]-0-|",
@@ -204,16 +255,6 @@ class postCell: UITableViewCell {
             metrics: nil, views: ["pic":picImg]))
         
         self.contentView.addConstraints(NSLayoutConstraint.constraints(
-            withVisualFormat: "H:|-10-[postcountryview(30)]",
-            options: [],
-            metrics: nil, views: ["postcountryview":countriesView]))
-
-        self.contentView.addConstraints(NSLayoutConstraint.constraints(
-            withVisualFormat: "H:[zoom(30)]-10-|",
-            options: [],
-            metrics: nil, views: ["zoom":zoomin]))
-
-        self.contentView.addConstraints(NSLayoutConstraint.constraints(
             withVisualFormat: "H:|-0-[postfindistbarview(\(pictureWidth))]-0-|",
             options: [],
             metrics: nil, views: ["postfindistbarview":postFinAndDestView]))
@@ -223,15 +264,20 @@ class postCell: UITableViewCell {
             options: [],
             metrics: nil, views: ["postdatedetailsview":postDateView]))
         
+        self.contentView.addConstraints(NSLayoutConstraint.constraints(
+            withVisualFormat: "H:|-0-[mapview(\(pictureWidth))]-0-|",
+            options: [],
+            metrics: nil, views: ["mapview":postMapView]))
+        
         self.postFinAndDestView.addConstraints(NSLayoutConstraint.constraints(
             withVisualFormat: "H:|-10-[spenticon(30)]-10-[spenttotal(\((pictureWidth / 2) - 95))]-5-[currencylbl(30)]-20-[distanceicon(30)]-10-[totaldistance(\((pictureWidth / 2) - 95))]-5-[kmlbl(30)]-10-|",
             options: [],
             metrics: nil, views: ["spenticon":spentsIcon, "spenttotal":totalSpentsLbl, "currencylbl":currencyLbl, "distanceicon":mapmarkerIcon, "totaldistance":totalDistanceLbl, "kmlbl":kmLbl]))
         
         self.postDateView.addConstraints(NSLayoutConstraint.constraints(
-            withVisualFormat: "H:|-0-[fromdatelbl(\(pictureWidth / 2))]-0-[todatelbl(\(pictureWidth / 2))]-0-|",
+            withVisualFormat: "H:|-10-[fromdatestrlbl(20)]-10-[fromdatelbl(\((pictureWidth / 2) - 75))]-20-[calendaricon(30)]-20-[todatestrlbl(20)]-10-[todatelbl(\((pictureWidth / 2) - 75))]-10-|",
             options: [],
-            metrics: nil, views: ["fromdatelbl":fromDateLbl, "todatelbl":toDateLbl]))
+            metrics: nil, views: ["fromdatestrlbl":fromDateStrLbl, "fromdatelbl":fromDateLbl, "calendaricon":calendarIcon, "todatestrlbl":toDateStrLbl, "todatelbl":toDateLbl]))
         
         // round ava
         avaImg.layer.cornerRadius = avaImg.frame.size.width / 2
@@ -239,11 +285,13 @@ class postCell: UITableViewCell {
         avaImg.layer.borderColor = UIColor.white.cgColor
         avaImg.layer.borderWidth = 2
         
-        // countries view settings
+        // countries and zoom icons view settings
         countriesView.backgroundColor = UIColor(white: 1, alpha: 0)
-        self.contentView.bringSubview(toFront: countriesView)
-        self.contentView.bringSubview(toFront: zoomin)
+        pictureView.backgroundColor = UIColor(white: 1, alpha: 0)
         
+        self.contentView.bringSubview(toFront: pictureView)
+        self.contentView.bringSubview(toFront: postUserView)
+        self.contentView.bringSubview(toFront: postFinAndDestView)
      }
     
     // zooming in/out function
