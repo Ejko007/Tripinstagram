@@ -11,7 +11,7 @@ import Parse
 import PopupDialog
 import MapKit
 
-class postCell: UITableViewCell {
+class postCell: UITableViewCell, MKMapViewDelegate, CLLocationManagerDelegate {
     
     
     @IBOutlet weak var postUserView: UIView!
@@ -51,12 +51,19 @@ class postCell: UITableViewCell {
     let pictureWidth = UIScreen.main.bounds.width
     let pictureHeight = round(UIScreen.main.bounds.height / 3) + 50
     
+    var coordinates = [CLLocationCoordinate2D]()
+    var annotations = [MKPointAnnotation]()
     var MapViewLocationManager:CLLocationManager! = CLLocationManager()
-    var currentLoc: PFGeoPoint! = PFGeoPoint()
 
     // default function
     override func awakeFromNib() {
         super.awakeFromNib()
+        
+        postMapView.showsUserLocation = true
+        postMapView.delegate = self
+        MapViewLocationManager.delegate = self
+        MapViewLocationManager.startUpdatingLocation()
+        postMapView.setUserTrackingMode(MKUserTrackingMode.follow, animated: true)
         
         // enable second tap to zoom picture
         let zoomTap = UITapGestureRecognizer(target: self, action: #selector(zoomImg))
@@ -95,14 +102,8 @@ class postCell: UITableViewCell {
 
 
         self.contentView.backgroundColor = UIColor(red: 155 / 255, green: 155 / 255, blue: 155 / 255, alpha: 3 / 100)
-        self.contentView.layer.cornerRadius = 8
+        self.contentView.layer.cornerRadius = 0
         self.contentView.clipsToBounds = true
-        self.contentView.layer.masksToBounds = false
-        self.contentView.layer.shadowColor = UIColor.darkGray.cgColor
-        self.contentView.layer.shadowOpacity = 1
-        self.contentView.layer.shadowOffset = CGSize.zero
-        self.contentView.layer.shadowRadius = 10
-
         
         // set opacity for postFinAndDestView
         postFinAndDestView.backgroundColor = UIColor.black.withAlphaComponent(0.5)
@@ -292,6 +293,8 @@ class postCell: UITableViewCell {
         self.contentView.bringSubview(toFront: pictureView)
         self.contentView.bringSubview(toFront: postUserView)
         self.contentView.bringSubview(toFront: postFinAndDestView)
+        
+        displayGeopoints()
      }
     
     // zooming in/out function
@@ -302,18 +305,18 @@ class postCell: UITableViewCell {
 
         // frame of unzoomed (small) image
         //let unzoomed = CGRect(x: 15, y: 15, width: width / 4.5, height: width / 4.5)
-        let unzoomed = CGRect(x: 10, y: 83, width: pictureWidth, height: pictureWidth)
+        let unzoomed = CGRect(x: 0, y: 0, width: pictureWidth, height: pictureHeight)
         
         // id picture is unzoomed, zoom it
         if picImg.frame == unzoomed {
             
             UIView.animate(withDuration: 0.3, animations: {
                 
-                self.zoomin.setImage(UIImage(named: "zoom_in.png"), for: UIControlState.normal)
-                
                 self.picImg.frame = zoomed
                 
                 // hide objects from background
+                self.contentView.layer.cornerRadius = 0
+                self.contentView.clipsToBounds = true
                 self.contentView.backgroundColor = .black
                 self.avaImg.alpha = 0
                 self.usernameBtn.alpha = 0
@@ -332,13 +335,16 @@ class postCell: UITableViewCell {
                 self.mapmarkerIcon.alpha = 0
                 self.totalDistanceLbl.alpha = 0
                 self.kmLbl.alpha = 0
-                
+                self.countriesView.alpha = 0
+                self.postFinAndDestView.alpha = 0
+                self.postMapView.alpha = 0
+                self.postUserView.alpha = 0
+                self.postDateView.alpha = 0
+                // self.pictureView.alpha = 0
             })
         } else {
             
             UIView.animate(withDuration: 0.3, animations: {
-                
-                self.zoomin.setImage(UIImage(named: "zoom_out.png"), for: UIControlState.normal)
                 
                 self.picImg.frame = unzoomed
                 
@@ -359,17 +365,18 @@ class postCell: UITableViewCell {
                 self.mapmarkerIcon.alpha = 1
                 self.totalDistanceLbl.alpha = 1
                 self.kmLbl.alpha = 1
+                self.countriesView.alpha = 1
+                self.postFinAndDestView.alpha = 1
+                self.postMapView.alpha = 1
+                self.postUserView.alpha = 1
+                self.postDateView.alpha = 1
+                // self.pictureView.alpha = 1
                 
                 // add customized graphics to cell
                 self.contentView.backgroundColor = UIColor(red: 155 / 255, green: 155 / 255, blue: 155 / 255, alpha: 3 / 100)
-                self.contentView.layer.cornerRadius = 8
+                self.contentView.layer.cornerRadius = 0
                 self.contentView.clipsToBounds = true
-                self.contentView.layer.masksToBounds = false
-                self.contentView.layer.shadowColor = UIColor.darkGray.cgColor
-                self.contentView.layer.shadowOpacity = 1
-                self.contentView.layer.shadowOffset = CGSize.zero
-                self.contentView.layer.shadowRadius = 10
-
+                
             })
         }
     }
@@ -378,6 +385,248 @@ class postCell: UITableViewCell {
         
        zoomImg()
         
+    }
+    
+    // --------------------- mapview procedures -------------------------------------
+    
+    // display geopoint from the server
+    func displayGeopoints () {
+        var annotationColor = UIColor()
+        var mygeoplacemark = poigeoplacemark()
+        
+        let annotationQuery = PFQuery(className: "tripsegmentpoi")
+        annotationQuery.whereKey("uuid", equalTo: postuuid.last!)
+        annotationQuery.order(byAscending: "poiorder")
+        annotationQuery.findObjectsInBackground(block: { (locations: [PFObject]?, locationsError: Error?) in
+            if locationsError == nil {
+                print("Successful query for annotations")
+                
+                let myUnsortedLocations = locations! as [PFObject]
+                let myLocations = myUnsortedLocations.sorted(by: { (s1: PFObject, s2: PFObject) -> Bool in
+                    return (s1["poiorder"] as! Int) < (s2["poiorder"] as! Int)
+                })
+                
+                geoplacemarkArray.removeAll(keepingCapacity: false)
+                
+                for location in myLocations {
+                    let point = location["location"] as! PFGeoPoint
+                    // let annotation = MKPointAnnotation()
+                    let poitype = location["poitype"] as! Int
+                    if poitype == 0 {
+                        annotationColor = UIColor(colorLiteralRed: 0.00, green: 0.580, blue: 0.969, alpha: 1.00)
+                    } else {
+                        annotationColor = UIColor(colorLiteralRed: 1.00, green: 0.361, blue: 0.145, alpha: 1.00)
+                    }
+                    let poiuuid = location["poiuuid"] as! String
+                    let annotation = ColorPointAnnotation(pinColor: annotationColor, pinuuid: poiuuid)
+                    annotation.coordinate = CLLocationCoordinate2DMake(point.latitude, point.longitude)
+                    let title = location["poiname"] as! String
+                    annotation.title = title
+                    let subtitle = location["poidescription"] as! String
+                    annotation.subtitle = subtitle
+                    //let description = location["poidetails"] as! String
+                    //annotation.description = mydescription
+                    
+                    // get address from location
+                    let geoCoder = CLGeocoder()
+                    let place = CLLocation(latitude: point.latitude, longitude: point.longitude)
+                    
+                    geoCoder.reverseGeocodeLocation(place, completionHandler: { (placemarks, error) in
+                        
+                        var placeMark: CLPlacemark!
+                        placeMark = placemarks?[0]
+                        
+                        // address dictionary
+                        if let locationName = placeMark.addressDictionary!["Name"] as? NSString {
+                            print(locationName)
+                            mygeoplacemark.locationName = locationName as String
+                        }
+                        
+                        // stret address
+                        if let streetName = placeMark.addressDictionary!["Throughfare"] as? NSString {
+                            print(streetName)
+                            mygeoplacemark.streetName = streetName as String
+                        }
+                        
+                        // city name
+                        if let cityName = placeMark.addressDictionary!["City"] as? NSString {
+                            print(cityName)
+                            mygeoplacemark.cityName = cityName as String
+                        }
+                        
+                        // zip name
+                        if let zipName = placeMark.addressDictionary!["ZIP"] as? NSString {
+                            print(zipName)
+                            mygeoplacemark.zipName = zipName as String
+                        }
+                        
+                        // country name
+                        if let countryName = placeMark.addressDictionary!["Country"] as? NSString {
+                            print(countryName)
+                            mygeoplacemark.countryName = countryName as String
+                        }
+                        
+                        // poiorder
+                        if let poiorder = location["poiorder"] as? Int {
+                            print(poiorder)
+                            mygeoplacemark.order = poiorder as Int
+                        }
+                        
+                        geoplacemarkArray.append(mygeoplacemark)
+                    })
+                    
+                    self.annotations.append(annotation)
+                    self.postMapView.addAnnotation(annotation)
+                }
+                
+                _ = geoplacemarkArray.sorted(by: { (pg1: poigeoplacemark, pg2: poigeoplacemark) -> Bool in
+                    return pg1.order < pg2.order
+                })
+                
+                self.coordinates.removeAll(keepingCapacity: false)
+                self.postMapView.removeOverlays(self.postMapView.overlays)
+                for myannotation in self.annotations {
+                    self.coordinates.append(myannotation.coordinate)
+                }
+                
+                let polyline = MKPolyline(coordinates: &self.coordinates, count: self.coordinates.count)
+                let visibleMapRect = self.postMapView.mapRectThatFits(polyline.boundingMapRect, edgePadding: UIEdgeInsets(top: 50, left: 50, bottom: 50, right: 50))
+                self.postMapView.setRegion(MKCoordinateRegionForMapRect(visibleMapRect), animated: true)
+                
+                var index = 0
+                while index < self.annotations.count - 1 {
+                    self.drawDirection(self.annotations[index].coordinate, endPoint: self.annotations[index + 1].coordinate)
+                    index += 1
+                }
+                
+            } else {
+                print(locationsError!.localizedDescription)
+            }
+        })
+    }
+
+    // drawing route in details
+    func drawDirection(_ startPoint: CLLocationCoordinate2D, endPoint: CLLocationCoordinate2D) {
+        
+        // Create map items from coordinate
+        let startPlacemark = MKPlacemark(coordinate: startPoint, addressDictionary: nil)
+        let endPlacemark = MKPlacemark(coordinate: endPoint, addressDictionary: nil)
+        let startMapItem = MKMapItem(placemark: startPlacemark)
+        let endMapItem = MKMapItem(placemark: endPlacemark)
+        
+        
+        // Set the source and destination of the route
+        let directionRequest = MKDirectionsRequest()
+        directionRequest.source = startMapItem
+        directionRequest.destination = endMapItem
+        directionRequest.transportType = MKDirectionsTransportType.automobile
+        
+        // Calculate the direction
+        let directions = MKDirections(request: directionRequest)
+        
+        itineraryDistances.removeAll(keepingCapacity: false)
+        itineraryInstructionsArray.removeAll(keepingCapacity: false)
+        
+        // calculate distance and prepare itinerary
+        directions.calculate { (routeResponse, routeError) -> Void in
+            
+            guard let routeResponse = routeResponse else {
+                if let routeError = routeError {
+                    print("Error: \(routeError)")
+                }
+                
+                return
+            }
+            
+            for route in routeResponse.routes {
+                print("Distance = \(route.distance)")
+                itineraryDistances.append((route.distance / 1000.00).roundTo(places: 2))  // in kilometers
+                itineraryInstructions.removeAll(keepingCapacity: false)
+                for step in route.steps {
+                    print(step.instructions)
+                    itineraryInstructions.append(step.instructions)
+                }
+                itineraryInstructionsArray.append(itineraryInstructions)
+            }
+            
+            let route = routeResponse.routes[0]
+            self.postMapView.add(route.polyline, level: MKOverlayLevel.aboveRoads)
+        }
+    }
+    
+    // rendering route between annotations
+    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+        
+        let renderer = MKPolylineRenderer(overlay: overlay)
+        renderer.lineWidth = 3.0
+        renderer.strokeColor = UIColor.blue
+        renderer.alpha = 0.5
+        
+        let visibleMapRect = mapView.mapRectThatFits(renderer.polyline.boundingMapRect, edgePadding: UIEdgeInsets(top: 50, left: 50, bottom: 50, right: 50))
+        mapView.setRegion(MKCoordinateRegionForMapRect(visibleMapRect), animated: true)
+        
+        return renderer
+    }
+
+    func mapView (_ mapView: MKMapView, annotationView view: MKAnnotationView, didChange newState: MKAnnotationViewDragState, fromOldState oldState: MKAnnotationViewDragState) {
+        
+        switch (newState) {
+        case .starting:
+            view.dragState = .dragging
+        case .ending, .canceling:
+            view.dragState = .none
+        default: break
+        }
+    }
+
+    func mapView(_ mapView: MKMapView, didAdd views: [MKAnnotationView]) {
+        let annotationView = views[0]
+        let endFrame = annotationView.frame
+        annotationView.isDraggable = true
+        annotationView.frame = endFrame.offsetBy(dx: 0, dy: -600)
+        UIView.animate(withDuration: 0.3, animations: { () -> Void in
+            annotationView.frame = endFrame
+        })
+    }
+    
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        let identifier = "MyPin"
+        
+        if annotation.isKind(of: MKUserLocation.self) {
+            return nil
+        }
+        
+        let detailButton: UIButton = UIButton(type: UIButtonType.detailDisclosure)
+        detailButton.addTarget(self, action: #selector(showAnnotationDisclosure(sender:)), for: .touchUpInside)
+        
+        
+        // Reuse the annotation if possible
+        var annotationView:MKPinAnnotationView? = mapView.dequeueReusableAnnotationView(withIdentifier: identifier) as? MKPinAnnotationView
+        
+        annotationView?.isDraggable = true
+        
+        if annotationView == nil {
+            annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+            annotationView?.canShowCallout = true
+            annotationView?.isEnabled = true
+        }
+        
+        let leftIconView = UIImageView(frame: CGRect.init(x: 0, y: 0, width: 20, height: 20))
+        leftIconView.image = UIImage(named: "chooser-moment-icon-place.png")
+        annotationView?.leftCalloutAccessoryView = leftIconView
+        annotationView?.rightCalloutAccessoryView = detailButton
+        
+        // Pin color customization
+        if #available(iOS 9.0, *) {
+            // annotationView?.pinTintColor = UIColor.red
+        }
+        
+        return annotationView
+    }
+    
+    // info icon button annotatio clicked
+    func showAnnotationDisclosure(sender: AnyObject) {
+        print("Disclosure button clicked")
     }
     
     

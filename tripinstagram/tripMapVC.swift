@@ -30,7 +30,6 @@ class tripMapVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate,
     @IBOutlet weak var mapTypeControl: UISegmentedControl!
     
     var MapViewLocationManager:CLLocationManager! = CLLocationManager()
-    var currentLoc: PFGeoPoint! = PFGeoPoint()
  
     var coordinates = [CLLocationCoordinate2D]()
     var annotations = [MKPointAnnotation]()

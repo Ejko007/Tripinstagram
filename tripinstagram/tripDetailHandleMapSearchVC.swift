@@ -24,6 +24,8 @@ class tripDetailHandleMapSearchVC : UIViewController {
     
     let locationManager = CLLocationManager()
     
+    var POIAnnotation = MKPointAnnotation()
+    
     @IBOutlet weak var mapView: MKMapView!
     
     override func viewDidLoad() {
@@ -107,6 +109,8 @@ extension tripDetailHandleMapSearchVC: HandleMapSearch {
             let state = placemark.administrativeArea {
                 annotation.subtitle = "\(city) \(state)"
         }
+        // add annotation to global variable
+        POIAnnotation = annotation
         mapView.addAnnotation(annotation)
         let span = MKCoordinateSpanMake(0.05, 0.05)
         let region = MKCoordinateRegionMake(placemark.coordinate, span)
@@ -127,48 +131,60 @@ extension tripDetailHandleMapSearchVC: HandleMapSearch {
         self.navigationController?.pushViewController(destination, animated: true)
     }
 
+    
     func savePOI() {
-        // save POI coorditates to server
         
-        let poiObj = PFObject(className: "tripsegmentpoi")
-        let mypoint = self.mapView.annotations.last
-        poiObj["poiname"] = mypoint?.title!
-        poiObj["poidescription"] = mypoint?.subtitle!
-        poiObj["poitype"] = 0
-        // poiObj["poidetails"] = (mypoint?.description)! as String
-        poiObj["poidetails"] = descriptionuuid
-        let point = PFGeoPoint(latitude: (mypoint?.coordinate.latitude)!, longitude: (mypoint?.coordinate.longitude)!)
-        poiObj["location"] = point
-        poiObj["uuid"] = postuuid.last!
-        let uuid = UUID().uuidString
-        poiObj["poiuuid"] = "\(PFUser.current()?.username) \(uuid)"
-
-        poiObj.saveInBackground(block: { (success:Bool, error:Error?) in
+        var order:Int = 0
+        
+        let annotationQuery = PFQuery(className: "tripsegmentpoi")
+        annotationQuery.whereKey("uuid", equalTo: postuuid.last!)
+        annotationQuery.countObjectsInBackground (block: { (count: Int32, error: Error?) in
             if error == nil {
-                if success {
-                    let okbtn = DefaultButton(title: ok_str, action: nil)
-                    let complMenu = PopupDialog(title: annotation_str, message: annotation_save_confirm_str)
-                    complMenu.addButtons([okbtn])
-                    self.present(complMenu, animated: true, completion: nil)
-                    
-                    // remove poi pin from the map
-                    self.mapView.removeAnnotation(mypoint!)
-                    
-                    // switch to poi list view controller
-                    self.tabBarController!.selectedIndex = 1
-                    
-                    // refreshing function
-                    // send notification if we liked to refresh TableView
-                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "save"), object: nil)
-                    
-                } else {
-                    print(error!.localizedDescription)
-                }
-            } else {
-                print(error!.localizedDescription)
+                order = Int(count)
+                // save POI coorditates to server
+                let poiObj = PFObject(className: "tripsegmentpoi")
+                // let mypoint = mapView.annotations.last
+                let mypoint = self.POIAnnotation
+                
+                poiObj["poiname"] = mypoint.title!
+                poiObj["poidescription"] = mypoint.subtitle!
+                poiObj["poitype"] = 0
+                poiObj["poiorder"] = order
+                // poiObj["poidetails"] = (mypoint?.description)! as String
+                poiObj["poidetails"] = descriptionuuid
+                let point = PFGeoPoint(latitude: (mypoint.coordinate.latitude), longitude: (mypoint.coordinate.longitude))
+                poiObj["location"] = point
+                poiObj["uuid"] = postuuid.last!
+                let uuid = UUID().uuidString
+                poiObj["poiuuid"] = "\(PFUser.current()?.username) \(uuid)"
+                
+                poiObj.saveInBackground(block: { (success:Bool, error:Error?) in
+                    if error == nil {
+                        if success {
+                            let okbtn = DefaultButton(title: ok_str, action: nil)
+                            let complMenu = PopupDialog(title: annotation_str, message: annotation_save_confirm_str)
+                            complMenu.addButtons([okbtn])
+                            self.present(complMenu, animated: true, completion: nil)
+                            
+                            // remove poi pin from the map
+                            self.mapView.removeAnnotation(mypoint)
+                            
+                            // switch to poi list view controller
+                            self.tabBarController!.selectedIndex = 1
+                            
+                            // refreshing function
+                            // send notification if we liked to refresh TableView
+                            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "save"), object: nil)
+                            
+                        } else {
+                            print(error!.localizedDescription)
+                        }
+                    } else {
+                        print(error!.localizedDescription)
+                    }
+                })
             }
         })
-        
     }
 }
 
