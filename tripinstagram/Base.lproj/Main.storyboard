@@ -605,10 +605,14 @@
                                                         <action selector="usernameBtn_click:" destination="Dk3-yy-4GC" eventType="touchUpInside" id="yzL-PV-7pI"/>
                                                     </connections>
                                                 </button>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="add-user" id="I6h-kz-M6C">
-                                                    <rect key="frame" x="173" y="10" width="20" height="20"/>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="VGJ-5o-2i4">
+                                                    <rect key="frame" x="160" y="5" width="46" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                </imageView>
+                                                    <state key="normal" backgroundImage="nr_persons"/>
+                                                    <connections>
+                                                        <action selector="nrPersonsIconBtn_tapped:" destination="TxF-72-i53" eventType="touchUpInside" id="cjR-Bb-hLf"/>
+                                                    </connections>
+                                                </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="fPE-Gj-Ebw">
                                                     <rect key="frame" x="171" y="9" width="25" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -616,10 +620,14 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="levels" id="xvC-2f-wFN">
-                                                    <rect key="frame" x="173" y="10" width="20" height="20"/>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="mlZ-IS-Etp">
+                                                    <rect key="frame" x="160" y="5" width="46" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                </imageView>
+                                                    <state key="normal" backgroundImage="level"/>
+                                                    <connections>
+                                                        <action selector="levelIconBtn_tapped:" destination="TxF-72-i53" eventType="touchUpInside" id="q9P-UK-WcK"/>
+                                                    </connections>
+                                                </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Rde-7v-sMq">
                                                     <rect key="frame" x="172" y="9" width="23" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -633,25 +641,33 @@
                                             <rect key="frame" x="15" y="307" width="334" height="91"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Coins" id="0Zd-Gv-vdq">
-                                                    <rect key="frame" x="110" y="54" width="20" height="20"/>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="w57-Kz-JCT">
+                                                    <rect key="frame" x="144" y="30" width="46" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                </imageView>
+                                                    <state key="normal" backgroundImage="spent_money"/>
+                                                    <connections>
+                                                        <action selector="spentsIconBtn_tapped:" destination="TxF-72-i53" eventType="touchUpInside" id="QTJ-mT-cUu"/>
+                                                    </connections>
+                                                </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="45326.00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="nRq-8z-7Fm">
                                                     <rect key="frame" x="122" y="57" width="96" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="12"/>
+                                                    <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="14"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="Map Marker" id="Fp6-Iz-Gd0">
-                                                    <rect key="frame" x="140" y="53" width="20" height="20"/>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="7Ht-vn-xgL">
+                                                    <rect key="frame" x="144" y="30" width="46" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                </imageView>
+                                                    <state key="normal" backgroundImage="distance"/>
+                                                    <connections>
+                                                        <action selector="mapmarkerIconBtn_tapped:" destination="TxF-72-i53" eventType="touchUpInside" id="RU3-8t-glT"/>
+                                                    </connections>
+                                                </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="23236.00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="sfs-wc-jkW">
                                                     <rect key="frame" x="-10" y="54" width="96" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="12"/>
+                                                    <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="14"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -690,10 +706,6 @@
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="calendar" id="aFv-VY-PIy">
-                                                    <rect key="frame" x="47" y="-33" width="30" height="30"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Do:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="pbI-Cf-5BG">
                                                     <rect key="frame" x="154" y="24" width="27" height="14"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -718,16 +730,15 @@
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="avaImg" destination="w34-U7-OcC" id="nNi-yQ-Eoa"/>
-                                    <outlet property="calendarIcon" destination="aFv-VY-PIy" id="IQC-Vc-0Ke"/>
                                     <outlet property="countriesView" destination="9K9-pb-xUa" id="Zj0-bj-EYl"/>
                                     <outlet property="currencyLbl" destination="V1T-h9-deS" id="Ny6-qg-WEa"/>
                                     <outlet property="fromDateLbl" destination="nCp-vT-hj5" id="dcT-1d-zx5"/>
                                     <outlet property="fromDateStrLbl" destination="Rl7-Dv-yAD" id="1R1-Qg-63M"/>
                                     <outlet property="kmLbl" destination="bEU-1w-ehA" id="jo7-NG-p2O"/>
-                                    <outlet property="levelIcon" destination="xvC-2f-wFN" id="HcJ-wm-mhx"/>
+                                    <outlet property="levelIcon" destination="mlZ-IS-Etp" id="cHG-b9-D4v"/>
                                     <outlet property="levelLbl" destination="Rde-7v-sMq" id="M3V-0Z-Rfd"/>
-                                    <outlet property="mapmarkerIcon" destination="Fp6-Iz-Gd0" id="rGq-Ej-9Co"/>
-                                    <outlet property="nrPersonsIcon" destination="I6h-kz-M6C" id="w0a-QC-YHg"/>
+                                    <outlet property="mapmarkerIcon" destination="7Ht-vn-xgL" id="5Vb-wV-KGX"/>
+                                    <outlet property="nrPersonsIcon" destination="VGJ-5o-2i4" id="Lsn-kd-z5A"/>
                                     <outlet property="nrPersonsLbl" destination="fPE-Gj-Ebw" id="CYR-Os-0a4"/>
                                     <outlet property="picImg" destination="lxX-hO-ewB" id="zne-mn-Z1I"/>
                                     <outlet property="pictureView" destination="Qp1-sa-w7v" id="omH-jf-tW4"/>
@@ -735,7 +746,7 @@
                                     <outlet property="postFinAndDestView" destination="Jce-g1-qwD" id="KxJ-R4-Uls"/>
                                     <outlet property="postMapView" destination="rHT-6Q-Cz2" id="Xrc-i1-6Hi"/>
                                     <outlet property="postUserView" destination="pK5-td-Li5" id="eDF-Ai-UUT"/>
-                                    <outlet property="spentsIcon" destination="0Zd-Gv-vdq" id="vdX-id-cVg"/>
+                                    <outlet property="spentsIcon" destination="w57-Kz-JCT" id="RAd-QG-hZM"/>
                                     <outlet property="toDateLbl" destination="nGo-DM-rsL" id="lrC-Xp-H6i"/>
                                     <outlet property="toDateStrLbl" destination="pbI-Cf-5BG" id="6ly-k9-tMQ"/>
                                     <outlet property="totalDistanceLbl" destination="sfs-wc-jkW" id="9Gr-em-QEt"/>
@@ -2103,7 +2114,7 @@
                                 <rect key="frame" x="0.0" y="106" width="375" height="168"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="W9k-c2-oCP" id="z1T-MS-BoW">
-                                    <rect key="frame" x="0.0" y="0.0" width="341" height="168"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="342" height="168"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Date" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Sea-PZ-5xp">
@@ -2269,7 +2280,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="tUg-zm-NfM" id="NFX-Gv-Nka">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="v6G-G3-fh9">
@@ -2289,7 +2300,7 @@
                                 <rect key="frame" x="0.0" y="72" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="fJB-83-R8y" id="8GK-Zf-xaS">
-                                    <rect key="frame" x="0.0" y="0.0" width="341" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="342" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ufL-O5-bTd">
@@ -2914,14 +2925,14 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="mRA-X6-Qoc">
-                                            <rect key="frame" x="16" y="6" width="31.5" height="19.5"/>
+                                            <rect key="frame" x="15" y="6" width="31.5" height="19.5"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="TG6-ef-o3F">
-                                            <rect key="frame" x="16" y="25.5" width="40.5" height="13.5"/>
+                                            <rect key="frame" x="15" y="25.5" width="40.5" height="13.5"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -3448,8 +3459,6 @@
     </scenes>
     <resources>
         <image name="CameraButton" width="122" height="122"/>
-        <image name="Coins" width="30" height="30"/>
-        <image name="Map Marker" width="48" height="48"/>
         <image name="Point Objects" width="48" height="48"/>
         <image name="add-poi" width="30" height="30"/>
         <image name="add-user" width="512" height="512"/>
@@ -3459,18 +3468,21 @@
         <image name="comment" width="270" height="270"/>
         <image name="comments" width="20" height="18"/>
         <image name="default-avatar" width="128" height="128"/>
+        <image name="distance" width="30" height="30"/>
         <image name="feed" width="25" height="25"/>
         <image name="home" width="25" height="25"/>
         <image name="icon-poi-processing" width="22" height="26"/>
-        <image name="levels" width="20" height="20"/>
+        <image name="level" width="30" height="30"/>
         <image name="logout" width="25" height="25"/>
         <image name="map" width="1024" height="1024"/>
         <image name="map-icon" width="30" height="24"/>
         <image name="more" width="270" height="270"/>
         <image name="news" width="25" height="25"/>
+        <image name="nr_persons" width="30" height="30"/>
         <image name="pbg" width="200" height="200"/>
         <image name="photo" width="1024" height="1024"/>
         <image name="photos" width="30" height="30"/>
+        <image name="spent_money" width="30" height="30"/>
         <image name="unlike" width="270" height="270"/>
         <image name="users" width="25" height="25"/>
         <image name="zoom_in" width="30" height="30"/>

@@ -24,27 +24,25 @@ class postCell: UITableViewCell, MKMapViewDelegate, CLLocationManagerDelegate {
     
     @IBOutlet weak var postDateView: UIView!
     @IBOutlet weak var fromDateStrLbl: UILabel!
-    @IBOutlet weak var calendarIcon: UIImageView!
     @IBOutlet weak var fromDateLbl: UILabel!
     @IBOutlet weak var toDateStrLbl: UILabel!
     @IBOutlet weak var toDateLbl: UILabel!
-    
-    @IBOutlet weak var nrPersonsIcon: UIImageView!
+    @IBOutlet weak var nrPersonsIcon: UIButton!
     @IBOutlet weak var nrPersonsLbl: UILabel!
-    @IBOutlet weak var levelIcon: UIImageView!
+    @IBOutlet weak var levelIcon: UIButton!
     @IBOutlet weak var levelLbl: UILabel!
-    
     @IBOutlet weak var zoomin: UIButton!
     @IBOutlet weak var postFinAndDestView: UIView!
-    @IBOutlet weak var spentsIcon: UIImageView!
+    @IBOutlet weak var spentsIcon: UIButton!
     @IBOutlet weak var totalSpentsLbl: UILabel!
     @IBOutlet weak var currencyLbl: UILabel!
-    @IBOutlet weak var mapmarkerIcon: UIImageView!
+    @IBOutlet weak var mapmarkerIcon: UIButton!
     @IBOutlet weak var totalDistanceLbl: UILabel!
     @IBOutlet weak var kmLbl: UILabel!
     @IBOutlet weak var countriesView: UIView!
     @IBOutlet weak var pictureView: UIView!
     @IBOutlet weak var postMapView: MKMapView!
+    
     
     
     //let pictureWidth = width - 20
@@ -89,7 +87,6 @@ class postCell: UITableViewCell, MKMapViewDelegate, CLLocationManagerDelegate {
         totalSpentsLbl.translatesAutoresizingMaskIntoConstraints = false
         currencyLbl.translatesAutoresizingMaskIntoConstraints = false
         mapmarkerIcon.translatesAutoresizingMaskIntoConstraints = false
-        calendarIcon.translatesAutoresizingMaskIntoConstraints = false
         fromDateStrLbl.translatesAutoresizingMaskIntoConstraints = false
         fromDateLbl.translatesAutoresizingMaskIntoConstraints = false
         totalDistanceLbl.translatesAutoresizingMaskIntoConstraints = false
@@ -112,12 +109,25 @@ class postCell: UITableViewCell, MKMapViewDelegate, CLLocationManagerDelegate {
         totalDistanceLbl.textColor = UIColor.white
         kmLbl.textColor = UIColor.white
         
-        // change color of button image
+        // change color of buttons image
         let origImage = UIImage(named: "zoom_in")
         let tintedImage = origImage?.withRenderingMode(UIImageRenderingMode.alwaysTemplate)
         zoomin.setImage(tintedImage, for: .normal)
         zoomin.tintColor = .white
         
+        let origSpentImage = UIImage(named: "spent_money")
+        let tintedSpentImage = origSpentImage?.withRenderingMode(UIImageRenderingMode.alwaysTemplate)
+        spentsIcon.setImage(tintedSpentImage, for: .normal)
+        spentsIcon.tintColor = .white
+       
+        let origRouteImage = UIImage(named: "distance")
+        let tintedRouteImage = origRouteImage?.withRenderingMode(UIImageRenderingMode.alwaysTemplate)
+        mapmarkerIcon.setImage(tintedRouteImage, for: .normal)
+        mapmarkerIcon.tintColor = .white
+        
+        levelIcon.layer.cornerRadius = 5
+        levelIcon.clipsToBounds = true
+       
         // feeduserview view opacity properties settings
         postUserView.backgroundColor = UIColor.white.withAlphaComponent(0.6)
         nrPersonsLbl.textColor = UIColor.black
@@ -210,11 +220,6 @@ class postCell: UITableViewCell, MKMapViewDelegate, CLLocationManagerDelegate {
             metrics: nil, views: ["fromdatelbl":fromDateLbl]))
         
         self.postDateView.addConstraints(NSLayoutConstraint.constraints(
-            withVisualFormat: "V:|-5-[calendaricon(30)]-5-|",
-            options: [],
-            metrics: nil, views: ["calendaricon":calendarIcon]))
-
-        self.postDateView.addConstraints(NSLayoutConstraint.constraints(
             withVisualFormat: "V:|-5-[todatestrlbl]-5-|",
             options: [],
             metrics: nil, views: ["todatestrlbl":toDateStrLbl]))
@@ -225,7 +230,7 @@ class postCell: UITableViewCell, MKMapViewDelegate, CLLocationManagerDelegate {
             metrics: nil, views: ["todatelbl":toDateLbl]))
         
         self.contentView.addConstraints(NSLayoutConstraint.constraints(
-            withVisualFormat: "V:|-0-[usernameview]-(-40)-[pic(\(pictureHeight))]-(\(-pictureHeight))-[pictureview]-(-40)-[postfindestbarview]-0-[postdateview]-0-[mapview(\(UIScreen.main.bounds.height - pictureHeight - 40 - (44 + 49 + UIApplication.shared.statusBarFrame.height)))]-|",
+            withVisualFormat: "V:|-0-[usernameview]-(-40)-[pic(\(pictureHeight))]-(\(-pictureHeight))-[pictureview]-(-40)-[postfindestbarview]-0-[postdateview]-0-[mapview(\(UIScreen.main.bounds.height - pictureHeight - 40 - (44 + 49)))]-|",
             options: [],
             metrics: nil, views: ["usernameview":postUserView, "pic":picImg, "pictureview":pictureView, "postfindestbarview":postFinAndDestView, "postdateview":postDateView, "mapview":postMapView]))
  
@@ -276,9 +281,9 @@ class postCell: UITableViewCell, MKMapViewDelegate, CLLocationManagerDelegate {
             metrics: nil, views: ["spenticon":spentsIcon, "spenttotal":totalSpentsLbl, "currencylbl":currencyLbl, "distanceicon":mapmarkerIcon, "totaldistance":totalDistanceLbl, "kmlbl":kmLbl]))
         
         self.postDateView.addConstraints(NSLayoutConstraint.constraints(
-            withVisualFormat: "H:|-10-[fromdatestrlbl(20)]-10-[fromdatelbl(\((pictureWidth / 2) - 75))]-20-[calendaricon(30)]-20-[todatestrlbl(20)]-10-[todatelbl(\((pictureWidth / 2) - 75))]-10-|",
+            withVisualFormat: "H:|-20-[fromdatestrlbl(20)]-10-[fromdatelbl(\((pictureWidth / 2) - 60))]-20-[todatestrlbl(20)]-10-[todatelbl(\((pictureWidth / 2) - 60))]-20-|",
             options: [],
-            metrics: nil, views: ["fromdatestrlbl":fromDateStrLbl, "fromdatelbl":fromDateLbl, "calendaricon":calendarIcon, "todatestrlbl":toDateStrLbl, "todatelbl":toDateLbl]))
+            metrics: nil, views: ["fromdatestrlbl":fromDateStrLbl, "fromdatelbl":fromDateLbl,  "todatestrlbl":toDateStrLbl, "todatelbl":toDateLbl]))
         
         // round ava
         avaImg.layer.cornerRadius = avaImg.frame.size.width / 2
@@ -607,8 +612,15 @@ class postCell: UITableViewCell, MKMapViewDelegate, CLLocationManagerDelegate {
         
         if annotationView == nil {
             annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+            
+            let colorPointAnnotation = annotation as! ColorPointAnnotation
+            annotationView?.pinTintColor = colorPointAnnotation.pinColor
+            
             annotationView?.canShowCallout = true
             annotationView?.isEnabled = true
+            annotationView?.isDraggable = false
+        } else {
+            annotationView?.annotation = annotation
         }
         
         let leftIconView = UIImageView(frame: CGRect.init(x: 0, y: 0, width: 20, height: 20))
@@ -627,6 +639,27 @@ class postCell: UITableViewCell, MKMapViewDelegate, CLLocationManagerDelegate {
     // info icon button annotatio clicked
     func showAnnotationDisclosure(sender: AnyObject) {
         print("Disclosure button clicked")
+    }
+    
+    @IBAction func levelIconBtn_tapped(_ sender: Any) {
+        
+        
+    }
+    
+    @IBAction func nrPersonsIconBtn_tapped(_ sender: Any) {
+        
+        
+        
+    }
+    
+    @IBAction func spentsIconBtn_tapped(_ sender: Any) {
+        
+        
+    }
+    
+    @IBAction func mapmarkerIconBtn_tapped(_ sender: Any) {
+        
+        
     }
     
     
