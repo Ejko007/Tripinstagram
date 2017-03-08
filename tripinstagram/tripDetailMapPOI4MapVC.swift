@@ -10,6 +10,16 @@ import UIKit
 import Parse
 import PopupDialog
 
+extension UIViewController {
+    func performSegueToReturnBack() {
+        if let nav = self.navigationController {
+            nav.popViewController(animated: true)
+        } else {
+            self.dismiss(animated: true, completion: nil)
+        }
+    }
+}
+
 class tripDetailMapPOI4MapVC: UIViewController, UINavigationBarDelegate, UITabBarDelegate, CLLocationManagerDelegate {
 
     @IBOutlet weak var POINameLbl: UILabel!

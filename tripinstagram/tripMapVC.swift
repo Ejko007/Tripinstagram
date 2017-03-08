@@ -326,12 +326,19 @@ class tripMapVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate,
         // Reuse the annotation if possible
         var annotationView:MKPinAnnotationView? = mapView.dequeueReusableAnnotationView(withIdentifier: identifier) as? MKPinAnnotationView
         
-        annotationView?.isDraggable = true
+        // annotationView?.isDraggable = true
         
         if annotationView == nil {
             annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+            
+            let colorPointAnnotation = annotation as! ColorPointAnnotation
+            annotationView?.pinTintColor = colorPointAnnotation.pinColor
+            
             annotationView?.canShowCallout = true
             annotationView?.isEnabled = true
+            annotationView?.isDraggable = false
+        } else {
+            annotationView?.annotation = annotation
         }
         
         let leftIconView = UIImageView(frame: CGRect.init(x: 0, y: 0, width: 20, height: 20))

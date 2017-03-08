@@ -304,6 +304,7 @@ class tripDetailMapVC: UIViewController, MKMapViewDelegate, CLLocationManagerDel
         let startMapItem = MKMapItem(placemark: startPlacemark)
         let endMapItem = MKMapItem(placemark: endPlacemark)
         
+        
         // Set the source and destination of the route
         let directionRequest = MKDirectionsRequest()
         directionRequest.source = startMapItem
@@ -313,6 +314,10 @@ class tripDetailMapVC: UIViewController, MKMapViewDelegate, CLLocationManagerDel
         // Calculate the direction
         let directions = MKDirections(request: directionRequest)
         
+        itineraryDistances.removeAll(keepingCapacity: false)
+        itineraryInstructionsArray.removeAll(keepingCapacity: false)
+        
+        // calculate distance and prepare itinerary
         directions.calculate { (routeResponse, routeError) -> Void in
             
             guard let routeResponse = routeResponse else {
@@ -323,9 +328,34 @@ class tripDetailMapVC: UIViewController, MKMapViewDelegate, CLLocationManagerDel
                 return
             }
             
+            for route in routeResponse.routes {
+                print("Distance = \(route.distance)")
+                itineraryDistances.append((route.distance / 1000.00).roundTo(places: 2))  // in kilometers
+                itineraryInstructions.removeAll(keepingCapacity: false)
+                for step in route.steps {
+                    print(step.instructions)
+                    itineraryInstructions.append(step.instructions)
+                }
+                itineraryInstructionsArray.append(itineraryInstructions)
+            }
+            
             let route = routeResponse.routes[0]
             self.mapView.add(route.polyline, level: MKOverlayLevel.aboveRoads)
         }
+    }
+    
+    // rendering route between annotations
+    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+        
+        let renderer = MKPolylineRenderer(overlay: overlay)
+        renderer.lineWidth = 3.0
+        renderer.strokeColor = UIColor.blue
+        renderer.alpha = 0.5
+        
+        let visibleMapRect = mapView.mapRectThatFits(renderer.polyline.boundingMapRect, edgePadding: UIEdgeInsets(top: 50, left: 50, bottom: 50, right: 50))
+        mapView.setRegion(MKCoordinateRegionForMapRect(visibleMapRect), animated: true)
+        
+        return renderer
     }
 
 

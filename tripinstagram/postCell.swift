@@ -608,7 +608,7 @@ class postCell: UITableViewCell, MKMapViewDelegate, CLLocationManagerDelegate {
         // Reuse the annotation if possible
         var annotationView:MKPinAnnotationView? = mapView.dequeueReusableAnnotationView(withIdentifier: identifier) as? MKPinAnnotationView
         
-        annotationView?.isDraggable = true
+        // annotationView?.isDraggable = true
         
         if annotationView == nil {
             annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
@@ -636,9 +636,54 @@ class postCell: UITableViewCell, MKMapViewDelegate, CLLocationManagerDelegate {
         return annotationView
     }
     
+    // open segue to editPost view controller
+    func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == "editPost" {
+            
+            let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+            _ = storyboard.instantiateViewController(withIdentifier: "uploadEditVC") as! uploadEditVC
+            
+            //self.navigationController?.pushViewController(destination, animated: true)
+        }
+    }
+    
+    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        let destination = storyboard.instantiateViewController(withIdentifier: "tabbartripDetailMap") as! tabbartripDetailMap
+        
+        // destination.isNewPOI = false
+        
+        poiuuid.removeAll(keepingCapacity: false)
+        let poiannotation = view.annotation as! ColorPointAnnotation
+        poiuuid.append(poiannotation.pinuuid)
+        
+        // _ = storyboard.instantiateViewController(withIdentifier: "postDetailMapPOIVC") as! postDetailMapPOIVC
+        
+        // self.performSegue(withIdentifier: "showPOIDetail", sender: source)
+                
+        // source.navigationController?.pushViewController(destination, animated: true)
+        
+        // self.window?.rootViewController?.navigationController?.pushViewController(destination, animated: true)
+        
+        // self.window?.rootViewController?.navigationController?.performSegue(withIdentifier: "showPOIDetail", sender: self)
+        
+        // self.window?.rootViewController?.performSegue(withIdentifier: "showPOIDetail", sender: nil)
+        
+        // it works
+        self.window?.rootViewController?.present(destination, animated: true, completion: nil)
+        //
+        
+        print("annotation tapped....")
+    }
+
+    
     // info icon button annotatio clicked
     func showAnnotationDisclosure(sender: AnyObject) {
         print("Disclosure button clicked")
+                
+        
     }
     
     @IBAction func levelIconBtn_tapped(_ sender: Any) {
