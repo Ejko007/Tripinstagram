@@ -1,18 +1,22 @@
 PODS:
   - Bolts/Tasks (1.8.4)
   - ExpandingMenu (0.3.1)
+  - ImageViewer (4.0)
   - Parse (1.14.2):
     - Bolts/Tasks (~> 1.8)
-  - PopupDialog (0.5.1)
+  - PopupDialog (0.5.3)
 
 DEPENDENCIES:
   - ExpandingMenu (from `https://github.com/monoqlo/ExpandingMenu.git`)
+  - ImageViewer (from `https://github.com/MailOnline/ImageViewer.git`)
   - Parse
   - PopupDialog (from `https://github.com/Orderella/PopupDialog.git`)
 
 EXTERNAL SOURCES:
   ExpandingMenu:
     :git: https://github.com/monoqlo/ExpandingMenu.git
+  ImageViewer:
+    :git: https://github.com/MailOnline/ImageViewer.git
   PopupDialog:
     :git: https://github.com/Orderella/PopupDialog.git
 
@@ -20,16 +24,20 @@ CHECKOUT OPTIONS:
   ExpandingMenu:
     :commit: 09783bb43f3c9ce3c6fcf9ccda29f04eac791864
     :git: https://github.com/monoqlo/ExpandingMenu.git
+  ImageViewer:
+    :commit: a4c7735b2f1c72030ecb7e23f03c65a7b2a998a4
+    :git: https://github.com/MailOnline/ImageViewer.git
   PopupDialog:
-    :commit: 00b06e07356d629d692b35e3fecdc403106e94e5
+    :commit: ace517a3b14acf91e15656c5b7ba31b8c682d199
     :git: https://github.com/Orderella/PopupDialog.git
 
 SPEC CHECKSUMS:
   Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
   ExpandingMenu: 107548f3cb8c04b28a8b6b436983f506849484cc
+  ImageViewer: 364abc0309c33dda86d08ca25b0243e5c67d8cd3
   Parse: 4335d65f40cb3d43190d723144bbe1afb9c38230
-  PopupDialog: 1e2439a69aff4f9da2aad173f41f986a4a28fd27
+  PopupDialog: 556684104977055f8b3c2752890b26cf3de4def4
 
-PODFILE CHECKSUM: 386ac3377c1dd5112c579d4c33983fc86b807125
+PODFILE CHECKSUM: 73bb4db748648c52b920d5047c1080dd88cfcccc
 
-COCOAPODS: 1.0.1
+COCOAPODS: 1.2.1.beta.1

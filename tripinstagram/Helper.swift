@@ -99,10 +99,12 @@ let not_specified_str = "Nespecifikovaný"
 let thought_str = "Příběh"
 let photogallery_str = "Fotogalerie"
 let get_actual_position_str = "Použít aktuální pozici"
-let camera_str = "Fotoaparát"
+let camera_str = "Fotogalerie"
 let map_str = "Mapa"
 let map_itinerary_str = "Itinerář"
 let km_str = "km"
+let see_all_str = "Zobrazit vše"
+let from_str = "z"  // 1 from 10 - counter
 
 // croping picture and center it
 func cropToBounds(_ image: UIImage, width: Double, height: Double) -> UIImage {

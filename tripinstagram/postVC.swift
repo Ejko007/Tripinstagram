@@ -714,7 +714,11 @@ class postVC: UITableViewController {
         }
         
         let item3 = ExpandingMenuItem(size: menuButtonSize, title: camera_str, image: UIImage(named: "chooser-moment-icon-camera")!, highlightedImage: UIImage(named: "chooser-moment-icon-camera-highlighted")!, backgroundImage: UIImage(named: "chooser-moment-button"), backgroundHighlightedImage: UIImage(named: "chooser-moment-button-highlighted")) { () -> Void in
-            showAlert(camera_str)
+            // showAlert(camera_str)
+            
+            let photoViewController = storyBoard.instantiateViewController(withIdentifier: "photoGalleryVC") as! HomeViewController
+            self.navigationController!.pushViewController(photoViewController, animated: true)
+
         }
         
         let item4 = ExpandingMenuItem(size: menuButtonSize, title: thought_str, image: UIImage(named: "chooser-moment-icon-thought")!, highlightedImage: UIImage(named: "chooser-moment-icon-thought-highlighted")!, backgroundImage: UIImage(named: "chooser-moment-button"), backgroundHighlightedImage: UIImage(named: "chooser-moment-button-highlighted")) { () -> Void in

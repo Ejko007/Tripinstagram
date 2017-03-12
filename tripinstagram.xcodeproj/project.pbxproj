@@ -111,6 +111,46 @@
 		0AAA5E501E1294D200D42657 /* spentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAA5E4F1E1294D200D42657 /* spentVC.swift */; };
 		0AAA5E541E1298E500D42657 /* DLRadioButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AAA5E531E1298E500D42657 /* DLRadioButton.m */; };
 		0AB078271E1D37F2003CA409 /* PBRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AB078261E1D37F2003CA409 /* PBRevealViewController.m */; };
+		0AD678671E755D8E00E1E9E5 /* PromoContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD678641E755D8E00E1E9E5 /* PromoContentViewController.swift */; };
+		0AD678681E755D8E00E1E9E5 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD678651E755D8E00E1E9E5 /* HomeViewController.swift */; };
+		0AD678691E755D8E00E1E9E5 /* PhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD678661E755D8E00E1E9E5 /* PhotoCollectionViewCell.swift */; };
+		0AD6786C1E75620C00E1E9E5 /* CounterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD6786B1E75620C00E1E9E5 /* CounterView.swift */; };
+		0AD6789E1E75628B00E1E9E5 /* BlurView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD6786D1E75628B00E1E9E5 /* BlurView.swift */; };
+		0AD6789F1E75628B00E1E9E5 /* GalleryConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD6786E1E75628B00E1E9E5 /* GalleryConfiguration.swift */; };
+		0AD678A01E75628B00E1E9E5 /* Bool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD678701E75628B00E1E9E5 /* Bool.swift */; };
+		0AD678A11E75628B00E1E9E5 /* AVPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD678711E75628B00E1E9E5 /* AVPlayer.swift */; };
+		0AD678A21E75628B00E1E9E5 /* CGSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD678721E75628B00E1E9E5 /* CGSize.swift */; };
+		0AD678A31E75628B00E1E9E5 /* CGRect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD678731E75628B00E1E9E5 /* CGRect.swift */; };
+		0AD678A41E75628B00E1E9E5 /* CGPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD678741E75628B00E1E9E5 /* CGPoint.swift */; };
+		0AD678A51E75628B00E1E9E5 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD678751E75628B00E1E9E5 /* UIView.swift */; };
+		0AD678A61E75628B00E1E9E5 /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD678761E75628B00E1E9E5 /* UIImageView.swift */; };
+		0AD678A71E75628B00E1E9E5 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD678771E75628B00E1E9E5 /* UIViewController.swift */; };
+		0AD678A81E75628B00E1E9E5 /* UIApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD678781E75628B00E1E9E5 /* UIApplication.swift */; };
+		0AD678A91E75628B00E1E9E5 /* UIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD678791E75628B00E1E9E5 /* UIButton.swift */; };
+		0AD678AA1E75628B00E1E9E5 /* CAShapeLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD6787A1E75628B00E1E9E5 /* CAShapeLayer.swift */; };
+		0AD678AB1E75628B00E1E9E5 /* CALayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD6787B1E75628B00E1E9E5 /* CALayer.swift */; };
+		0AD678AC1E75628B00E1E9E5 /* UIBezierPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD6787C1E75628B00E1E9E5 /* UIBezierPath.swift */; };
+		0AD678AD1E75628B00E1E9E5 /* UISlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD6787D1E75628B00E1E9E5 /* UISlider.swift */; };
+		0AD678AE1E75628B00E1E9E5 /* ImageFadeInHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD6787F1E75628B00E1E9E5 /* ImageFadeInHandler.swift */; };
+		0AD678AF1E75628B00E1E9E5 /* ItemController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD678801E75628B00E1E9E5 /* ItemController.swift */; };
+		0AD678B01E75628B00E1E9E5 /* ItemBaseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD678811E75628B00E1E9E5 /* ItemBaseController.swift */; };
+		0AD678B11E75628B00E1E9E5 /* ItemControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD678821E75628B00E1E9E5 /* ItemControllerDelegate.swift */; };
+		0AD678B21E75628B00E1E9E5 /* ImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD678841E75628B00E1E9E5 /* ImageViewController.swift */; };
+		0AD678B31E75628B00E1E9E5 /* VideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD678861E75628B00E1E9E5 /* VideoViewController.swift */; };
+		0AD678B41E75628B00E1E9E5 /* VideoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD678871E75628B00E1E9E5 /* VideoView.swift */; };
+		0AD678B51E75628B00E1E9E5 /* VideoScrubber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD678881E75628B00E1E9E5 /* VideoScrubber.swift */; };
+		0AD678B61E75628B00E1E9E5 /* Slider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD678891E75628B00E1E9E5 /* Slider.swift */; };
+		0AD678B71E75628B00E1E9E5 /* LayoutEnums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD6788C1E75628B00E1E9E5 /* LayoutEnums.swift */; };
+		0AD678B81E75628B00E1E9E5 /* GalleryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD6788E1E75628B00E1E9E5 /* GalleryItem.swift */; };
+		0AD678B91E75628B00E1E9E5 /* GalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD678901E75628B00E1E9E5 /* GalleryViewController.swift */; };
+		0AD678BA1E75628B00E1E9E5 /* GalleryPagingDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD678911E75628B00E1E9E5 /* GalleryPagingDataSource.swift */; };
+		0AD678BB1E75628B00E1E9E5 /* GalleryItemsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD678931E75628B00E1E9E5 /* GalleryItemsDataSource.swift */; };
+		0AD678BC1E75628B00E1E9E5 /* GalleryDisplacedViewsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD678941E75628B00E1E9E5 /* GalleryDisplacedViewsDataSource.swift */; };
+		0AD678BD1E75628B00E1E9E5 /* GalleryItemsDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD678951E75628B00E1E9E5 /* GalleryItemsDelegate.swift */; };
+		0AD678BE1E75628B00E1E9E5 /* ThumbnailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD678971E75628B00E1E9E5 /* ThumbnailCell.swift */; };
+		0AD678BF1E75628B00E1E9E5 /* ThumbnailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD678981E75628B00E1E9E5 /* ThumbnailsViewController.swift */; };
+		0AD678C01E75628B00E1E9E5 /* GallerySwipeToDismissTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD6789A1E75628B00E1E9E5 /* GallerySwipeToDismissTransition.swift */; };
+		0AD678C11E75628B00E1E9E5 /* UtilityFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD6789C1E75628B00E1E9E5 /* UtilityFunctions.swift */; };
 		0AD6AB981E4BA0EE00691146 /* SMSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD6AB961E4BA0EE00691146 /* SMSegment.swift */; };
 		0AD6AB991E4BA0EE00691146 /* SMSegmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD6AB971E4BA0EE00691146 /* SMSegmentView.swift */; };
 		0AD6AB9C1E4BA50200691146 /* SMSegmentAppearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD6AB9A1E4BA50200691146 /* SMSegmentAppearance.swift */; };
@@ -243,6 +283,46 @@
 		0AAA5E531E1298E500D42657 /* DLRadioButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLRadioButton.m; sourceTree = "<group>"; };
 		0AB078251E1D37F2003CA409 /* PBRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBRevealViewController.h; sourceTree = "<group>"; };
 		0AB078261E1D37F2003CA409 /* PBRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBRevealViewController.m; sourceTree = "<group>"; };
+		0AD678641E755D8E00E1E9E5 /* PromoContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PromoContentViewController.swift; sourceTree = "<group>"; };
+		0AD678651E755D8E00E1E9E5 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		0AD678661E755D8E00E1E9E5 /* PhotoCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoCollectionViewCell.swift; sourceTree = "<group>"; };
+		0AD6786B1E75620C00E1E9E5 /* CounterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CounterView.swift; sourceTree = "<group>"; };
+		0AD6786D1E75628B00E1E9E5 /* BlurView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlurView.swift; sourceTree = "<group>"; };
+		0AD6786E1E75628B00E1E9E5 /* GalleryConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleryConfiguration.swift; sourceTree = "<group>"; };
+		0AD678701E75628B00E1E9E5 /* Bool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bool.swift; sourceTree = "<group>"; };
+		0AD678711E75628B00E1E9E5 /* AVPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AVPlayer.swift; sourceTree = "<group>"; };
+		0AD678721E75628B00E1E9E5 /* CGSize.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CGSize.swift; sourceTree = "<group>"; };
+		0AD678731E75628B00E1E9E5 /* CGRect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CGRect.swift; sourceTree = "<group>"; };
+		0AD678741E75628B00E1E9E5 /* CGPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CGPoint.swift; sourceTree = "<group>"; };
+		0AD678751E75628B00E1E9E5 /* UIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
+		0AD678761E75628B00E1E9E5 /* UIImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageView.swift; sourceTree = "<group>"; };
+		0AD678771E75628B00E1E9E5 /* UIViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
+		0AD678781E75628B00E1E9E5 /* UIApplication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIApplication.swift; sourceTree = "<group>"; };
+		0AD678791E75628B00E1E9E5 /* UIButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIButton.swift; sourceTree = "<group>"; };
+		0AD6787A1E75628B00E1E9E5 /* CAShapeLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CAShapeLayer.swift; sourceTree = "<group>"; };
+		0AD6787B1E75628B00E1E9E5 /* CALayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CALayer.swift; sourceTree = "<group>"; };
+		0AD6787C1E75628B00E1E9E5 /* UIBezierPath.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIBezierPath.swift; sourceTree = "<group>"; };
+		0AD6787D1E75628B00E1E9E5 /* UISlider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UISlider.swift; sourceTree = "<group>"; };
+		0AD6787F1E75628B00E1E9E5 /* ImageFadeInHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageFadeInHandler.swift; sourceTree = "<group>"; };
+		0AD678801E75628B00E1E9E5 /* ItemController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemController.swift; sourceTree = "<group>"; };
+		0AD678811E75628B00E1E9E5 /* ItemBaseController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemBaseController.swift; sourceTree = "<group>"; };
+		0AD678821E75628B00E1E9E5 /* ItemControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemControllerDelegate.swift; sourceTree = "<group>"; };
+		0AD678841E75628B00E1E9E5 /* ImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageViewController.swift; sourceTree = "<group>"; };
+		0AD678861E75628B00E1E9E5 /* VideoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoViewController.swift; sourceTree = "<group>"; };
+		0AD678871E75628B00E1E9E5 /* VideoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoView.swift; sourceTree = "<group>"; };
+		0AD678881E75628B00E1E9E5 /* VideoScrubber.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoScrubber.swift; sourceTree = "<group>"; };
+		0AD678891E75628B00E1E9E5 /* Slider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Slider.swift; sourceTree = "<group>"; };
+		0AD6788C1E75628B00E1E9E5 /* LayoutEnums.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LayoutEnums.swift; sourceTree = "<group>"; };
+		0AD6788E1E75628B00E1E9E5 /* GalleryItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GalleryItem.swift; path = Source/GalleryItem.swift; sourceTree = "<group>"; };
+		0AD678901E75628B00E1E9E5 /* GalleryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleryViewController.swift; sourceTree = "<group>"; };
+		0AD678911E75628B00E1E9E5 /* GalleryPagingDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleryPagingDataSource.swift; sourceTree = "<group>"; };
+		0AD678931E75628B00E1E9E5 /* GalleryItemsDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleryItemsDataSource.swift; sourceTree = "<group>"; };
+		0AD678941E75628B00E1E9E5 /* GalleryDisplacedViewsDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleryDisplacedViewsDataSource.swift; sourceTree = "<group>"; };
+		0AD678951E75628B00E1E9E5 /* GalleryItemsDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleryItemsDelegate.swift; sourceTree = "<group>"; };
+		0AD678971E75628B00E1E9E5 /* ThumbnailCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThumbnailCell.swift; sourceTree = "<group>"; };
+		0AD678981E75628B00E1E9E5 /* ThumbnailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThumbnailsViewController.swift; sourceTree = "<group>"; };
+		0AD6789A1E75628B00E1E9E5 /* GallerySwipeToDismissTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GallerySwipeToDismissTransition.swift; sourceTree = "<group>"; };
+		0AD6789C1E75628B00E1E9E5 /* UtilityFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UtilityFunctions.swift; sourceTree = "<group>"; };
 		0AD6AB961E4BA0EE00691146 /* SMSegment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMSegment.swift; sourceTree = "<group>"; };
 		0AD6AB971E4BA0EE00691146 /* SMSegmentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMSegmentView.swift; sourceTree = "<group>"; };
 		0AD6AB9A1E4BA50200691146 /* SMSegmentAppearance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMSegmentAppearance.swift; sourceTree = "<group>"; };
@@ -364,6 +444,7 @@
 				0A07925E1E3A97480059A9BA /* tripinstagram.entitlements */,
 				0A39D25F1DE31B0E00FC525F /* 3rd Party */,
 				0A3B76F61DE1C96900A60659 /* RatingViewController.swift */,
+				0AD6786A1E755DD900E1E9E5 /* PhotoGallery */,
 				0A3B76F71DE1C96900A60659 /* RatingViewController.xib */,
 				0A1D9F391DB2ABBC0002BAD1 /* pictureCell.swift */,
 				0A1D9F411DB78BA30002BAD1 /* guestVC.swift */,
@@ -521,6 +602,159 @@
 			name = PBRevealViewController;
 			sourceTree = "<group>";
 		};
+		0AD6786A1E755DD900E1E9E5 /* PhotoGallery */ = {
+			isa = PBXGroup;
+			children = (
+				0AD6789D1E75628B00E1E9E5 /* Source */,
+				0AD6786B1E75620C00E1E9E5 /* CounterView.swift */,
+				0AD678641E755D8E00E1E9E5 /* PromoContentViewController.swift */,
+				0AD678651E755D8E00E1E9E5 /* HomeViewController.swift */,
+				0AD678661E755D8E00E1E9E5 /* PhotoCollectionViewCell.swift */,
+			);
+			name = PhotoGallery;
+			sourceTree = "<group>";
+		};
+		0AD6786F1E75628B00E1E9E5 /* Configuration */ = {
+			isa = PBXGroup;
+			children = (
+				0AD6786E1E75628B00E1E9E5 /* GalleryConfiguration.swift */,
+			);
+			name = Configuration;
+			sourceTree = "<group>";
+		};
+		0AD6787E1E75628B00E1E9E5 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				0AD678701E75628B00E1E9E5 /* Bool.swift */,
+				0AD678711E75628B00E1E9E5 /* AVPlayer.swift */,
+				0AD678721E75628B00E1E9E5 /* CGSize.swift */,
+				0AD678731E75628B00E1E9E5 /* CGRect.swift */,
+				0AD678741E75628B00E1E9E5 /* CGPoint.swift */,
+				0AD678751E75628B00E1E9E5 /* UIView.swift */,
+				0AD678761E75628B00E1E9E5 /* UIImageView.swift */,
+				0AD678771E75628B00E1E9E5 /* UIViewController.swift */,
+				0AD678781E75628B00E1E9E5 /* UIApplication.swift */,
+				0AD678791E75628B00E1E9E5 /* UIButton.swift */,
+				0AD6787A1E75628B00E1E9E5 /* CAShapeLayer.swift */,
+				0AD6787B1E75628B00E1E9E5 /* CALayer.swift */,
+				0AD6787C1E75628B00E1E9E5 /* UIBezierPath.swift */,
+				0AD6787D1E75628B00E1E9E5 /* UISlider.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		0AD678831E75628B00E1E9E5 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				0AD678801E75628B00E1E9E5 /* ItemController.swift */,
+				0AD678811E75628B00E1E9E5 /* ItemBaseController.swift */,
+				0AD678821E75628B00E1E9E5 /* ItemControllerDelegate.swift */,
+			);
+			name = Base;
+			sourceTree = "<group>";
+		};
+		0AD678851E75628B00E1E9E5 /* Image */ = {
+			isa = PBXGroup;
+			children = (
+				0AD678841E75628B00E1E9E5 /* ImageViewController.swift */,
+			);
+			name = Image;
+			sourceTree = "<group>";
+		};
+		0AD6788A1E75628B00E1E9E5 /* Video */ = {
+			isa = PBXGroup;
+			children = (
+				0AD678861E75628B00E1E9E5 /* VideoViewController.swift */,
+				0AD678871E75628B00E1E9E5 /* VideoView.swift */,
+				0AD678881E75628B00E1E9E5 /* VideoScrubber.swift */,
+				0AD678891E75628B00E1E9E5 /* Slider.swift */,
+			);
+			name = Video;
+			sourceTree = "<group>";
+		};
+		0AD6788B1E75628B00E1E9E5 /* Item Controller */ = {
+			isa = PBXGroup;
+			children = (
+				0AD678831E75628B00E1E9E5 /* Base */,
+				0AD678851E75628B00E1E9E5 /* Image */,
+				0AD6788A1E75628B00E1E9E5 /* Video */,
+			);
+			name = "Item Controller";
+			sourceTree = "<group>";
+		};
+		0AD6788D1E75628B00E1E9E5 /* Layout */ = {
+			isa = PBXGroup;
+			children = (
+				0AD6788C1E75628B00E1E9E5 /* LayoutEnums.swift */,
+			);
+			name = Layout;
+			sourceTree = "<group>";
+		};
+		0AD6788F1E75628B00E1E9E5 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				0AD6788E1E75628B00E1E9E5 /* GalleryItem.swift */,
+			);
+			name = Model;
+			path = ..;
+			sourceTree = "<group>";
+		};
+		0AD678921E75628B00E1E9E5 /* Paging Controller */ = {
+			isa = PBXGroup;
+			children = (
+				0AD678901E75628B00E1E9E5 /* GalleryViewController.swift */,
+				0AD678911E75628B00E1E9E5 /* GalleryPagingDataSource.swift */,
+			);
+			name = "Paging Controller";
+			sourceTree = "<group>";
+		};
+		0AD678961E75628B00E1E9E5 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				0AD678931E75628B00E1E9E5 /* GalleryItemsDataSource.swift */,
+				0AD678941E75628B00E1E9E5 /* GalleryDisplacedViewsDataSource.swift */,
+				0AD678951E75628B00E1E9E5 /* GalleryItemsDelegate.swift */,
+			);
+			name = Protocols;
+			sourceTree = "<group>";
+		};
+		0AD678991E75628B00E1E9E5 /* Thumbnails Controller */ = {
+			isa = PBXGroup;
+			children = (
+				0AD678971E75628B00E1E9E5 /* ThumbnailCell.swift */,
+				0AD678981E75628B00E1E9E5 /* ThumbnailsViewController.swift */,
+			);
+			path = "Thumbnails Controller";
+			sourceTree = "<group>";
+		};
+		0AD6789B1E75628B00E1E9E5 /* Transitions */ = {
+			isa = PBXGroup;
+			children = (
+				0AD6789A1E75628B00E1E9E5 /* GallerySwipeToDismissTransition.swift */,
+			);
+			name = Transitions;
+			sourceTree = "<group>";
+		};
+		0AD6789D1E75628B00E1E9E5 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				0AD6786D1E75628B00E1E9E5 /* BlurView.swift */,
+				0AD6786F1E75628B00E1E9E5 /* Configuration */,
+				0AD6787E1E75628B00E1E9E5 /* Extensions */,
+				0AD6787F1E75628B00E1E9E5 /* ImageFadeInHandler.swift */,
+				0AD6788B1E75628B00E1E9E5 /* Item Controller */,
+				0AD6788D1E75628B00E1E9E5 /* Layout */,
+				0AD6788F1E75628B00E1E9E5 /* Model */,
+				0AD678921E75628B00E1E9E5 /* Paging Controller */,
+				0AD678961E75628B00E1E9E5 /* Protocols */,
+				0AD678991E75628B00E1E9E5 /* Thumbnails Controller */,
+				0AD6789B1E75628B00E1E9E5 /* Transitions */,
+				0AD6789C1E75628B00E1E9E5 /* UtilityFunctions.swift */,
+			);
+			name = Source;
+			path = "../../../../Downloads/ImageViewer-master/ImageViewer/Source";
+			sourceTree = "<group>";
+		};
 		0AD6AB951E4BA0CF00691146 /* SMSegmentView */ = {
 			isa = PBXGroup;
 			children = (
@@ -633,7 +867,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		6A10817B77F03A1D69A985CC /* [CP] Embed Pods Frameworks */ = {
@@ -673,6 +907,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0AD678691E755D8E00E1E9E5 /* PhotoCollectionViewCell.swift in Sources */,
 				0A9827A21DE318C9008C6C0C /* GLCalendarMonthCoverView.m in Sources */,
 				0A5314601DC1F52E00604F69 /* feedVC.swift in Sources */,
 				0A0734321E38F2FF00517E7B /* tabbartripDetailPhoto.swift in Sources */,
@@ -681,6 +916,10 @@
 				0A431AD81E4CA07F00F22575 /* tripMapMasterVC.swift in Sources */,
 				0A4812FF1E392D2600635270 /* tripDetailsPhotoCollectionVC.swift in Sources */,
 				0A97C5AA1E23C7CF00F40048 /* tabbartripDetailMap.swift in Sources */,
+				0AD678B61E75628B00E1E9E5 /* Slider.swift in Sources */,
+				0AD678AB1E75628B00E1E9E5 /* CALayer.swift in Sources */,
+				0AD678B81E75628B00E1E9E5 /* GalleryItem.swift in Sources */,
+				0AD678BE1E75628B00E1E9E5 /* ThumbnailCell.swift in Sources */,
 				0A9827A11DE318C9008C6C0C /* GLCalendarDayCellBackgroundCover.m in Sources */,
 				0AE0B0241E3154B50035EDDC /* tripDetailMapPOI4MapVC.swift in Sources */,
 				0A1D9F4C1DBA4BD90002BAD1 /* postCell.swift in Sources */,
@@ -689,76 +928,111 @@
 				0A4939511E4F0E0D006D9218 /* itineraryCell.swift in Sources */,
 				0A431AD61E4C890E00F22575 /* itineraryVC.swift in Sources */,
 				0AB078271E1D37F2003CA409 /* PBRevealViewController.m in Sources */,
+				0AD678A91E75628B00E1E9E5 /* UIButton.swift in Sources */,
 				0A55339B1E1AA8A60013CCF1 /* menuListVC.swift in Sources */,
 				0A5314621DC2339800604F69 /* usersVC.swift in Sources */,
 				0A45DE4F1E18218100F3D47B /* tripsListHeaderCell.swift in Sources */,
 				0A0734301E38EEF300517E7B /* tripDetailPhotoNC.swift in Sources */,
 				0A98279F1DE318C9008C6C0C /* GLCalendarDayCell.m in Sources */,
+				0AD6789E1E75628B00E1E9E5 /* BlurView.swift in Sources */,
+				0AD678B71E75628B00E1E9E5 /* LayoutEnums.swift in Sources */,
 				0A4813011E392EAE00635270 /* tripDetailPhotoViewCell.swift in Sources */,
 				0A07342A1E38EBB200517E7B /* ZoomInteractiveTransition.swift in Sources */,
+				0AD678A11E75628B00E1E9E5 /* AVPlayer.swift in Sources */,
 				0A0D97B11E49D4CC00FA9B7B /* IsoCountryCodes.swift in Sources */,
 				0A0734291E38EBB200517E7B /* UIImageView+extension.swift in Sources */,
+				0AD678AE1E75628B00E1E9E5 /* ImageFadeInHandler.swift in Sources */,
+				0AD678A61E75628B00E1E9E5 /* UIImageView.swift in Sources */,
 				0AD6AB9D1E4BA50200691146 /* SMSegmentViewConstants.swift in Sources */,
 				0A50EAB41E2800FA0080ACCB /* tripDetailHandleMapSearchVC.swift in Sources */,
+				0AD678B91E75628B00E1E9E5 /* GalleryViewController.swift in Sources */,
 				0AD7A8921DC4B577001CDDC5 /* newsCell.swift in Sources */,
+				0AD678A41E75628B00E1E9E5 /* CGPoint.swift in Sources */,
+				0AD678A31E75628B00E1E9E5 /* CGRect.swift in Sources */,
 				0A4939531E4F3A0C006D9218 /* itineraryHeaderCell.swift in Sources */,
 				0A0792611E3E3BEA0059A9BA /* photoCameraVC.swift in Sources */,
 				0A1D9F3A1DB2ABBC0002BAD1 /* pictureCell.swift in Sources */,
 				0A1226551E5C5420002197B9 /* feedCell.swift in Sources */,
 				0A11CD241E0ACECF00D52868 /* spentCell.swift in Sources */,
 				0A431ADA1E4DDB8700F22575 /* TabySegmentedControl.swift in Sources */,
+				0AD678A21E75628B00E1E9E5 /* CGSize.swift in Sources */,
+				0AD678BD1E75628B00E1E9E5 /* GalleryItemsDelegate.swift in Sources */,
 				0A1D9F421DB78BA30002BAD1 /* guestVC.swift in Sources */,
+				0AD678B51E75628B00E1E9E5 /* VideoScrubber.swift in Sources */,
 				0A4813031E393F6F00635270 /* tripDetailPhotoDetailVC.swift in Sources */,
+				0AD678BC1E75628B00E1E9E5 /* GalleryDisplacedViewsDataSource.swift in Sources */,
+				0AD678C11E75628B00E1E9E5 /* UtilityFunctions.swift in Sources */,
 				0A8677B81E04115B00A44177 /* tripMapVC.swift in Sources */,
+				0AD678BB1E75628B00E1E9E5 /* GalleryItemsDataSource.swift in Sources */,
 				0AA0C3B31E18033500790BD8 /* tripsListVC.swift in Sources */,
 				0A9827A51DE318C9008C6C0C /* GLDateUtils.m in Sources */,
+				0AD678AC1E75628B00E1E9E5 /* UIBezierPath.swift in Sources */,
 				0A8626651DB147B40001C1EE /* signUPVC.swift in Sources */,
 				0A1D9F481DB9F2D10002BAD1 /* uploadVC.swift in Sources */,
+				0AD678B01E75628B00E1E9E5 /* ItemBaseController.swift in Sources */,
 				0A50EAB21E27FFA90080ACCB /* tripDetailMapLocationSearchTable.swift in Sources */,
+				0AD678BF1E75628B00E1E9E5 /* ThumbnailsViewController.swift in Sources */,
 				0A98279E1DE318C9008C6C0C /* GLCalendarDateRange.m in Sources */,
 				0A1E9D5F1DBC8B9F00080209 /* commentVC.swift in Sources */,
 				0A4939551E507744006D9218 /* itineraryFooterCell.swift in Sources */,
 				0A1D9F401DB6AFE30002BAD1 /* followersCell.swift in Sources */,
+				0AD678A51E75628B00E1E9E5 /* UIView.swift in Sources */,
+				0AD678A71E75628B00E1E9E5 /* UIViewController.swift in Sources */,
 				0A1D9F3E1DB6AFA10002BAD1 /* followersVC.swift in Sources */,
 				0A86265F1DB0D9DC0001C1EE /* singInVC.swift in Sources */,
 				0A50EAB01E27FEF90080ACCB /* tripDetailMapSearchHistory.swift in Sources */,
 				0A86266F1DB2A5DC0001C1EE /* homeVC.swift in Sources */,
 				0A81F2A61DCE17630073063D /* rateVC.swift in Sources */,
+				0AD678681E755D8E00E1E9E5 /* HomeViewController.swift in Sources */,
+				0AD678BA1E75628B00E1E9E5 /* GalleryPagingDataSource.swift in Sources */,
 				0A1E9D651DBD32A500080209 /* KILabel.m in Sources */,
 				0A9827A31DE318C9008C6C0C /* GLCalendarView.m in Sources */,
 				0AD7A8901DC4B539001CDDC5 /* newsVC.swift in Sources */,
 				0A07342B1E38EBB200517E7B /* ZoomNavigationControllerDelegate.swift in Sources */,
+				0AD678A81E75628B00E1E9E5 /* UIApplication.swift in Sources */,
 				0A413D271E13EEA10090B78B /* DatePickerDialog.swift in Sources */,
 				0A3B76F81DE1C96900A60659 /* RatingViewController.swift in Sources */,
+				0AD678AA1E75628B00E1E9E5 /* CAShapeLayer.swift in Sources */,
 				0A32E22E1DE49667006DC92E /* TimeFrameVC.swift in Sources */,
 				0A8626341DB0BDE30001C1EE /* AppDelegate.swift in Sources */,
+				0AD678C01E75628B00E1E9E5 /* GallerySwipeToDismissTransition.swift in Sources */,
 				0A4939571E559CE1006D9218 /* CosmosDistrib.swift in Sources */,
 				0A3EFBFC1E33507300C21FDB /* SplashVC.swift in Sources */,
+				0AD678AD1E75628B00E1E9E5 /* UISlider.swift in Sources */,
 				0A81F2A81DCE18380073063D /* rateCell.swift in Sources */,
 				0A8626631DB0DA350001C1EE /* resetPasswordVC.swift in Sources */,
 				0A07342C1E38EBB200517E7B /* ZoomTransitionDestinationDelegate.swift in Sources */,
+				0AD678B21E75628B00E1E9E5 /* ImageViewController.swift in Sources */,
 				0A4170BD1E2A368E00AB473F /* tripDetailMapPOIDescVC.swift in Sources */,
+				0AD678AF1E75628B00E1E9E5 /* ItemController.swift in Sources */,
 				0A97C5AC1E26A67B00F40048 /* tripDetailMapPOIListVC.swift in Sources */,
 				0A885C071DE9FE790036CA0F /* uploadEditVC.swift in Sources */,
+				0AD678671E755D8E00E1E9E5 /* PromoContentViewController.swift in Sources */,
 				0A07342E1E38EBB200517E7B /* ZoomTransitionSourceDelegate.swift in Sources */,
 				0A430BD31E0C2A3B00D4BF6B /* spentHeaderCell.swift in Sources */,
 				0AAA5E501E1294D200D42657 /* spentVC.swift in Sources */,
 				0A07342D1E38EBB200517E7B /* ZoomTransitioning.swift in Sources */,
 				0AD6AB991E4BA0EE00691146 /* SMSegmentView.swift in Sources */,
 				0A8626711DB2A62D0001C1EE /* headerView.swift in Sources */,
+				0AD678B41E75628B00E1E9E5 /* VideoView.swift in Sources */,
+				0AD678B11E75628B00E1E9E5 /* ItemControllerDelegate.swift in Sources */,
 				0A0792621E3E3BEA0059A9BA /* photoVC.swift in Sources */,
 				0A1E9D5D1DBBE33B00080209 /* tabbarVC.swift in Sources */,
 				0A11CD261E0AD01C00D52868 /* spentsVC.swift in Sources */,
 				0AD7A8941DC4E23B001CDDC5 /* helper.swift in Sources */,
+				0AD6789F1E75628B00E1E9E5 /* GalleryConfiguration.swift in Sources */,
 				0A45DE511E18296300F3D47B /* tripsListCell.swift in Sources */,
 				0A97C5AE1E26C4DA00F40048 /* tripDetailMapPOIListCell.swift in Sources */,
 				0AAA5E541E1298E500D42657 /* DLRadioButton.m in Sources */,
 				0A1D9F441DB8CEC60002BAD1 /* editVC.swift in Sources */,
 				0ADD41E31DBF767E0026B118 /* hashtagsVC.swift in Sources */,
 				0AD6AB981E4BA0EE00691146 /* SMSegment.swift in Sources */,
+				0AD678B31E75628B00E1E9E5 /* VideoViewController.swift in Sources */,
 				0AD6AB9C1E4BA50200691146 /* SMSegmentAppearance.swift in Sources */,
 				0A5BCD181E22421500903D87 /* tripDetailMapVC.swift in Sources */,
 				0AE71F511E2CE3B500A5D2E9 /* tripDetailMapPOIVC.swift in Sources */,
+				0AD6786C1E75620C00E1E9E5 /* CounterView.swift in Sources */,
+				0AD678A01E75628B00E1E9E5 /* Bool.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
