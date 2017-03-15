@@ -103,7 +103,7 @@ let camera_str = "Fotogalerie"
 let map_str = "Mapa"
 let map_itinerary_str = "Itinerář"
 let km_str = "km"
-let see_all_str = "Zobrazit vše"
+let see_all_str = "Vše"
 let from_str = "z"  // 1 from 10 - counter
 
 // croping picture and center it

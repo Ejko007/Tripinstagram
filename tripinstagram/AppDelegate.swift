@@ -66,7 +66,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         PFAnalytics.trackAppOpened(launchOptions: launchOptions)
         
-        //PFUser.enableAutomaticUser()
+        // PFUser.enableAutomaticUser()
         
         //let defaultACL = PFACL();
         
@@ -74,6 +74,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //defaultACL.getPublicReadAccess = true
         
         //PFACL.setDefault(defaultACL, withAccessForCurrentUser: true)
+        
+        
+//        for i in 0...9 {
+//            let testObject = PFObject(className: "photos")
+//            // let uuid = UUID().uuidString
+//            testObject["uuid"] = "\(PFUser.current()?.username) A5D9E7B3-8617-4258-A155-90CC92A2DA91"
+//            testObject["ishome"] = false
+//            let img = UIImage(named: "image" + "\(i)")
+//            let imageData = UIImageJPEGRepresentation(img!, 0.5)
+//            let imageFile = PFFile(name: "post.jpg", data: imageData!)
+//            testObject["picture"] = imageFile
+//            testObject.saveInBackground()
+//        }
+
+        
         
 //        let testObject = PFObject(className: "follow")
 //        testObject["follower"] = "ejko"

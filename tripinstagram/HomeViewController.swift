@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Parse
 
 extension UIImageView: DisplaceableView {}
 
@@ -24,13 +25,16 @@ class HomeViewController: UIViewController, UIGestureRecognizerDelegate {
     @IBOutlet weak var photoCollectionView: UICollectionView!
     @IBOutlet weak var photoCollectionLabel: UILabel!
     @IBOutlet weak var contentView: UIView!
+    @IBOutlet weak var uuid: UILabel!
     
     var pageViewController: UIPageViewController?
     
-    let arrPageImg = ["0","1","2","3","4","5","6","7","8","9","video"]
+    var imageViews = [UIImageView]()
+    
     var currentIndex = 0
-    var photosCollection = [String]()
     var items: [DataItem] = []
+    
+    var tripuuid = String()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,16 +44,20 @@ class HomeViewController: UIViewController, UIGestureRecognizerDelegate {
         photoCollectionView.translatesAutoresizingMaskIntoConstraints = false
         photoCollectionLabel.translatesAutoresizingMaskIntoConstraints = false
         contentView.translatesAutoresizingMaskIntoConstraints = false
+        uuid.translatesAutoresizingMaskIntoConstraints = false
+        
+        uuid.text = tripuuid
         
         // constraints
         // vertical
+        let navheight = Int((self.navigationController?.navigationBar.frame.height)!) + Int(UIApplication.shared.statusBarFrame.size.height)
         self.view.addConstraints(NSLayoutConstraint.constraints(
-            withVisualFormat: "V:|-64-[contentview]-0-|",
+            withVisualFormat: "V:|-(\(navheight))-[contentview]-0-|",
             options: [],
             metrics: nil, views: ["contentview":contentView]))
         
         self.contentView.addConstraints(NSLayoutConstraint.constraints(
-            withVisualFormat: "V:|-0-[pageview(200)]-(-37)-[pagecontrol(37)]-15-[photocollectlabel(30)]-(-15)-[collectionview(200)]",
+            withVisualFormat: "V:|-0-[pageview(200)]-(-37)-[pagecontrol(37)]-15-[photocollectlabel(30)]-(-15)-[collectionview]-|",
             options: [],
             metrics: nil, views: ["pageview":pageView, "pagecontrol":pageControl, "photocollectlabel":photoCollectionLabel, "collectionview":photoCollectionView]))
        
@@ -82,63 +90,80 @@ class HomeViewController: UIViewController, UIGestureRecognizerDelegate {
 
         self.contentView.bringSubview(toFront: photoCollectionLabel)
         
-        Timer.scheduledTimer(timeInterval: 3, target: self, selector: #selector(HomeViewController.loadNextController), userInfo: nil, repeats: true)
+        Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(HomeViewController.loadNextController), userInfo: nil, repeats: true)
         
-        pageControl.numberOfPages = arrPageImg.count
+        uuid.text = tripuuid
+        uuid.isHidden = true
         
-        setPageViewController()
+        imageViews.removeAll(keepingCapacity: false)
+        imageViews = findPhotos()
         
-        photosCollection = arrPageImg
+        pageControl.numberOfPages = imageViews.count
         
-        var img = UIImage()
         var bgImage = UIImageView()
-        var imageViews = [UIImageView]()
         var tapGestureRecognizer = UITapGestureRecognizer()
         
-        for i in 0...arrPageImg.count - 1 {
-            img = UIImage(named: arrPageImg[i])!
-            bgImage = UIImageView(image: img)
-            bgImage.isUserInteractionEnabled = true
-            tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(showGalleryImageViewer))
-            tapGestureRecognizer.delegate = self
-            self.photoCollectionView.addGestureRecognizer(tapGestureRecognizer)
-            // bgImage.addGestureRecognizer(tapGestureRecognizer)
-            imageViews.append(bgImage)
+        if !imageViews.isEmpty {
+
+            items.removeAll(keepingCapacity: false)
             
-        }
-        
-        for (index, imageView) in imageViews.enumerated() {
-            
-            // guard let imageView = imageView else { continue }
-            
-            var galleryItem: GalleryItem!
-            
-            switch index {
-                
-//            case 2:
-//                
-//                galleryItem = GalleryItem.video(fetchPreviewImageBlock: { $0(UIImage(named: "2")!) }, videoURL: URL (string: "http://video.dailymail.co.uk/video/mol/test/2016/09/21/5739239377694275356/1024x576_MP4_5739239377694275356.mp4")!)
-//                
-//            case 4:
-//                
-//                let myFetchImageBlock: FetchImageBlock = { $0(imageView.image!) }
-//                
-//                let itemViewControllerBlock: ItemViewControllerBlock = { index, itemCount, fetchImageBlock, configuration, isInitialController in
-//                    
-//                    return AnimatedViewController(index: index, itemCount: itemCount, fetchImageBlock: myFetchImageBlock, configuration: configuration, isInitialController: isInitialController)
-//                }
-//                
-//                galleryItem = GalleryItem.custom(fetchImageBlock: myFetchImageBlock, itemViewControllerBlock: itemViewControllerBlock)
-                
-            default:
-                
-                let image = imageView.image ?? UIImage(named: "0")!
-                galleryItem = GalleryItem.image { $0(image) }
+            for i in 0...imageViews.count - 1 {
+                bgImage = imageViews[i]
+                bgImage.isUserInteractionEnabled = true
+                tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(showGalleryImageViewer))
+                tapGestureRecognizer.delegate = self
+                self.photoCollectionView.addGestureRecognizer(tapGestureRecognizer)
             }
             
-            items.append(DataItem(imageView: imageView, galleryItem: galleryItem))
-        }
+            for (index, imageView) in imageViews.enumerated() {
+                
+                // guard let imageView = imageView else { continue }
+                
+                var galleryItem: GalleryItem!
+                
+                switch index {
+                    
+                default:
+                    
+                    let image = imageView.image ?? UIImage(named: "0")!
+                    galleryItem = GalleryItem.image { $0(image) }
+                }
+                
+                items.append(DataItem(imageView: imageView, galleryItem: galleryItem))
+            }
 
+            setPageViewController()
+
+        }
+    }
+    
+    // --------------------- finding photos ----------------------------------------
+    
+    func findPhotos() -> [UIImageView] {
+        // load photos procedure
+        var myimageViews = [UIImageView]()
+        
+        let photosQuery = PFQuery(className: "photos")
+        photosQuery.whereKey("uuid", equalTo: postuuid.last!)
+        
+        do {
+            let photoObjects = try photosQuery.findObjects()
+            
+            myimageViews.removeAll(keepingCapacity: false)
+            
+            for photoObject in photoObjects {
+                let thumbnail = photoObject.value(forKey: "picture") as! PFFile
+                let data = try thumbnail.getData()
+                if let image = UIImage(data: data) {
+                    let bgImage = UIImageView(image: image)
+                    myimageViews.append(bgImage)
+                }
+            }
+        } catch let error as NSError {
+            print(error.localizedDescription)
+        }
+        
+        return myimageViews
     }
 
 
@@ -162,8 +187,10 @@ class HomeViewController: UIViewController, UIGestureRecognizerDelegate {
     fileprivate func getViewController(atIndex index: Int) -> PromoContentViewController {
         let promoContentVC = self.storyboard?.instantiateViewController(withIdentifier: "promoContentVC") as! PromoContentViewController
         
-        promoContentVC.imageName = arrPageImg[index]
-        promoContentVC.pageIndex = index
+        if !imageViews.isEmpty {
+            promoContentVC.photoImage = imageViews[index].image
+            promoContentVC.pageIndex = index
+        }
         
         return promoContentVC
     }
@@ -171,7 +198,7 @@ class HomeViewController: UIViewController, UIGestureRecognizerDelegate {
     @objc private func loadNextController () {
         currentIndex += 1
         
-        if currentIndex == arrPageImg.count {
+        if currentIndex == imageViews.count {
             currentIndex = 0
         }
         
@@ -181,7 +208,7 @@ class HomeViewController: UIViewController, UIGestureRecognizerDelegate {
         
         self.pageControl.currentPage = currentIndex
     }
-
+    
     func galleryConfiguration() -> GalleryConfiguration {
         
         return [
@@ -229,7 +256,7 @@ class HomeViewController: UIViewController, UIGestureRecognizerDelegate {
             GalleryConfigurationItem.displacementInsetMargin(50)
         ]
     }
-
+    
     
     func showGalleryImageViewer(_ sender: UITapGestureRecognizer) {
         
@@ -269,17 +296,7 @@ class HomeViewController: UIViewController, UIGestureRecognizerDelegate {
         } else {
             print("collection view was tapped")
         }
-        
-        
-        
     }
-
-    
-    func loadPhotos() {
-        
-    }
-    
-
 }
 
 // extension to homeviewcontroller
@@ -292,7 +309,7 @@ extension HomeViewController: UIPageViewControllerDataSource {
         var index = pageContentVC.pageIndex
         
         if index == 0 || index == NSNotFound {
-            return getViewController(atIndex: arrPageImg.count - 1)
+            return getViewController(atIndex: imageViews.count - 1)
         }
         
         index -= 1
@@ -311,12 +328,12 @@ extension HomeViewController: UIPageViewControllerDataSource {
         
         index += 1
         
-        if index == arrPageImg.count {
+        if index == imageViews.count {
             return getViewController(atIndex: 0)
         }
         
         return getViewController(atIndex: index)
-     }
+    }
 }
 
 // extension to UICollectionViewDatasource
@@ -328,15 +345,14 @@ extension HomeViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return photosCollection.count
+        return imageViews.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellPhoto", for: indexPath) as! PhotoCollectionViewCell
         
-        let photo = photosCollection[indexPath.row]
-        cell.photoImageView.image = UIImage(named: photo)
+        cell.photoImageView.image = imageViews[indexPath.row].image
         
         return cell
     }

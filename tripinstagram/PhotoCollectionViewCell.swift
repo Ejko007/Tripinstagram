@@ -19,12 +19,12 @@ class PhotoCollectionViewCell: UICollectionViewCell {
         
         // constraints
         self.contentView.addConstraints(NSLayoutConstraint.constraints(
-            withVisualFormat: "V:|-[photoimage(130)]-|",
+            withVisualFormat: "V:|-[photoimage]-|",
             options: [],
             metrics: nil, views: ["photoimage":photoImageView]))
         
         self.contentView.addConstraints(NSLayoutConstraint.constraints(
-            withVisualFormat: "H:|-[photoimage(130)]-|",
+            withVisualFormat: "H:|-[photoimage]-|",
             options: [],
             metrics: nil, views: ["photoimage":photoImageView]))
         

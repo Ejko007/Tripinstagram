@@ -42,9 +42,7 @@ class postCell: UITableViewCell, MKMapViewDelegate, CLLocationManagerDelegate {
     @IBOutlet weak var countriesView: UIView!
     @IBOutlet weak var pictureView: UIView!
     @IBOutlet weak var postMapView: MKMapView!
-    
-    
-    
+
     //let pictureWidth = width - 20
     let pictureWidth = UIScreen.main.bounds.width
     let pictureHeight = round(UIScreen.main.bounds.height / 3) + 50
@@ -298,7 +296,7 @@ class postCell: UITableViewCell, MKMapViewDelegate, CLLocationManagerDelegate {
         self.contentView.bringSubview(toFront: pictureView)
         self.contentView.bringSubview(toFront: postUserView)
         self.contentView.bringSubview(toFront: postFinAndDestView)
-        
+                
         displayGeopoints()
      }
     

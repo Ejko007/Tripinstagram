@@ -14,7 +14,8 @@ class PromoContentViewController: UIViewController {
     @IBOutlet weak var promoImageView: UIImageView!
     
     var pageIndex = 0
-    var imageName: String?
+    // var imageName: String?
+    var photoImage: UIImage?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,8 +33,9 @@ class PromoContentViewController: UIViewController {
             options: [],
             metrics: nil, views: ["imageview":promoImageView]))
 
-        if let currentImage = imageName {
-            promoImageView.image = UIImage(named: currentImage)
+        if let currentImage = photoImage {  // imageName
+            // promoImageView.image = UIImage(named: currentImage)
+            promoImageView.image = currentImage
         }
     }
 
