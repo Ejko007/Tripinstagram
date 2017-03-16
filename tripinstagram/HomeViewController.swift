@@ -17,6 +17,12 @@ struct DataItem {
     let galleryItem: GalleryItem
 }
 
+struct PhotoItem {
+    
+    let imageView: UIImageView
+    let imageID: String
+}
+
 class HomeViewController: UIViewController, UIGestureRecognizerDelegate {
 
     
@@ -28,16 +34,28 @@ class HomeViewController: UIViewController, UIGestureRecognizerDelegate {
     @IBOutlet weak var uuid: UILabel!
     
     var pageViewController: UIPageViewController?
-    
-    var imageViews = [UIImageView]()
-    
+        
     var currentIndex = 0
     var items: [DataItem] = []
+    var photos: [PhotoItem] = []
     
     var tripuuid = String()
+    var username = String()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // new photo button
+        let newBtn = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addPhoto))
+        
+        // show new button for current user post only
+        if PFUser.current()?.username == self.username.lowercased() {
+            self.navigationItem.rightBarButtonItems = [newBtn]
+            newBtn.isEnabled = true
+        } else {
+            self.navigationItem.rightBarButtonItems = []
+            newBtn.isEnabled = false
+        }
         
         pageView.translatesAutoresizingMaskIntoConstraints = false
         pageControl.translatesAutoresizingMaskIntoConstraints = false
@@ -95,41 +113,36 @@ class HomeViewController: UIViewController, UIGestureRecognizerDelegate {
         uuid.text = tripuuid
         uuid.isHidden = true
         
-        imageViews.removeAll(keepingCapacity: false)
-        imageViews = findPhotos()
+        photos.removeAll(keepingCapacity: false)
+        photos = findPhotos()
         
-        pageControl.numberOfPages = imageViews.count
+        pageControl.numberOfPages = photos.count
         
         var bgImage = UIImageView()
         var tapGestureRecognizer = UITapGestureRecognizer()
         
-        if !imageViews.isEmpty {
+        if !photos.isEmpty {
 
             items.removeAll(keepingCapacity: false)
             
-            for i in 0...imageViews.count - 1 {
-                bgImage = imageViews[i]
+            for i in 0...photos.count - 1 {
+                bgImage = photos[i].imageView
                 bgImage.isUserInteractionEnabled = true
                 tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(showGalleryImageViewer))
                 tapGestureRecognizer.delegate = self
                 self.photoCollectionView.addGestureRecognizer(tapGestureRecognizer)
             }
             
-            for (index, imageView) in imageViews.enumerated() {
+            for photo in photos {
                 
                 // guard let imageView = imageView else { continue }
                 
                 var galleryItem: GalleryItem!
                 
-                switch index {
-                    
-                default:
-                    
-                    let image = imageView.image ?? UIImage(named: "0")!
-                    galleryItem = GalleryItem.image { $0(image) }
-                }
+                let image = photo.imageView.image ?? UIImage(named: "0")!
+                galleryItem = GalleryItem.image { $0(image) }
                 
-                items.append(DataItem(imageView: imageView, galleryItem: galleryItem))
+                items.append(DataItem(imageView: photo.imageView, galleryItem: galleryItem))
             }
 
             setPageViewController()
@@ -139,9 +152,9 @@ class HomeViewController: UIViewController, UIGestureRecognizerDelegate {
     
     // --------------------- finding photos ----------------------------------------
     
-    func findPhotos() -> [UIImageView] {
+    func findPhotos() -> [PhotoItem] {
         // load photos procedure
-        var myimageViews = [UIImageView]()
+        var myphotoItems = [PhotoItem]()
         
         let photosQuery = PFQuery(className: "photos")
         photosQuery.whereKey("uuid", equalTo: postuuid.last!)
@@ -149,24 +162,30 @@ class HomeViewController: UIViewController, UIGestureRecognizerDelegate {
         do {
             let photoObjects = try photosQuery.findObjects()
             
-            myimageViews.removeAll(keepingCapacity: false)
+            myphotoItems.removeAll(keepingCapacity: false)
             
             for photoObject in photoObjects {
                 let thumbnail = photoObject.value(forKey: "picture") as! PFFile
+                let objID = photoObject.value(forKey: "objectId") as! String
                 let data = try thumbnail.getData()
                 if let image = UIImage(data: data) {
                     let bgImage = UIImageView(image: image)
-                    myimageViews.append(bgImage)
+                    myphotoItems.append(PhotoItem(imageView: bgImage, imageID: objID))
                 }
             }
         } catch let error as NSError {
             print(error.localizedDescription)
         }
         
-        return myimageViews
+        return myphotoItems
     }
 
-
+    // add new photo procedure
+    func addPhoto() {
+    
+    
+    }
+    
     // MARK: - Private functions
     private func setPageViewController() {
         let pageVC = self.storyboard?.instantiateViewController(withIdentifier: "promoPageVC") as! UIPageViewController
@@ -187,8 +206,8 @@ class HomeViewController: UIViewController, UIGestureRecognizerDelegate {
     fileprivate func getViewController(atIndex index: Int) -> PromoContentViewController {
         let promoContentVC = self.storyboard?.instantiateViewController(withIdentifier: "promoContentVC") as! PromoContentViewController
         
-        if !imageViews.isEmpty {
-            promoContentVC.photoImage = imageViews[index].image
+        if !photos.isEmpty {
+            promoContentVC.photoImage = photos[index].imageView.image
             promoContentVC.pageIndex = index
         }
         
@@ -198,7 +217,7 @@ class HomeViewController: UIViewController, UIGestureRecognizerDelegate {
     @objc private func loadNextController () {
         currentIndex += 1
         
-        if currentIndex == imageViews.count {
+        if currentIndex == photos.count {
             currentIndex = 0
         }
         
@@ -309,7 +328,7 @@ extension HomeViewController: UIPageViewControllerDataSource {
         var index = pageContentVC.pageIndex
         
         if index == 0 || index == NSNotFound {
-            return getViewController(atIndex: imageViews.count - 1)
+            return getViewController(atIndex: photos.count - 1)
         }
         
         index -= 1
@@ -328,7 +347,7 @@ extension HomeViewController: UIPageViewControllerDataSource {
         
         index += 1
         
-        if index == imageViews.count {
+        if index == photos.count {
             return getViewController(atIndex: 0)
         }
         
@@ -345,14 +364,14 @@ extension HomeViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return imageViews.count
+        return photos.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellPhoto", for: indexPath) as! PhotoCollectionViewCell
         
-        cell.photoImageView.image = imageViews[indexPath.row].image
+        cell.photoImageView.image = photos[indexPath.row].imageView.image
         
         return cell
     }

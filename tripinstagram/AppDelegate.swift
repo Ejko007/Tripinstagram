@@ -80,7 +80,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //            let testObject = PFObject(className: "photos")
 //            // let uuid = UUID().uuidString
 //            testObject["uuid"] = "\(PFUser.current()?.username) A5D9E7B3-8617-4258-A155-90CC92A2DA91"
-//            testObject["ishome"] = false
 //            let img = UIImage(named: "image" + "\(i)")
 //            let imageData = UIImageJPEGRepresentation(img!, 0.5)
 //            let imageFile = PFFile(name: "post.jpg", data: imageData!)

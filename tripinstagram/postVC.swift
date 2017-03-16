@@ -721,6 +721,7 @@ class postVC: UITableViewController {
             self.navigationController!.pushViewController(photoViewController, animated: true)
             
             photoViewController.tripuuid = self.uuidArray.last!
+            photoViewController.username = (self.usernameArray.last?.lowercased())!
         }
         
         let item4 = ExpandingMenuItem(size: menuButtonSize, title: thought_str, image: UIImage(named: "chooser-moment-icon-thought")!, highlightedImage: UIImage(named: "chooser-moment-icon-thought-highlighted")!, backgroundImage: UIImage(named: "chooser-moment-button"), backgroundHighlightedImage: UIImage(named: "chooser-moment-button-highlighted")) { () -> Void in
