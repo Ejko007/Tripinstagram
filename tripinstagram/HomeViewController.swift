@@ -45,6 +45,9 @@ class HomeViewController: UIViewController, UIGestureRecognizerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // title label at the top
+        self.navigationItem.title = photogallery_str.uppercased()
+
         // new photo button
         let newBtn = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addPhoto))
         
@@ -108,8 +111,6 @@ class HomeViewController: UIViewController, UIGestureRecognizerDelegate {
 
         self.contentView.bringSubview(toFront: photoCollectionLabel)
         
-        Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(HomeViewController.loadNextController), userInfo: nil, repeats: true)
-        
         uuid.text = tripuuid
         uuid.isHidden = true
         
@@ -122,6 +123,10 @@ class HomeViewController: UIViewController, UIGestureRecognizerDelegate {
         var tapGestureRecognizer = UITapGestureRecognizer()
         
         if !photos.isEmpty {
+            
+            if photos.count > 1 {
+                Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(HomeViewController.loadNextController),         userInfo: nil, repeats: true)
+            }
 
             items.removeAll(keepingCapacity: false)
             
@@ -179,11 +184,14 @@ class HomeViewController: UIViewController, UIGestureRecognizerDelegate {
         
         return myphotoItems
     }
-
+    
     // add new photo procedure
     func addPhoto() {
-    
-    
+        // self.performSegue(withIdentifier: "addPhotoGalleryVC", sender: self)
+        let destination = self.storyboard?.instantiateViewController(withIdentifier: "addPhotoGalleryVC") as! addPhotoGalleryVC
+        self.navigationController?.pushViewController(destination, animated: true)
+        
+        destination.tripuuid = postuuid.last!
     }
     
     // MARK: - Private functions

@@ -33,8 +33,7 @@ class PromoContentViewController: UIViewController {
             options: [],
             metrics: nil, views: ["imageview":promoImageView]))
 
-        if let currentImage = photoImage {  // imageName
-            // promoImageView.image = UIImage(named: currentImage)
+        if let currentImage = photoImage {  
             promoImageView.image = currentImage
         }
     }

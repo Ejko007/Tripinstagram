@@ -105,6 +105,8 @@ let map_itinerary_str = "Itinerář"
 let km_str = "km"
 let see_all_str = "Vše"
 let from_str = "z"  // 1 from 10 - counter
+let new_snapshot_str = "Nový snímek"
+let back_str = "Zpět"
 
 // croping picture and center it
 func cropToBounds(_ image: UIImage, width: Double, height: Double) -> UIImage {
