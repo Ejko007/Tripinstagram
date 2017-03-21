@@ -510,8 +510,21 @@ class postVC: UITableViewController {
                     print(spentserror!.localizedDescription)
                 }
             })
+            
+            // STEP 8. Delete photos of post from the server
+            let photoQuery = PFQuery(className: "photos")
+            photoQuery.whereKey("uuid", equalTo: cell.uuidLbl.text!)
+            photoQuery.findObjectsInBackground(block: { (photosobjects: [PFObject]?, photoserror: Error?) in
+                if photoserror == nil {
+                    
+                    for photoobject in photosobjects! {
+                        photoobject.deleteEventually()
+                    }
+                } else {
+                    print(photoserror!.localizedDescription)
+                }
+            })
         }
-        
 
         // COMPLAIN ACTION
         let compl = DefaultButton(title: complain_str) {

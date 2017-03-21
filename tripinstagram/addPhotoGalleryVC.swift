@@ -89,6 +89,7 @@ class addPhotoGalleryVC: UIViewController, UIImagePickerControllerDelegate, UINa
     
     // preload function
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
         // call alignement func
         // alignement()
@@ -154,17 +155,6 @@ class addPhotoGalleryVC: UIViewController, UIImagePickerControllerDelegate, UINa
         }
     }
     
-    // fields alignement function
-    func alignement () {
-        
-        let width = self.view.frame.size.width
-        let height = self.view.frame.size.height
-        
-        saveBtn.frame = CGRect(x: 0, y: height / 1.09, width: width, height: width / 8)
-        
-        removeBtn.frame = CGRect(x: pcImg.frame.origin.x, y: 15 + pcImg.frame.origin.y + 10 + pcImg.frame.size.height + 15, width: pcImg.frame.size.width, height: 20)
-    }
-    
     // hold selected object and dismiss PickerController
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         
@@ -209,11 +199,31 @@ class addPhotoGalleryVC: UIViewController, UIImagePickerControllerDelegate, UINa
         object.saveInBackground (block: { (success:Bool, error: Error?) in
             if error == nil {
                 
+                if let image = UIImage(data: imageData!) {
+                    let bgImage = UIImageView(image: image)
+                    
+                    let photosQuery = PFQuery(className: "photos")
+                    photosQuery.whereKey("uuid", equalTo: postuuid.last!)
+                    photosQuery.order(byAscending: "createdAt")
+                    photosQuery.getFirstObjectInBackground(block: { (photosObject:PFObject?, photoError:Error?) in
+                        if photoError == nil {
+                            let objID = photosObject?.value(forKey: "objectId") as! String
+                            photos.append(PhotoItem(imageView: bgImage, imageID: objID))
+                            let galleryItem: GalleryItem!
+                            let image = photos.last?.imageView.image ?? UIImage(named: "0")!
+                            galleryItem = GalleryItem.image { $0(image) }
+                            
+                            items.append(DataItem(imageView: bgImage, galleryItem: galleryItem))
+                        }
+                    })
+                }
+                
+                
                 // send notification wiht name "uploaded"
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: "uploaded"), object: nil)
                 
                 // switch to another ViewController at 0 index of tabbar
-                // self.tabBarController!.selectedIndex = 0
+                self.dismiss(animated: true, completion: nil)
                 
                 // reset everything
                 self.viewDidLoad()

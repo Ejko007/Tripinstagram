@@ -436,15 +436,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Název výletu" textAlignment="natural" minimumFontSize="14" clearButtonMode="always" id="n8t-Pt-ADH">
-                                <rect key="frame" x="16" y="75" width="343" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="pbg" id="AVX-z1-lQq">
                                 <rect key="frame" x="16" y="113" width="183" height="154"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -500,10 +491,6 @@
                                     <segue destination="McT-S0-cd3" kind="modal" identifier="showTimeframeVC" id="zY1-Ac-hVJ"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="add-user" id="NDO-TY-Ui0">
-                                <rect key="frame" x="217" y="209" width="30" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="2" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="GDC-xA-sQq">
                                 <rect key="frame" x="287" y="207" width="30" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -511,29 +498,38 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" id="Kwe-ML-wuB">
-                                <rect key="frame" x="223" y="247" width="94" height="29"/>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="tgf-5a-MIv">
+                                <rect key="frame" x="217" y="207" width="30" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <connections>
-                                    <action selector="personNrStepper_clicked:" destination="aEY-tR-69P" eventType="valueChanged" id="1zr-MU-fVA"/>
-                                </connections>
-                            </stepper>
+                                <state key="normal" image="nr_persons"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="xLa-Ql-9MH">
+                                <rect key="frame" x="217" y="245" width="30" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="level"/>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Bjb-1O-Hmz">
+                                <rect key="frame" x="281" y="249" width="42" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="E25-7E-F6S"/>
                     <connections>
                         <outlet property="dateFromLbl" destination="wWz-Xa-he4" id="lWh-IV-RCB"/>
                         <outlet property="dateToLbl" destination="ieY-V7-gL7" id="bLx-dD-ARQ"/>
+                        <outlet property="levelBtnImg" destination="xLa-Ql-9MH" id="OKS-eO-0VV"/>
+                        <outlet property="levelNr" destination="Bjb-1O-Hmz" id="Fjj-xh-YT6"/>
                         <outlet property="pcImg" destination="AVX-z1-lQq" id="JXT-e4-4rn"/>
                         <outlet property="personsNr" destination="GDC-xA-sQq" id="LBE-nR-dVP"/>
-                        <outlet property="personsNrImg" destination="NDO-TY-Ui0" id="Jbi-Bg-3Ef"/>
-                        <outlet property="personsNrStepper" destination="Kwe-ML-wuB" id="84t-IB-cE3"/>
+                        <outlet property="personsNrImg" destination="tgf-5a-MIv" id="IVb-Nk-6gK"/>
                         <outlet property="removeBtn" destination="M48-IG-0sd" id="MtH-9P-Qiz"/>
                         <outlet property="saveBtn" destination="K80-u9-ZwD" id="bpn-kr-LhL"/>
                         <outlet property="selectDateBtn" destination="Jlo-wc-Cfi" id="a03-DO-f4f"/>
                         <outlet property="titleTxt" destination="20u-Fc-N35" id="RlQ-Fc-TXS"/>
-                        <outlet property="tripNameTxt" destination="n8t-Pt-ADH" id="oAx-bh-nui"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6GG-F2-lcU" userLabel="First Responder" sceneMemberID="firstResponder"/>

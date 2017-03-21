@@ -14,7 +14,6 @@ class uploadVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
     var startDate:Date?
     var endDate:Date?
 
-    @IBOutlet weak var tripNameTxt: UITextField!
     @IBOutlet weak var pcImg: UIImageView!
     @IBOutlet weak var titleTxt: UITextView!
     @IBOutlet weak var removeBtn: UIButton!
@@ -22,11 +21,11 @@ class uploadVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
     @IBOutlet weak var dateFromLbl: UILabel!
     @IBOutlet weak var dateToLbl: UILabel!
     @IBOutlet weak var selectDateBtn: UIButton!
-    @IBOutlet weak var personsNrImg: UIImageView!
+    @IBOutlet weak var personsNrImg: UIButton!
     @IBOutlet weak var personsNr: UILabel!
-    @IBOutlet weak var personsNrStepper: UIStepper!
+    @IBOutlet weak var levelBtnImg: UIButton!
+    @IBOutlet weak var levelNr: UILabel!
     
-    //let pictureWidth = width - 20
     let pictureWidth = UIScreen.main.bounds.width / 2
     
     override func viewDidLoad() {
@@ -69,13 +68,12 @@ class uploadVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
         dateFromLbl.text = dateformatter.string(from: startDate!)
         dateToLbl.text = dateformatter.string(from: endDate!)
         
-        // set default number of persons
-        personsNrStepper.wraps = true
-        personsNrStepper.autorepeat = true
-        personsNrStepper.maximumValue = 99
-        personsNrStepper.value = 1
-        personsNrStepper.stepValue = 1
-        personsNr.text = Int(personsNrStepper.value).description
+        // set initial level
+        levelNr.text = "0"
+        
+        // set initial number of persons
+        personsNr.text = "2"
+        
     }
     
    
@@ -102,13 +100,17 @@ class uploadVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
     
     // zooming in/out function
     func zoomImg () {
+        let navheight = (self.navigationController?.navigationBar.frame.height)! + UIApplication.shared.statusBarFrame.size.height
+        let tabbarheight = (self.tabBarController?.tabBar.frame.height)!
+        let picspace = self.view.frame.size.height - navheight - tabbarheight
+        let picshift = picspace / 2 - pictureWidth / 2 - 40
         
         // define frame of zoomed image
-        let zoomed = CGRect(x: 0, y: tripNameTxt.frame.size.height + 30, width: self.view.frame.size.width, height: self.view.frame.size.width)
+        let zoomed = CGRect(x: 0, y: navheight + picshift, width: self.view.frame.size.width, height: self.view.frame.size.width)
         
         // frame of unzoomed (small) image
         //let unzoomed = CGRect(x: 15, y: 15, width: width / 4.5, height: width / 4.5)
-        let unzoomed = CGRect(x: 15, y: tripNameTxt.frame.size.height + 30, width: pictureWidth, height: pictureWidth)
+        let unzoomed = CGRect(x: 15, y: navheight + 15, width: pictureWidth, height: pictureWidth)
       
         // id picture is unzoomed, zoom it
         if pcImg.frame == unzoomed {
@@ -121,12 +123,12 @@ class uploadVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
                 self.view.backgroundColor = .black
                 self.titleTxt.alpha = 0
                 self.saveBtn.alpha = 0
-                self.tripNameTxt.alpha = 0
                 self.personsNr.alpha = 0
                 self.personsNrImg.alpha = 0
                 self.dateFromLbl.alpha = 0
                 self.dateToLbl.alpha = 0
-                self.personsNrStepper.alpha = 0
+                self.levelBtnImg.alpha = 0
+                self.levelNr.alpha = 0
                 self.selectDateBtn.isHidden = true
                
                 // hide remove button
@@ -143,12 +145,12 @@ class uploadVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
                 self.view.backgroundColor = .white
                 self.titleTxt.alpha = 1
                 self.saveBtn.alpha = 1
-                self.tripNameTxt.alpha = 1
                 self.personsNr.alpha = 1
                 self.personsNrImg.alpha = 1
                 self.dateFromLbl.alpha = 1
                 self.dateToLbl.alpha = 1
-                self.personsNrStepper.alpha = 1
+                self.levelBtnImg.alpha = 1
+                self.levelNr.alpha = 1
                 self.selectDateBtn.isHidden = false
                 
                 self.removeBtn.isHidden = false
@@ -161,16 +163,15 @@ class uploadVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
         
         let width = self.view.frame.size.width
         let height = self.view.frame.size.height
-
         
-        tripNameTxt.frame = CGRect(x: 15, y: 15, width: width - 30, height: 20)
+        let navheight = (self.navigationController?.navigationBar.frame.height)! + UIApplication.shared.statusBarFrame.size.height
         
-        pcImg.frame = CGRect(x: 15, y: tripNameTxt.frame.size.height + 30, width: pictureWidth, height: pictureWidth)
+        pcImg.frame = CGRect(x: 15, y: navheight + 15, width: pictureWidth, height: pictureWidth)
         
-        titleTxt.frame = CGRect(x: 15, y: 80 + pcImg.frame.size.height, width:
+        titleTxt.frame = CGRect(x: 15, y: navheight + pcImg.frame.size.height + 15 + 30, width:
             width - 30, height: pcImg.frame.size.height)
         
-        dateFromLbl.frame = CGRect(x: 30 + pictureWidth, y: tripNameTxt.frame.size.height + 30, width:
+        dateFromLbl.frame = CGRect(x: 30 + pictureWidth, y: navheight + 15, width:
             70, height: 15)
         
         selectDateBtn.frame = CGRect(x: 30 + pictureWidth, y: dateFromLbl.frame.origin.y + 20, width: 30, height: 30)
@@ -178,17 +179,19 @@ class uploadVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
         dateToLbl.frame = CGRect(x: 30 + pictureWidth, y: selectDateBtn.frame.origin.y + 35, width:
             70, height: 15)
         
-        personsNrImg.frame = CGRect(x: 30 + pictureWidth, y: tripNameTxt.frame.size.height + 35 + pictureWidth / 2, width: 25, height: 25)
+        personsNrImg.frame = CGRect(x: 30 + pictureWidth, y: navheight + 35 + pictureWidth / 2, width: 25, height: 25)
         
-        personsNr.frame = CGRect(x: 80 + pictureWidth, y: tripNameTxt.frame.size.height + 35 + pictureWidth / 2, width: 30, height: 30)
+        personsNr.frame = CGRect(x: 80 + pictureWidth, y: navheight + 35 + pictureWidth / 2, width: 30, height: 30)
+
+        levelBtnImg.frame = CGRect(x: 30 + pictureWidth, y: navheight + 15 + pcImg.frame.height - 25, width: 25, height: 25)
+        levelBtnImg.layer.cornerRadius = 5
+        levelBtnImg.clipsToBounds = true
         
-        personsNrStepper.frame = CGRect(x: 30 + pictureWidth, y: personsNrImg.frame.origin.y + 45, width: 20, height: 20)
+        levelNr.frame = CGRect(x: 80 + pictureWidth, y: navheight + 15 + pcImg.frame.height - 30, width: 30, height: 30)
+
+        saveBtn.frame = CGRect(x: 0, y: height - width / 8, width: width, height: width / 8)
         
-        
-        saveBtn.frame = CGRect(x: 0, y: height / 1.09, width: width, height: width / 8)
-        
-        
-        removeBtn.frame = CGRect(x: pcImg.frame.origin.x, y: 15 + tripNameTxt.frame.origin.y + 10 + pcImg.frame.size.height + 15, width: pcImg.frame.size.width, height: 20)
+        removeBtn.frame = CGRect(x: pcImg.frame.origin.x, y: navheight + 10 + pcImg.frame.size.height + 10, width: pcImg.frame.size.width, height: 20)
     }
     
     // hold selected object and dismiss PickerController
@@ -242,10 +245,9 @@ class uploadVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
         let object = PFObject(className: "posts")
         object["username"] = PFUser.current()?.username
         object["ava"] = PFUser.current()?.value(forKey: "ava") as! PFFile
-        object["tripName"] = tripNameTxt.text
         object["gender"] = PFUser.current()?.value(forKey: "gender") as! String
         object["isPublished"] = false
-        object["level"] = 0
+        object["level"] = Int(levelNr.text!)
         object["totalDistance"] = 0
         object["publishedAt"] = date
         object["currencyCode"] = "CZK"
@@ -318,8 +320,6 @@ class uploadVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
                 self.viewDidLoad()
                 
                 self.titleTxt.text = ""
-                self.tripNameTxt.text = ""
-                
             }
         })
     }
@@ -355,16 +355,7 @@ class uploadVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
             vc.timeFrameDelegate = self
         }
         
-    }
-
-    // modify personsNr label text according to stepper status
-    @IBAction func personNrStepper_clicked(_ sender: UIStepper) {
-        let step = Int(sender.value)
-        if step >= 1 && step <= 99 {
-            personsNr.text = Int(sender.value).description
-        }
-    }
-    
+    }    
     
     @IBAction func selectDateBtn_clicked(_ sender: Any) {
     

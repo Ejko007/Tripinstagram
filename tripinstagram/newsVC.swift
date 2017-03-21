@@ -240,10 +240,12 @@ class newsVC: UITableViewController {
         if cell.infoLbl.text == rated_your_post_str {
             
             // take post uuid
-            postuuid.append(uuidAray[indexPath.row])
+            // postuuid.append(uuidAray[indexPath.row])
+            rateuuid.append(uuidAray[indexPath.row])
             
             // go post
-            let post = self.storyboard?.instantiateViewController(withIdentifier: "postVC") as! postVC
+            // let post = self.storyboard?.instantiateViewController(withIdentifier: "postVC") as! postVC
+            let post = self.storyboard?.instantiateViewController(withIdentifier: "rateVC") as! rateVC
             self.navigationController?.pushViewController(post, animated: true)
             
         }

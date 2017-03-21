@@ -23,6 +23,9 @@ struct PhotoItem {
     let imageID: String
 }
 
+var photos: [PhotoItem] = []
+var items: [DataItem] = []
+
 class HomeViewController: UIViewController, UIGestureRecognizerDelegate {
 
     
@@ -36,8 +39,6 @@ class HomeViewController: UIViewController, UIGestureRecognizerDelegate {
     var pageViewController: UIPageViewController?
         
     var currentIndex = 0
-    var items: [DataItem] = []
-    var photos: [PhotoItem] = []
     
     var tripuuid = String()
     var username = String()
@@ -114,6 +115,11 @@ class HomeViewController: UIViewController, UIGestureRecognizerDelegate {
         uuid.text = tripuuid
         uuid.isHidden = true
         
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
         photos.removeAll(keepingCapacity: false)
         photos = findPhotos()
         
@@ -127,7 +133,7 @@ class HomeViewController: UIViewController, UIGestureRecognizerDelegate {
             if photos.count > 1 {
                 Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(HomeViewController.loadNextController),         userInfo: nil, repeats: true)
             }
-
+            
             items.removeAll(keepingCapacity: false)
             
             for i in 0...photos.count - 1 {
@@ -149,10 +155,11 @@ class HomeViewController: UIViewController, UIGestureRecognizerDelegate {
                 
                 items.append(DataItem(imageView: photo.imageView, galleryItem: galleryItem))
             }
-
+            
             setPageViewController()
-
+            
         }
+        
     }
     
     // --------------------- finding photos ----------------------------------------
@@ -215,8 +222,10 @@ class HomeViewController: UIViewController, UIGestureRecognizerDelegate {
         let promoContentVC = self.storyboard?.instantiateViewController(withIdentifier: "promoContentVC") as! PromoContentViewController
         
         if !photos.isEmpty {
-            promoContentVC.photoImage = photos[index].imageView.image
-            promoContentVC.pageIndex = index
+            if index < photos.count {
+                promoContentVC.photoImage = photos[index].imageView.image
+                promoContentVC.pageIndex = index
+            }
         }
         
         return promoContentVC
@@ -311,9 +320,9 @@ class HomeViewController: UIViewController, UIGestureRecognizerDelegate {
                 
                 print("LANDED AT INDEX: \(index)")
                 
-                headerView.count = self.items.count
+                headerView.count = items.count
                 headerView.currentIndex = index
-                footerView.count = self.items.count
+                footerView.count = items.count
                 footerView.currentIndex = index
             }
             
@@ -411,6 +420,35 @@ extension HomeViewController: GalleryItemsDelegate {
     func removeGalleryItem(at index: Int) {
         
         print("remove item at \(index)")
+        
+        // remove photo from the server
+        let photoQuery = PFQuery(className: "photos")
+        photoQuery.whereKey("uuid", equalTo: tripuuid)
+        photoQuery.whereKey("objectId", equalTo: photos[index].imageID)
+        photoQuery.findObjectsInBackground(block: { (objects: [PFObject]?, error: Error?) in
+            if error == nil {
+                
+                for object in objects! {
+                    object.deleteInBackground(block: { (success: Bool, error: Error?) in
+                        if success {
+                            
+                            // send notification to rootViewController to update shown photos
+                            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "uploaded"), object: nil)
+                            
+                            // push back
+                            _ = self.navigationController?.popViewController(animated: true)
+                            // self.dismiss(animated: true, completion: nil)
+                            // self.reloadInputViews()
+                        } else {
+                            print(error!.localizedDescription)
+                        }
+                    })
+                }
+            } else {
+                print(error!.localizedDescription)
+            }
+        })
+        
         
         let imageView = items[index].imageView
         imageView.removeFromSuperview()

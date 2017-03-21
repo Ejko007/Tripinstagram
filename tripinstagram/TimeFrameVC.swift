@@ -33,9 +33,16 @@ class TimeFrameVC: UIViewController, UINavigationBarDelegate, GLCalendarViewDele
         // calendarView.lastDate = dateFormatter.date(from: "31.12.2020")
         
         // Create the navigation bar
-        let navigationBar = UINavigationBar(frame: CGRect(x:0, y:0, width:self.view.frame.size.width, height:75)) // Offset by 20 pixels vertically to take the status bar into account
-        navigationBar.barTintColor = UIColor(colorLiteralRed: 18.0 / 255.0, green: 86.0 / 255.0, blue: 136.0 / 255.0, alpha: 1)
-        navigationBar.isTranslucent = false
+        let navigationBar = UINavigationBar(frame: CGRect(x:0, y:0, width:self.view.frame.size.width, height:64))
+        
+        navigationBar.barTintColor = UIColor(colorLiteralRed: 18.0 / 255.0, green: 86.0 / 255.0, blue: 136.0 / 255.0, alpha: 0.5)
+        navigationBar.setBackgroundImage(UIImage(), for: .default)
+        navigationBar.shadowImage = UIImage()
+        self.view.backgroundColor = .clear
+        
+        navigationBar.apply(gradient: [UIColor(colorLiteralRed: 18.0 / 255.0, green: 86.0 / 255.0, blue: 136.0 / 255.0, alpha: 0), UIColor(colorLiteralRed: 18.0 / 255.0, green: 86.0 / 255.0, blue: 136.0 / 255.0, alpha: 1)])
+        
+        navigationBar.isTranslucent = true
         navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]
         
         navigationBar.backgroundColor = UIColor.white
