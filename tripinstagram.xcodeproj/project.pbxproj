@@ -91,6 +91,7 @@
 		0A8626711DB2A62D0001C1EE /* headerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8626701DB2A62D0001C1EE /* headerView.swift */; };
 		0A8677B81E04115B00A44177 /* tripMapVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8677B71E04115B00A44177 /* tripMapVC.swift */; };
 		0A88522B1E7ABBE800D1B48C /* addPhotoGalleryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A88522A1E7ABBE800D1B48C /* addPhotoGalleryVC.swift */; };
+		0A88522D1E826A5200D1B48C /* quantityTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A88522C1E826A5200D1B48C /* quantityTVC.swift */; };
 		0A885C071DE9FE790036CA0F /* uploadEditVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A885C061DE9FE790036CA0F /* uploadEditVC.swift */; };
 		0A97C5AA1E23C7CF00F40048 /* tabbartripDetailMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A97C5A91E23C7CF00F40048 /* tabbartripDetailMap.swift */; };
 		0A97C5AC1E26A67B00F40048 /* tripDetailMapPOIListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A97C5AB1E26A67B00F40048 /* tripDetailMapPOIListVC.swift */; };
@@ -112,6 +113,7 @@
 		0AAA5E501E1294D200D42657 /* spentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAA5E4F1E1294D200D42657 /* spentVC.swift */; };
 		0AAA5E541E1298E500D42657 /* DLRadioButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AAA5E531E1298E500D42657 /* DLRadioButton.m */; };
 		0AB078271E1D37F2003CA409 /* PBRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AB078261E1D37F2003CA409 /* PBRevealViewController.m */; };
+		0AC9D3CC1E8519120027520F /* quantityLevelTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AC9D3CB1E8519120027520F /* quantityLevelTVC.swift */; };
 		0AD678671E755D8E00E1E9E5 /* PromoContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD678641E755D8E00E1E9E5 /* PromoContentViewController.swift */; };
 		0AD678681E755D8E00E1E9E5 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD678651E755D8E00E1E9E5 /* HomeViewController.swift */; };
 		0AD678691E755D8E00E1E9E5 /* PhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD678661E755D8E00E1E9E5 /* PhotoCollectionViewCell.swift */; };
@@ -256,6 +258,7 @@
 		0A8626701DB2A62D0001C1EE /* headerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = headerView.swift; sourceTree = "<group>"; };
 		0A8677B71E04115B00A44177 /* tripMapVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = tripMapVC.swift; sourceTree = "<group>"; };
 		0A88522A1E7ABBE800D1B48C /* addPhotoGalleryVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = addPhotoGalleryVC.swift; sourceTree = "<group>"; };
+		0A88522C1E826A5200D1B48C /* quantityTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = quantityTVC.swift; sourceTree = "<group>"; };
 		0A885C061DE9FE790036CA0F /* uploadEditVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = uploadEditVC.swift; sourceTree = "<group>"; };
 		0A97C5A91E23C7CF00F40048 /* tabbartripDetailMap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = tabbartripDetailMap.swift; sourceTree = "<group>"; };
 		0A97C5AB1E26A67B00F40048 /* tripDetailMapPOIListVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = tripDetailMapPOIListVC.swift; sourceTree = "<group>"; };
@@ -285,6 +288,7 @@
 		0AAA5E531E1298E500D42657 /* DLRadioButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLRadioButton.m; sourceTree = "<group>"; };
 		0AB078251E1D37F2003CA409 /* PBRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBRevealViewController.h; sourceTree = "<group>"; };
 		0AB078261E1D37F2003CA409 /* PBRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBRevealViewController.m; sourceTree = "<group>"; };
+		0AC9D3CB1E8519120027520F /* quantityLevelTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = quantityLevelTVC.swift; sourceTree = "<group>"; };
 		0AD678641E755D8E00E1E9E5 /* PromoContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PromoContentViewController.swift; sourceTree = "<group>"; };
 		0AD678651E755D8E00E1E9E5 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		0AD678661E755D8E00E1E9E5 /* PhotoCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -508,6 +512,8 @@
 				0A4813021E393F6F00635270 /* tripDetailPhotoDetailVC.swift */,
 				0A8626331DB0BDE30001C1EE /* AppDelegate.swift */,
 				0A8626371DB0BDE30001C1EE /* Main.storyboard */,
+				0A88522C1E826A5200D1B48C /* quantityTVC.swift */,
+				0AC9D3CB1E8519120027520F /* quantityLevelTVC.swift */,
 				0A21870B1E48E6FE00496620 /* FlagKit.xcassets */,
 				0A32E22D1DE49667006DC92E /* TimeFrameVC.swift */,
 				0A86263A1DB0BDE30001C1EE /* Assets.xcassets */,
@@ -939,6 +945,7 @@
 				0A98279F1DE318C9008C6C0C /* GLCalendarDayCell.m in Sources */,
 				0AD6789E1E75628B00E1E9E5 /* BlurView.swift in Sources */,
 				0AD678B71E75628B00E1E9E5 /* LayoutEnums.swift in Sources */,
+				0AC9D3CC1E8519120027520F /* quantityLevelTVC.swift in Sources */,
 				0A4813011E392EAE00635270 /* tripDetailPhotoViewCell.swift in Sources */,
 				0A07342A1E38EBB200517E7B /* ZoomInteractiveTransition.swift in Sources */,
 				0AD678A11E75628B00E1E9E5 /* AVPlayer.swift in Sources */,
@@ -998,6 +1005,7 @@
 				0A3B76F81DE1C96900A60659 /* RatingViewController.swift in Sources */,
 				0AD678AA1E75628B00E1E9E5 /* CAShapeLayer.swift in Sources */,
 				0A32E22E1DE49667006DC92E /* TimeFrameVC.swift in Sources */,
+				0A88522D1E826A5200D1B48C /* quantityTVC.swift in Sources */,
 				0A8626341DB0BDE30001C1EE /* AppDelegate.swift in Sources */,
 				0AD678C01E75628B00E1E9E5 /* GallerySwipeToDismissTransition.swift in Sources */,
 				0A4939571E559CE1006D9218 /* CosmosDistrib.swift in Sources */,

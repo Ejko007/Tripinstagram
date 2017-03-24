@@ -9,10 +9,12 @@
 import UIKit
 import Parse
 
-class uploadVC: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, TimeFrameDelegate {
+class uploadVC: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, TimeFrameDelegate, UIPopoverPresentationControllerDelegate {
     
     var startDate:Date?
     var endDate:Date?
+    
+    var quantity = 1
 
     @IBOutlet weak var pcImg: UIImageView!
     @IBOutlet weak var titleTxt: UITextView!
@@ -348,17 +350,87 @@ class uploadVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-        if segue.identifier == "showTimeframeVC" {
-            // Select Range
-            let vc = segue.destination as! TimeFrameVC
-            
-            vc.timeFrameDelegate = self
+        if let identifier = segue.identifier {
+            switch identifier {
+            case "showTimeframeVC":
+                let vc = segue.destination as! TimeFrameVC
+                vc.timeFrameDelegate = self
+            case "seguePersonsNr":
+                let quantityVC = segue.destination as! quantityTVC
+                quantityVC.modalPresentationStyle = UIModalPresentationStyle.popover
+                quantityVC.popoverPresentationController!.delegate = self
+                quantityVC.delegate = self
+            default:
+                break
+            }
         }
         
-    }    
+    }
+    
     
     @IBAction func selectDateBtn_clicked(_ sender: Any) {
     
     
     }
+    
+    @IBAction func personsNrBtn_tapped(_ sender: UIButton) {
+        let popoverContent = self.storyboard?.instantiateViewController(withIdentifier: "quantityTVC") as! quantityTVC
+        
+        popoverContent.modalPresentationStyle = UIModalPresentationStyle.popover
+        if let popover = popoverContent.popoverPresentationController {
+            popoverContent.preferredContentSize = CGSize(width: 70, height: 450)
+            
+            popoverContent.popoverPresentationController!.delegate = self
+            popoverContent.delegate = self
+
+            popover.delegate = self
+            popover.sourceView = sender
+            popover.sourceRect = sender.bounds
+        }
+        
+        self.present(popoverContent, animated: true, completion: nil)
+    }
+    
+    
+    @IBAction func levelsNrBtn_tapped(_ sender: UIButton) {
+        let popoverContent = self.storyboard?.instantiateViewController(withIdentifier: "quantityLevelTVC") as! quantityLevelTVC
+        
+        popoverContent.modalPresentationStyle = UIModalPresentationStyle.popover
+        if let popover = popoverContent.popoverPresentationController {
+            popoverContent.preferredContentSize = CGSize(width: 70, height: 450)
+            
+            popoverContent.popoverPresentationController!.delegate = self
+            popoverContent.delegate = self
+            
+            popover.delegate = self
+            popover.sourceView = sender
+            popover.sourceRect = sender.bounds
+        }
+        
+        self.present(popoverContent, animated: true, completion: nil)
+    }
+    
+    internal func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
+        return UIModalPresentationStyle.none
+    }
+
+    
 }
+
+// quantityPopoverDelegate procedure for personsNr field
+extension uploadVC: QuantityPersonsPopoverDelegate {
+    func updatePersonsNr(withQuantity quantity: Int) {
+        self.quantity = quantity
+        self.personsNr.text = "\(self.quantity)"
+    }
+}
+
+// quantityPopoverDelegate procedure for levelsNr field
+extension uploadVC: QuantityLevelsPopoverDelegate {
+    func updateLevelsNr(withQuantity quantity: Int) {
+        self.quantity = quantity
+        self.levelNr.text = "\(self.quantity)"
+    }
+}
+
+
