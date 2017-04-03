@@ -18,6 +18,7 @@ class photoCameraVC: UIViewController, UINavigationBarDelegate {
     var frontFacingCamera: AVCaptureDevice?
     var currentDevice: AVCaptureDevice?
     
+    // var stillImageOutput: AVCaptureStillImageOutput?
     var stillImageOutput: AVCaptureStillImageOutput?
     var stillImage: UIImage?
     var cameraPreviewLayer: AVCaptureVideoPreviewLayer?

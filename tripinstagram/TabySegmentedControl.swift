@@ -38,9 +38,10 @@ class TabySegmentedControl: UISegmentedControl {
             NSFontAttributeName: font
         ]
         
-        self.setTitleTextAttributes(normalTextAttributes, for: UIControlState())
-        self.setTitleTextAttributes(normalTextAttributes, for: .highlighted)
-        self.setTitleTextAttributes(normalTextAttributes, for: .selected)
+        self.setTitleTextAttributes(normalTextAttributes as Any as? [AnyHashable : Any] , for: UIControlState())
+        self.setTitleTextAttributes(normalTextAttributes as Any as? [AnyHashable : Any], for: .highlighted)
+        // self.setTitleTextAttributes(normalTextAttributes, for: .selected)
+        self.setTitleTextAttributes(normalTextAttributes as Any as? [AnyHashable : Any] , for: .selected)
     }
     
 }

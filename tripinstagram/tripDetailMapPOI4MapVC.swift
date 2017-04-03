@@ -441,7 +441,7 @@ class tripDetailMapPOI4MapVC: UIViewController, UINavigationBarDelegate, UITabBa
             poiObj["location"] = point
             poiObj["uuid"] = postuuid.last!
             let uuid = UUID().uuidString
-            poiObj["poiuuid"] = "\(PFUser.current()?.username) \(uuid)"
+            poiObj["poiuuid"] = "\(String(describing: PFUser.current()?.username)) \(uuid)"
             if number == 0 {
                 poiObj["poiorder"] = number
             } else {

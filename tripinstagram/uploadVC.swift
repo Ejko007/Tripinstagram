@@ -9,12 +9,14 @@
 import UIKit
 import Parse
 
-class uploadVC: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, TimeFrameDelegate, UIPopoverPresentationControllerDelegate {
+class uploadVC: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, TimeFrameDelegate {
     
     var startDate:Date?
     var endDate:Date?
     
     var quantity = 1
+    
+    var countriesInfo = [countryInfo]()
 
     @IBOutlet weak var pcImg: UIImageView!
     @IBOutlet weak var titleTxt: UITextView!
@@ -27,6 +29,8 @@ class uploadVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
     @IBOutlet weak var personsNr: UILabel!
     @IBOutlet weak var levelBtnImg: UIButton!
     @IBOutlet weak var levelNr: UILabel!
+    @IBOutlet weak var countryIconBtn: UIButton!
+    @IBOutlet weak var countriesView: UIView!
     
     let pictureWidth = UIScreen.main.bounds.width / 2
     
@@ -74,7 +78,10 @@ class uploadVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
         levelNr.text = "0"
         
         // set initial number of persons
-        personsNr.text = "2"
+        personsNr.text = "1"
+        
+        // set clear background color
+        countriesView.backgroundColor = .clear
         
     }
     
@@ -173,6 +180,9 @@ class uploadVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
         titleTxt.frame = CGRect(x: 15, y: navheight + pcImg.frame.size.height + 15 + 30, width:
             width - 30, height: pcImg.frame.size.height)
         
+        countriesView.frame = CGRect(x: width - 40, y: navheight + 15, width:
+            30, height: 20)
+        
         dateFromLbl.frame = CGRect(x: 30 + pictureWidth, y: navheight + 15, width:
             70, height: 15)
         
@@ -181,9 +191,11 @@ class uploadVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
         dateToLbl.frame = CGRect(x: 30 + pictureWidth, y: selectDateBtn.frame.origin.y + 35, width:
             70, height: 15)
         
-        personsNrImg.frame = CGRect(x: 30 + pictureWidth, y: navheight + 35 + pictureWidth / 2, width: 25, height: 25)
+        countryIconBtn.frame = CGRect(x: 30 + pictureWidth, y: navheight + 10 + pictureWidth / 2, width: 25, height: 25)
         
-        personsNr.frame = CGRect(x: 80 + pictureWidth, y: navheight + 35 + pictureWidth / 2, width: 30, height: 30)
+        personsNrImg.frame = CGRect(x: 30 + pictureWidth, y: navheight + 40 + pictureWidth / 2, width: 25, height: 25)
+        
+        personsNr.frame = CGRect(x: 80 + pictureWidth, y: navheight + 40 + pictureWidth / 2, width: 30, height: 30)
 
         levelBtnImg.frame = CGRect(x: 30 + pictureWidth, y: navheight + 15 + pcImg.frame.height - 25, width: 25, height: 25)
         levelBtnImg.layer.cornerRadius = 5
@@ -264,7 +276,7 @@ class uploadVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
         object["tripTo"] = dateTo
         
         let uuid = UUID().uuidString
-        object["uuid"] = "\(PFUser.current()?.username) \(uuid)"
+        object["uuid"] = "\(String(describing: PFUser.current()?.username)) \(uuid)"
         
         if titleTxt.text.isEmpty {
             object["title"] = ""
@@ -355,6 +367,12 @@ class uploadVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
             case "showTimeframeVC":
                 let vc = segue.destination as! TimeFrameVC
                 vc.timeFrameDelegate = self
+            case "showCountries":
+                // let embeddedPPC = segue.destination.popoverPresentationController
+                let embeddedPPC = segue.destination as! countriesTVC
+                embeddedPPC.delegate = self
+                // embeddedPPC.sourceView = countryIconBtn
+                // embeddedPPC.sourceRect = countryIconBtn.bounds
             case "seguePersonsNr":
                 let quantityVC = segue.destination as! quantityTVC
                 quantityVC.modalPresentationStyle = UIModalPresentationStyle.popover
@@ -392,6 +410,24 @@ class uploadVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
     }
     
     
+    @IBAction func countryIconBtn_tapped(_ sender: UIButton) {
+//        let popoverContent = self.storyboard?.instantiateViewController(withIdentifier: "countriesTVC") as! countriesTVC
+//        
+//        popoverContent.modalPresentationStyle = UIModalPresentationStyle.popover
+//        if let popover = popoverContent.popoverPresentationController {
+//            popoverContent.preferredContentSize = CGSize(width: 270, height: 450)
+//            
+//            popoverContent.popoverPresentationController!.delegate = self
+//            // popoverContent.delegate = self
+//            
+//            popover.delegate = self
+//            popover.sourceView = sender
+//            popover.sourceRect = sender.bounds
+//        }
+//        
+//        self.present(popoverContent, animated: true, completion: nil)
+    }
+    
     @IBAction func levelsNrBtn_tapped(_ sender: UIButton) {
         let popoverContent = self.storyboard?.instantiateViewController(withIdentifier: "quantityLevelTVC") as! quantityLevelTVC
         
@@ -409,11 +445,6 @@ class uploadVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
         
         self.present(popoverContent, animated: true, completion: nil)
     }
-    
-    internal func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
-        return UIModalPresentationStyle.none
-    }
-
     
 }
 
@@ -433,4 +464,107 @@ extension uploadVC: QuantityLevelsPopoverDelegate {
     }
 }
 
+// popoverDelegate procedure for countries view field
+extension uploadVC: CountriesPopoverDelegate {
+    func updateCountriesFlags(withCountries countries: [countryInfo]) {
+        self.countriesInfo.removeAll(keepingCapacity: false)
+        self.countriesInfo = countries
+        
+        var flagsImageArray = [UIImage]()
+        var countItems = Int()
+        var flagsCodes = [String]()
+        var subview = UIImageView()
+        let maxImgCount = 7
 
+        flagsCodes.removeAll(keepingCapacity: false)
+        flagsImageArray.removeAll(keepingCapacity: false)
+        
+        // remove all subviews
+        for view in countriesView.subviews {
+            view.removeFromSuperview()
+        }
+
+        if countries.count != 0 {
+            
+            for i in 0...countries.count - 1 {
+                flagsCodes.append(countries[i].name)
+            }
+            
+            countItems = flagsCodes.count
+            if countItems > maxImgCount {
+                countItems = maxImgCount
+            }
+            
+            for j in 0...countItems - 1 {
+                if let flagImage = UIImage(named: IsoCountryCodes.searchByName(name: flagsCodes[j]).alpha2) {
+                    flagsImageArray.append(flagImage)
+                } else {
+                    flagsImageArray.append(UIImage(named: "WW")!)
+                }
+            }
+            
+            var count = 0
+            for i in 0...countItems - 1 {
+                //Add a subview at the position
+                subview = UIImageView(frame: CGRect(x: 0 , y: 20 * CGFloat(i), width: 30, height: 20))
+                subview.image = flagsImageArray[count]
+                //self.view.addSubview(subview)
+                countriesView.addSubview(subview)
+                count += 1
+            }
+        }
+    }
+}
+
+// MARK: UIPopoverPresentationControllerDelegate
+extension uploadVC: UIPopoverPresentationControllerDelegate {
+    
+    // In modal presentation we need to add a button to our popover
+    // to allow it to be dismissed. Handle the situation where
+    // our popover may be embedded in a navigation controller
+    
+    func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
+        return UIModalPresentationStyle.none
+    }
+    
+    func presentationController(_ controller: UIPresentationController, viewControllerForAdaptivePresentationStyle style: UIModalPresentationStyle) -> UIViewController? {
+        guard style != .none else {
+            return controller.presentedViewController
+        }
+        
+        if let navController = controller.presentedViewController as? UINavigationController {
+            addDismissButton(navigationController: navController)
+            return navController
+        } else {
+            let navController = UINavigationController.init(rootViewController: controller.presentedViewController)
+            addDismissButton(navigationController: navController)
+            return navController
+        }
+    }
+    
+    // Check for when we present in a non modal style and remove the
+    // the dismiss button from the navigation bar.
+    
+    func presentationController(_ presentationController: UIPresentationController, willPresentWithAdaptiveStyle style: UIModalPresentationStyle, transitionCoordinator: UIViewControllerTransitionCoordinator?) {
+        if style == .none {
+            if let navController = presentationController.presentedViewController as? UINavigationController {
+                removeDismissButton(navigationController: navController)
+            }
+        }
+    }
+    
+    func didDismissPresentedView() {
+        presentedViewController?.dismiss(animated: true, completion: nil)
+    }
+    
+    private func addDismissButton(navigationController: UINavigationController) {
+        let rootViewController = navigationController.viewControllers[0]
+        rootViewController.navigationItem.leftBarButtonItem = UIBarButtonItem.init(barButtonSystemItem: .done,
+        target: self, action: #selector(didDismissPresentedView))
+    }
+    
+    private func removeDismissButton(navigationController: UINavigationController) {
+        let rootViewController = navigationController.viewControllers[0]
+        rootViewController.navigationItem.leftBarButtonItem = nil
+    }
+}

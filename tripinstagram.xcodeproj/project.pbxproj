@@ -110,6 +110,8 @@
 		0A9827A91DE318C9008C6C0C /* gl-calendar-shadow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A98279C1DE318C9008C6C0C /* gl-calendar-shadow@2x.png */; };
 		0A9827AA1DE318C9008C6C0C /* gl-calendar-shadow@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A98279D1DE318C9008C6C0C /* gl-calendar-shadow@3x.png */; };
 		0AA0C3B31E18033500790BD8 /* tripsListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA0C3B21E18033500790BD8 /* tripsListVC.swift */; };
+		0AA6C9601E89423C0084012C /* countriesTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA6C95F1E89423C0084012C /* countriesTVC.swift */; };
+		0AA6C9621E8946030084012C /* countriesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA6C9611E8946030084012C /* countriesCell.swift */; };
 		0AAA5E501E1294D200D42657 /* spentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAA5E4F1E1294D200D42657 /* spentVC.swift */; };
 		0AAA5E541E1298E500D42657 /* DLRadioButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AAA5E531E1298E500D42657 /* DLRadioButton.m */; };
 		0AB078271E1D37F2003CA409 /* PBRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AB078261E1D37F2003CA409 /* PBRevealViewController.m */; };
@@ -283,6 +285,8 @@
 		0A98279C1DE318C9008C6C0C /* gl-calendar-shadow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gl-calendar-shadow@2x.png"; sourceTree = "<group>"; };
 		0A98279D1DE318C9008C6C0C /* gl-calendar-shadow@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gl-calendar-shadow@3x.png"; sourceTree = "<group>"; };
 		0AA0C3B21E18033500790BD8 /* tripsListVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = tripsListVC.swift; sourceTree = "<group>"; };
+		0AA6C95F1E89423C0084012C /* countriesTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = countriesTVC.swift; sourceTree = "<group>"; };
+		0AA6C9611E8946030084012C /* countriesCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = countriesCell.swift; sourceTree = "<group>"; };
 		0AAA5E4F1E1294D200D42657 /* spentVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = spentVC.swift; sourceTree = "<group>"; };
 		0AAA5E521E1298E500D42657 /* DLRadioButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLRadioButton.h; sourceTree = "<group>"; };
 		0AAA5E531E1298E500D42657 /* DLRadioButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLRadioButton.m; sourceTree = "<group>"; };
@@ -512,6 +516,8 @@
 				0A4813021E393F6F00635270 /* tripDetailPhotoDetailVC.swift */,
 				0A8626331DB0BDE30001C1EE /* AppDelegate.swift */,
 				0A8626371DB0BDE30001C1EE /* Main.storyboard */,
+				0AA6C9611E8946030084012C /* countriesCell.swift */,
+				0AA6C95F1E89423C0084012C /* countriesTVC.swift */,
 				0A88522C1E826A5200D1B48C /* quantityTVC.swift */,
 				0AC9D3CB1E8519120027520F /* quantityLevelTVC.swift */,
 				0A21870B1E48E6FE00496620 /* FlagKit.xcassets */,
@@ -932,6 +938,7 @@
 				0A9827A11DE318C9008C6C0C /* GLCalendarDayCellBackgroundCover.m in Sources */,
 				0AE0B0241E3154B50035EDDC /* tripDetailMapPOI4MapVC.swift in Sources */,
 				0A1D9F4C1DBA4BD90002BAD1 /* postCell.swift in Sources */,
+				0AA6C9601E89423C0084012C /* countriesTVC.swift in Sources */,
 				0A0D97B01E49D4CC00FA9B7B /* IsoCountries.swift in Sources */,
 				0A1E9D611DBC8BDC00080209 /* commentCell.swift in Sources */,
 				0A4939511E4F0E0D006D9218 /* itineraryCell.swift in Sources */,
@@ -970,6 +977,7 @@
 				0A1D9F421DB78BA30002BAD1 /* guestVC.swift in Sources */,
 				0AD678B51E75628B00E1E9E5 /* VideoScrubber.swift in Sources */,
 				0A4813031E393F6F00635270 /* tripDetailPhotoDetailVC.swift in Sources */,
+				0AA6C9621E8946030084012C /* countriesCell.swift in Sources */,
 				0AD678BC1E75628B00E1E9E5 /* GalleryDisplacedViewsDataSource.swift in Sources */,
 				0AD678C11E75628B00E1E9E5 /* UtilityFunctions.swift in Sources */,
 				0A8677B81E04115B00A44177 /* tripMapVC.swift in Sources */,

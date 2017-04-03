@@ -60,7 +60,7 @@ let registration_str = "Registrace"
 let registration_successful_str = "Registrace nového uživatele na serveru proběhla úspěšně."
 let user_has_no_account = "Tento uživatel nemá v aplikaci vytvořen účet."
 let save_str = "Uložit"
-let new_feed_str = "Nový příspěvek"
+let new_feed_str = "Nový záznam"
 let publish_str = "Publikovat"
 let name_of_feed = "Název příspěvku"
 let hide_str = "Skrýt"
@@ -107,6 +107,9 @@ let see_all_str = "Vše"
 let from_str = "z"  // 1 from 10 - counter
 let new_snapshot_str = "Nový snímek"
 let back_str = "Zpět"
+let done_str = "Hotovo"
+let countries_str = "Seznam zemí"
+let countries_max_str = "Maximální počet vybraných zemí je 7. Vyberte prosím ze seznamu menší počet zemí."
 
 // croping picture and center it
 func cropToBounds(_ image: UIImage, width: Double, height: Double) -> UIImage {

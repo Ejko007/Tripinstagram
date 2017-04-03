@@ -378,7 +378,7 @@ class feedVC: UITableViewController {
         
         // define initial state (before the animation)
         cell.alpha = 0
-        let rotationAngleInRadians = 90.0 * CGFloat(M_PI/180.0)
+        let rotationAngleInRadians = 90.0 * CGFloat(Double.pi/180.0)
         let rotationTransform = CATransform3DMakeRotation(rotationAngleInRadians, 0, 0, 1)
         //let rotationTransform = CATransform3DTranslate(CATransform3DIdentity, -500, 100, 0)
         cell.layer.transform = rotationTransform
@@ -432,8 +432,8 @@ class feedVC: UITableViewController {
         
         flagsCodes = countriesArray[indexPath.row]
         countItems = flagsCodes.count
-        if countItems > 14 {
-            countItems = 13
+        if countItems > 7 {
+            countItems = 7
         }
         
         flagsImageArray.removeAll(keepingCapacity: false)
@@ -454,7 +454,7 @@ class feedVC: UITableViewController {
         var count = 0
         for i in 0...countItems - 1 {
             //Add a subview at the position
-            subview = UIImageView(frame: CGRect(x: 30 * CGFloat(i), y: 0, width: 30, height: 20))
+            subview = UIImageView(frame: CGRect(x: 0, y: 20 * CGFloat(i), width: 30, height: 20))
             subview.image = flagsImageArray[count]
             //self.view.addSubview(subview)
             cell.countriesView.addSubview(subview)

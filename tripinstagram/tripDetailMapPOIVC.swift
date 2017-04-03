@@ -410,7 +410,7 @@ class tripDetailMapPOIVC: UIViewController,CLLocationManagerDelegate {
             poiObj["location"] = point
             poiObj["uuid"] = postuuid.last!
             let uuid = UUID().uuidString
-            poiObj["poiuuid"] = "\(PFUser.current()?.username) \(uuid)"
+            poiObj["poiuuid"] = "\(String(describing: PFUser.current()?.username)) \(uuid)"
             
             poiObj.saveInBackground(block: { (success:Bool, error:Error?) in
                 if error == nil {

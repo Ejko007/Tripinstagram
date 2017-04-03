@@ -135,7 +135,9 @@ class commentVC: UIViewController, UITextViewDelegate, UITableViewDelegate, UITa
             let query = PFQuery(className: "comments")
             query.whereKey("to", equalTo: commentuuid.last!)
             print(commentuuid.last!)
-            query.skip = count - self.page
+            var pg = count
+            pg -= self.page
+            query.skip = Int(pg)
             query.addAscendingOrder("createdAt")
             
             query.findObjectsInBackground(block: { (objects: [PFObject]?, error: Error?) in
@@ -193,7 +195,9 @@ class commentVC: UIViewController, UITextViewDelegate, UITableViewDelegate, UITa
                     // request existing comments from the server
                     let query = PFQuery(className: "comments")
                     query.whereKey("to", equalTo: commentuuid.last!)
-                    query.skip = count - self.page
+                    var pg = count
+                    pg -= self.page
+                    query.skip = Int(pg)
                     query.addAscendingOrder("createdAt")
                     query.findObjectsInBackground(block: { (objects: [PFObject]?, error: Error?) in
                         if error == nil {

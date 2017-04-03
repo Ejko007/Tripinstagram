@@ -145,7 +145,9 @@ class rateVC: UIViewController, UITextViewDelegate, UITableViewDelegate, UITable
             // STEP 2. Request last (page size = 15) rates
             let query = PFQuery(className: "rates")
             query.whereKey("uuid", equalTo: rateuuid.last!)
-            query.skip = count - self.page
+            var pg = count
+            pg -= self.page
+            query.skip = Int(pg)
             query.addAscendingOrder("createdAt")
             
             query.findObjectsInBackground(block: { (objects: [PFObject]?, error: Error?) in
@@ -206,7 +208,9 @@ class rateVC: UIViewController, UITextViewDelegate, UITableViewDelegate, UITable
                     // request existing rates from the server
                     let query = PFQuery(className: "rates")
                     query.whereKey("uuid", equalTo: rateuuid.last!)
-                    query.skip = count - self.page
+                    var pg = count
+                    pg -= self.page
+                    query.skip = Int(pg)
                     query.addAscendingOrder("createdAt")
                     query.findObjectsInBackground(block: { (objects: [PFObject]?, error: Error?) in
                         if error == nil {
