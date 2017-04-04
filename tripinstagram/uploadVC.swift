@@ -31,6 +31,8 @@ class uploadVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
     @IBOutlet weak var levelNr: UILabel!
     @IBOutlet weak var countryIconBtn: UIButton!
     @IBOutlet weak var countriesView: UIView!
+    @IBOutlet weak var publishLbl: UILabel!
+    @IBOutlet weak var publishSwitch: UISwitch!
     
     let pictureWidth = UIScreen.main.bounds.width / 2
     
@@ -45,6 +47,7 @@ class uploadVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
         saveBtn.isEnabled = false
         saveBtn.backgroundColor = .lightGray
         saveBtn.titleLabel!.text = save_str
+        self.publishLbl.text = publish_str
         
         // hide remove button
         removeBtn.isHidden = true
@@ -138,6 +141,9 @@ class uploadVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
                 self.dateToLbl.alpha = 0
                 self.levelBtnImg.alpha = 0
                 self.levelNr.alpha = 0
+                self.publishLbl.alpha = 0
+                self.publishSwitch.alpha = 0
+                self.countriesView.alpha = 0
                 self.selectDateBtn.isHidden = true
                
                 // hide remove button
@@ -160,6 +166,9 @@ class uploadVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
                 self.dateToLbl.alpha = 1
                 self.levelBtnImg.alpha = 1
                 self.levelNr.alpha = 1
+                self.publishLbl.alpha = 1
+                self.publishSwitch.alpha = 1
+                self.countriesView.alpha = 1
                 self.selectDateBtn.isHidden = false
                 
                 self.removeBtn.isHidden = false
@@ -204,6 +213,10 @@ class uploadVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
         levelNr.frame = CGRect(x: 80 + pictureWidth, y: navheight + 15 + pcImg.frame.height - 30, width: 30, height: 30)
 
         saveBtn.frame = CGRect(x: 0, y: height - width / 8, width: width, height: width / 8)
+        
+        publishLbl.frame = CGRect(x: 15, y: height - width / 8 - 35, width: width / 2, height: 20)
+        publishSwitch.frame = CGRect(x: width / 2 + 100, y: height - width / 8 - 40, width: width / 2 - 100, height: 20)
+        publishSwitch.transform = CGAffineTransform(scaleX: 0.75, y: 0.75)
         
         removeBtn.frame = CGRect(x: pcImg.frame.origin.x, y: navheight + 10 + pcImg.frame.size.height + 10, width: pcImg.frame.size.width, height: 20)
     }
@@ -260,20 +273,28 @@ class uploadVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
         object["username"] = PFUser.current()?.username
         object["ava"] = PFUser.current()?.value(forKey: "ava") as! PFFile
         object["gender"] = PFUser.current()?.value(forKey: "gender") as! String
-        object["isPublished"] = false
-        object["level"] = Int(levelNr.text!)
+        object["isPublished"] = publishSwitch.isOn
         object["totalDistance"] = 0
         object["publishedAt"] = date
         object["currencyCode"] = "CZK"
         object["totalSpents"] =  Double("0.00")
-        object["countries"] = [""]
         object["personsNr"] =  Int(personsNr.text!)
+        object["level"] =  Int(levelNr.text!)
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd.MM.yyy"
         let datefrom = dateFormatter.date(from: dateFromLbl.text!)
         let dateTo = dateFormatter.date(from: dateToLbl.text!)
         object["tripFrom"] = datefrom
         object["tripTo"] = dateTo
+        var countries = [String]()
+        if !countriesInfo.isEmpty {
+            for i in 0...self.countriesInfo.count - 1 {
+                countries.append(self.countriesInfo[i].name)
+            }
+            object["countries"] = countries
+        } else {
+            object["countries"] = [""]
+        }
         
         let uuid = UUID().uuidString
         object["uuid"] = "\(String(describing: PFUser.current()?.username)) \(uuid)"
@@ -334,6 +355,7 @@ class uploadVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
                 self.viewDidLoad()
                 
                 self.titleTxt.text = ""
+                self.publishSwitch.isOn = false
             }
         })
     }
@@ -368,11 +390,8 @@ class uploadVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
                 let vc = segue.destination as! TimeFrameVC
                 vc.timeFrameDelegate = self
             case "showCountries":
-                // let embeddedPPC = segue.destination.popoverPresentationController
                 let embeddedPPC = segue.destination as! countriesTVC
                 embeddedPPC.delegate = self
-                // embeddedPPC.sourceView = countryIconBtn
-                // embeddedPPC.sourceRect = countryIconBtn.bounds
             case "seguePersonsNr":
                 let quantityVC = segue.destination as! quantityTVC
                 quantityVC.modalPresentationStyle = UIModalPresentationStyle.popover

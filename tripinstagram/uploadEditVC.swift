@@ -13,34 +13,51 @@ class uploadEditVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
 
     var startDate:Date?
     var endDate:Date?
+    
     var removePicture:Bool = false
+    
+    var quantity = 1
+    
+    var countriesInfo = [countryInfo]()
     
     // arrays to hold information from server
     var dateFromArray = [Date?]()
     var dateToArray = [Date?]()
     var picArray = [PFFile]()
     var uuidArray = [String]()
-    var tripNameArray = [String]()
     var personsNrArray = [Int]()
     var currencyArray = [String]()
     var titleTxtArray = [String]()
+    var levelArray = [Int]()
+    var publishArray = [Bool]()
 
+    var countriesArray = Array<Array<String>>()
     
-    @IBOutlet weak var tripNameTxt: UITextField!
     @IBOutlet weak var pcImg: UIImageView!
     @IBOutlet weak var titleTxt: UITextView!
     @IBOutlet weak var removeBtn: UIButton!
+    @IBOutlet weak var saveBtn: UIButton!
     @IBOutlet weak var dateFromLbl: UILabel!
     @IBOutlet weak var dateToLbl: UILabel!
     @IBOutlet weak var selectDateBtn: UIButton!
-    @IBOutlet weak var personsNrImg: UIImageView!
+    @IBOutlet weak var personsNrImg: UIButton!
     @IBOutlet weak var personsNr: UILabel!
-    @IBOutlet weak var personsNrStepper: UIStepper!
+    @IBOutlet weak var levelBtnImg: UIButton!
+    @IBOutlet weak var levelNr: UILabel!
+    @IBOutlet weak var countryIconBtn: UIButton!
+    @IBOutlet weak var countriesView: UIView!
+    @IBOutlet weak var publishLbl: UILabel!
+    @IBOutlet weak var publishSwitch: UISwitch!
     
     //let pictureWidth = width - 20
     let pictureWidth = UIScreen.main.bounds.width / 2
 
     override func viewDidLoad() {
+        
+        let width = self.view.frame.size.width
+        let height = self.view.frame.size.height
+
+        var countries = [String]()
         
         super.viewDidLoad()
         
@@ -48,18 +65,34 @@ class uploadEditVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
         self.navigationItem.title = update_post_str.uppercased()
         
         // create accept icon to save post
-        let acceptBtn = UIBarButtonItem(image: UIImage(named: "accept.png"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(saveBtn_clicked))
+        saveBtn.isEnabled = true
+        saveBtn.titleLabel!.text = save_str
+        saveBtn.isHidden = false
+
+        // set save button position
+        var btnshift:CGFloat = 0
+        if removePicture {
+            btnshift = 0
+            saveBtn.backgroundColor = UIColor.lightGray
+        } else {
+            saveBtn.backgroundColor = UIColor(red: 52.0 / 255.0, green: 169.0 / 255.0, blue: 255.0 / 255.0, alpha: 1)
+            btnshift = 1
+        }
+        
+        let tabbarHeight = self.tabBarController?.tabBar.frame.size.height
+        self.saveBtn.frame = CGRect(x: 0, y: height - btnshift * tabbarHeight! - width / 8, width: width, height: width / 8)
+        self.publishLbl.frame = CGRect(x: 15, y: height - btnshift * tabbarHeight! - width / 8 - 35, width: width / 2, height: 20)
+        self.publishSwitch.frame = CGRect(x: width / 2 + 100, y: height - btnshift * tabbarHeight! - width / 8 - 40, width: width / 2 - 100, height: 20)
+        self.publishSwitch.transform = CGAffineTransform(scaleX: 0.75, y: 0.75)
+
         if !removePicture {
-            navigationItem.rightBarButtonItem = acceptBtn
             // show remove button
             removeBtn.isHidden = false
         } else {
-            navigationItem.rightBarButtonItem = nil
             // hide remove button
             removeBtn.isHidden = true
             // standard UI containt
             pcImg.image = UIImage(named: "pbg.png")
-            titleTxt.text = ""
         }
         
         // hide keyboard tap
@@ -74,6 +107,9 @@ class uploadEditVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
         pcImg.isUserInteractionEnabled = true
         pcImg.addGestureRecognizer(picTap)
         
+        // set clear background color
+        countriesView.backgroundColor = .clear
+        
         // find post
         let postQuery = PFQuery(className: "posts")
         postQuery.whereKey("uuid", equalTo: postuuid.last!)
@@ -84,10 +120,13 @@ class uploadEditVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
                 self.dateToArray.removeAll(keepingCapacity: false)
                 self.picArray.removeAll(keepingCapacity: false)
                 self.uuidArray.removeAll(keepingCapacity: false)
-                self.tripNameArray.removeAll(keepingCapacity: false)
                 self.personsNrArray.removeAll(keepingCapacity: false)
                 self.currencyArray.removeAll(keepingCapacity: false)
                 self.titleTxtArray.removeAll(keepingCapacity: false)
+                self.levelArray.removeAll(keepingCapacity: false)
+                countries.removeAll(keepingCapacity: false)
+                self.countriesArray.removeAll(keepingCapacity: false)
+                self.publishArray.removeAll(keepingCapacity: false)
                
                 //find related objects
                 for object in objects! {
@@ -95,10 +134,14 @@ class uploadEditVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
                     self.dateToArray.append((object.value(forKey: "tripTo") as! Date))
                     self.picArray.append(object.value(forKey: "pic") as! PFFile)
                     self.uuidArray.append(object.value(forKey: "uuid") as! String)
-                    self.tripNameArray.append(object.value(forKey: "tripName") as! String)
                     self.personsNrArray.append(object.value(forKey: "personsNr") as! Int)
                     self.currencyArray.append(object.value(forKey: "currencyCode") as! String)
                     self.titleTxtArray.append(object.value(forKey: "title") as! String)
+                    self.levelArray.append(object.value(forKey: "level") as! Int)
+                    countries.removeAll(keepingCapacity: false)
+                    countries = object.object(forKey: "countries") as! [String]
+                    self.countriesArray.append(countries)
+                    self.publishArray.append(object.value(forKey: "isPublished") as! Bool)
                  }
                 
                 // place post picture
@@ -106,7 +149,7 @@ class uploadEditVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
                     if error == nil {
                         if self.removePicture {
                             self.pcImg.image = UIImage(named: "pbg.png")
-                        } else {
+                         } else {
                             self.pcImg.image = UIImage(data: data!)
                         }
                     } else {
@@ -114,9 +157,11 @@ class uploadEditVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
                     }
                 })
                 
-                self.tripNameTxt.text = self.tripNameArray.last
+                self.publishLbl.text = publish_str
                 self.titleTxt.text = self.titleTxtArray.last
                 self.personsNr.text = "\(self.personsNrArray.last!)"
+                self.levelNr.text = "\(self.levelArray.last!)"
+                self.publishSwitch.isOn = self.publishArray.last!
                 
                 let dateformatter = DateFormatter()
                 dateformatter.dateFormat = "dd.MM.yyy"
@@ -125,6 +170,51 @@ class uploadEditVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
                 
                 self.startDate = GLDateUtils.date(byAddingDays: 0, to: (self.dateFromArray.last!)!) as Date
                 self.endDate = GLDateUtils.date(byAddingDays: 0, to: (self.dateToArray.last!)!) as Date
+                
+                // place countries flags
+                var flagsImageArray = [UIImage]()
+                var countItems = Int()
+                var flagsCodes = [String]()
+                var subview = UIImageView()
+                let maxImgCount = 7
+                
+                flagsCodes.removeAll(keepingCapacity: false)
+                flagsImageArray.removeAll(keepingCapacity: false)
+                
+                // remove all subviews
+                for view in self.countriesView.subviews {
+                    view.removeFromSuperview()
+                }
+                
+                if countries.count != 0 {
+                    
+                    for i in 0...countries.count - 1 {
+                        flagsCodes.append(countries[i])
+                    }
+                    
+                    countItems = flagsCodes.count
+                    if countItems > maxImgCount {
+                        countItems = maxImgCount
+                    }
+                    
+                    for j in 0...countItems - 1 {
+                        if let flagImage = UIImage(named: IsoCountryCodes.searchByName(name: flagsCodes[j]).alpha2) {
+                            flagsImageArray.append(flagImage)
+                        } else {
+                            flagsImageArray.append(UIImage(named: "WW")!)
+                        }
+                    }
+                    
+                    var count = 0
+                    for i in 0...countItems - 1 {
+                        //Add a subview at the position
+                        subview = UIImageView(frame: CGRect(x: 0 , y: 20 * CGFloat(i), width: 30, height: 20))
+                        subview.image = flagsImageArray[count]
+                        //self.view.addSubview(subview)
+                        self.countriesView.addSubview(subview)
+                        count += 1
+                    }
+                }
                 
             } else {
                 print(error!.localizedDescription)
@@ -156,13 +246,17 @@ class uploadEditVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
     
     // zooming in/out function
     func zoomImg () {
+        let navheight = (self.navigationController?.navigationBar.frame.height)! + UIApplication.shared.statusBarFrame.size.height
+        let tabbarheight = (self.tabBarController?.tabBar.frame.height)!
+        let picspace = self.view.frame.size.height - navheight - tabbarheight
+        let picshift = picspace / 2 - pictureWidth / 2 - 40
         
         // define frame of zoomed image
-        let zoomed = CGRect(x: 0, y: tripNameTxt.frame.size.height + 30, width: self.view.frame.size.width, height: self.view.frame.size.width)
+        let zoomed = CGRect(x: 0, y: navheight + picshift, width: self.view.frame.size.width, height: self.view.frame.size.width)
         
         // frame of unzoomed (small) image
         //let unzoomed = CGRect(x: 15, y: 15, width: width / 4.5, height: width / 4.5)
-        let unzoomed = CGRect(x: 15, y: tripNameTxt.frame.size.height + 30, width: pictureWidth, height: pictureWidth)
+        let unzoomed = CGRect(x: 15, y: navheight + 15, width: pictureWidth, height: pictureWidth)
         
         // id picture is unzoomed, zoom it
         if pcImg.frame == unzoomed {
@@ -174,12 +268,16 @@ class uploadEditVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
                 // hide objects from background
                 self.view.backgroundColor = .black
                 self.titleTxt.alpha = 0
-                self.tripNameTxt.alpha = 0
+                self.saveBtn.alpha = 0
                 self.personsNr.alpha = 0
                 self.personsNrImg.alpha = 0
                 self.dateFromLbl.alpha = 0
                 self.dateToLbl.alpha = 0
-                self.personsNrStepper.alpha = 0
+                self.levelBtnImg.alpha = 0
+                self.levelNr.alpha = 0
+                self.publishLbl.alpha = 0
+                self.publishSwitch.alpha = 0
+                self.countriesView.alpha = 0
                 self.selectDateBtn.isHidden = true
                 
                 // hide remove button
@@ -195,12 +293,16 @@ class uploadEditVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
                 // unhide objects from background
                 self.view.backgroundColor = .white
                 self.titleTxt.alpha = 1
-                self.tripNameTxt.alpha = 1
+                self.saveBtn.alpha = 1
                 self.personsNr.alpha = 1
                 self.personsNrImg.alpha = 1
                 self.dateFromLbl.alpha = 1
                 self.dateToLbl.alpha = 1
-                self.personsNrStepper.alpha = 1
+                self.levelBtnImg.alpha = 1
+                self.levelNr.alpha = 1
+                self.publishLbl.alpha = 1
+                self.publishSwitch.alpha = 1
+                self.countriesView.alpha = 1
                 self.selectDateBtn.isHidden = false
                 
                 self.removeBtn.isHidden = false
@@ -210,17 +312,19 @@ class uploadEditVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
     
     // fields alignement function
     func alignement () {
-        
         let width = self.view.frame.size.width
         
-        tripNameTxt.frame = CGRect(x: 15, y: 15, width: width - 30, height: 20)
+        let navheight = (self.navigationController?.navigationBar.frame.height)! + UIApplication.shared.statusBarFrame.size.height
         
-        pcImg.frame = CGRect(x: 15, y: tripNameTxt.frame.size.height + 30, width: pictureWidth, height: pictureWidth)
+        pcImg.frame = CGRect(x: 15, y: navheight + 15, width: pictureWidth, height: pictureWidth)
         
-        titleTxt.frame = CGRect(x: 15, y: 80 + pcImg.frame.size.height, width:
+        titleTxt.frame = CGRect(x: 15, y: navheight + pcImg.frame.size.height + 15 + 30, width:
             width - 30, height: pcImg.frame.size.height)
         
-        dateFromLbl.frame = CGRect(x: 30 + pictureWidth, y: tripNameTxt.frame.size.height + 30, width:
+        countriesView.frame = CGRect(x: width - 40, y: navheight + 15, width:
+            30, height: 20)
+        
+        dateFromLbl.frame = CGRect(x: 30 + pictureWidth, y: navheight + 15, width:
             70, height: 15)
         
         selectDateBtn.frame = CGRect(x: 30 + pictureWidth, y: dateFromLbl.frame.origin.y + 20, width: 30, height: 30)
@@ -228,14 +332,20 @@ class uploadEditVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
         dateToLbl.frame = CGRect(x: 30 + pictureWidth, y: selectDateBtn.frame.origin.y + 35, width:
             70, height: 15)
         
-        personsNrImg.frame = CGRect(x: 30 + pictureWidth, y: tripNameTxt.frame.size.height + 35 + pictureWidth / 2, width: 25, height: 25)
+        countryIconBtn.frame = CGRect(x: 30 + pictureWidth, y: navheight + 10 + pictureWidth / 2, width: 25, height: 25)
         
-        personsNr.frame = CGRect(x: 80 + pictureWidth, y: tripNameTxt.frame.size.height + 35 + pictureWidth / 2, width: 30, height: 30)
+        personsNrImg.frame = CGRect(x: 30 + pictureWidth, y: navheight + 40 + pictureWidth / 2, width: 25, height: 25)
         
-        personsNrStepper.frame = CGRect(x: 30 + pictureWidth, y: personsNrImg.frame.origin.y + 45, width: 20, height: 20)
+        personsNr.frame = CGRect(x: 80 + pictureWidth, y: navheight + 40 + pictureWidth / 2, width: 30, height: 30)
         
-        removeBtn.frame = CGRect(x: pcImg.frame.origin.x, y: 15 + tripNameTxt.frame.origin.y + 10 + pcImg.frame.size.height + 15, width: pcImg.frame.size.width, height: 20)
-   }
+        levelBtnImg.frame = CGRect(x: 30 + pictureWidth, y: navheight + 15 + pcImg.frame.height - 25, width: 25, height: 25)
+        levelBtnImg.layer.cornerRadius = 5
+        levelBtnImg.clipsToBounds = true
+        
+        levelNr.frame = CGRect(x: 80 + pictureWidth, y: navheight + 15 + pcImg.frame.height - 30, width: 30, height: 30)
+        
+        removeBtn.frame = CGRect(x: pcImg.frame.origin.x, y: navheight + 10 + pcImg.frame.size.height + 10, width: pcImg.frame.size.width, height: 20)
+    }
     
     // hold selected object and dismiss PickerController
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
@@ -243,10 +353,13 @@ class uploadEditVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
         pcImg.image = info[UIImagePickerControllerEditedImage] as? UIImage
         self.dismiss(animated: true, completion: nil)
         
-        // unhide remove and right buttons
+        // enable save button
+        saveBtn.isEnabled = true
+        saveBtn.backgroundColor = UIColor(red: 52.0 / 255.0, green: 169.0 / 255.0, blue: 255.0 / 255.0, alpha: 1)
+        
+        
+        // unhide remove button
         removeBtn.isHidden = false
-        let acceptBtn = UIBarButtonItem(image: UIImage(named: "accept.png"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(saveBtn_clicked))
-        navigationItem.rightBarButtonItem = acceptBtn
         
         // enable second tap to zoom picture
         let zoomTap = UITapGestureRecognizer(target: self, action: #selector(zoomImg))
@@ -261,7 +374,7 @@ class uploadEditVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
         self.viewDidLoad()
     }
     
-    func saveBtn_clicked(_ sender: AnyObject) {
+    @IBAction func saveBtn_clicked(_ sender: AnyObject) {
         
         // get udpated object from the server
         let postQuery = PFQuery(className: "posts")
@@ -271,9 +384,9 @@ class uploadEditVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
                 for object in objects! {
                     object["username"] = PFUser.current()?.username
                     object["ava"] = PFUser.current()?.value(forKey: "ava") as! PFFile
-                    object["tripName"] = self.tripNameTxt.text
                     object["gender"] = PFUser.current()?.value(forKey: "gender") as! String
                     object["personsNr"] =  Int(self.personsNr.text!)
+                    object["level"] =  Int(self.levelNr.text!)
                     let dateFormatter = DateFormatter()
                     dateFormatter.dateFormat = "dd.MM.yyy"
                     let datefrom = dateFormatter.date(from: self.dateFromLbl.text!)
@@ -285,6 +398,7 @@ class uploadEditVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
                     } else {
                         object["title"] = self.titleTxt.text.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
                     }
+                    object["isPublished"] = self.publishSwitch.isOn
                     
                     // send pic to server after compression
                     let imageData = UIImageJPEGRepresentation(self.pcImg.image!, 0.5)
@@ -337,18 +451,12 @@ class uploadEditVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
                     // update object on the server
                     object.saveInBackground (block: { (success:Bool, error: Error?) in
                         if error == nil {
-                            // send notification wiht name "uploaded"
-                            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "uploaded"), object: nil)
-                            
-                            // switch to another ViewController at 0 index of tabbar
-                            self.tabBarController!.selectedIndex = 0
-                            
+                            // dismiss view controller and move to firts tab
+                            self.presentingViewController?.dismiss(animated: true, completion: nil)
+                            self.navigationController?.popViewController(animated: true)
+                                                        
                             // reset everything
                             self.viewDidLoad()
-                            
-                            // set default values of forms
-                            self.titleTxt.text = ""
-                            self.tripNameTxt.text = ""
                             
                         } else {
                             print(error!.localizedDescription)
@@ -389,28 +497,193 @@ class uploadEditVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-        if segue.identifier == "showTimeframeVC" {
-            // Select Range
-            let vc = segue.destination as! TimeFrameVC
-            
-            vc.timeFrame?.beginDate = Date()
-            vc.timeFrame?.endDate = Date()            
-            
-            vc.timeFrameDelegate = self
+        if let identifier = segue.identifier {
+            switch identifier {
+            case "showTimeframeVC":
+                let vc = segue.destination as! TimeFrameVC
+                // vc.timeFrame?.beginDate = Date()
+                // vc.timeFrame?.endDate = Date()
+                vc.timeFrameDelegate = self
+            case "showCountries":
+                // let embeddedPPC = segue.destination.popoverPresentationController
+                let embeddedPPC = segue.destination as! countriesTVC
+                embeddedPPC.delegate = self
+            case "seguePersonsNr":
+                let quantityVC = segue.destination as! quantityTVC
+                quantityVC.modalPresentationStyle = UIModalPresentationStyle.popover
+                quantityVC.popoverPresentationController!.delegate = self
+                quantityVC.delegate = self
+            default:
+                break
+            }
         }
+    }
         
-    }
-    
-    // modify personsNr label text according to stepper status
-    @IBAction func personNrStepper_clicked(_ sender: UIStepper) {
-        let step = Int(sender.value)
-        if step >= 1 && step <= 99 {
-            personsNr.text = Int(sender.value).description
-        }
-    }
-    
     @IBAction func selectDateBtn_clicked(_ sender: Any) {
         
         
+    }
+    
+    @IBAction func personsNrBtn_tapped(_ sender: UIButton) {
+        let popoverContent = self.storyboard?.instantiateViewController(withIdentifier: "quantityTVC") as! quantityTVC
+        
+        popoverContent.modalPresentationStyle = UIModalPresentationStyle.popover
+        if let popover = popoverContent.popoverPresentationController {
+            popoverContent.preferredContentSize = CGSize(width: 70, height: 450)
+            
+            popoverContent.popoverPresentationController!.delegate = self
+            popoverContent.delegate = self
+            
+            popover.delegate = self
+            popover.sourceView = sender
+            popover.sourceRect = sender.bounds
+        }
+        
+        self.present(popoverContent, animated: true, completion: nil)
+    }
+    
+    
+    @IBAction func countryIconBtn_tapped(_ sender: UIButton) {
+
+    }
+    
+    @IBAction func levelsNrBtn_tapped(_ sender: UIButton) {
+        let popoverContent = self.storyboard?.instantiateViewController(withIdentifier: "quantityLevelTVC") as! quantityLevelTVC
+        
+        popoverContent.modalPresentationStyle = UIModalPresentationStyle.popover
+        if let popover = popoverContent.popoverPresentationController {
+            popoverContent.preferredContentSize = CGSize(width: 70, height: 450)
+            
+            popoverContent.popoverPresentationController!.delegate = self
+            popoverContent.delegate = self
+            
+            popover.delegate = self
+            popover.sourceView = sender
+            popover.sourceRect = sender.bounds
+        }
+        
+        self.present(popoverContent, animated: true, completion: nil)
+    }
+    
+}
+
+// quantityPopoverDelegate procedure for personsNr field
+extension uploadEditVC: QuantityPersonsPopoverDelegate {
+    func updatePersonsNr(withQuantity quantity: Int) {
+        self.quantity = quantity
+        self.personsNr.text = "\(self.quantity)"
+    }
+}
+
+// quantityPopoverDelegate procedure for levelsNr field
+extension uploadEditVC: QuantityLevelsPopoverDelegate {
+    func updateLevelsNr(withQuantity quantity: Int) {
+        self.quantity = quantity
+        self.levelNr.text = "\(self.quantity)"
+    }
+}
+
+// popoverDelegate procedure for countries view field
+extension uploadEditVC: CountriesPopoverDelegate {
+    func updateCountriesFlags(withCountries countries: [countryInfo]) {
+        self.countriesInfo.removeAll(keepingCapacity: false)
+        self.countriesInfo = countries
+        
+        var flagsImageArray = [UIImage]()
+        var countItems = Int()
+        var flagsCodes = [String]()
+        var subview = UIImageView()
+        let maxImgCount = 7
+        
+        flagsCodes.removeAll(keepingCapacity: false)
+        flagsImageArray.removeAll(keepingCapacity: false)
+        
+        // remove all subviews
+        for view in countriesView.subviews {
+            view.removeFromSuperview()
+        }
+        
+        if countries.count != 0 {
+            
+            for i in 0...countries.count - 1 {
+                flagsCodes.append(countries[i].name)
+            }
+            
+            countItems = flagsCodes.count
+            if countItems > maxImgCount {
+                countItems = maxImgCount
+            }
+            
+            for j in 0...countItems - 1 {
+                if let flagImage = UIImage(named: IsoCountryCodes.searchByName(name: flagsCodes[j]).alpha2) {
+                    flagsImageArray.append(flagImage)
+                } else {
+                    flagsImageArray.append(UIImage(named: "WW")!)
+                }
+            }
+            
+            var count = 0
+            for i in 0...countItems - 1 {
+                //Add a subview at the position
+                subview = UIImageView(frame: CGRect(x: 0 , y: 20 * CGFloat(i), width: 30, height: 20))
+                subview.image = flagsImageArray[count]
+                //self.view.addSubview(subview)
+                countriesView.addSubview(subview)
+                count += 1
+            }
+        }
+    }
+}
+
+// MARK: UIPopoverPresentationControllerDelegate
+extension uploadEditVC: UIPopoverPresentationControllerDelegate {
+    
+    // In modal presentation we need to add a button to our popover
+    // to allow it to be dismissed. Handle the situation where
+    // our popover may be embedded in a navigation controller
+    
+    func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
+        return UIModalPresentationStyle.none
+    }
+    
+    func presentationController(_ controller: UIPresentationController, viewControllerForAdaptivePresentationStyle style: UIModalPresentationStyle) -> UIViewController? {
+        guard style != .none else {
+            return controller.presentedViewController
+        }
+        
+        if let navController = controller.presentedViewController as? UINavigationController {
+            addDismissButton(navigationController: navController)
+            return navController
+        } else {
+            let navController = UINavigationController.init(rootViewController: controller.presentedViewController)
+            addDismissButton(navigationController: navController)
+            return navController
+        }
+    }
+    
+    // Check for when we present in a non modal style and remove the
+    // the dismiss button from the navigation bar.
+    
+    func presentationController(_ presentationController: UIPresentationController, willPresentWithAdaptiveStyle style: UIModalPresentationStyle, transitionCoordinator: UIViewControllerTransitionCoordinator?) {
+        if style == .none {
+            if let navController = presentationController.presentedViewController as? UINavigationController {
+                removeDismissButton(navigationController: navController)
+            }
+        }
+    }
+    
+    func didDismissPresentedView() {
+        presentedViewController?.dismiss(animated: true, completion: nil)
+    }
+    
+    private func addDismissButton(navigationController: UINavigationController) {
+        let rootViewController = navigationController.viewControllers[0]
+        rootViewController.navigationItem.leftBarButtonItem = UIBarButtonItem.init(barButtonSystemItem: .done,
+                                                                                   target: self, action: #selector(didDismissPresentedView))
+    }
+    
+    private func removeDismissButton(navigationController: UINavigationController) {
+        let rootViewController = navigationController.viewControllers[0]
+        rootViewController.navigationItem.leftBarButtonItem = nil
     }
 }

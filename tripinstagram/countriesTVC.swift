@@ -130,6 +130,7 @@ class countriesTVC: UITableViewController {
         
         self.presentingViewController?.dismiss(animated: true, completion: nil)
         self.navigationController?.popViewController(animated: true)
+        
     }
     
     @IBAction func saveBtn_tapped(_ sender: UIBarButtonItem) {
