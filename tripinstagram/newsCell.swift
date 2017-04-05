@@ -60,6 +60,5 @@ class newsCell: UITableViewCell {
         // round ava picture
         avaImg.layer.cornerRadius = avaImg.frame.size.width / 2
         avaImg.clipsToBounds = true
-
     }
 }

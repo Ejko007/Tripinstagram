@@ -493,11 +493,17 @@
                                 <rect key="frame" x="217" y="207" width="30" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="nr_persons"/>
+                                <connections>
+                                    <action selector="personsNrBtn_tapped:" destination="aEY-tR-69P" eventType="touchUpInside" id="U1j-en-iW5"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="xLa-Ql-9MH">
                                 <rect key="frame" x="217" y="245" width="30" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="level"/>
+                                <connections>
+                                    <action selector="levelsNrBtn_tapped:" destination="aEY-tR-69P" eventType="touchUpInside" id="MUy-lT-mZW"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Bjb-1O-Hmz">
                                 <rect key="frame" x="281" y="249" width="42" height="21"/>
@@ -536,6 +542,9 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <state key="normal" title="Odstranit"/>
+                                <connections>
+                                    <action selector="removeBtn_clicked:" destination="aEY-tR-69P" eventType="touchUpInside" id="8Ng-oA-hUx"/>
+                                </connections>
                             </button>
                         </subviews>
                     </view>
@@ -1396,7 +1405,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="OqL-Xu-Ni8">
-                                            <rect key="frame" x="15" y="0.0" width="40" height="44"/>
+                                            <rect key="frame" x="16" y="0.0" width="39" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
@@ -1413,7 +1422,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="10+" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ZRn-U5-YdN">
-                                            <rect key="frame" x="15" y="0.0" width="40" height="44"/>
+                                            <rect key="frame" x="16" y="0.0" width="39" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
@@ -1897,7 +1906,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dbQ-V1-kBa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3865" y="396"/>
+            <point key="canvasLocation" x="6749" y="963"/>
         </scene>
         <!--Upload EditVC-->
         <scene sceneID="9Dk-J1-8gX">
@@ -1913,7 +1922,6 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <state key="normal" title="Odstranit"/>
                                 <connections>
-                                    <action selector="removeBtn_clicked:" destination="aEY-tR-69P" eventType="touchUpInside" id="K2H-af-MoF"/>
                                     <action selector="removeBtn_clicked:" destination="Rde-di-ysN" eventType="touchUpInside" id="iCc-KO-jGR"/>
                                 </connections>
                             </button>
@@ -1957,7 +1965,6 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="level"/>
                                 <connections>
-                                    <action selector="levelsNrBtn_tapped:" destination="aEY-tR-69P" eventType="touchUpInside" id="BGO-gw-IZQ"/>
                                     <action selector="levelsNrBtn_tapped:" destination="Rde-di-ysN" eventType="touchUpInside" id="RKD-3k-dZ9"/>
                                 </connections>
                             </button>
@@ -1982,7 +1989,8 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="calendar"/>
                                 <connections>
-                                    <action selector="selectDateBtn_clicked:" destination="Rde-di-ysN" eventType="touchUpInside" id="SO4-ef-7QE"/>
+                                    <action selector="selectDateBtn_clicked:" destination="Rde-di-ysN" eventType="touchUpInside" id="cGD-sp-tgk"/>
+                                    <segue destination="McT-S0-cd3" kind="modal" identifier="showTimeframeVC" id="TIX-Io-erR"/>
                                 </connections>
                             </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" id="3Na-Pi-hxz">
@@ -1997,7 +2005,6 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="nr_persons"/>
                                 <connections>
-                                    <action selector="personsNrBtn_tapped:" destination="aEY-tR-69P" eventType="touchUpInside" id="c6r-6s-YQE"/>
                                     <action selector="personsNrBtn_tapped:" destination="Rde-di-ysN" eventType="touchUpInside" id="grz-Uz-afc"/>
                                 </connections>
                             </button>
@@ -2044,30 +2051,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Fj1-VU-29n" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="5508.5" y="4178.5"/>
-        </scene>
-        <!--Time FrameVC-->
-        <scene sceneID="fWq-Y9-pev">
-            <objects>
-                <viewController id="3dH-gD-HHm" customClass="TimeFrameVC" customModule="tripinstagram" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="Mdk-Pf-kvy">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" id="OVb-jx-rgl" customClass="GLCalendarView">
-                                <rect key="frame" x="0.0" y="75" width="383" height="606"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.66666666669999997" green="0.66666666669999997" blue="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </view>
-                        </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    </view>
-                    <connections>
-                        <outlet property="calendarView" destination="OVb-jx-rgl" id="3kE-FC-ylH"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="U6j-di-rI1" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="6186" y="4179"/>
         </scene>
         <!--Trip MapVC-->
         <scene sceneID="02N-oh-XY6">
@@ -2288,7 +2271,7 @@
                                 <rect key="frame" x="0.0" y="106" width="375" height="168"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="W9k-c2-oCP" id="z1T-MS-BoW">
-                                    <rect key="frame" x="0.0" y="0.0" width="342" height="167.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="341" height="167.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Date" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Sea-PZ-5xp">
@@ -2454,7 +2437,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="tUg-zm-NfM" id="NFX-Gv-Nka">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="v6G-G3-fh9">
@@ -2474,7 +2457,7 @@
                                 <rect key="frame" x="0.0" y="72" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="fJB-83-R8y" id="8GK-Zf-xaS">
-                                    <rect key="frame" x="0.0" y="0.0" width="342" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="341" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ufL-O5-bTd">
@@ -3809,7 +3792,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="OdZ-Kg-AAQ" id="Jiy-RZ-5eS">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="WW" id="TdT-SP-4If">
@@ -3881,7 +3864,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="UFd-uG-GgO">
-                                            <rect key="frame" x="15" y="0.0" width="40" height="44"/>
+                                            <rect key="frame" x="16" y="0.0" width="39" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
@@ -3945,6 +3928,7 @@
         <simulatedScreenMetrics key="destination" type="retina4_7.fullscreen"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
+        <segue reference="TIX-Io-erR"/>
         <segue reference="2i9-Wo-o3h"/>
         <segue reference="ZxN-e4-ks8"/>
     </inferredMetricsTieBreakers>

@@ -54,9 +54,6 @@ class uploadEditVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
 
     override func viewDidLoad() {
         
-        let width = self.view.frame.size.width
-        let height = self.view.frame.size.height
-
         var countries = [String]()
         
         super.viewDidLoad()
@@ -69,29 +66,16 @@ class uploadEditVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
         saveBtn.titleLabel!.text = save_str
         saveBtn.isHidden = false
 
-        // set save button position
-        var btnshift:CGFloat = 0
-        if removePicture {
-            btnshift = 0
-            saveBtn.backgroundColor = UIColor.lightGray
-        } else {
-            saveBtn.backgroundColor = UIColor(red: 52.0 / 255.0, green: 169.0 / 255.0, blue: 255.0 / 255.0, alpha: 1)
-            btnshift = 1
-        }
-        
-        let tabbarHeight = self.tabBarController?.tabBar.frame.size.height
-        self.saveBtn.frame = CGRect(x: 0, y: height - btnshift * tabbarHeight! - width / 8, width: width, height: width / 8)
-        self.publishLbl.frame = CGRect(x: 15, y: height - btnshift * tabbarHeight! - width / 8 - 35, width: width / 2, height: 20)
-        self.publishSwitch.frame = CGRect(x: width / 2 + 100, y: height - btnshift * tabbarHeight! - width / 8 - 40, width: width / 2 - 100, height: 20)
-        self.publishSwitch.transform = CGAffineTransform(scaleX: 0.75, y: 0.75)
-
+        // set save and remove buttons property
         if !removePicture {
             // show remove button
             removeBtn.isHidden = false
+            saveBtn.backgroundColor = UIColor(red: 52.0 / 255.0, green: 169.0 / 255.0, blue: 255.0 / 255.0, alpha: 1)
         } else {
             // hide remove button
             removeBtn.isHidden = true
             // standard UI containt
+            saveBtn.backgroundColor = UIColor.lightGray
             pcImg.image = UIImage(named: "pbg.png")
         }
         
@@ -278,6 +262,7 @@ class uploadEditVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
                 self.publishLbl.alpha = 0
                 self.publishSwitch.alpha = 0
                 self.countriesView.alpha = 0
+                self.countryIconBtn.alpha = 0
                 self.selectDateBtn.isHidden = true
                 
                 // hide remove button
@@ -303,6 +288,7 @@ class uploadEditVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
                 self.publishLbl.alpha = 1
                 self.publishSwitch.alpha = 1
                 self.countriesView.alpha = 1
+                self.countryIconBtn.alpha = 1
                 self.selectDateBtn.isHidden = false
                 
                 self.removeBtn.isHidden = false
@@ -316,35 +302,110 @@ class uploadEditVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
         
         let navheight = (self.navigationController?.navigationBar.frame.height)! + UIApplication.shared.statusBarFrame.size.height
         
-        pcImg.frame = CGRect(x: 15, y: navheight + 15, width: pictureWidth, height: pictureWidth)
+        pcImg.translatesAutoresizingMaskIntoConstraints = false
+        titleTxt.translatesAutoresizingMaskIntoConstraints = false
+        removeBtn.translatesAutoresizingMaskIntoConstraints = false
+        saveBtn.translatesAutoresizingMaskIntoConstraints = false
+        dateFromLbl.translatesAutoresizingMaskIntoConstraints = false
+        dateToLbl.translatesAutoresizingMaskIntoConstraints = false
+        selectDateBtn.translatesAutoresizingMaskIntoConstraints = false
+        personsNrImg.translatesAutoresizingMaskIntoConstraints = false
+        personsNr.translatesAutoresizingMaskIntoConstraints = false
+        levelBtnImg.translatesAutoresizingMaskIntoConstraints = false
+        levelNr.translatesAutoresizingMaskIntoConstraints = false
+        countryIconBtn.translatesAutoresizingMaskIntoConstraints = false
+        countriesView.translatesAutoresizingMaskIntoConstraints = false
+        publishLbl.translatesAutoresizingMaskIntoConstraints = false
+        publishSwitch.translatesAutoresizingMaskIntoConstraints = false
         
-        titleTxt.frame = CGRect(x: 15, y: navheight + pcImg.frame.size.height + 15 + 30, width:
-            width - 30, height: pcImg.frame.size.height)
+        publishSwitch.transform = CGAffineTransform(scaleX: 0.75, y: 0.75)
         
-        countriesView.frame = CGRect(x: width - 40, y: navheight + 15, width:
-            30, height: 20)
-        
-        dateFromLbl.frame = CGRect(x: 30 + pictureWidth, y: navheight + 15, width:
-            70, height: 15)
-        
-        selectDateBtn.frame = CGRect(x: 30 + pictureWidth, y: dateFromLbl.frame.origin.y + 20, width: 30, height: 30)
-        
-        dateToLbl.frame = CGRect(x: 30 + pictureWidth, y: selectDateBtn.frame.origin.y + 35, width:
-            70, height: 15)
-        
-        countryIconBtn.frame = CGRect(x: 30 + pictureWidth, y: navheight + 10 + pictureWidth / 2, width: 25, height: 25)
-        
-        personsNrImg.frame = CGRect(x: 30 + pictureWidth, y: navheight + 40 + pictureWidth / 2, width: 25, height: 25)
-        
-        personsNr.frame = CGRect(x: 80 + pictureWidth, y: navheight + 40 + pictureWidth / 2, width: 30, height: 30)
-        
-        levelBtnImg.frame = CGRect(x: 30 + pictureWidth, y: navheight + 15 + pcImg.frame.height - 25, width: 25, height: 25)
         levelBtnImg.layer.cornerRadius = 5
         levelBtnImg.clipsToBounds = true
         
-        levelNr.frame = CGRect(x: 80 + pictureWidth, y: navheight + 15 + pcImg.frame.height - 30, width: 30, height: 30)
+        // constraints
+        // vertical constraints
+        self.view.addConstraints(NSLayoutConstraint.constraints(
+            withVisualFormat: "V:|-\(navheight + 15)-[picture(\(pictureWidth))]-10-[removebtn(20)]-10-[titletxt(\(pictureWidth))]",
+            options: [],
+            metrics: nil, views: ["picture":pcImg, "removebtn":removeBtn, "titletxt":titleTxt]))
         
-        removeBtn.frame = CGRect(x: pcImg.frame.origin.x, y: navheight + 10 + pcImg.frame.size.height + 10, width: pcImg.frame.size.width, height: 20)
+        self.view.addConstraints(NSLayoutConstraint.constraints(
+            withVisualFormat: "V:[publishlbl(20)]-15-[savebtn(\(width / 8))]-|",
+            options: [],
+            metrics: nil, views: ["publishlbl":publishLbl, "savebtn":saveBtn]))
+        
+        self.view.addConstraints(NSLayoutConstraint.constraints(
+            withVisualFormat: "V:[publishswitch(20)]-15-[savebtn(\(width / 8))]-|",
+            options: [],
+            metrics: nil, views: ["publishswitch":publishSwitch, "savebtn":saveBtn]))
+        
+        self.view.addConstraints(NSLayoutConstraint.constraints(
+            withVisualFormat: "V:|-\(navheight + 15)-[datefromlbl]-5-[calendarbtn(20)]-5-[dateto]-5-[countriesbtn(30)]-5-[personsbtn(30)]-5-[levelbtn(30)]-40-[titletxt]",
+            options: [],
+            metrics: nil, views: ["datefromlbl":dateFromLbl, "calendarbtn":selectDateBtn, "dateto":dateToLbl, "countriesbtn":countryIconBtn, "personsbtn":personsNrImg, "levelbtn":levelBtnImg, "titletxt":titleTxt]))
+        
+        self.view.addConstraints(NSLayoutConstraint.constraints(
+            withVisualFormat: "V:|-\(navheight + 15)-[datefromlbl]-5-[calendarbtn]-5-[dateto]-40-[personsnr(30)]-5-[levelsnr(30)]-40-[titletxt]",
+            options: [],
+            metrics: nil, views: ["datefromlbl":dateFromLbl, "calendarbtn":selectDateBtn, "dateto":dateToLbl, "personsnr":personsNr, "levelsnr":levelNr, "titletxt":titleTxt]))
+        
+        self.view.addConstraints(NSLayoutConstraint.constraints(
+            withVisualFormat: "V:|-\(navheight + 15)-[countriesview(20)]",
+            options: [],
+            metrics: nil, views: ["countriesview":countriesView]))
+        
+        // horizontal constraints
+        self.view.addConstraints(NSLayoutConstraint.constraints(
+            withVisualFormat: "H:|-15-[picture(\(pictureWidth))]-15-[datefrom]-[countriesview(30)]-15-|",
+            options: [],
+            metrics: nil, views: ["picture":pcImg, "datefrom":dateFromLbl, "countriesview":countriesView]))
+        
+        self.view.addConstraints(NSLayoutConstraint.constraints(
+            withVisualFormat: "H:|-15-[picture(\(pictureWidth))]-15-[calendaricon(20)]",
+            options: [],
+            metrics: nil, views: ["picture":pcImg, "calendaricon":selectDateBtn]))
+        
+        self.view.addConstraints(NSLayoutConstraint.constraints(
+            withVisualFormat: "H:|-15-[picture(\(pictureWidth))]-15-[dateto]",
+            options: [],
+            metrics: nil, views: ["picture":pcImg, "dateto":dateToLbl]))
+        
+        self.view.addConstraints(NSLayoutConstraint.constraints(
+            withVisualFormat: "H:|-15-[picture(\(pictureWidth))]-15-[countriesbtn(30)]",
+            options: [],
+            metrics: nil, views: ["picture":pcImg, "countriesbtn":countryIconBtn]))
+        
+        self.view.addConstraints(NSLayoutConstraint.constraints(
+            withVisualFormat: "H:|-15-[picture(\(pictureWidth))]-15-[personsbtn(30)]-15-[personsnr]",
+            options: [],
+            metrics: nil, views: ["picture":pcImg, "personsbtn":personsNrImg, "personsnr":personsNr]))
+        
+        self.view.addConstraints(NSLayoutConstraint.constraints(
+            withVisualFormat: "H:|-15-[picture(\(pictureWidth))]-15-[levelbtn(30)]-15-[levelnr]",
+            options: [],
+            metrics: nil, views: ["picture":pcImg, "levelbtn":levelBtnImg, "levelnr":levelNr]))
+        
+        self.view.addConstraints(NSLayoutConstraint.constraints(
+            withVisualFormat: "H:|-15-[removebtn]",
+            options: [],
+            metrics: nil, views: ["removebtn":removeBtn]))
+        
+        self.view.addConstraints(NSLayoutConstraint.constraints(
+            withVisualFormat: "H:|-15-[titletxt]-15-|",
+            options: [],
+            metrics: nil, views: ["titletxt":titleTxt]))
+        
+        self.view.addConstraints(NSLayoutConstraint.constraints(
+            withVisualFormat: "H:|-15-[publishlbl]-[publishswitch]-15-|",
+            options: [],
+            metrics: nil, views: ["publishlbl":publishLbl, "publishswitch":publishSwitch]))
+        
+        self.view.addConstraints(NSLayoutConstraint.constraints(
+            withVisualFormat: "H:|-0-[savebtn]-0-|",
+            options: [],
+            metrics: nil, views: ["savebtn":saveBtn]))
+
     }
     
     // hold selected object and dismiss PickerController
@@ -501,11 +562,8 @@ class uploadEditVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
             switch identifier {
             case "showTimeframeVC":
                 let vc = segue.destination as! TimeFrameVC
-                // vc.timeFrame?.beginDate = Date()
-                // vc.timeFrame?.endDate = Date()
                 vc.timeFrameDelegate = self
             case "showCountries":
-                // let embeddedPPC = segue.destination.popoverPresentationController
                 let embeddedPPC = segue.destination as! countriesTVC
                 embeddedPPC.delegate = self
             case "seguePersonsNr":

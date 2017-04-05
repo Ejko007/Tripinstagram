@@ -113,7 +113,7 @@ class headerView: UICollectionReusableView {
                     newsObj.saveEventually()
 
                 } else {
-                    print(error?.localizedDescription as Any)
+                    print(error!.localizedDescription)
                 }
             })
             
@@ -148,12 +148,12 @@ class headerView: UICollectionReusableView {
                                 })
 
                             } else {
-                                print(error?.localizedDescription as Any)
+                                print(error!.localizedDescription)
                             }
                         })
                     }
                 } else {
-                    print (error?.localizedDescription as Any)
+                    print (error!.localizedDescription)
                 }
             })
         }
