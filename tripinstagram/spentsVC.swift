@@ -38,15 +38,6 @@ class spentsVC: UITableViewController {
         
         super.viewDidLoad()
         
-        // navigation bar
-        self.navigationController?.navigationBar.frame = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 65)
-        self.navigationController?.navigationBar.barTintColor = UIColor(colorLiteralRed: 18.0 / 255.0, green: 86.0 / 255.0, blue: 136.0 / 255.0, alpha: 1)
-        self.navigationController?.navigationBar.isTranslucent = false
-        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]
-
-        self.navigationController?.navigationBar.backgroundColor = .white
-        self.navigationController?.navigationBar.tintColor = .white
-        
         // Create a navigation item with a title
         self.navigationItem.title = spents_menu_str.uppercased()
         
@@ -62,6 +53,7 @@ class spentsVC: UITableViewController {
             self.navigationItem.rightBarButtonItems = []
             spentBtn.isEnabled = false
         }
+        
     }
     
      // find post
@@ -110,27 +102,23 @@ class spentsVC: UITableViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
         // display spents records
         findSpents()
-
-        self.tableView.reloadData()
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        // self.tableView.reloadData()
     }
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let header = tableView.dequeueReusableCell(withIdentifier: "spentHeaderCell") as! spentHeaderCell
         
-        header.backgroundColor = UIColor(red: 74 / 255, green: 144 / 255, blue: 226 / 255, alpha: 30 / 100)
-        header.textLabel?.tintColor = .black
+        header.textLabel?.tintColor = .white
+        header.spentTypeLbl?.tintColor = .white
+        header.spentTypeLbl.textColor = .white
         
         if section == 0 {
             header.spentTypeLbl.text = spent_beginning_str
+            header.backgroundColor = UIColor(colorLiteralRed: 0.00, green: 0.580, blue: 0.969, alpha: 1.00)
         } else {
             header.spentTypeLbl.text = spent_other_str
+            header.backgroundColor = UIColor(colorLiteralRed: 1.00, green: 0.361, blue: 0.145, alpha: 1.00)
         }
         return header
     }
@@ -182,17 +170,15 @@ class spentsVC: UITableViewController {
                 }
             })
             
-            // close cell
-            tableView.setEditing(false, animated: true)
-            
             // STEP 2. Delete row from tableView
             if initialSpent {
                 self.spentArrayInitial.remove(at: indexPath.row)
             } else {
                 self.spentArrayOther.remove(at: indexPath.row)
             }
-            
-            tableView.deleteRows(at: [indexPath], with: .fade)
+             
+            // close cell
+            tableView.setEditing(false, animated: true)
             
             // reloading data
             tableView.reloadData()
@@ -217,9 +203,32 @@ class spentsVC: UITableViewController {
         return 100
     }
     
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        
+        if editingStyle == .delete {
+            tableView.beginUpdates()
+            
+            tableView.deleteRows(at: [indexPath], with: .fade)
+            
+            tableView.endUpdates()
+        }
+        
+    }
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
-        //return spentTypeArray.count
-        return 2
+        var initsectionsNr:Int = 0
+        var othersectionsNr:Int = 0
+        
+        let initialSpents = spentArrayInitial.count
+        let otherSpents = spentArrayOther.count
+        if initialSpents > 0 {
+            initsectionsNr = 1
+        }
+        if otherSpents > 0 {
+            othersectionsNr = 1
+        }
+        
+            return (initsectionsNr + othersectionsNr)
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -234,7 +243,7 @@ class spentsVC: UITableViewController {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        var nr = Int()
+        var nr: Int = 0
         if section == 0 {
             nr = spentArrayInitial.count
         } else {
