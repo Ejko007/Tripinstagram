@@ -454,6 +454,15 @@ class uploadEditVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
                     let dateTo = dateFormatter.date(from: self.dateToLbl.text!)
                     object["tripFrom"] = datefrom
                     object["tripTo"] = dateTo
+                    var countries = [String]()
+                    if !self.countriesInfo.isEmpty {
+                        for i in 0...self.countriesInfo.count - 1 {
+                            countries.append(self.countriesInfo[i].name)
+                        }
+                        object["countries"] = countries
+                    } else {
+                        object["countries"] = [""]
+                    }
                     if self.titleTxt.text.isEmpty {
                         object["title"] = ""
                     } else {
@@ -656,10 +665,6 @@ extension uploadEditVC: CountriesPopoverDelegate {
         flagsCodes.removeAll(keepingCapacity: false)
         flagsImageArray.removeAll(keepingCapacity: false)
         
-        // remove all subviews
-        for view in countriesView.subviews {
-            view.removeFromSuperview()
-        }
         
         if countries.count != 0 {
             

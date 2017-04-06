@@ -56,6 +56,7 @@
 		0A4939531E4F3A0C006D9218 /* itineraryHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4939521E4F3A0C006D9218 /* itineraryHeaderCell.swift */; };
 		0A4939551E507744006D9218 /* itineraryFooterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4939541E507744006D9218 /* itineraryFooterCell.swift */; };
 		0A4939571E559CE1006D9218 /* CosmosDistrib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4939561E559CE1006D9218 /* CosmosDistrib.swift */; };
+		0A4F9B511E967EF90074EE63 /* currenciesTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4F9B501E967EF90074EE63 /* currenciesTVC.swift */; };
 		0A50EAB01E27FEF90080ACCB /* tripDetailMapSearchHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A50EAAF1E27FEF90080ACCB /* tripDetailMapSearchHistory.swift */; };
 		0A50EAB21E27FFA90080ACCB /* tripDetailMapLocationSearchTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A50EAB11E27FFA90080ACCB /* tripDetailMapLocationSearchTable.swift */; };
 		0A50EAB41E2800FA0080ACCB /* tripDetailHandleMapSearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A50EAB31E2800FA0080ACCB /* tripDetailHandleMapSearchVC.swift */; };
@@ -223,6 +224,7 @@
 		0A4939521E4F3A0C006D9218 /* itineraryHeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = itineraryHeaderCell.swift; sourceTree = "<group>"; };
 		0A4939541E507744006D9218 /* itineraryFooterCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = itineraryFooterCell.swift; sourceTree = "<group>"; };
 		0A4939561E559CE1006D9218 /* CosmosDistrib.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CosmosDistrib.swift; sourceTree = "<group>"; };
+		0A4F9B501E967EF90074EE63 /* currenciesTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = currenciesTVC.swift; sourceTree = "<group>"; };
 		0A50EAAF1E27FEF90080ACCB /* tripDetailMapSearchHistory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = tripDetailMapSearchHistory.swift; sourceTree = "<group>"; };
 		0A50EAB11E27FFA90080ACCB /* tripDetailMapLocationSearchTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = tripDetailMapLocationSearchTable.swift; sourceTree = "<group>"; };
 		0A50EAB31E2800FA0080ACCB /* tripDetailHandleMapSearchVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = tripDetailHandleMapSearchVC.swift; sourceTree = "<group>"; };
@@ -518,6 +520,7 @@
 				0A8626371DB0BDE30001C1EE /* Main.storyboard */,
 				0AA6C9611E8946030084012C /* countriesCell.swift */,
 				0AA6C95F1E89423C0084012C /* countriesTVC.swift */,
+				0A4F9B501E967EF90074EE63 /* currenciesTVC.swift */,
 				0A88522C1E826A5200D1B48C /* quantityTVC.swift */,
 				0AC9D3CB1E8519120027520F /* quantityLevelTVC.swift */,
 				0A21870B1E48E6FE00496620 /* FlagKit.xcassets */,
@@ -940,6 +943,7 @@
 				0A1D9F4C1DBA4BD90002BAD1 /* postCell.swift in Sources */,
 				0AA6C9601E89423C0084012C /* countriesTVC.swift in Sources */,
 				0A0D97B01E49D4CC00FA9B7B /* IsoCountries.swift in Sources */,
+				0A4F9B511E967EF90074EE63 /* currenciesTVC.swift in Sources */,
 				0A1E9D611DBC8BDC00080209 /* commentCell.swift in Sources */,
 				0A4939511E4F0E0D006D9218 /* itineraryCell.swift in Sources */,
 				0A431AD61E4C890E00F22575 /* itineraryVC.swift in Sources */,

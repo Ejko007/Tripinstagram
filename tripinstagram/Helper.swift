@@ -110,6 +110,9 @@ let back_str = "Zpět"
 let done_str = "Hotovo"
 let countries_str = "Seznam zemí"
 let countries_max_str = "Maximální počet vybraných zemí je 7. Vyberte prosím ze seznamu menší počet zemí."
+let add_str = "Přidat"
+let add_spent_name_str = "Zadejte název nákladové položky. Toto políčko nemůže zůstat prázdné."
+let currency_code_str = "Kód měny"
 
 // croping picture and center it
 func cropToBounds(_ image: UIImage, width: Double, height: Double) -> UIImage {
@@ -191,6 +194,26 @@ func resizeImage(_ image: UIImage, targetSize: CGSize) -> UIImage {
     
     return newImage!
 }
+
+// get currency references
+func getCurrencyList(referenceCurrency: String) -> [Currency] {
+    
+    var finalCurrencyList = [Currency]()
+
+    let requestURL = URL(string: "http://api.fixer.io/latest?base=" + referenceCurrency)
+    let data = try! Data(contentsOf: requestURL!)
+    
+    finalCurrencyList.removeAll(keepingCapacity: false)
+    if let json = try! JSONSerialization.jsonObject(with: data, options: .allowFragments)  as? [String: AnyObject]{
+        for (name, rate) in json["rates"] as! [String: Double]{
+            let currencyInstance = Currency(name: name, rate: rate)
+            finalCurrencyList.append(currencyInstance!)
+        }
+    }
+    
+    return finalCurrencyList
+}
+
 
 extension Double {
     /// Rounds the double to decimal places value

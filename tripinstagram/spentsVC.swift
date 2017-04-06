@@ -176,7 +176,7 @@ class spentsVC: UITableViewController {
             } else {
                 self.spentArrayOther.remove(at: indexPath.row)
             }
-             
+            
             // close cell
             tableView.setEditing(false, animated: true)
             

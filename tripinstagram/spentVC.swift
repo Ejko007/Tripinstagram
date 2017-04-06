@@ -10,6 +10,17 @@ import UIKit
 import Parse
 import PopupDialog
 
+struct Currency {
+    
+    var name: String
+    var rate: Double
+    
+    init?(name: String, rate: Double) {
+        self.name = name
+        self.rate = rate
+    }
+}
+
 class spentVC: UIViewController, UINavigationBarDelegate, UITextFieldDelegate, UITextViewDelegate {
 
     @IBOutlet weak var spentTypeBtn: DLRadioButton!    
@@ -18,10 +29,11 @@ class spentVC: UIViewController, UINavigationBarDelegate, UITextFieldDelegate, U
     @IBOutlet weak var spentDateLbl: UILabel!
     @IBOutlet weak var spentAmountLbl: UILabel!
     @IBOutlet weak var spentAmountTxt: UITextField!
-    @IBOutlet weak var spentCurrencyLbl: UILabel!
+    @IBOutlet weak var spentCurrencyBtn: UIButton!
     @IBOutlet weak var spentfromLbl: UILabel!
     @IBOutlet weak var spentDescriptionTxtView: UITextView!
     
+    var countriesInfo = [countryInfo]()
     
     // delegating user name from other views
     var username = String()
@@ -62,16 +74,6 @@ class spentVC: UIViewController, UINavigationBarDelegate, UITextFieldDelegate, U
         spentDateLbl.isUserInteractionEnabled = true
         spentDateLbl.addGestureRecognizer(hideDatePicker)
 
-        
-        // navigation bar
-        self.navigationController?.navigationBar.frame = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 65)
-        self.navigationController?.navigationBar.barTintColor = UIColor(colorLiteralRed: 18.0 / 255.0, green: 86.0 / 255.0, blue: 136.0 / 255.0, alpha: 1)
-        self.navigationController?.navigationBar.isTranslucent = false
-        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]
-        
-        self.navigationController?.navigationBar.backgroundColor = .white
-        self.navigationController?.navigationBar.tintColor = .white
-        
         // Create a navigation item with a title
         self.navigationItem.title = spent_str.uppercased()
 
@@ -80,6 +82,12 @@ class spentVC: UIViewController, UINavigationBarDelegate, UITextFieldDelegate, U
         navigationItem.rightBarButtonItem = editBtn
         editBtn.tintColor = .white
         
+        // currency button frame setting
+        spentCurrencyBtn.backgroundColor = .clear
+        spentCurrencyBtn.layer.cornerRadius = 5
+        spentCurrencyBtn.layer.borderWidth = 1
+        spentCurrencyBtn.layer.borderColor = UIColor.gray.cgColor
+        
         // allow constraints
         spentTypeBtn.translatesAutoresizingMaskIntoConstraints = false
         spentNameTxt.translatesAutoresizingMaskIntoConstraints = false
@@ -87,13 +95,16 @@ class spentVC: UIViewController, UINavigationBarDelegate, UITextFieldDelegate, U
         spentDateLbl.translatesAutoresizingMaskIntoConstraints = false
         spentAmountLbl.translatesAutoresizingMaskIntoConstraints = false
         spentAmountTxt.translatesAutoresizingMaskIntoConstraints = false
-        spentCurrencyLbl.translatesAutoresizingMaskIntoConstraints = false
+        spentCurrencyBtn.translatesAutoresizingMaskIntoConstraints = false
         spentfromLbl.translatesAutoresizingMaskIntoConstraints = false
         spentDescriptionTxtView.translatesAutoresizingMaskIntoConstraints = false
         
         // constraints
+        // vertical constraints
+        let navheight = (self.navigationController?.navigationBar.frame.height)! + UIApplication.shared.statusBarFrame.size.height
+
         self.view.addConstraints(NSLayoutConstraint.constraints(
-            withVisualFormat: "V:|-10-[spentname]-10-[spenttypebtn(20)]-10-[fromlbl(40)]",
+            withVisualFormat: "V:|-\(navheight + 10)-[spentname]-10-[spenttypebtn(20)]-10-[fromlbl(40)]",
             options: [],
             metrics: nil, views: ["spentname":spentNameTxt, "spenttypebtn":spentTypeBtn, "fromlbl":spentfromLbl]))
 
@@ -110,8 +121,9 @@ class spentVC: UIViewController, UINavigationBarDelegate, UITextFieldDelegate, U
         self.view.addConstraints(NSLayoutConstraint.constraints(
             withVisualFormat: "V:[fromlbl]-10-[currencylbl]-10-[spentdescription(60)]-10-[datepicker(150)]",
             options: [],
-            metrics: nil, views: ["fromlbl":spentfromLbl, "currencylbl": spentCurrencyLbl, "spentdescription":spentDescriptionTxtView,"datepicker":spentDatePicker]))
+            metrics: nil, views: ["fromlbl":spentfromLbl, "currencylbl": spentCurrencyBtn, "spentdescription":spentDescriptionTxtView,"datepicker":spentDatePicker]))
         
+        // horizontal constraints
         self.view.addConstraints(NSLayoutConstraint.constraints(
             withVisualFormat: "H:|-10-[spentname]-10-|",
             options: [],
@@ -135,7 +147,7 @@ class spentVC: UIViewController, UINavigationBarDelegate, UITextFieldDelegate, U
         self.view.addConstraints(NSLayoutConstraint.constraints(
             withVisualFormat: "H:[spentcurrency(40)]-10-|",
             options: [],
-            metrics: nil, views: ["spentcurrency":spentCurrencyLbl]))
+            metrics: nil, views: ["spentcurrency":spentCurrencyBtn]))
         
         self.view.addConstraints(NSLayoutConstraint.constraints(
             withVisualFormat: "H:|-10-[spentdescription]-10-|",
@@ -197,9 +209,9 @@ class spentVC: UIViewController, UINavigationBarDelegate, UITextFieldDelegate, U
         
         // programmatically add buttons
         // first radio button
-        let frameFirst = CGRect(x: self.view.frame.size.width / 2 - 120, y: 50, width: 162, height: 17);
+        let frameFirst = CGRect(x: self.view.frame.size.width / 2 - 120, y: 50 + navheight, width: 162, height: 17);
         let firstRadioButton = createRadioButton(frame: frameFirst, title: spent_beginning_str, color: UIColor(colorLiteralRed: 0.00, green: 0.580, blue: 0.969, alpha: 1.00))
-        let frameSecond = CGRect(x: self.view.frame.size.width / 2 - 120 + 100, y: 50, width: 162, height: 17);
+        let frameSecond = CGRect(x: self.view.frame.size.width / 2 - 120 + 100, y: 50 + navheight, width: 162, height: 17);
         let secondRadioButton = createRadioButton(frame: frameSecond, title: spent_other_str, color: UIColor(colorLiteralRed: 1.00, green: 0.361, blue: 0.145, alpha: 1.00))
         firstRadioButton.isEnabled = true
         // second radio button
@@ -247,7 +259,7 @@ class spentVC: UIViewController, UINavigationBarDelegate, UITextFieldDelegate, U
         dateformatter.dateFormat = "dd.MM.yyy"
         spentfromLbl.text = dateformatter.string(from: spentdate)
         spentDatePicker.date = spentdate
-        spentCurrencyLbl.text = spentcurrency
+        spentCurrencyBtn.setTitle(spentcurrency, for: .normal)
         spentDescriptionTxtView.text = spentdescription
         if spenttype == 0 {
             spentfromLbl.backgroundColor = UIColor(colorLiteralRed: 0.00, green: 0.580, blue: 0.969, alpha: 1.00)
@@ -327,64 +339,71 @@ class spentVC: UIViewController, UINavigationBarDelegate, UITextFieldDelegate, U
     func saveTapped (sender: UIBarButtonItem) {
         
         // check if new spent or its update
-        if isNew {
-            let spentObj = PFObject(className: "tripspents")
-            spentObj["spentName"] = self.spentNameTxt.text!
-            spentObj["spentDescription"] = self.spentDescriptionTxtView.text!
-            let dateformatter = DateFormatter()
-            dateformatter.dateFormat = "dd.MM.yyy"
-            spentObj["spentDate"] = dateformatter.date(from: self.spentDateLbl.text!)!
-            spentObj["spentAmount"] = (self.spentAmountTxt.text! as NSString).doubleValue
-            spentObj["spentType"] = spenttype
-            spentObj["spentCurrency"] = self.spentCurrencyLbl.text!
-            spentObj["uuid"] = self.spentuuid
-            spentObj.saveInBackground(block: { (success:Bool, error:Error?) in
-                if error == nil {
-                    if success {
-                    
+        if (self.spentNameTxt.text?.isEmpty)! {
+            let okbtn = DefaultButton(title: ok_str, action: nil)
+            let addMenu = PopupDialog(title: add_str, message: add_spent_name_str)
+            addMenu.addButtons([okbtn])
+            self.present(addMenu, animated: true, completion: nil)
+        } else {
+        
+            if isNew {
+                let spentObj = PFObject(className: "tripspents")
+                spentObj["spentName"] = self.spentNameTxt.text!
+                spentObj["spentDescription"] = self.spentDescriptionTxtView.text!
+                let dateformatter = DateFormatter()
+                dateformatter.dateFormat = "dd.MM.yyy"
+                spentObj["spentDate"] = dateformatter.date(from: self.spentDateLbl.text!)!
+                spentObj["spentAmount"] = (self.spentAmountTxt.text! as NSString).doubleValue
+                spentObj["spentType"] = spenttype
+                spentObj["spentCurrency"] = self.spentCurrencyBtn.titleLabel?.text
+                spentObj["uuid"] = self.spentuuid
+                spentObj.saveInBackground(block: { (success:Bool, error:Error?) in
+                    if error == nil {
+                        if success {
+                        
+                        } else {
+                            print(error!.localizedDescription)
+                        }
                     } else {
                         print(error!.localizedDescription)
                     }
-                } else {
-                    print(error!.localizedDescription)
-                }
-            })
-        } else {
-            let spentQuery = PFQuery(className: "tripspents")
-            spentQuery.whereKey("uuid", equalTo: spentuuid)
-            spentQuery.whereKey("objectId", equalTo: spentobjectId)
-            spentQuery.findObjectsInBackground(block: { (objects: [PFObject]?, error: Error?) in
-                if error == nil {
-                    for spentObj in objects! {
-                        spentObj["spentName"] = self.spentNameTxt.text!
-                        spentObj["spentDescription"] = self.spentDescriptionTxtView.text!
-                        let dateformatter = DateFormatter()
-                        dateformatter.dateFormat = "dd.MM.yyy"
-                        spentObj["spentDate"] = dateformatter.date(from: self.spentDateLbl.text!)!
-                        spentObj["spentAmount"] = (self.spentAmountTxt.text! as NSString).doubleValue
-                        spentObj["spentType"] = self.spenttype
-                        spentObj["spentCurrency"] = self.spentCurrencyLbl.text!
-                        spentObj.saveInBackground(block: { (success:Bool, error:Error?) in
-                            if error == nil {
-                                if success {
-                                    
+                })
+            } else {
+                let spentQuery = PFQuery(className: "tripspents")
+                spentQuery.whereKey("uuid", equalTo: spentuuid)
+                spentQuery.whereKey("objectId", equalTo: spentobjectId)
+                spentQuery.findObjectsInBackground(block: { (objects: [PFObject]?, error: Error?) in
+                    if error == nil {
+                        for spentObj in objects! {
+                            spentObj["spentName"] = self.spentNameTxt.text!
+                            spentObj["spentDescription"] = self.spentDescriptionTxtView.text!
+                            let dateformatter = DateFormatter()
+                            dateformatter.dateFormat = "dd.MM.yyy"
+                            spentObj["spentDate"] = dateformatter.date(from: self.spentDateLbl.text!)!
+                            spentObj["spentAmount"] = (self.spentAmountTxt.text! as NSString).doubleValue
+                            spentObj["spentType"] = self.spenttype
+                            spentObj["spentCurrency"] = self.spentCurrencyBtn.titleLabel?.text
+                            spentObj.saveInBackground(block: { (success:Bool, error:Error?) in
+                                if error == nil {
+                                    if success {
+                                        
+                                    } else {
+                                        print(error!.localizedDescription)
+                                    }
                                 } else {
                                     print(error!.localizedDescription)
                                 }
-                            } else {
-                                print(error!.localizedDescription)
-                            }
-                        })
+                            })
+                        }
+                    } else {
+                        print(error!.localizedDescription)
                     }
-                } else {
-                    print(error!.localizedDescription)
-                }
-            })
-        }
+                })
+            }
         
         //push back
         _ = navigationController?.popViewController(animated: true)
-
+        }
     }
     
     // while writing something
@@ -406,5 +425,110 @@ class spentVC: UIViewController, UINavigationBarDelegate, UITextFieldDelegate, U
         spentDatePicker.isHidden = !spentDatePicker.isHidden
         self.view.endEditing(true)
     }
-
+    
+    
+    @IBAction func spentCurrencyBtn_tapped(_ sender: UIButton) {
+        let popoverContent = self.storyboard?.instantiateViewController(withIdentifier: "currenciesTVC") as! currenciesTVC
+        
+        popoverContent.modalPresentationStyle = UIModalPresentationStyle.popover
+        if let popover = popoverContent.popoverPresentationController {
+            popoverContent.preferredContentSize = CGSize(width: 250, height: 450)
+            
+            popoverContent.popoverPresentationController!.delegate = self
+            popoverContent.delegate = self
+            
+            popover.delegate = self
+            popover.sourceView = sender
+            popover.sourceRect = sender.bounds
+        }
+        
+        self.present(popoverContent, animated: true, completion: nil)
+    }
 }
+
+// popoverDelegate procedure for currencies view field
+extension spentVC: CurrenciesPopoverDelegate {
+    func updateCurrencyCode(withCountries countries: [countryInfo]) {
+        self.countriesInfo.removeAll(keepingCapacity: false)
+        self.countriesInfo = countries
+        
+        var currenciesArray = [String]()
+        var countItems = Int()
+        var flagsCodes = [String]()
+        
+        flagsCodes.removeAll(keepingCapacity: false)
+        currenciesArray.removeAll(keepingCapacity: false)
+        
+        if countries.count != 0 {
+            
+            for i in 0...countries.count - 1 {
+                flagsCodes.append(countries[i].name)
+            }
+            
+            countItems = flagsCodes.count
+            
+            for j in 0...countItems - 1 {
+                let currencyCode = IsoCountryCodes.searchByName(name: flagsCodes[j]).currency
+                currenciesArray.append(currencyCode)
+            }
+            
+            spentCurrencyBtn.setTitle(currenciesArray.last!, for: .normal)
+            getCurrencyList(referenceCurrency: currenciesArray.last!)
+        }
+    }
+}
+
+// MARK: UIPopoverPresentationControllerDelegate
+extension spentVC: UIPopoverPresentationControllerDelegate {
+    
+    // In modal presentation we need to add a button to our popover
+    // to allow it to be dismissed. Handle the situation where
+    // our popover may be embedded in a navigation controller
+    
+    func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
+        return UIModalPresentationStyle.none
+    }
+    
+    func presentationController(_ controller: UIPresentationController, viewControllerForAdaptivePresentationStyle style: UIModalPresentationStyle) -> UIViewController? {
+        guard style != .none else {
+            return controller.presentedViewController
+        }
+        
+        if let navController = controller.presentedViewController as? UINavigationController {
+            addDismissButton(navigationController: navController)
+            return navController
+        } else {
+            let navController = UINavigationController.init(rootViewController: controller.presentedViewController)
+            addDismissButton(navigationController: navController)
+            return navController
+        }
+    }
+    
+    // Check for when we present in a non modal style and remove the
+    // the dismiss button from the navigation bar.
+    
+    func presentationController(_ presentationController: UIPresentationController, willPresentWithAdaptiveStyle style: UIModalPresentationStyle, transitionCoordinator: UIViewControllerTransitionCoordinator?) {
+        if style == .none {
+            if let navController = presentationController.presentedViewController as? UINavigationController {
+                removeDismissButton(navigationController: navController)
+            }
+        }
+    }
+    
+    func didDismissPresentedView() {
+        presentedViewController?.dismiss(animated: true, completion: nil)
+    }
+    
+    private func addDismissButton(navigationController: UINavigationController) {
+        let rootViewController = navigationController.viewControllers[0]
+        rootViewController.navigationItem.leftBarButtonItem = UIBarButtonItem.init(barButtonSystemItem: .done,
+                                                                                   target: self, action: #selector(didDismissPresentedView))
+    }
+    
+    private func removeDismissButton(navigationController: UINavigationController) {
+        let rootViewController = navigationController.viewControllers[0]
+        rootViewController.navigationItem.leftBarButtonItem = nil
+    }
+}
+
+
