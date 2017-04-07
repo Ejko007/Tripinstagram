@@ -214,6 +214,19 @@ func getCurrencyList(referenceCurrency: String) -> [Currency] {
     return finalCurrencyList
 }
 
+func getCurrencyRate(referenceCurrency: String, searchCurrency: String) -> Double {
+    var tempRate:Double = 0.0
+    var tempCurrentList = [Currency]()
+    tempCurrentList = getCurrencyList(referenceCurrency: referenceCurrency)
+    for currency in tempCurrentList {
+        if currency.name.uppercased() == searchCurrency.uppercased() {
+            tempRate = currency.rate
+            break
+        }
+    }
+    return tempRate
+}
+
 
 extension Double {
     /// Rounds the double to decimal places value

@@ -247,6 +247,7 @@ class editVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UI
         user["fullname"] = fullnameTxt.text?.lowercased()
         user["web"] = webTxt.text?.lowercased()
         user["bio"] = bioTxt.text
+        user["currencyBase"] = "CZK"
         
         if (telTxt.text!.isEmpty) {
             user["tel"] = ""

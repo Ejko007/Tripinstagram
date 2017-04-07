@@ -34,6 +34,7 @@ class spentVC: UIViewController, UINavigationBarDelegate, UITextFieldDelegate, U
     @IBOutlet weak var spentDescriptionTxtView: UITextView!
     
     var countriesInfo = [countryInfo]()
+    var currencyList = [Currency]()
     
     // delegating user name from other views
     var username = String()
@@ -42,7 +43,7 @@ class spentVC: UIViewController, UINavigationBarDelegate, UITextFieldDelegate, U
     var spentobjectId = String()
     var spentname = String()
     var spentdescription = String()
-    var spentcurrency : String = "CZK"
+    var spentcurrency = String()
     var spentamount = Double()
     var spentdate = Date()
     var spenttype : Int = 0
@@ -252,14 +253,22 @@ class spentVC: UIViewController, UINavigationBarDelegate, UITextFieldDelegate, U
     
     // get data from selected spent from the spents list
     func getSpents() {
-        
+
         spentNameTxt.text = spentname
         spentAmountTxt.text = String(format: "%.2f", spentamount)
         let dateformatter = DateFormatter()
         dateformatter.dateFormat = "dd.MM.yyy"
         spentfromLbl.text = dateformatter.string(from: spentdate)
         spentDatePicker.date = spentdate
-        spentCurrencyBtn.setTitle(spentcurrency, for: .normal)
+        
+        if isNew {
+            // obtsin currency base for current user
+            let currencyBase = PFUser.current()?.object(forKey: "currencyBase") as! String
+            spentcurrency = currencyBase
+        } else {
+            spentCurrencyBtn.setTitle(spentcurrency, for: .normal)
+        }
+        
         spentDescriptionTxtView.text = spentdescription
         if spenttype == 0 {
             spentfromLbl.backgroundColor = UIColor(colorLiteralRed: 0.00, green: 0.580, blue: 0.969, alpha: 1.00)
@@ -338,6 +347,9 @@ class spentVC: UIViewController, UINavigationBarDelegate, UITextFieldDelegate, U
     // save spent icon is clicked
     func saveTapped (sender: UIBarButtonItem) {
         
+        // obtsin currency base for current user
+        let currencyBase = PFUser.current()?.object(forKey: "currencyBase") as! String
+        
         // check if new spent or its update
         if (self.spentNameTxt.text?.isEmpty)! {
             let okbtn = DefaultButton(title: ok_str, action: nil)
@@ -353,10 +365,14 @@ class spentVC: UIViewController, UINavigationBarDelegate, UITextFieldDelegate, U
                 let dateformatter = DateFormatter()
                 dateformatter.dateFormat = "dd.MM.yyy"
                 spentObj["spentDate"] = dateformatter.date(from: self.spentDateLbl.text!)!
-                spentObj["spentAmount"] = (self.spentAmountTxt.text! as NSString).doubleValue
                 spentObj["spentType"] = spenttype
                 spentObj["spentCurrency"] = self.spentCurrencyBtn.titleLabel?.text
                 spentObj["uuid"] = self.spentuuid
+                let currencyReference = self.spentCurrencyBtn.titleLabel?.text
+                let currencyRate = getCurrencyRate(referenceCurrency: currencyReference!, searchCurrency: currencyBase)
+                let spentAmount = (self.spentAmountTxt.text! as NSString).doubleValue
+                spentObj["spentAmount"] = spentAmount
+                spentObj["spentCurrencyRate"] = currencyRate
                 spentObj.saveInBackground(block: { (success:Bool, error:Error?) in
                     if error == nil {
                         if success {
@@ -380,7 +396,11 @@ class spentVC: UIViewController, UINavigationBarDelegate, UITextFieldDelegate, U
                             let dateformatter = DateFormatter()
                             dateformatter.dateFormat = "dd.MM.yyy"
                             spentObj["spentDate"] = dateformatter.date(from: self.spentDateLbl.text!)!
-                            spentObj["spentAmount"] = (self.spentAmountTxt.text! as NSString).doubleValue
+                            let spentAmount = (self.spentAmountTxt.text! as NSString).doubleValue
+                            spentObj["spentAmount"] = spentAmount
+                            let currencyReference = self.spentCurrencyBtn.titleLabel?.text
+                            let currencyRate = getCurrencyRate(referenceCurrency: currencyReference!, searchCurrency: currencyBase)
+                            spentObj["spentCurrencyRate"] = currencyRate
                             spentObj["spentType"] = self.spenttype
                             spentObj["spentCurrency"] = self.spentCurrencyBtn.titleLabel?.text
                             spentObj.saveInBackground(block: { (success:Bool, error:Error?) in
@@ -473,7 +493,7 @@ extension spentVC: CurrenciesPopoverDelegate {
             }
             
             spentCurrencyBtn.setTitle(currenciesArray.last!, for: .normal)
-            getCurrencyList(referenceCurrency: currenciesArray.last!)
+            currencyList = getCurrencyList(referenceCurrency: currenciesArray.last!)
         }
     }
 }

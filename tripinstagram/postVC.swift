@@ -290,9 +290,11 @@ class postVC: UITableViewController {
             
             if spentsError == nil {
                 
-                // calculate summary rates
+                // calculate total spents
                 for spentsObject in spentsObjects! {
-                    sumaSpents = sumaSpents + (spentsObject.value(forKey: "spentAmount") as! Double)
+                    let spent = (spentsObject.value(forKey: "spentAmount") as! Double)
+                    let spentrate = (spentsObject.value(forKey: "spentCurrencyRate") as! Double)
+                    sumaSpents = sumaSpents + (spent * spentrate)
                 }
             } else {
                 print(spentsError!.localizedDescription)
