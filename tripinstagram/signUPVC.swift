@@ -23,8 +23,10 @@ class signUPVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
     @IBOutlet weak var webTxt: UITextField!
     @IBOutlet weak var signUpBtn: UIButton!
     @IBOutlet weak var cancelBtn: UIButton!
-    
     @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var currencyUsedBtn: UIButton!
+    @IBOutlet weak var currencyUsedTxt: UITextField!
+
 
     // Reset default size
     var scrollViewHeigh : CGFloat = 0
@@ -32,10 +34,14 @@ class signUPVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
     // Keyboard frame size
     var keyboard = CGRect()
     
-    
+    var countriesInfo = [countryInfo]()
+    var currencyList = [Currency]()
+ 
     override func viewDidLoad() {
         
         super.viewDidLoad()
+
+        let width = self.view.frame.size.width
 
         //scrollview frame size
         scrollView.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height)
@@ -46,9 +52,6 @@ class signUPVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
         let notificationCenter = NotificationCenter.default
         notificationCenter.addObserver(self, selector: #selector(showKeyboard(notification:)), name: Notification.Name.UIKeyboardWillShow, object: nil)
         notificationCenter.addObserver(self, selector: #selector(hideKeyboard(notification:)), name: Notification.Name.UIKeyboardWillHide, object: nil)
-       
-        //NotificationCenter.default.addObserver(self, selector: #selector(showKeyboard(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-        //NotificationCenter.default.addObserver(self, selector: #selector(hideKeyboard(notification:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
         
         // Declare hide keyboard tap
         let hideTap = UITapGestureRecognizer(target: self, action: #selector(hideKeyboardTap(recognizer:)))
@@ -76,7 +79,16 @@ class signUPVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
         bioTxt.frame = CGRect(x: 10, y: fullnameTxt.frame.origin.y + 40, width: self.view.frame.size.width - 20, height: 30)
         webTxt.frame = CGRect(x: 10, y: bioTxt.frame.origin.y + 40, width: self.view.frame.size.width - 20, height: 30)
         
-        signUpBtn.frame = CGRect(x: 20, y: webTxt.frame.origin.y + 50, width: self.view.frame.size.width / 3, height: 30)
+        currencyUsedTxt.frame = CGRect(x: 10, y: webTxt.frame.origin.y + 40, width: width - 70, height: 30)
+        currencyUsedTxt.text = currency_used_str
+        currencyUsedTxt.isEnabled = false
+        currencyUsedBtn.frame = CGRect(x: width - 50, y: webTxt.frame.origin.y + 40, width: 40, height: 30)
+        currencyUsedBtn.backgroundColor = .white
+        currencyUsedBtn.layer.cornerRadius = 5
+        currencyUsedBtn.layer.borderWidth = 1
+        currencyUsedBtn.layer.borderColor = UIColor.gray.cgColor
+        
+        signUpBtn.frame = CGRect(x: 20, y: currencyUsedTxt.frame.origin.y + 50, width: self.view.frame.size.width / 3, height: 30)
         signUpBtn.layer.cornerRadius = signUpBtn.frame.size.width / 20
         
         cancelBtn.frame = CGRect(x: self.view.frame.size.width - self.view.frame.size.width / 3 - 20, y: signUpBtn.frame.origin.y, width: self.view.frame.size.width / 3, height: 30)
@@ -176,7 +188,8 @@ class signUPVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
         user["web"] = webTxt.text?.lowercased()
         // In edit profile it's gonna be assigned
         user["tel"] = ""
-        user["gender"] = ""
+        user["gender"] = "male"
+        user["currencyBase"] = currencyUsedBtn.titleLabel?.text
 
         // convert our image for sending to serever
         let avaData = UIImageJPEGRepresentation(avaImg.image!, 0.5)
@@ -222,4 +235,107 @@ class signUPVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
         self.dismiss(animated: true, completion: nil)
     }
     
+    @IBAction func currencyUsedBtn_clicked(_ sender: UIButton) {
+        let popoverContent = self.storyboard?.instantiateViewController(withIdentifier: "currenciesTVC") as! currenciesTVC
+        
+        popoverContent.modalPresentationStyle = UIModalPresentationStyle.popover
+        if let popover = popoverContent.popoverPresentationController {
+            popoverContent.preferredContentSize = CGSize(width: 250, height: 450)
+            
+            popoverContent.popoverPresentationController!.delegate = self
+            popoverContent.delegate = self
+            
+            popover.delegate = self
+            popover.sourceView = sender
+            popover.sourceRect = sender.bounds
+        }
+        
+        self.present(popoverContent, animated: true, completion: nil)
+    }
 }
+
+// MARK: UIPopoverPresentationControllerDelegate
+extension signUPVC: UIPopoverPresentationControllerDelegate {
+    
+    // In modal presentation we need to add a button to our popover
+    // to allow it to be dismissed. Handle the situation where
+    // our popover may be embedded in a navigation controller
+    
+    func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
+        return UIModalPresentationStyle.none
+    }
+    
+    func presentationController(_ controller: UIPresentationController, viewControllerForAdaptivePresentationStyle style: UIModalPresentationStyle) -> UIViewController? {
+        guard style != .none else {
+            return controller.presentedViewController
+        }
+        
+        if let navController = controller.presentedViewController as? UINavigationController {
+            addDismissButton(navigationController: navController)
+            return navController
+        } else {
+            let navController = UINavigationController.init(rootViewController: controller.presentedViewController)
+            addDismissButton(navigationController: navController)
+            return navController
+        }
+    }
+    
+    // Check for when we present in a non modal style and remove the
+    // the dismiss button from the navigation bar.
+    
+    func presentationController(_ presentationController: UIPresentationController, willPresentWithAdaptiveStyle style: UIModalPresentationStyle, transitionCoordinator: UIViewControllerTransitionCoordinator?) {
+        if style == .none {
+            if let navController = presentationController.presentedViewController as? UINavigationController {
+                removeDismissButton(navigationController: navController)
+            }
+        }
+    }
+    
+    func didDismissPresentedView() {
+        presentedViewController?.dismiss(animated: true, completion: nil)
+    }
+    
+    private func addDismissButton(navigationController: UINavigationController) {
+        let rootViewController = navigationController.viewControllers[0]
+        rootViewController.navigationItem.leftBarButtonItem = UIBarButtonItem.init(barButtonSystemItem: .done,
+                                                                                   target: self, action: #selector(didDismissPresentedView))
+    }
+    
+    private func removeDismissButton(navigationController: UINavigationController) {
+        let rootViewController = navigationController.viewControllers[0]
+        rootViewController.navigationItem.leftBarButtonItem = nil
+    }
+}
+
+// popoverDelegate procedure for currencies view field
+extension signUPVC: CurrenciesPopoverDelegate {
+    func updateCurrencyCode(withCountries countries: [countryInfo]) {
+        self.countriesInfo.removeAll(keepingCapacity: false)
+        self.countriesInfo = countries
+        
+        var currenciesArray = [String]()
+        var countItems = Int()
+        var flagsCodes = [String]()
+        
+        flagsCodes.removeAll(keepingCapacity: false)
+        currenciesArray.removeAll(keepingCapacity: false)
+        
+        if countries.count != 0 {
+            
+            for i in 0...countries.count - 1 {
+                flagsCodes.append(countries[i].name)
+            }
+            
+            countItems = flagsCodes.count
+            
+            for j in 0...countItems - 1 {
+                let currencyCode = IsoCountryCodes.searchByName(name: flagsCodes[j]).currency
+                currenciesArray.append(currencyCode)
+            }
+            
+            currencyUsedBtn.setTitle(currenciesArray.last!, for: .normal)
+            currencyList = getCurrencyList(referenceCurrency: currenciesArray.last!)
+        }
+    }
+}
+

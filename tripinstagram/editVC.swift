@@ -8,6 +8,7 @@
 
 import UIKit
 import Parse
+import PopupDialog
 
 class editVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
@@ -22,6 +23,8 @@ class editVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UI
     @IBOutlet weak var emailTxt: UITextField!
     @IBOutlet weak var telTxt: UITextField!
     @IBOutlet weak var genderTxt: UITextField!
+    @IBOutlet weak var currencyUsedBtn: UIButton!
+    @IBOutlet weak var currencyUsedTxt: UITextField!
     
     // pickerView & pickerData
     var genderPicker = UIPickerView()
@@ -30,7 +33,9 @@ class editVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UI
     // keyboard to hold frame size
     var keyboard = CGRect()
     
-    
+    var countriesInfo = [countryInfo]()
+    var currencyList = [Currency]()
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -133,11 +138,17 @@ class editVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UI
         
         emailTxt.frame = CGRect(x: 10, y: bioTxt.frame.origin.y + 100, width: width - 20, height: 30)
         telTxt.frame = CGRect(x: 10, y: emailTxt.frame.origin.y + 40, width: width - 20, height: 30)
-        genderTxt.frame = CGRect(x: 10, y: telTxt.frame.origin.y + 40, width: width - 20, height: 30)
-        
         titleLbl.frame = CGRect(x: 15, y: emailTxt.frame.origin.y - 30, width: width - 20, height: 30)
-        
-        
+        genderTxt.frame = CGRect(x: 10, y: telTxt.frame.origin.y + 40, width: width - 20, height: 30)
+
+        currencyUsedTxt.frame = CGRect(x: 10, y: genderTxt.frame.origin.y + 40, width: width - 70, height: 30)
+        currencyUsedTxt.text = currency_used_str
+        currencyUsedTxt.isEnabled = false
+        currencyUsedBtn.frame = CGRect(x: width - 50, y: genderTxt.frame.origin.y + 40, width: 40, height: 30)
+        currencyUsedBtn.backgroundColor = .clear
+        currencyUsedBtn.layer.cornerRadius = 5
+        currencyUsedBtn.layer.borderWidth = 1
+        currencyUsedBtn.layer.borderColor = UIColor.gray.cgColor
     }
     
     // PickerView methods
@@ -179,6 +190,7 @@ class editVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UI
             self.webTxt.text = PFUser.current()?.object(forKey: "web") as? String
             self.emailTxt.text = PFUser.current()?.email
             self.telTxt.text = PFUser.current()?.object(forKey: "tel") as? String
+            self.currencyUsedBtn.titleLabel?.text = PFUser.current()?.object(forKey: "currencyBase") as? String
                 
             let genderStr = PFUser.current()?.object(forKey: "gender") as? String
                 if genderStr == "male" {
@@ -226,17 +238,40 @@ class editVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UI
         return result
     }
 
+    @IBAction func currencyUsedBtn_clicked(_ sender: UIButton) {
+        let popoverContent = self.storyboard?.instantiateViewController(withIdentifier: "currenciesTVC") as! currenciesTVC
+        
+        popoverContent.modalPresentationStyle = UIModalPresentationStyle.popover
+        if let popover = popoverContent.popoverPresentationController {
+            popoverContent.preferredContentSize = CGSize(width: 250, height: 450)
+            
+            popoverContent.popoverPresentationController!.delegate = self
+            popoverContent.delegate = self
+            
+            popover.delegate = self
+            popover.sourceView = sender
+            popover.sourceRect = sender.bounds
+        }
+        
+        self.present(popoverContent, animated: true, completion: nil)
+    }
     
     // clicked save button
     @IBAction func save_clicked(_ sender: AnyObject) {
         
         // validation according regex
         if !validateEmail(email: emailTxt.text!) {
-            alert(error: "Špatný formát emailové adresy", message: "Opravte prosím formát emailové adresy.")
+            let okbtn = DefaultButton(title: ok_str, action: nil)
+            let complMenu = PopupDialog(title: wrong_email_address_format_str, message: change_email_address_format_str)
+            complMenu.addButtons([okbtn])
+            self.present(complMenu, animated: true, completion: nil)
             return
         }
         if !validateWeb(web: webTxt.text!) {
-            alert(error: "Špatný formát webové stránky", message: "Opravte prosím formát webové stránky.")
+            let okbtn = DefaultButton(title: ok_str, action: nil)
+            let complMenu = PopupDialog(title: wrong_webpage_url_format_str, message: change_webpage_url_format_str)
+            complMenu.addButtons([okbtn])
+            self.present(complMenu, animated: true, completion: nil)
             return
         }
         
@@ -247,7 +282,7 @@ class editVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UI
         user["fullname"] = fullnameTxt.text?.lowercased()
         user["web"] = webTxt.text?.lowercased()
         user["bio"] = bioTxt.text
-        user["currencyBase"] = "CZK"
+        user["currencyBase"] = self.currencyUsedBtn.titleLabel?.text
         
         if (telTxt.text!.isEmpty) {
             user["tel"] = ""
@@ -288,3 +323,89 @@ class editVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UI
         })
     }
 }
+
+// MARK: UIPopoverPresentationControllerDelegate
+extension editVC: UIPopoverPresentationControllerDelegate {
+    
+    // In modal presentation we need to add a button to our popover
+    // to allow it to be dismissed. Handle the situation where
+    // our popover may be embedded in a navigation controller
+    
+    func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
+        return UIModalPresentationStyle.none
+    }
+    
+    func presentationController(_ controller: UIPresentationController, viewControllerForAdaptivePresentationStyle style: UIModalPresentationStyle) -> UIViewController? {
+        guard style != .none else {
+            return controller.presentedViewController
+        }
+        
+        if let navController = controller.presentedViewController as? UINavigationController {
+            addDismissButton(navigationController: navController)
+            return navController
+        } else {
+            let navController = UINavigationController.init(rootViewController: controller.presentedViewController)
+            addDismissButton(navigationController: navController)
+            return navController
+        }
+    }
+    
+    // Check for when we present in a non modal style and remove the
+    // the dismiss button from the navigation bar.
+    
+    func presentationController(_ presentationController: UIPresentationController, willPresentWithAdaptiveStyle style: UIModalPresentationStyle, transitionCoordinator: UIViewControllerTransitionCoordinator?) {
+        if style == .none {
+            if let navController = presentationController.presentedViewController as? UINavigationController {
+                removeDismissButton(navigationController: navController)
+            }
+        }
+    }
+    
+    func didDismissPresentedView() {
+        presentedViewController?.dismiss(animated: true, completion: nil)
+    }
+    
+    private func addDismissButton(navigationController: UINavigationController) {
+        let rootViewController = navigationController.viewControllers[0]
+        rootViewController.navigationItem.leftBarButtonItem = UIBarButtonItem.init(barButtonSystemItem: .done,
+                                                                                   target: self, action: #selector(didDismissPresentedView))
+    }
+    
+    private func removeDismissButton(navigationController: UINavigationController) {
+        let rootViewController = navigationController.viewControllers[0]
+        rootViewController.navigationItem.leftBarButtonItem = nil
+    }
+}
+
+// popoverDelegate procedure for currencies view field
+extension editVC: CurrenciesPopoverDelegate {
+    func updateCurrencyCode(withCountries countries: [countryInfo]) {
+        self.countriesInfo.removeAll(keepingCapacity: false)
+        self.countriesInfo = countries
+        
+        var currenciesArray = [String]()
+        var countItems = Int()
+        var flagsCodes = [String]()
+        
+        flagsCodes.removeAll(keepingCapacity: false)
+        currenciesArray.removeAll(keepingCapacity: false)
+        
+        if countries.count != 0 {
+            
+            for i in 0...countries.count - 1 {
+                flagsCodes.append(countries[i].name)
+            }
+            
+            countItems = flagsCodes.count
+            
+            for j in 0...countItems - 1 {
+                let currencyCode = IsoCountryCodes.searchByName(name: flagsCodes[j]).currency
+                currenciesArray.append(currencyCode)
+            }
+            
+            currencyUsedBtn.setTitle(currenciesArray.last!, for: .normal)
+            currencyList = getCurrencyList(referenceCurrency: currenciesArray.last!)
+        }
+    }
+}
+

@@ -113,6 +113,11 @@ let countries_max_str = "Maximální počet vybraných zemí je 7. Vyberte pros�
 let add_str = "Přidat"
 let add_spent_name_str = "Zadejte název nákladové položky. Toto políčko nemůže zůstat prázdné."
 let currency_code_str = "Kód měny"
+let currency_used_str = "Použít pro přepočet tuto měnu"
+let wrong_email_address_format_str = "Špatný formát emailové adresy"
+let change_email_address_format_str = "Opravte prosím formát emailové adresy."
+let wrong_webpage_url_format_str = "Špatný formát webové stránky"
+let change_webpage_url_format_str = "Opravte prosím formát adresy webové stránky."
 
 // croping picture and center it
 func cropToBounds(_ image: UIImage, width: Double, height: Double) -> UIImage {
