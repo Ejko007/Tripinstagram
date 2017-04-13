@@ -118,6 +118,16 @@ let wrong_email_address_format_str = "Špatný formát emailové adresy"
 let change_email_address_format_str = "Opravte prosím formát emailové adresy."
 let wrong_webpage_url_format_str = "Špatný formát webové stránky"
 let change_webpage_url_format_str = "Opravte prosím formát adresy webové stránky."
+let sharing_notification_str = "Pokud máte aktivovaný Facebook nebo Twitter účet, můžete tento příspěvek sdílet na těchto sociálních sítích."
+let twitter_unavailable = "Twitter je nedostupný"
+let facebook_unavailable = "Facebook je nedostupný"
+let twitter_registration_error = "Váš Twitter účet není správně nakonfigurován, nebo nemáte vůbec zde vytvořen účet."
+let facebook_registration_error = "Váš Facebook účet není správně nakonfigurován, nebo nemáte vůbec zde vytvořen účet."
+let twitter_str = "Twitter"
+let facebook_str = "Facebook"
+let share_item = "Zde je zajímavý příspěvek"
+let home_application_url_str = "http://www.ejko.cz"
+
 
 // croping picture and center it
 func cropToBounds(_ image: UIImage, width: Double, height: Double) -> UIImage {

@@ -64,13 +64,13 @@
 		0A5314621DC2339800604F69 /* usersVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A5314611DC2339800604F69 /* usersVC.swift */; };
 		0A55339B1E1AA8A60013CCF1 /* menuListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A55339A1E1AA8A60013CCF1 /* menuListVC.swift */; };
 		0A5BCD181E22421500903D87 /* tripDetailMapVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A5BCD171E22421500903D87 /* tripDetailMapVC.swift */; };
+		0A6029A61E9F99BC005DB7EE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A6029A51E9F99BC005DB7EE /* Assets.xcassets */; };
 		0A65F7981E13F3DD00A3548E /* ExpandingMenu.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A65F7971E13F3DD00A3548E /* ExpandingMenu.framework */; };
 		0A81F2A41DCD28900073063D /* PopupDialog.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A81F2A31DCD28900073063D /* PopupDialog.framework */; };
 		0A81F2A61DCE17630073063D /* rateVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A81F2A51DCE17630073063D /* rateVC.swift */; };
 		0A81F2A81DCE18380073063D /* rateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A81F2A71DCE18380073063D /* rateCell.swift */; };
 		0A8626341DB0BDE30001C1EE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8626331DB0BDE30001C1EE /* AppDelegate.swift */; };
 		0A8626391DB0BDE30001C1EE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A8626371DB0BDE30001C1EE /* Main.storyboard */; };
-		0A86263B1DB0BDE30001C1EE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A86263A1DB0BDE30001C1EE /* Assets.xcassets */; };
 		0A86263E1DB0BDE30001C1EE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A86263C1DB0BDE30001C1EE /* LaunchScreen.storyboard */; };
 		0A8626471DB0BE430001C1EE /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A8626461DB0BE430001C1EE /* libsqlite3.tbd */; };
 		0A8626491DB0BE530001C1EE /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A8626481DB0BE530001C1EE /* libz.tbd */; };
@@ -232,6 +232,7 @@
 		0A5314611DC2339800604F69 /* usersVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = usersVC.swift; sourceTree = "<group>"; };
 		0A55339A1E1AA8A60013CCF1 /* menuListVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = menuListVC.swift; sourceTree = "<group>"; };
 		0A5BCD171E22421500903D87 /* tripDetailMapVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = tripDetailMapVC.swift; sourceTree = "<group>"; };
+		0A6029A51E9F99BC005DB7EE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0A65F7971E13F3DD00A3548E /* ExpandingMenu.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ExpandingMenu.framework; path = "Pods/../build/Debug-iphoneos/ExpandingMenu/ExpandingMenu.framework"; sourceTree = "<group>"; };
 		0A81F2A31DCD28900073063D /* PopupDialog.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PopupDialog.framework; path = "../../../Library/Developer/Xcode/DerivedData/tripinstagram-esugouffqwowrsefrbfyxxyheuxs/Build/Products/Debug-iphonesimulator/PopupDialog/PopupDialog.framework"; sourceTree = "<group>"; };
 		0A81F2A51DCE17630073063D /* rateVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = rateVC.swift; sourceTree = "<group>"; };
@@ -239,7 +240,6 @@
 		0A8626301DB0BDE30001C1EE /* tripinstagram.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = tripinstagram.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A8626331DB0BDE30001C1EE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0A8626381DB0BDE30001C1EE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		0A86263A1DB0BDE30001C1EE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0A86263D1DB0BDE30001C1EE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0A86263F1DB0BDE30001C1EE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0A8626461DB0BE430001C1EE /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
@@ -524,8 +524,8 @@
 				0A88522C1E826A5200D1B48C /* quantityTVC.swift */,
 				0AC9D3CB1E8519120027520F /* quantityLevelTVC.swift */,
 				0A21870B1E48E6FE00496620 /* FlagKit.xcassets */,
+				0A6029A51E9F99BC005DB7EE /* Assets.xcassets */,
 				0A32E22D1DE49667006DC92E /* TimeFrameVC.swift */,
-				0A86263A1DB0BDE30001C1EE /* Assets.xcassets */,
 				0A86263C1DB0BDE30001C1EE /* LaunchScreen.storyboard */,
 				0A3EFBFB1E33507300C21FDB /* SplashVC.swift */,
 				0A86263F1DB0BDE30001C1EE /* Info.plist */,
@@ -857,8 +857,8 @@
 				0A9827A61DE318C9008C6C0C /* gl-calendar-magnify-glass.png in Resources */,
 				0A9827A01DE318C9008C6C0C /* GLCalendarDayCell.xib in Resources */,
 				0A9827A71DE318C9008C6C0C /* gl-calendar-magnify-glass@2x.png in Resources */,
+				0A6029A61E9F99BC005DB7EE /* Assets.xcassets in Resources */,
 				0A9827A91DE318C9008C6C0C /* gl-calendar-shadow@2x.png in Resources */,
-				0A86263B1DB0BDE30001C1EE /* Assets.xcassets in Resources */,
 				0A8626691DB285430001C1EE /* Pacifico.ttf in Resources */,
 				0A9827A81DE318C9008C6C0C /* gl-calendar-shadow.png in Resources */,
 				0A9827AA1DE318C9008C6C0C /* gl-calendar-shadow@3x.png in Resources */,

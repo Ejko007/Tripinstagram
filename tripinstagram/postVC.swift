@@ -11,6 +11,7 @@ import Parse
 import PopupDialog
 import ExpandingMenu
 import MapKit
+import Social
 
 var postuuid = [String]()
 
@@ -763,5 +764,75 @@ class postVC: UITableViewController {
         }
     }
     
-    
+    @IBAction func shareButton_tapped(_ sender: UIButton) {
+        
+        // Get the selected row
+        let buttonPosition = sender.convert(CGPoint.zero, to: tableView)
+        guard let indexPath = tableView.indexPathForRow(at: buttonPosition) else {
+            return
+        }
+        
+        let cancelAction = CancelButton(title: cancel_button_str, action: nil)
+        
+        var tripPicture = UIImage()
+        picArray[indexPath.row].getDataInBackground(block: { (data: Data?, error: Error?) in
+            if error == nil {
+                // get picture of trip
+                tripPicture = UIImage(data: data!)!
+
+                // Display the share menu
+                let twitterAction = DefaultButton(title: twitter_str) { (action) in
+                    
+                    // Check if Twitter is available. Otherwise, display an error message
+                    guard SLComposeViewController.isAvailable(forServiceType: SLServiceTypeTwitter) else {
+                        
+                        let okbtn = DefaultButton(title: ok_str, action: nil)
+                        let alertMessage = PopupDialog(title: twitter_unavailable, message: twitter_registration_error)
+                        alertMessage.addButtons([okbtn])
+                        self.present(alertMessage, animated: true, completion: nil)
+                        
+                        return
+                    }
+                    
+                    // Display Tweet Composer
+                    if let tweetComposer = SLComposeViewController(forServiceType: SLServiceTypeTwitter) {
+                        tweetComposer.setInitialText(share_item + " ")// + self.restaurantNames[indexPath.row])
+                        tweetComposer.add(tripPicture)
+                        self.present(tweetComposer, animated: true, completion: nil)
+                    }
+                }
+                
+                let facebookAction = DefaultButton(title: facebook_str) { (action) in
+                    
+                    // Check if Facebook is available. Otherwise, display an error message
+                    guard SLComposeViewController.isAvailable(forServiceType: SLServiceTypeFacebook) else {
+                        
+                        let okbtn = DefaultButton(title: ok_str, action: nil)
+                        let alertMessage = PopupDialog(title: facebook_unavailable, message: facebook_registration_error)
+                        alertMessage.addButtons([okbtn])
+                        self.present(alertMessage, animated: true, completion: nil)
+                        
+                        return
+                    }
+                    
+                    // Display Facebook Composer
+                    if let fbComposer = SLComposeViewController(forServiceType: SLServiceTypeFacebook) {
+                        fbComposer.setInitialText(share_item + " ") // + self.restaurantNames[indexPath.row])
+                        fbComposer.add(tripPicture)
+                        // fbComposer.add(URL(string: home_application_url_str))
+                        self.present(fbComposer, animated: true, completion: nil)
+                    }
+                }
+                
+                let dlgImg = resizeImage(tripPicture, targetSize: CGSize(width: 300.0, height: 300.0))
+                
+                let menu = PopupDialog(title: question_what_to_do_with_article, message: sharing_notification_str, image: dlgImg)
+                menu.addButtons([twitterAction, facebookAction, cancelAction])
+                
+                self.present(menu, animated: true, completion: nil)
+            } else {
+                print (error!.localizedDescription)
+            }
+        })
+    }
 }

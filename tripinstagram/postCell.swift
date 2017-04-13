@@ -42,7 +42,8 @@ class postCell: UITableViewCell, MKMapViewDelegate, CLLocationManagerDelegate {
     @IBOutlet weak var countriesView: UIView!
     @IBOutlet weak var pictureView: UIView!
     @IBOutlet weak var postMapView: MKMapView!
-
+    @IBOutlet weak var shareButton: UIButton!
+    
     //let pictureWidth = width - 20
     let pictureWidth = UIScreen.main.bounds.width
     let pictureHeight = round(UIScreen.main.bounds.height / 3) + 50
@@ -94,7 +95,7 @@ class postCell: UITableViewCell, MKMapViewDelegate, CLLocationManagerDelegate {
         pictureView.translatesAutoresizingMaskIntoConstraints = false
         uuidLbl.translatesAutoresizingMaskIntoConstraints = false
         postMapView.translatesAutoresizingMaskIntoConstraints = false
-
+        shareButton.translatesAutoresizingMaskIntoConstraints = false
 
         self.contentView.backgroundColor = UIColor(red: 155 / 255, green: 155 / 255, blue: 155 / 255, alpha: 3 / 100)
         self.contentView.layer.cornerRadius = 0
@@ -108,10 +109,15 @@ class postCell: UITableViewCell, MKMapViewDelegate, CLLocationManagerDelegate {
         kmLbl.textColor = UIColor.white
         
         // change color of buttons image
-        let origImage = UIImage(named: "zoom_in")
-        let tintedImage = origImage?.withRenderingMode(UIImageRenderingMode.alwaysTemplate)
-        zoomin.setImage(tintedImage, for: .normal)
+        let zoomorigImage = UIImage(named: "zoom_in")
+        let zoomtintedImage = zoomorigImage?.withRenderingMode(UIImageRenderingMode.alwaysTemplate)
+        zoomin.setImage(zoomtintedImage, for: .normal)
         zoomin.tintColor = .white
+        
+        let shareorigImage = UIImage(named: "share")
+        let sharetintedImage = shareorigImage?.withRenderingMode(UIImageRenderingMode.alwaysTemplate)
+        shareButton.setImage(sharetintedImage, for: .normal)
+        shareButton.tintColor = .white
         
         let origSpentImage = UIImage(named: "spent_money")
         let tintedSpentImage = origSpentImage?.withRenderingMode(UIImageRenderingMode.alwaysTemplate)
@@ -142,11 +148,13 @@ class postCell: UITableViewCell, MKMapViewDelegate, CLLocationManagerDelegate {
             options: [],
             metrics: nil, views: ["countryview":countriesView]))
        
+        let imagespace = pictureHeight - 65 - (postFinAndDestView.frame.height - 25)
+        let spacing = pictureHeight - 65 - (CGFloat(imagespace) + 20)
         self.pictureView.addConstraints(NSLayoutConstraint.constraints(
-            withVisualFormat: "V:|-45-[zoom(20)]-(\(pictureHeight - 65))-|",
+            withVisualFormat: "V:|-45-[zoom(20)]-\(imagespace)-[share(20)]-(\(spacing))-|",
             options: [],
-            metrics: nil, views: ["zoom":zoomin]))
-        
+            metrics: nil, views: ["zoom":zoomin, "share":shareButton]))
+
         self.postUserView.addConstraints(NSLayoutConstraint.constraints(
             withVisualFormat: "V:|-5-[ava(30)]-5-|",
             options: [],
@@ -237,7 +245,12 @@ class postCell: UITableViewCell, MKMapViewDelegate, CLLocationManagerDelegate {
             withVisualFormat: "H:|-10-[country(30)]-(\(pictureWidth - 70))-[zoom(20)]-10-|",
             options: [],
             metrics: nil, views: ["country":countriesView, "zoom":zoomin]))
-        
+
+        self.pictureView.addConstraints(NSLayoutConstraint.constraints(
+            withVisualFormat: "H:[share(20)]-10-|",
+            options: [],
+            metrics: nil, views: ["share":shareButton]))
+
         self.postUserView.addConstraints(NSLayoutConstraint.constraints(
             withVisualFormat: "H:|-10-[ava(30)]-10-[username]-[personicon(30)]-5-[personsnr(20)]-10-[levelicon(30)]-5-[level(20)]-10-|",
             options: [],
@@ -343,6 +356,7 @@ class postCell: UITableViewCell, MKMapViewDelegate, CLLocationManagerDelegate {
                 self.postMapView.alpha = 0
                 self.postUserView.alpha = 0
                 self.postDateView.alpha = 0
+                self.shareButton.alpha = 0
                 // self.pictureView.alpha = 0
             })
         } else {
@@ -373,6 +387,7 @@ class postCell: UITableViewCell, MKMapViewDelegate, CLLocationManagerDelegate {
                 self.postMapView.alpha = 1
                 self.postUserView.alpha = 1
                 self.postDateView.alpha = 1
+                self.shareButton.alpha = 1
                 // self.pictureView.alpha = 1
                 
                 // add customized graphics to cell
